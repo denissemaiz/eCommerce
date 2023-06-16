@@ -9,17 +9,17 @@ namespace dominio
     public class Categoria
     {
         private int id;
-        private string descripcion;
+        private string nombre;
 
         public Categoria()
         {
 
         }
 
-        public Categoria(int id, string descripcion)
+        public Categoria(int id, string nombre)
         {
             this.id = id;
-            this.descripcion = descripcion;
+            this.nombre = nombre;
         }
 
         public int Id
@@ -27,10 +27,10 @@ namespace dominio
             get { return id; }
             set { id = value; }
         }
-        public string Descripcion
+        public string Nombre
         {
-            get { return descripcion; }
-            set { descripcion = value; }
+            get { return nombre; }
+            set { nombre = value; }
         }
     }
 }
