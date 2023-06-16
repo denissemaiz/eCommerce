@@ -9,7 +9,7 @@ namespace dominio
     public class Articulo
     {
         private int id;
-        private string codigo;
+        private int codigo;
         private string nombre;
         private string descripcion;
         private decimal precio;
@@ -24,7 +24,7 @@ namespace dominio
 
         }
 
-        public Articulo(int id, string codigo, string nombre, string descripcion, decimal precio, int stock, int idCategoria, List<int> idImagen)
+        public Articulo(int id, int codigo, string nombre, string descripcion, decimal precio, int stock, int idCategoria, List<int> idImagen)
         {
             this.id = id;
             this.codigo = codigo;
@@ -42,7 +42,7 @@ namespace dominio
             set { id = value; }
         }
 
-        public string Codigo
+        public int Codigo
         {
             get { return codigo; }
             set { codigo = value; }
