@@ -24,11 +24,11 @@ namespace negocio
                 {
                     Articulo aux = new Articulo();
                     aux.Id = (int)Datos.Lector["ID_Articulo"];
-                    aux.Codigo = (string)Datos.Lector["Codigo"];
+                    aux.Codigo = (Int16)Datos.Lector["Codigo"];
                     aux.Nombre = (string)Datos.Lector["Nombre"];
                     aux.Descripcion = (string)Datos.Lector["Descripcion"];
                     aux.Precio = Decimal.Round((decimal)Datos.Lector["Precio"], 2);
-                    aux.Stock = (int)Datos.Lector["Stock"];
+                    aux.Stock = (Int16)Datos.Lector["Stock"];
                     aux.IdCategoria = (int)Datos.Lector["ID_Categoria"];
                     //aux.IdImagen = (List<Imagen>)Datos.Lector["Imagen"];
                     lista.Add(aux);
@@ -128,7 +128,7 @@ namespace negocio
                 {
                     Articulo aux = new Articulo();
                     aux.Id = (int)Datos.Lector["Id"];                   
-                    aux.Codigo = (string)Datos.Lector["Codigo"];
+                    aux.Codigo = (int)Datos.Lector["Codigo"];
                     aux.Nombre = (string)Datos.Lector["Nombre"];
                     aux.Descripcion = (string)Datos.Lector["Descripcion"];
                     aux.Precio = Decimal.Round((decimal)Datos.Lector["Precio"], 2);
@@ -177,9 +177,9 @@ namespace negocio
             List<Articulo> finalList = new List<Articulo>();
             foreach (Articulo art in inputList)
             {
-                if (!uniqueStore.ContainsKey(art.Codigo))
+                if (!uniqueStore.ContainsKey(art.Codigo.ToString()))
                 {
-                    uniqueStore.Add(art.Codigo, "0");
+                    uniqueStore.Add(art.Codigo.ToString(), "0");
                     finalList.Add(art);
                 }
             }
