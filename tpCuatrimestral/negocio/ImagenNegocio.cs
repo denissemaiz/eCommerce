@@ -24,8 +24,8 @@ namespace negocio
                     Imagen aux = new Imagen();
                     aux.Id = (int)Datos.Lector["Id"];
                     aux.IdArticulo = (int)Datos.Lector["IdArticulo"];
-                    aux.ImagenUrl = (string)Datos.Lector["Imagen"];
-                    aux.ImagenNombre = (string)Datos.Lector["ImagenNombre"];
+                    aux.Nombre = (string)Datos.Lector["ImagenNombre"];
+                    aux.Url = (string)Datos.Lector["Imagen"];
                     Listar.Add(aux);
                 }
                 return Listar;
@@ -46,7 +46,7 @@ namespace negocio
 
             try
             {
-                datos.Consulta("Insert into IMAGENES (IdArticulo, ImagenUrl, ImagenNombre) VALUES('" + nuevo.IdArticulo + "', '" + nuevo.ImagenUrl + "', '" + nuevo.ImagenNombre + "')");
+                datos.Consulta("Insert into IMAGENES (IdArticulo, ImagenUrl, ImagenNombre) VALUES('" + nuevo.IdArticulo + "', '" + nuevo.Nombre + "', '" + nuevo.Url + "')");
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
@@ -75,8 +75,8 @@ namespace negocio
                     Imagen aux = new Imagen();
                     aux.Id = (int)Datos.Lector["Id"];
                     aux.IdArticulo = (int)Datos.Lector["IdArticulo"];
-                    aux.ImagenUrl = (string)Datos.Lector["ImagenUrl"];
-                    aux.ImagenNombre = (string)Datos.Lector["ImagenNombre"];
+                    aux.Nombre = (string)Datos.Lector["ImagenNombre"];
+                    aux.Url = (string)Datos.Lector["ImagenUrl"];
 
                     busqueda.Add(aux);
                 }
@@ -116,9 +116,9 @@ namespace negocio
             List<Imagen> finalList = new List<Imagen>();
             foreach (Imagen img in inputList)
             {
-                if (!uniqueStore.ContainsKey(img.ImagenUrl))
+                if (!uniqueStore.ContainsKey(img.Url))
                 {
-                    uniqueStore.Add(img.ImagenUrl, "0");
+                    uniqueStore.Add(img.Url, "0");
                     finalList.Add(img);
                 }
             }

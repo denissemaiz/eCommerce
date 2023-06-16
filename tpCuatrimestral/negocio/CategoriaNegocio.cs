@@ -23,7 +23,7 @@ namespace negocio
                 {
                     Categoria aux = new Categoria();
                     aux.Id = (int)Datos.Lector["Id"];
-                    aux.Descripcion = (string)Datos.Lector["Categ"];
+                    aux.Nombre = (string)Datos.Lector["Categ"];
                     Listar.Add(aux);
                 }
                 return Listar;
@@ -55,7 +55,7 @@ namespace negocio
                     if(Datos.Lector.Read())
                     {
                         aux.Id = (int)Datos.Lector["Id"];
-                        aux.Descripcion = (string)Datos.Lector["Descripcion"];
+                        aux.Nombre = (string)Datos.Lector["Descripcion"];
                     }
                 }
                 return aux;
@@ -86,9 +86,9 @@ namespace negocio
             List<Categoria> finalList = new List<Categoria>();
             foreach (Categoria cat in inputList)
             {
-                if (!uniqueStore.ContainsKey(cat.Descripcion))
+                if (!uniqueStore.ContainsKey(cat.Nombre))
                 {
-                    uniqueStore.Add(cat.Descripcion, "0");
+                    uniqueStore.Add(cat.Nombre, "0");
                     finalList.Add(cat);
                 }
             }
