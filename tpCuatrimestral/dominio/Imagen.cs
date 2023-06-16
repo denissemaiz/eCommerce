@@ -10,20 +10,20 @@ namespace dominio
     {
         private int id;
         private int idArticulo;
-        private string imagenUrl;
-        private string imagenNombre;
+        private string nombre;
+        private string url;
 
         public Imagen()
         {
 
         }
 
-        public Imagen(int id, int idArticulo, string imagenUrl, string imagenName)
+        public Imagen(int id, int idArticulo, string nombre, string url)
         {
             this.id = id;
             this.idArticulo = idArticulo;
-            this.imagenUrl = imagenUrl;
-            this.imagenNombre = imagenName;
+            this.url = url;
+            this.nombre = nombre;
         }
 
         public int Id
@@ -31,23 +31,20 @@ namespace dominio
             get { return id; }
             set { id = value; }
         }
-
         public int IdArticulo
         { 
             get { return idArticulo; } 
             set { idArticulo = value; } 
         }
-
-        public string ImagenUrl 
+        public string Nombre
         {
-            get { return imagenUrl; }
-            set { imagenUrl = value; }
+            get { return nombre; }
+            set { nombre = value; }
         }
-
-        public string ImagenNombre
+        public string Url 
         {
-            get { return imagenNombre; }
-            set { imagenNombre = value; }
+            get { return url; }
+            set { url = value; }
         }
     }
 }

@@ -13,21 +13,25 @@ namespace dominio
         private string nombre;
         private string descripcion;
         private decimal precio;
-        private List<Categoria> idCategoria;
-        private List<Imagen> idImagen;
+        private int stock;
+        private int idCategoria;
+        //private List<Categoria> idCategoria;
+        private List<int> idImagen;
+        //private List<Imagen> imagen;
 
         public Articulo()
         {
 
         }
 
-        public Articulo(int id, string codigo, string nombre, string descripcion, decimal precio, List<Categoria> idCategoria, List<Imagen> idImagen)
+        public Articulo(int id, string codigo, string nombre, string descripcion, decimal precio, int stock, int idCategoria, List<int> idImagen)
         {
             this.id = id;
             this.codigo = codigo;
             this.nombre = nombre;
             this.descripcion = descripcion;
             this.precio = precio;
+            this.stock = stock;
             this.idCategoria = idCategoria;
             this.idImagen = idImagen;
         }
@@ -63,13 +67,19 @@ namespace dominio
             set { precio = value; }
         }
 
-        public List<Categoria> IdCategoria
+        public int Stock
+        {
+            get { return stock; }
+            set { stock = value; }
+        }
+
+        public int IdCategoria
         {
             get { return idCategoria; }
             set { idCategoria = value; }
         }
 
-        public List<Imagen> IdImagen
+        public List<int> IdImagen
         {
             get { return idImagen; }
             set { idImagen = value; }
