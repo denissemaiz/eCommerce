@@ -11,11 +11,11 @@ namespace eCommerce
 {
     public partial class Productos : System.Web.UI.Page
     {
-        public List<Articulo> listaArticulos { get; set; }
+        public List<Libro> listaArticulos { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            ArticuloNegocio articulo = new ArticuloNegocio();
-            List<Articulo> listaSinRepetidos = articulo.RemoveDuplicadosArticulo(articulo.Listar());
+            LibroNegocio articulo = new LibroNegocio();
+            List<Libro> listaSinRepetidos = articulo.RemoveDuplicadosLibro(articulo.Listar());
             repArticulos.DataSource = listaSinRepetidos;
             repArticulos.DataBind();
         }

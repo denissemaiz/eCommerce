@@ -7,31 +7,30 @@ using dominio;
 
 namespace negocio
 {
-    public class ImagenNegocio
+    public class GeneroNegocio
     {
-        public List<Imagen> Listar()
+        public List<Genero> Listar()
         {
-            List<Imagen> Listar = new List<Imagen>();
+            List<Genero> Listar = new List<Genero>();
             AccesoSQL Datos = new AccesoSQL();
 
             try
             {
-                Datos.Consulta("Select I.ID_Imagen, I.ID_Articulo, I.Nombre, I.ImagenURL From IMAGEN I");
+                Datos.Consulta("Select G.ID_Categoria, G.Nombre From GENERO G");
                 Datos.EjecutarLectura();
 
                 while (Datos.Lector.Read())
                 {
-                    Imagen aux = new Imagen();
+                    Genero aux = new Genero();
                     aux.Id = (int)Datos.Lector["Id"];
-                    aux.IdArticulo = (int)Datos.Lector["IdArticulo"];
-                    aux.Nombre = (string)Datos.Lector["ImagenNombre"];
-                    aux.Url = (string)Datos.Lector["Imagen"];
+                    aux.Nombre = (string)Datos.Lector["Nombre"];
                     Listar.Add(aux);
                 }
                 return Listar;
             }
             catch (Exception ex)
             {
+
                 throw ex;
             }
             finally
@@ -40,16 +39,16 @@ namespace negocio
             }
         }
 
-        public List<Imagen> RemoveDuplicadosImagen(List<Imagen> inputList)
+        public List<Genero> RemoveDuplicadosGenero(List<Genero> inputList)
         {
             Dictionary<string, string> uniqueStore = new Dictionary<string, string>();
-            List<Imagen> finalList = new List<Imagen>();
-            foreach (Imagen img in inputList)
+            List<Genero> finalList = new List<Genero>();
+            foreach (Genero gen in inputList)
             {
-                if (!uniqueStore.ContainsKey(img.Url))
+                if (!uniqueStore.ContainsKey(gen.Nombre))
                 {
-                    uniqueStore.Add(img.Url, "0");
-                    finalList.Add(img);
+                    uniqueStore.Add(gen.Nombre, "0");
+                    finalList.Add(gen);
                 }
             }
             return finalList;

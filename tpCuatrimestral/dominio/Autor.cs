@@ -4,25 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace dominio
+namespace Clases
 {
-    public class Imagen
+    public class Autor
     {
         private int id;
-        private int idArticulo;
         private string nombre;
-        private string url;
+        private string apellido;
 
-        public Imagen()
+        public Autor()
         {
-
         }
 
-        public Imagen(int id, int idArticulo, string nombre, string url)
+        public Autor(int id, string nombre)
         {
             this.id = id;
-            this.idArticulo = idArticulo;
-            this.url = url;
             this.nombre = nombre;
         }
 
@@ -31,20 +27,15 @@ namespace dominio
             get { return id; }
             set { id = value; }
         }
-        public int IdArticulo
-        { 
-            get { return idArticulo; } 
-            set { idArticulo = value; } 
-        }
         public string Nombre
         {
             get { return nombre; }
             set { nombre = value; }
         }
-        public string Url 
-        {
-            get { return url; }
-            set { url = value; }
+        public string Apellido
+        { 
+            get { return apellido; } 
+            set { apellido = value; }
         }
     }
 }

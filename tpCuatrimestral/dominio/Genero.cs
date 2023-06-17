@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace dominio
 {
-    public class Categoria
+    public class Genero
     {
         private int id;
         private string nombre;
 
-        public Categoria()
+        public Genero()
         {
 
         }
 
-        public Categoria(int id, string nombre)
+        public Genero(int id, string nombre)
         {
             this.id = id;
             this.nombre = nombre;

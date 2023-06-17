@@ -1,29 +1,31 @@
-﻿using System;
+﻿using Clases;
+using dominio;
+using negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using dominio;
 
-namespace negocio
+namespace Conexiones
 {
-    public class CategoriaNegocio
+    public class AutorNegocio
     {
-        public List<Categoria> Listar()
+        public List<Autor> Listar()
         {
-            List<Categoria> Listar = new List<Categoria>();
+            List<Autor> Listar = new List<Autor>();
             AccesoSQL Datos = new AccesoSQL();
 
             try
             {
-                Datos.Consulta("Select C.ID_Categoria, C.Nombre From CATEGORIA C");
+                Datos.Consulta("Select G.ID_Categoria, G.Nombre From GENERO G");
                 Datos.EjecutarLectura();
 
                 while (Datos.Lector.Read())
                 {
-                    Categoria aux = new Categoria();
+                    Autor aux = new Autor();
                     aux.Id = (int)Datos.Lector["Id"];
-                    aux.Nombre = (string)Datos.Lector["Categ"];
+                    aux.Nombre = (string)Datos.Lector["Nombre"];
                     Listar.Add(aux);
                 }
                 return Listar;
@@ -39,16 +41,16 @@ namespace negocio
             }
         }
 
-        public List<Categoria> RemoveDuplicadosCategoria(List<Categoria> inputList)
+        public List<Autor> RemoveDuplicadosGenero(List<Autor> inputList)
         {
             Dictionary<string, string> uniqueStore = new Dictionary<string, string>();
-            List<Categoria> finalList = new List<Categoria>();
-            foreach (Categoria cat in inputList)
+            List<Autor> finalList = new List<Autor>();
+            foreach (Autor aut in inputList)
             {
-                if (!uniqueStore.ContainsKey(cat.Nombre))
+                if (!uniqueStore.ContainsKey(aut.Nombre))
                 {
-                    uniqueStore.Add(cat.Nombre, "0");
-                    finalList.Add(cat);
+                    uniqueStore.Add(aut.Nombre, "0");
+                    finalList.Add(aut);
                 }
             }
             return finalList;

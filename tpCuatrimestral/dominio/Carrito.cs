@@ -8,7 +8,7 @@ namespace dominio
 {
     public class Carrito
     {
-        private List <Articulo> articulos;
+        private List <Libro> libros;
         private decimal monto;
 
         public Carrito()
@@ -16,16 +16,16 @@ namespace dominio
 
         }
 
-        public Carrito(List<Articulo> articulos, decimal monto)
+        public Carrito(List<Libro> libros, decimal monto)
         {
-            this.articulos = articulos;
+            this.libros = libros;
             this.monto = monto;
         }
 
-        public List<Articulo> Articulos
+        public List<Libro> Libros
         {            
-            get { return articulos; }
-            set { articulos = value; }
+            get { return libros; }
+            set { libros = value; }
         }
         public decimal Monto
         {
@@ -36,18 +36,18 @@ namespace dominio
         public decimal CalcularMonto()
         {
             monto = 0;
-            foreach (Articulo art in articulos)
+            foreach (Libro art in libros)
             {
                 monto += art.Precio;
             }
             return monto;
         }
 
-        public bool QuitarArticulo(int id)
+        public bool QuitarLibro(int id)
         {
-            foreach (Articulo art in articulos)
+            foreach (Libro art in libros)
             {
-                if (art.Id == id) articulos.Remove(art);
+                if (art.Id == id) libros.Remove(art);
                 return true;
             }
             return false;
@@ -55,7 +55,7 @@ namespace dominio
 
         ~Carrito()
         {
-            articulos.Clear();
+            libros.Clear();
         }
     }
 }

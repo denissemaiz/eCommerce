@@ -43,9 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccesoSQL.cs" />
-    <Compile Include="CategoriaNegocio.cs" />
-    <Compile Include="ArticuloNegocio.cs" />
-    <Compile Include="ImagenNegocio.cs" />
+    <Compile Include="AutorNegocio.cs" />
+    <Compile Include="GeneroNegocio.cs" />
+    <Compile Include="LibroNegocio.cs" />
+    <Compile Include="PortadaNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

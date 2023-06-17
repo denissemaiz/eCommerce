@@ -42,10 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Articulo.cs" />
+    <Compile Include="Autor.cs" />
+    <Compile Include="Libro.cs" />
     <Compile Include="Carrito.cs" />
-    <Compile Include="Categoria.cs" />
-    <Compile Include="Imagen.cs" />
+    <Compile Include="Genero.cs" />
+    <Compile Include="Portada.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
