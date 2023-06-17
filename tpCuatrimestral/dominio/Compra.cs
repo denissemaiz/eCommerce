@@ -7,25 +7,22 @@ using System.Threading.Tasks;
 
 namespace Clases
 {
-    internal class Compra
+    public class Compra
     {
         private int id;
-        private string idCliente;
-        private List<int> idArticulo;
-        //private List<Articulo> articulo;
-        private int precioTotal;
+        private int idCliente;
+        private Carrito carrito;
 
         public Compra()
         {
 
         }
 
-        public Compra(int id, string idCliente, List<int> idArticulo, int precioTotal)
+        public Compra(int id, int idCliente, Carrito carrito)
         {
             this.id = id;
             this.idCliente = idCliente;
-            this.idArticulo = idArticulo;
-            this.precioTotal = precioTotal;
+            this.carrito = carrito;
         }
 
         public int Id
@@ -33,20 +30,15 @@ namespace Clases
             get { return id; }
             set { id = value; }
         }
-        public string IdCliente
+        public int IdCliente
         {
             get { return idCliente; }
             set { idCliente = value; }
         }
-        public List<int> IdArticulo
+        public Carrito Carrito
         {
-            get { return idArticulo; }
-            set { idArticulo = value; }
-        }
-        public int PrecioTotal
-        {
-            get { return precioTotal; }
-            set { precioTotal = value; }
+            get { return carrito; }
+            set { carrito = value; }
         }
     }
 }

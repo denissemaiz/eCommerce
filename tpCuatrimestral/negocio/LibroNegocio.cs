@@ -5,32 +5,34 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using dominio;
+using Clases;
 
 namespace negocio
 {
-    public class ArticuloNegocio
+    public class LibroNegocio
     {
-        public List<Articulo> Listar() 
+        public List<Libro> Listar() 
         {
-            List<Articulo> lista = new List<Articulo>();
+            List<Libro> lista = new List<Libro>();
             AccesoSQL Datos = new AccesoSQL();
 
             try
             {
-                Datos.Consulta("Select A.ID_Articulo, A.Codigo, A.Nombre, A.Descripcion, A.Precio, A.Stock, A.ID_Categoria From ARTICULO A");
+                Datos.Consulta("Select A.ID_Articulo, A.Codigo, A.Nombre, A.Descripcion, A.Precio, A.Stock From ARTICULO A");
                 Datos.EjecutarLectura();
 
                 while (Datos.Lector.Read())
                 {
-                    Articulo aux = new Articulo();
+                    Libro aux = new Libro();
                     aux.Id = (int)Datos.Lector["ID_Articulo"];
                     aux.Codigo = (Int16)Datos.Lector["Codigo"];
-                    aux.Nombre = (string)Datos.Lector["Nombre"];
+                    aux.Titulo = (string)Datos.Lector["Nombre"];
+                    //aux.Autores = (List<Autor>)Datos.Lector["Autores"];
                     aux.Descripcion = (string)Datos.Lector["Descripcion"];
                     aux.Precio = Decimal.Round((decimal)Datos.Lector["Precio"], 2);
                     aux.Stock = (Int16)Datos.Lector["Stock"];
-                    aux.IdCategoria = (int)Datos.Lector["ID_Categoria"];
-                    //aux.IdImagen = (List<Imagen>)Datos.Lector["Imagen"];
+                    //aux.Generos = (List<Genero>)Datos.Lector["Generos"];
+                    //aux.Portada = (Portada)Datos.Lector["Portada"];
                     lista.Add(aux);
                 }
                     return lista;
@@ -45,16 +47,16 @@ namespace negocio
             }                               
         }
 
-        public List<Articulo> RemoveDuplicadosArticulo(List<Articulo> inputList)
+        public List<Libro> RemoveDuplicadosLibro(List<Libro> inputList)
         {
             Dictionary<string, string> uniqueStore = new Dictionary<string, string>();
-            List<Articulo> finalList = new List<Articulo>();
-            foreach (Articulo art in inputList)
+            List<Libro> finalList = new List<Libro>();
+            foreach (Libro lib in inputList)
             {
-                if (!uniqueStore.ContainsKey(art.Codigo.ToString()))
+                if (!uniqueStore.ContainsKey(lib.Codigo.ToString()))
                 {
-                    uniqueStore.Add(art.Codigo.ToString(), "0");
-                    finalList.Add(art);
+                    uniqueStore.Add(lib.Codigo.ToString(), "0");
+                    finalList.Add(lib);
                 }
             }
             return finalList;

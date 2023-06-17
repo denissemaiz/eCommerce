@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace dominio
+namespace Clases
 {
-    public class Categoria
+    public class Autor
     {
         private int id;
         private string nombre;
+        private string apellido;
 
-        public Categoria()
+        public Autor()
         {
-
         }
 
-        public Categoria(int id, string nombre)
+        public Autor(int id, string nombre)
         {
             this.id = id;
             this.nombre = nombre;
@@ -31,6 +31,11 @@ namespace dominio
         {
             get { return nombre; }
             set { nombre = value; }
+        }
+        public string Apellido
+        { 
+            get { return apellido; } 
+            set { apellido = value; }
         }
     }
 }

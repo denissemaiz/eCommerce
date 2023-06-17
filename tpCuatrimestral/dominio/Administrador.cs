@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Clases
 {
-    internal class Administrador
+    public class Administrador
     {
         public int id;
         public string mail;
