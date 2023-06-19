@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.Remoting.Lifetime;
 using System.Text;
 using System.Threading.Tasks;
+using dominio;
 
 namespace Conexiones
 {
@@ -57,5 +58,35 @@ namespace Conexiones
             }
             return finalList;
         }
+    
+        public bool Login(Usuario user)
+        {
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("Select ID_Usuario, NombreUsuario, Contraseña, Mail, EsAdmin, ID_Direccion from Usuario Where NombreUsuario = @user and Contraseña = @pass");
+                datos.SetParametros("@user", user.Nombre);
+                datos.SetParametros("@pass", user.Contraseña);
+
+                datos.EjecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    user.Id = (int)datos.Lector["ID_Usuario"];
+                    user.TipoUsuario =  (int)datos.Lector["EsAdmin"] == 2 ? UserType.ADMIN : UserType.CLIENTE ;
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+    
     }
 }

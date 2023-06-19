@@ -6,26 +6,33 @@ using System.Threading.Tasks;
 
 namespace Clases
 {
+    public enum UserType
+    {
+        ADMIN=1, CLIENTE=2
+    }
     public class Usuario
     {
-        public int id;
-        public string nombre;
-        public string mail;
-        public string contraseña;
-        public Direccion direccion;
+        private int id;
+        private string nombre;
+        private string mail;
+        private string contraseña;
+        private Direccion direccion;
+        private UserType tipoUsuario;
 
         public Usuario()
         {
 
         }
 
-        public Usuario(int id, string nombre, string mail, string contraseña, Direccion direccion)
+        public Usuario(int id, string nombre, string mail, string contraseña, Direccion direccion, bool admin)
         {
             this.id = id;
             this.nombre = nombre;
             this.mail = mail;
             this.contraseña = contraseña;
             this.direccion = direccion;
+
+            this.tipoUsuario = admin ? UserType.ADMIN : UserType.CLIENTE;
         }
 
         public int Id
@@ -52,6 +59,18 @@ namespace Clases
         {
             get { return direccion; }
             set { direccion = value; }
+        }
+        public UserType TipoUsuario
+        {
+            get { return tipoUsuario;} 
+            set { tipoUsuario = value;}
+        } 
+        
+
+        public bool validarAdmin()
+        {
+            if (this.tipoUsuario == UserType.ADMIN) return true;
+            return false;
         }
     }
 }
