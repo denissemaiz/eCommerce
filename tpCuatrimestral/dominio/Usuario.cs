@@ -67,7 +67,7 @@ namespace Clases
         } 
         
 
-        public bool validarAdmin()
+        public bool ValidarAdmin()
         {
             if (this.tipoUsuario == UserType.ADMIN) return true;
             return false;
