@@ -10,7 +10,7 @@ using dominio;
 
 namespace Conexiones
 {
-    internal class UsuarioNegocio
+    public class UsuarioNegocio
     {
         public List<Usuario> Listar()
         {
@@ -72,7 +72,8 @@ namespace Conexiones
                 while (datos.Lector.Read())
                 {
                     user.Id = (int)datos.Lector["ID_Usuario"];
-                    user.TipoUsuario =  (int)datos.Lector["EsAdmin"] == 2 ? UserType.ADMIN : UserType.CLIENTE ;
+                    user.Mail = (string)datos.Lector["Mail"];
+                    user.TipoUsuario =  (bool)datos.Lector["EsAdmin"] == true ? UserType.ADMIN : UserType.CLIENTE ;
                     return true;
                 }
                 return false;
