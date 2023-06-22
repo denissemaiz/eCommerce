@@ -64,7 +64,7 @@ namespace Conexiones
             AccesoSQL datos = new AccesoSQL();
             try
             {
-                datos.Consulta("Select ID_Usuario, NombreUsuario, Contraseña, Mail, EsAdmin, ID_Direccion from Usuario Where NombreUsuario = @user and Contraseña = @pass");
+                datos.Consulta("Select ID_Usuario, Mail, EsAdmin, ID_Direccion from Usuario Where NombreUsuario = @user and Contraseña = @pass");
                 datos.SetParametros("@user", user.Nombre);
                 datos.SetParametros("@pass", user.Contraseña);
 
