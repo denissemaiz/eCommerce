@@ -23,13 +23,29 @@ namespace eCommerce
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             UsuarioNegocio conexion = new UsuarioNegocio();
-            user.Nombre = txtUser.Text;
-            user.Contraseña = txtPass.Text;
+            try
+            {
+                user.Nombre = txtUser.Text;
+                user.Contraseña = txtPass.Text;
 
-            if (conexion.Login(user)) Session.Add("Usuario", user);
-            
-            
-            Response.Redirect("Default.aspx");
+                if (conexion.Login(user))
+                {
+                    Session.Add("Usuario", user);
+                    Response.Redirect("Default.aspx", false);
+                }
+                else
+                {
+                    Session.Add("error", "Usuario o contraseña incorrecto");
+                    Response.Redirect("Error.aspx", false);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx");
+            }
         }
     }
 }
