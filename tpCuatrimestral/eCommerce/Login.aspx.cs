@@ -16,11 +16,16 @@ namespace eCommerce
         Usuario user;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Usuario"] != null)
+            {
+                Session.Add("error", "Usted ya se encuentra logueado, para iniciar sesion por favor desconecte su sesión actual");
+                Response.Redirect("Error.aspx", false);
+            }
             user = new Usuario();
 
         }
 
-        protected void btnLogin_Click(object sender, EventArgs e)
+        protected void btnIngresar_Click1(object sender, EventArgs e)
         {
             UsuarioNegocio conexion = new UsuarioNegocio();
             try
@@ -46,6 +51,11 @@ namespace eCommerce
                 Session.Add("error", ex.ToString());
                 Response.Redirect("Error.aspx");
             }
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("default.aspx");
         }
     }
 }

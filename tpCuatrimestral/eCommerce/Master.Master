@@ -140,7 +140,7 @@
                 <%if (Session["Usuario"] != null){ %>
                     <li class="nav-item"><a class="nav-link"  href="#"><b>Desconectarse</b></a></li>
                 <% } else { %>
-                    <li class="nav-item"><a class="nav-link"  href="Login.aspx"><b>Conectarse</b></a></li>
+                    <li class="nav-item"><a class="nav-link"  href="Login.aspx"><b>Ingresar</b></a></li>
                     <li class="nav-item"><a class="nav-link"  href="#"><b>Registrarse</b></a></li>
                 <% } %>
             </ul>
