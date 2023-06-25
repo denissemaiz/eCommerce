@@ -19,12 +19,7 @@
                 <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" CssClass="btn btn-primary" OnClick="btnIngresar_Click1"/>
             </div>
         </div>
-       <%-- <div class="row justify-content-center">
-            <div class="col-sm-1 offset-1">
-            </div>
-            <div class="col-sm-1">
-            </div>
-        </div>--%>
+       
     </form>
     
                 
