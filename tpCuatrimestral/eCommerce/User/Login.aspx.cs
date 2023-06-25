@@ -19,7 +19,7 @@ namespace eCommerce
             if (Session["Usuario"] != null)
             {
                 Session.Add("error", "Usted ya se encuentra logueado, para iniciar sesion por favor desconecte su sesión actual");
-                Response.Redirect("Error.aspx", false);
+                Response.Redirect("../Error.aspx", false);
             }
             user = new Usuario();
 
@@ -36,12 +36,12 @@ namespace eCommerce
                 if (conexion.Login(user))
                 {
                     Session.Add("Usuario", user);
-                    Response.Redirect("Default.aspx", false);
+                    Response.Redirect("../Default.aspx", false);
                 }
                 else
                 {
                     Session.Add("error", "Usuario o contraseña incorrecto");
-                    Response.Redirect("Error.aspx", false);
+                    Response.Redirect("../Error.aspx", false);
                 }
 
             }
@@ -49,13 +49,13 @@ namespace eCommerce
             {
 
                 Session.Add("error", ex.ToString());
-                Response.Redirect("Error.aspx");
+                Response.Redirect("../Error.aspx");
             }
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("default.aspx");
+            Response.Redirect("../default.aspx");
         }
     }
 }
