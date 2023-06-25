@@ -15,9 +15,12 @@ namespace eCommerce.User
             {
                 try
                 {
-                    Session["Usuario"] = null;
-                    Session.Clear();
-                    Response.Cookies.Clear();
+                    //Limpia toda la sesion para limpiar el usuario 
+                    //Session["Usuario"] = null;
+                    //Session.Clear();
+                    //Response.Cookies.Clear();
+
+                    Session.Remove("Usuario"); //limpia solo el usuario de la Sesssion
                     Response.Redirect("../Default.aspx", false);
                 }
                 catch (Exception ex)
