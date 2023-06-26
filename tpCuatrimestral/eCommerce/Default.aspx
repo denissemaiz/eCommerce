@@ -8,8 +8,9 @@
     <%if (Session["Usuario"] != null)
             {   %>
         <h3>Usted está Logueado</h3>
-      <% } %>
-
-
+      <% } if (Session["mensaje"] != null)
+          { %>
+            <h3><%:Session["Mensaje"].ToString() %> </h3>
+        <%} %>
 
 </asp:Content>

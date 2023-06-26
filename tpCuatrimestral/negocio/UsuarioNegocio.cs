@@ -89,7 +89,7 @@ namespace Conexiones
             }
         }
         
-        public bool Registro(Usuario user, string mensaje)
+        public bool Registro(Usuario user,ref string mensaje)
         {
             bool registrado;
 
@@ -102,7 +102,7 @@ namespace Conexiones
                 datos.SetParametros("mail", user.Mail);
                 datos.SetParametros("admin", user.ValidarAdmin());
 
-                datos.Comando.Parameters.Add("Registro", System.Data.SqlDbType.Bit).Direction = System.Data.ParameterDirection.Output;
+                datos.Comando.Parameters.Add("Registrado", System.Data.SqlDbType.Bit).Direction = System.Data.ParameterDirection.Output;
                 datos.Comando.Parameters.Add("Mensaje", System.Data.SqlDbType.VarChar,100).Direction = System.Data.ParameterDirection.Output;
 
                 datos.EjecutarAccion();

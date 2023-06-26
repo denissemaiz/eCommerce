@@ -37,7 +37,7 @@
                         <asp:TextBox ID="txtConfPass" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
                         <br />
                         <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" UseSubmitBehavior="false"/>
-                        <asp:Button ID="btnRegistrar" runat="server" Text="Registrar" CssClass="btn btn-primary" />
+                        <asp:Button ID="btnRegistrar" runat="server" Text="Registrar" CssClass="btn btn-primary" OnClick="btnRegistrar_Click"/>
                     </div>
                 </div>
        
