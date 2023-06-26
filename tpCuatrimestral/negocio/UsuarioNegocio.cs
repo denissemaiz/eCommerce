@@ -88,6 +88,40 @@ namespace Conexiones
                 datos.CerrarConexion();
             }
         }
-    
+        
+        public bool Registro(Usuario user, string mensaje)
+        {
+            bool registrado;
+
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.setearProcedimiento("sp_RegistrarUsuario");
+                datos.SetParametros("usuario", user.Nombre);
+                datos.SetParametros("pass", user.Contraseña);
+                datos.SetParametros("mail", user.Mail);
+                datos.SetParametros("admin", user.ValidarAdmin());
+
+                datos.Comando.Parameters.Add("Registro", System.Data.SqlDbType.Bit).Direction = System.Data.ParameterDirection.Output;
+                datos.Comando.Parameters.Add("Mensaje", System.Data.SqlDbType.VarChar,100).Direction = System.Data.ParameterDirection.Output;
+
+                datos.EjecutarAccion();
+
+                registrado = Convert.ToBoolean(datos.Comando.Parameters["Registrado"].Value);
+                mensaje = datos.Comando.Parameters["Mensaje"].Value.ToString();
+
+                return registrado;
+            }
+            catch (Exception ex )
+            {
+
+                mensaje = ex.ToString();
+                return false;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
     }
 }

@@ -83,6 +83,11 @@ namespace negocio
             comando.Parameters.AddWithValue(Nombre, Valor);
         }
 
+        public void setearProcedimiento(string sp)
+        {
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.CommandText = sp;
+        }
         public void CerrarConexion()
         {
             if (lector != null)
