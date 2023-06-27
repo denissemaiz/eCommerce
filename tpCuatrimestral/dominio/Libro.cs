@@ -17,15 +17,14 @@ namespace dominio
         private decimal precio;
         private int stock;
         private List<Genero> generos;
-        private Portada portada;
-        //private List<Portada> portadas;
+        private string portadaURL;
 
         public Libro()
         {
 
         }
 
-        public Libro(int id, int codigo, string titulo, List<Autor> autores, string descripcion, decimal precio, int stock, List<Genero> generos, Portada portada)
+        public Libro(int id, int codigo, string titulo, List<Autor> autores, string descripcion, decimal precio, int stock, List<Genero> generos, string portadaURL)
         {
             this.id = id;
             this.codigo = codigo;
@@ -35,7 +34,7 @@ namespace dominio
             this.precio = precio;
             this.stock = stock;
             this.generos = generos;
-            this.portada = portada;
+            this.portadaURL = portadaURL;
         }
 
         public int Id
@@ -83,10 +82,10 @@ namespace dominio
             set { generos = value; }
         }
 
-        public Portada Portada
+        public string PortadaURL
         {
-            get { return portada; }
-            set { portada = value; }
+            get { return portadaURL; }
+            set { portadaURL = value; }
         }
     }
 }

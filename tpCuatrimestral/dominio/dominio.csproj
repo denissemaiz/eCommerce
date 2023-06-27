@@ -42,9 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Administrador.cs" />
     <Compile Include="Autor.cs" />
     <Compile Include="Compra.cs" />
+    <Compile Include="DatosUsuario.cs" />
     <Compile Include="Direccion.cs" />
     <Compile Include="Libro.cs" />
     <Compile Include="Carrito.cs" />
