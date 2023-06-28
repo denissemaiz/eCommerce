@@ -46,7 +46,12 @@
                     <asp:TextBox ID="txtGenero" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
             </div>
-        
+    <div class="row m-3">
+        <div class="col-md-6">
+
+
+        </div>
+    </div>
         
 
 
