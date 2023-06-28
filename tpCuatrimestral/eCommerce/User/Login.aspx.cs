@@ -30,7 +30,7 @@ namespace eCommerce
             UsuarioNegocio conexion = new UsuarioNegocio();
             try
             {
-                user.Nombre = txtUser.Text;
+                user.Username = txtUser.Text;
                 user.Contraseña = txtPass.Text;
 
                 if (conexion.Login(user))

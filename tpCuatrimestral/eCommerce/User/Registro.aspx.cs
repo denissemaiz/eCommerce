@@ -24,10 +24,10 @@ namespace eCommerce.User
             string mensaje = "";
             UsuarioNegocio datos = new UsuarioNegocio();
 
-            usuario.Nombre = txtUser.Text;
+            usuario.Username = txtUser.Text;
             usuario.Contraseña = txtPass.Text;
             usuario.Mail = txtEmail.Text;
-            usuario.TipoUsuario = UserType.CLIENTE;
+            usuario.EsAdmin = false;
 
             
 

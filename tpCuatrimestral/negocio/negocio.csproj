@@ -49,7 +49,6 @@
     <Compile Include="DireccionNegocio.cs" />
     <Compile Include="GeneroNegocio.cs" />
     <Compile Include="LibroNegocio.cs" />
-    <Compile Include="PortadaNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsuarioNegocio.cs" />
   </ItemGroup>

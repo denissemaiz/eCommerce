@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Clases
 {
-    public enum UserType
-    {
-        ADMIN=1, CLIENTE=2
-    }
+    //public enum UserType
+    //{
+    //    ADMIN=1, CLIENTE=2
+    //}
     public class Usuario
     {
         public int id;
@@ -64,10 +64,6 @@ namespace Clases
             get { return datosUsuario; }
             set { datosUsuario = value; }
         }
-        
-        
-
-        
 
         public bool ConfirmarContraseña(string confirmar)
         {
@@ -75,24 +71,6 @@ namespace Clases
 
             return false;
         }
-        public UserType TipoUsuario
-        {
-            get { return tipoUsuario;} 
-            set { tipoUsuario = value;}
-        } 
         
-
-        public bool ValidarAdmin()
-        {
-            if (this.tipoUsuario == UserType.ADMIN) return true;
-            return false;
-        }
-
-        public bool ConfirmarContraseña(string confirmar)
-        {
-            if(Contraseña ==  confirmar) return true;
-
-            return false;
-        }
     }
 }

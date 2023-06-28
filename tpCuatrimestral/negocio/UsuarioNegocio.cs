@@ -65,7 +65,7 @@ namespace Conexiones
             try
             {
                 datos.Consulta("Select ID_Usuario, Mail, EsAdmin, ID_Direccion from Usuario Where NombreUsuario = @user and Contraseña = @pass");
-                datos.SetParametros("@user", user.Nombre);
+                datos.SetParametros("@user", user.Username);
                 datos.SetParametros("@pass", user.Contraseña);
 
                 datos.EjecutarLectura();
@@ -73,7 +73,7 @@ namespace Conexiones
                 {
                     user.Id = (int)datos.Lector["ID_Usuario"];
                     user.Mail = (string)datos.Lector["Mail"];
-                    user.TipoUsuario =  (bool)datos.Lector["EsAdmin"] == true ? UserType.ADMIN : UserType.CLIENTE ;
+                    user.EsAdmin = (bool)datos.Lector["EsAdmin"];
                     return true;
                 }
                 return false;
@@ -97,10 +97,10 @@ namespace Conexiones
             try
             {
                 datos.setearProcedimiento("sp_RegistrarUsuario");
-                datos.SetParametros("usuario", user.Nombre);
+                datos.SetParametros("usuario", user.Username);
                 datos.SetParametros("pass", user.Contraseña);
                 datos.SetParametros("mail", user.Mail);
-                datos.SetParametros("admin", user.ValidarAdmin());
+                datos.SetParametros("admin", user.EsAdmin);
 
                 datos.Comando.Parameters.Add("Registrado", System.Data.SqlDbType.Bit).Direction = System.Data.ParameterDirection.Output;
                 datos.Comando.Parameters.Add("Mensaje", System.Data.SqlDbType.VarChar,100).Direction = System.Data.ParameterDirection.Output;
