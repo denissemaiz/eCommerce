@@ -17,12 +17,24 @@
                     <div class="col-md-6">
                         <asp:Label ID="lblEmail" runat="server" CssClass="form-label">Email:</asp:Label> 
                         <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvEmail" runat="server" 
+                            ControlToValidate="txtEmail"
+                            Display="Dynamic"
+                            ErrorMessage="Por favor ingrese un mail"
+                            CssClass="Invalid-Feedback"
+                            ForeColor="Red"></asp:RequiredFieldValidator>
                     </div>
                 </div>
                 <div class="row m-3 justify-content-center">
                     <div class="col-md-6">
                         <asp:Label ID="lblUsuario" runat="server" CssClass="form-label">Usuario:</asp:Label> 
                         <asp:TextBox ID="txtUser" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvUsuario" runat="server" 
+                            ControlToValidate="txtUser"
+                            Display="Dynamic"
+                            ErrorMessage="Por favor ingrese un nombre de usuario"
+                            CssClass="invalid-feedback"
+                            ForeColor="Red"></asp:RequiredFieldValidator>
                     </div>
                 </div>
                 <div class="row m-3 justify-content-center">
