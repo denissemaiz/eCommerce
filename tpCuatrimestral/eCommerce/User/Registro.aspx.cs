@@ -29,15 +29,21 @@ namespace eCommerce.User
             usuario.Mail = txtEmail.Text;
             usuario.TipoUsuario = UserType.CLIENTE;
 
-            if(datos.Registro(usuario,ref mensaje))
+            
+
+            if (usuario.ConfirmarContraseña(txtConfPass.Text))
             {
-                Session.Add("mensaje", mensaje);
-                Response.Redirect("../Default.aspx");
-            }
-            else
-            {
-                Session.Add("error", mensaje);
-                Response.Redirect("../Error.aspx");
+
+                if(datos.Registro(usuario,ref mensaje))
+                {
+                    Session.Add("mensaje", mensaje);
+                    Response.Redirect("../Default.aspx");
+                }
+                else
+                {
+                    Session.Add("error", mensaje);
+                    Response.Redirect("../Error.aspx");
+                }
             }
         }
     }

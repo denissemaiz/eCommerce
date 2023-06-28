@@ -29,12 +29,35 @@
                     <div class="col-md-6">
                         <asp:Label ID="lblPass" runat="server" CssClass="form-label">Contraseña:</asp:Label> 
                         <asp:TextBox ID="txtPass" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
+                        
+                        <asp:RequiredFieldValidator ID="rfvPass" runat="server" 
+                            ControlToValidate="txtPass" 
+                            Display="Dynamic" 
+                            ErrorMessage="Ingrese una contraseña" 
+                            CssClass="invalid-feedback"
+                            ForeColor="Red"></asp:RequiredFieldValidator>
                     </div>
                 </div>
                 <div class="row m-3 justify-content-center">
                     <div class="col-md-6">
                         <asp:Label ID="lblConf" runat="server" CssClass="form-label">Confirmar Contraseña: </asp:Label>
                         <asp:TextBox ID="txtConfPass" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
+                        
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+                            ControlToValidate="txtConfPass"
+                            Display="Dynamic"
+                            ErrorMessage="Por favor confirme la contraseña" 
+                            CssClass="invalid-feedback"
+                            ForeColor="Red"></asp:RequiredFieldValidator>
+
+                        <asp:CompareValidator ID="cmpvConfPass" runat="server" 
+                            ControlToValidate="txtConfPass"
+                            ControlToCompare="txtPass"
+                            Display="Dynamic"
+                            ErrorMessage="Contraseñas no coinciden"
+                            CssClass="invalid-feedback"
+                            ForeColor="Red"></asp:CompareValidator>
+
                         <br />
                         <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" UseSubmitBehavior="false"/>
                         <asp:Button ID="btnRegistrar" runat="server" Text="Registrar" CssClass="btn btn-primary" OnClick="btnRegistrar_Click"/>

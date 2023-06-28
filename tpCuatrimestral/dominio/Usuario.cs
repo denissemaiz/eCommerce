@@ -19,6 +19,8 @@ namespace Clases
         private Direccion direccion;
         private UserType tipoUsuario;
 
+        
+
         public Usuario()
         {
 
@@ -70,6 +72,13 @@ namespace Clases
         public bool ValidarAdmin()
         {
             if (this.tipoUsuario == UserType.ADMIN) return true;
+            return false;
+        }
+
+        public bool ConfirmarContraseña(string confirmar)
+        {
+            if(Contraseña ==  confirmar) return true;
+
             return false;
         }
     }
