@@ -25,12 +25,12 @@ namespace negocio
                 {
                     Libro aux = new Libro();
                     aux.Id = (int)Datos.Lector["ID_Articulo"];
-                    aux.Codigo = (Int16)Datos.Lector["Codigo"];
+                    aux.Codigo = (string)Datos.Lector["Codigo"];
                     aux.Titulo = (string)Datos.Lector["Nombre"];
                     //aux.Autores = (List<Autor>)Datos.Lector["Autores"];
                     aux.Descripcion = (string)Datos.Lector["Descripcion"];
                     aux.Precio = Decimal.Round((decimal)Datos.Lector["Precio"], 2);
-                    aux.Stock = (Int16)Datos.Lector["Stock"];
+                    aux.Stock = (Int32)Datos.Lector["Stock"];
                     //aux.Generos = (List<Genero>)Datos.Lector["Generos"];
                     //aux.Portada = (Portada)Datos.Lector["Portada"];
                     lista.Add(aux);
@@ -46,6 +46,33 @@ namespace negocio
                 Datos.CerrarConexion();
             }                               
         }
+
+
+        public void Agregar(Libro nuevo)
+        {
+
+            AccesoSQL Datos = new AccesoSQL();
+
+            try
+            {
+                Datos.Consulta("Insert into Libro(Codigo, Titulo, Descripcion, Precio, Stock) VALUES('" + nuevo.Codigo + "', '" + nuevo.Titulo + "' , '" + nuevo.Descripcion + "' , '" + nuevo.Precio + "' , '" + nuevo.Stock + "')");
+                Datos.EjecutarAccion();
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally 
+            {
+                Datos.CerrarConexion();
+            }
+
+        }
+
 
         public List<Libro> RemoveDuplicadosLibro(List<Libro> inputList)
         {
