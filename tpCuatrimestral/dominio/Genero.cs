@@ -10,16 +10,18 @@ namespace dominio
     {
         private int id;
         private string nombre;
+        private string descripcion;
 
         public Genero()
         {
 
         }
 
-        public Genero(int id, string nombre)
+        public Genero(int id, string nombre, string descripcion)
         {
             this.id = id;
             this.nombre = nombre;
+            this.descripcion = descripcion;
         }
 
         public int Id
@@ -31,6 +33,11 @@ namespace dominio
         {
             get { return nombre; }
             set { nombre = value; }
+        }
+        public string Descripcion
+        { 
+            get { return descripcion; } 
+            set { descripcion = value; }
         }
     }
 }

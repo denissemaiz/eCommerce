@@ -43,9 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccesoSQL.cs" />
-    <Compile Include="AdministradorNegocio.cs" />
     <Compile Include="AutorNegocio.cs" />
     <Compile Include="CompraNegocio.cs" />
+    <Compile Include="DatosUsuarioNegocio.cs" />
     <Compile Include="DireccionNegocio.cs" />
     <Compile Include="GeneroNegocio.cs" />
     <Compile Include="LibroNegocio.cs" />

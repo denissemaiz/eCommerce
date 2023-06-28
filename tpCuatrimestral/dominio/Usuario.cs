@@ -12,29 +12,26 @@ namespace Clases
     }
     public class Usuario
     {
-        private int id;
-        private string nombre;
-        private string mail;
-        private string contraseña;
-        private Direccion direccion;
-        private UserType tipoUsuario;
-
-        
+        public int id;
+        public string username;
+        public string mail;
+        public string contraseña;
+        public bool esAdmin;
+        public DatosUsuario datosUsuario;
 
         public Usuario()
         {
 
         }
 
-        public Usuario(int id, string nombre, string mail, string contraseña, Direccion direccion, bool admin)
+        public Usuario(int id, string username, string mail, string contraseña, bool esAdmin, DatosUsuario datosUsuario)
         {
             this.id = id;
-            this.nombre = nombre;
+            this.username = username;
             this.mail = mail;
             this.contraseña = contraseña;
-            this.direccion = direccion;
-
-            this.tipoUsuario = admin ? UserType.ADMIN : UserType.CLIENTE;
+            this.esAdmin = esAdmin;
+            this.datosUsuario = datosUsuario;
         }
 
         public int Id
@@ -42,10 +39,10 @@ namespace Clases
             get { return id; }
             set { id = value; }
         }
-        public string Nombre
+        public string Username
         { 
-            get { return nombre; } 
-            set { nombre = value; } 
+            get { return username; } 
+            set { username = value; } 
         }
         public string Mail
         { 
@@ -57,10 +54,26 @@ namespace Clases
             get { return contraseña;} 
             set { contraseña = value; } 
         }
-        public Direccion Direccion
+        public bool EsAdmin
+        { 
+            get { return esAdmin; } 
+            set {  esAdmin = value; } 
+        }
+        public DatosUsuario DatosUsuario
         {
-            get { return direccion; }
-            set { direccion = value; }
+            get { return datosUsuario; }
+            set { datosUsuario = value; }
+        }
+        
+        
+
+        
+
+        public bool ConfirmarContraseña(string confirmar)
+        {
+            if(Contraseña ==  confirmar) return true;
+
+            return false;
         }
         public UserType TipoUsuario
         {

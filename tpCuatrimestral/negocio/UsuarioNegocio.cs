@@ -26,10 +26,10 @@ namespace Conexiones
                 {
                     Usuario aux = new Usuario();
                     aux.Id = (int)Datos.Lector["Id"];
-                    aux.Nombre = (string)Datos.Lector["Nombre"];
+                    aux.Username = (string)Datos.Lector["Nombre"];
                     aux.Mail = (string)Datos.Lector["Mail"];
                     aux.Contraseña = (string)Datos.Lector["Contraseña"];
-                    //aux.Direccion = (Direccion)Datos.Lector[""];                   
+                    //aux.DatosUsuario = (DatosUsuario)Datos.Lector[""];                   
                     lista.Add(aux);
                 }
                 return lista;
