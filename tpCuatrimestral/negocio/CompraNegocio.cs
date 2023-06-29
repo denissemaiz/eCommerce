@@ -128,6 +128,38 @@ namespace Conexiones
             }
         }
 
+        public void Modificar(Compra compra)
+        {
+            AccesoSQL datos = new AccesoSQL();
+
+            try
+            {
+                datos.IniciarTransaccion();
+
+                datos.Consulta("DELETE FROM Compra_X_Libro WHERE ID_Compra = " + compra.Id);
+                datos.EjecutarAccion();
+
+                foreach (Libro libro in compra.Carrito.Libros)
+                {
+                    InsertarLibroEnCompra(compra.Id, libro.Id);
+                }
+
+                datos.Consulta("UPDATE Compra SET PrecioTotal = " + compra.Carrito.Monto + " WHERE ID_Compra = " + compra.Id);
+                datos.EjecutarAccion();
+
+                datos.CompletarTransaccion();
+            }
+            catch (Exception ex)
+            {
+                datos.RevertirTransaccion();
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
         private int InsertarCompra(Compra nuevo)
         {
             AccesoSQL datos = new AccesoSQL();
@@ -144,28 +176,6 @@ namespace Conexiones
 
             datos.Consulta("INSERT INTO Compra_X_Libro (ID_Compra, ID_Libro) VALUES('" + idCompra + "', '" + idLibro + "'')");
             datos.EjecutarAccion();
-        }
-
-        public void Eliminar(int idCompra)
-        {
-            AccesoSQL datos = new AccesoSQL();
-
-            try
-            {
-                datos.Consulta("DELETE FROM Compra_X_Libro WHERE ID_Compra =" + idCompra);
-                datos.EjecutarAccion();
-
-                datos.Consulta("DELETE FROM Compra WHERE ID_Compra =" + idCompra);
-                datos.EjecutarAccion();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                datos.CerrarConexion();
-            }
         }
 
         public List<Compra> RemoveDuplicadosCompra(List<Compra> inputList)

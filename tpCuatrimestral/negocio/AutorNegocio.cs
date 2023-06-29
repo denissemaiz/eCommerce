@@ -79,6 +79,24 @@ namespace Conexiones
             }
         }
 
+        public void Modificar(Autor autor)
+        {
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("UPDATE Autor SET Nombre = '" + autor.Nombre + "', Apellido = '" + autor.Apellido + "' WHERE ID_Autor = " + autor.Id);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
         public List<Autor> RemoveDuplicadosGenero(List<Autor> inputList)
         {
             Dictionary<string, string> uniqueStore = new Dictionary<string, string>();

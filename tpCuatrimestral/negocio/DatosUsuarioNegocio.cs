@@ -89,5 +89,27 @@ namespace Conexiones
                 datos.CerrarConexion();
             }
         }
+
+        public void Modificar(DatosUsuario datosUsuario)
+        {
+            AccesoSQL datos = new AccesoSQL();
+
+            try
+            {
+                datos.Consulta("UPDATE Datos_Usuario SET Nombre = '" + datosUsuario.Nombres + "', Apellido = '" + datosUsuario.Apellidos + "', " +
+                    "ID_Direccion = " + datosUsuario.Direccion.Id + ", Telefono = '" + datosUsuario.Telefono + "' WHERE ID_Usuario =" + datosUsuario.Id);
+
+                /*Cuando actualizo datos de usuario, debería actualizar la direccion en su tabla? O agrego una nueva direccion a la tabla y le cambio el Id acá?*/
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
     }
 }

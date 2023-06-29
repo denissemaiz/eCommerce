@@ -78,6 +78,25 @@ namespace negocio
             }
         }
 
+        public void Modificar(Genero genero)
+        {
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("UPDATE Genero SET Nombre = '" + genero.Nombre + "', Descripcion = '" + genero.Descripcion + "' WHERE ID_Genero = " + genero.Id);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+
         public List<Genero> RemoveDuplicadosGenero(List<Genero> inputList)
         {
             Dictionary<string, string> uniqueStore = new Dictionary<string, string>();

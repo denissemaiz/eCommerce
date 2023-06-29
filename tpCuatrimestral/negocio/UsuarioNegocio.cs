@@ -103,6 +103,26 @@ namespace Conexiones
             }
         }
 
+        public void Modificar(Usuario usuario)
+        {
+            AccesoSQL datos = new AccesoSQL();
+
+            try
+            {
+                datos.Consulta("UPDATE Usuario SET NombreUsuario = '" + usuario.Username + "', Mail = '" + usuario.Mail + "', Contraseña = '" + usuario.Contraseña + "'," +
+                    " EsAdmin = " + usuario.EsAdmin + " WHERE ID_Usuario =" + usuario.Id);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
         public List<Usuario> RemoveDuplicadosUsuario(List<Usuario> inputList)
         {
             Dictionary<string, string> uniqueStore = new Dictionary<string, string>();

@@ -91,6 +91,46 @@ namespace negocio
             }
         }
 
+        public void Modificar(Libro libro)
+        {
+            AccesoSQL datos = new AccesoSQL();
+
+            try
+            {
+                datos.Consulta("UPDATE Libro SET Codigo = '" + libro.Codigo + "', Titulo = '" + libro.Titulo + "', Descripcion = '" + libro.Descripcion + "', Precio = " +
+                    "" + libro.Precio + ", Stock = " + libro.Stock + ", PortadaURL = '" + libro.PortadaURL + "' WHERE ID_Libro = " + libro.Id);
+                datos.EjecutarAccion();
+
+                datos.Consulta("DELETE FROM Libro_X_Autor WHERE ID_Libro = " + libro.Id);
+                datos.EjecutarAccion();
+
+                foreach (Autor autor in libro.Autores)
+                {
+                    datos.Consulta("INSERT INTO Libro_X_Autor (ID_Libro, ID_Autor) " +
+                                  "VALUES (" + libro.Id + ", " + autor.Id + ")");
+                    datos.EjecutarAccion();
+                }
+
+                datos.Consulta("DELETE FROM Genero_X_Libro WHERE ID_Libro = " + libro.Id);
+                datos.EjecutarAccion();
+
+                foreach (Genero genero in libro.Generos)
+                {
+                    datos.Consulta("INSERT INTO Genero_X_Libro (ID_Genero, ID_Libro) " +
+                                  "VALUES (" + genero.Id + ", " + libro.Id + ")");
+                    datos.EjecutarAccion();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
         public List<Libro> RemoveDuplicadosLibro(List<Libro> inputList)
         {
             Dictionary<string, string> uniqueStore = new Dictionary<string, string>();

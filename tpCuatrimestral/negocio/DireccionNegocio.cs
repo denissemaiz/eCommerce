@@ -82,6 +82,25 @@ namespace Conexiones
             }
         }
 
+        public void Modificar(Direccion direccion)
+        {
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("UPDATE Direccion SET Calle = '" + direccion.calle + "', Altura = " + direccion.altura + ", Localidad = '" + direccion.localidad + "', CP = " +
+                    "" + direccion.cp + ", Provincia = '" + direccion.provincia + "' WHERE ID_Direccion =" + direccion.id);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
         public List<Direccion> RemoveDuplicadosDireccion(List<Direccion> inputList)
         {
             Dictionary<string, string> uniqueStore = new Dictionary<string, string>();
