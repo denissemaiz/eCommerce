@@ -15,25 +15,25 @@ namespace negocio
         public List<Libro> Listar() 
         {
             List<Libro> lista = new List<Libro>();
-            AccesoSQL Datos = new AccesoSQL();
+            AccesoSQL datos = new AccesoSQL();
 
             try
             {
-                Datos.Consulta("SELECT L.ID_Libro, L.Codigo, L.Titulo, /*Autores*/ L.Descripcion, L.Precio, L.Stock, /*Genero*/ L.PortadaURL FROM Libro L");
-                Datos.EjecutarLectura();
+                datos.Consulta("SELECT L.ID_Libro, L.Codigo, L.Titulo, L.Descripcion, L.Precio, L.Stock, L.PortadaURL FROM Libro L");
+                datos.EjecutarLectura();
 
-                while (Datos.Lector.Read())
+                while (datos.Lector.Read())
                 {
                     Libro aux = new Libro();
-                    aux.Id = (int)Datos.Lector["ID_Libro"];
-                    aux.Codigo = (Int16)Datos.Lector["Codigo"];
-                    aux.Titulo = (string)Datos.Lector["Titulo"];
-                    //aux.Autores = (List<Autor>)Datos.Lector["Autores"];*******
-                    aux.Descripcion = (string)Datos.Lector["Descripcion"];
-                    aux.Precio = Decimal.Round((decimal)Datos.Lector["Precio"], 2);
-                    aux.Stock = (Int16)Datos.Lector["Stock"];
-                    //aux.Generos = (List<Genero>)Datos.Lector["Generos"];
-                    aux.PortadaURL = (string)Datos.Lector["PortadaURL"];
+                    aux.Id = (int)datos.Lector["ID_Libro"];
+                    aux.Codigo = (Int16)datos.Lector["Codigo"];
+                    aux.Titulo = (string)datos.Lector["Titulo"];
+                    aux.Autores = ObtenerAutoresPorLibro(datos, aux.Id);
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+                    aux.Precio = Decimal.Round((decimal)datos.Lector["Precio"], 2);
+                    aux.Stock = (Int16)datos.Lector["Stock"];
+                    aux.Generos = ObtenerGenerosPorLibro(datos, aux.Id);
+                    aux.PortadaURL = (string)datos.Lector["PortadaURL"];
                     lista.Add(aux);
                 }
                     return lista;
@@ -44,8 +44,52 @@ namespace negocio
             }
             finally
             {
-                Datos.CerrarConexion();
+                datos.CerrarConexion();
             }                               
+        }
+
+        private List<Autor> ObtenerAutoresPorLibro(AccesoSQL datos, int idLibro)
+        {
+            List<Autor> autores = new List<Autor>();
+
+            datos.Consulta("SELECT A.ID_Autor, A.Nombre, A.Apellido " +
+                           "FROM Libro_X_Autor LA " +
+                           "INNER JOIN Autor A ON LA.ID_Autor = A.ID_Autor " +
+                           "WHERE LA.ID_Libro = " + idLibro);
+            datos.EjecutarLectura();
+
+            while (datos.Lector.Read())
+            {
+                Autor autor = new Autor();
+                autor.Id = (int)datos.Lector["ID_Autor"];
+                autor.Nombre = (string)datos.Lector["Nombre"];
+                autor.Apellido = (string)datos.Lector["Apellido"];
+                autores.Add(autor);
+            }
+
+            return autores;
+        }
+
+        private List<Genero> ObtenerGenerosPorLibro(AccesoSQL datos, int idLibro)
+        {
+            List<Genero> generos = new List<Genero>();
+
+            datos.Consulta("SELECT G.ID_Genero, G.Nombre, G.Descripcion " +
+                           "FROM Genero_X_Libro GL " +
+                           "INNER JOIN Genero G ON GL.ID_Genero = G.ID_Genero " +
+                           "WHERE GL.ID_Libro = " + idLibro);
+            datos.EjecutarLectura();
+
+            while (datos.Lector.Read())
+            {
+                Genero genero = new Genero();
+                genero.Id = (int)datos.Lector["ID_Genero"];
+                genero.Nombre = (string)datos.Lector["Nombre"];
+                genero.Descripcion = (string)datos.Lector["Descripcion"];
+                generos.Add(genero);
+            }
+
+            return generos;
         }
 
         public void Agregar(Libro nuevo)
@@ -58,6 +102,22 @@ namespace negocio
                               "VALUES ('" + nuevo.Codigo + "', '" + nuevo.Titulo + "', '" + nuevo.Descripcion + "', '" + nuevo.Precio + "', '" + nuevo.Stock + "', " +
                               "'" + nuevo.PortadaURL +"')");
                 datos.EjecutarAccion();
+
+                int idLibro = ObtenerUltimoIdInsertado(datos);
+
+                foreach (Autor autor in nuevo.Autores)
+                {
+                    datos.Consulta("INSERT INTO Libro_X_Autor (ID_Libro, ID_Autor) " +
+                                  "VALUES (" + idLibro + ", " + autor.Id + ")");
+                    datos.EjecutarAccion();
+                }
+
+                foreach (Genero genero in nuevo.Generos)
+                {
+                    datos.Consulta("INSERT INTO Genero_X_Libro (ID_Genero, ID_Libro) " +
+                                  "VALUES (" + genero.Id + ", " + idLibro + ")");
+                    datos.EjecutarAccion();
+                }
             }
             catch (Exception ex)
             {
@@ -68,7 +128,22 @@ namespace negocio
                 datos.CerrarConexion();
             }
         }
+       
+        private int ObtenerUltimoIdInsertado(AccesoSQL datos)
+        {
+            datos.Consulta("SELECT SCOPE_IDENTITY() AS ID");
+            datos.EjecutarLectura();
 
+            int id = 0;
+
+            if (datos.Lector.Read())
+            {
+                id = Convert.ToInt32(datos.Lector["ID"]);
+            }
+
+            datos.Lector.Close();
+            return id;
+        }
 
         public void Eliminar(int Id)
         {
