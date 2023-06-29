@@ -64,6 +64,24 @@ namespace Conexiones
             }
         }
 
+        public void Eliminar(int Id)
+        {
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("DELETE FROM Direccion WHERE ID_Direccion =" + Id);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
         public List<Direccion> RemoveDuplicadosDireccion(List<Direccion> inputList)
         {
             Dictionary<string, string> uniqueStore = new Dictionary<string, string>();

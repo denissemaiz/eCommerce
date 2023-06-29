@@ -60,6 +60,24 @@ namespace negocio
             }
         }
 
+        public void Eliminar(int Id)
+        {
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("DELETE FROM Genero WHERE ID_Genero =" + Id);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
         public List<Genero> RemoveDuplicadosGenero(List<Genero> inputList)
         {
             Dictionary<string, string> uniqueStore = new Dictionary<string, string>();

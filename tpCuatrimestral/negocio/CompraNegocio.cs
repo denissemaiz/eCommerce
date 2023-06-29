@@ -146,6 +146,28 @@ namespace Conexiones
             datos.EjecutarAccion();
         }
 
+        public void Eliminar(int idCompra)
+        {
+            AccesoSQL datos = new AccesoSQL();
+
+            try
+            {
+                datos.Consulta("DELETE FROM Compra_X_Libro WHERE ID_Compra =" + idCompra);
+                datos.EjecutarAccion();
+
+                datos.Consulta("DELETE FROM Compra WHERE ID_Compra =" + idCompra);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
         public List<Compra> RemoveDuplicadosCompra(List<Compra> inputList)
         {
             Dictionary<string, string> uniqueStore = new Dictionary<string, string>();

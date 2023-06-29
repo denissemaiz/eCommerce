@@ -82,6 +82,27 @@ namespace Conexiones
             }
         }
 
+        public void Eliminar(int Id)
+        {
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("DELETE FROM Datos_Usuario WHERE ID_Usuario = " + Id);
+                datos.EjecutarAccion();
+
+                datos.Consulta("DELETE FROM Usuario WHERE ID_Usuario = " + Id);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
         public List<Usuario> RemoveDuplicadosUsuario(List<Usuario> inputList)
         {
             Dictionary<string, string> uniqueStore = new Dictionary<string, string>();

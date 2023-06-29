@@ -61,6 +61,24 @@ namespace Conexiones
             }
         }
 
+        public void Eliminar(int Id)
+        {
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("DELETE FROM Autor WHERE ID_Autor =" + Id);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
         public List<Autor> RemoveDuplicadosGenero(List<Autor> inputList)
         {
             Dictionary<string, string> uniqueStore = new Dictionary<string, string>();

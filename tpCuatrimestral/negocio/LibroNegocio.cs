@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using dominio;
 using Clases;
+using negocio;
 
 namespace negocio
 {
@@ -68,6 +69,27 @@ namespace negocio
             }
         }
 
+
+        public void Eliminar(int Id)
+        {
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("DELETE FROM Libro_X_Autor WHERE ID_Libro = " + Id);
+                datos.EjecutarAccion();
+
+                datos.Consulta("DELETE FROM Libro WHERE ID_Libro = " + Id);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
 
         public List<Libro> RemoveDuplicadosLibro(List<Libro> inputList)
         {
