@@ -106,13 +106,15 @@ namespace Conexiones
 
             try
             {
-                datos.IniciarTransaccion(); 
+                datos.IniciarTransaccion();
 
                 int idCompra = InsertarCompra(nuevo);
 
                 foreach (Libro libro in nuevo.Carrito.Libros)
                 {
-                    InsertarLibroEnCompra(idCompra, libro.Id);
+                    int cantidad = CalcularCantidadLibros(nuevo.Carrito.Libros, libro.Id);
+                    InsertarLibroEnCompra(idCompra, libro.Id, cantidad);
+                    DescuentoStock(libro.Id, cantidad);
                 }
 
                 datos.CompletarTransaccion();
@@ -141,7 +143,9 @@ namespace Conexiones
 
                 foreach (Libro libro in compra.Carrito.Libros)
                 {
-                    InsertarLibroEnCompra(compra.Id, libro.Id);
+                    int cantidad = CalcularCantidadLibros(compra.Carrito.Libros, libro.Id);
+                    InsertarLibroEnCompra(compra.Id, libro.Id, cantidad);
+                    DescuentoStock(libro.Id, cantidad);
                 }
 
                 datos.Consulta("UPDATE Compra SET PrecioTotal = " + compra.Carrito.Monto + " WHERE ID_Compra = " + compra.Id);
@@ -160,6 +164,30 @@ namespace Conexiones
             }
         }
 
+        private int CalcularCantidadLibros(List<Libro> libros, int idLibro)
+        {
+            int cantidad = 0;
+
+            foreach (Libro libro in libros)
+            {
+                if (libro.Id == idLibro)
+                {
+                    cantidad++;
+                }
+            }
+
+            return cantidad;
+        }
+
+        private void InsertarLibroEnCompra(int idCompra, int idLibro, int cantidad)
+        {
+            AccesoSQL datos = new AccesoSQL();
+
+            datos.Consulta("INSERT INTO Compra_X_Libro (ID_Compra, ID_Libro, Cantidad) VALUES(" + idCompra + ", " + idLibro + ", " + cantidad + ")");
+            datos.EjecutarAccion();
+        }
+
+
         private int InsertarCompra(Compra nuevo)
         {
             AccesoSQL datos = new AccesoSQL();
@@ -170,11 +198,11 @@ namespace Conexiones
             return Convert.ToInt32(datos.EjecutarScalar());
         }
 
-        private void InsertarLibroEnCompra(int idCompra, int idLibro)
+        private void DescuentoStock(int idLibro, int cantidadComprada)
         {
             AccesoSQL datos = new AccesoSQL();
 
-            datos.Consulta("INSERT INTO Compra_X_Libro (ID_Compra, ID_Libro) VALUES('" + idCompra + "', '" + idLibro + "'')");
+            datos.Consulta("UPDATE Libro SET Stock = Stock - " + cantidadComprada + " WHERE ID_Libro = " + idLibro);
             datos.EjecutarAccion();
         }
 
