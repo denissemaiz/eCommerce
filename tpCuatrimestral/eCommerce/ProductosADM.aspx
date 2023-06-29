@@ -13,7 +13,7 @@
              <div class="col">
                     <div class="card h-100">
                         <div class="card-body">
-                            <h5 class="card-title ms-1"><%#Eval("Libro") %></h5>
+                            <h5 class="card-title ms-1"><%#Eval("Titulo") %></h5>
                             <p class="card-text mb-1 ms-1">$<%#Eval("Precio") %></p>
                             <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
                                 <div class="btn-group me-2" role="group" aria-label="First group">

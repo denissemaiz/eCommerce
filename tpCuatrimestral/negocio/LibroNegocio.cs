@@ -61,7 +61,7 @@ namespace negocio
                     aux.Titulo = (string)Datos.Lector["Titulo"];
                     aux.Descripcion = (string)Datos.Lector["Descripcion"];
                     aux.Precio = Decimal.Round((decimal)Datos.Lector["Precio"], 2);
-                    aux.Stock = (Int32)Datos.Lector["Stock"];
+                    aux.Stock = (Int16)Datos.Lector["Stock"];
                     lista.Add(aux);
                 }
                     return lista;
