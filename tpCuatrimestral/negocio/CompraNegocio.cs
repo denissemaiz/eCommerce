@@ -100,6 +100,52 @@ namespace Conexiones
             }
         }
 
+        public void Agregar(Compra nuevo)
+        {
+            AccesoSQL datos = new AccesoSQL();
+
+            try
+            {
+                datos.IniciarTransaccion(); 
+
+                int idCompra = InsertarCompra(nuevo);
+
+                foreach (Libro libro in nuevo.Carrito.Libros)
+                {
+                    InsertarLibroEnCompra(idCompra, libro.Id);
+                }
+
+                datos.CompletarTransaccion();
+            }
+            catch (Exception ex)
+            {
+                datos.RevertirTransaccion();
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        private int InsertarCompra(Compra nuevo)
+        {
+            AccesoSQL datos = new AccesoSQL();
+
+            datos.Consulta("INSERT INTO Compra (ID_Cliente, PrecioTotal) VALUES('" + nuevo.IdCliente + "', '" + nuevo.Carrito.Monto + "''); " +
+                      "SELECT SCOPE_IDENTITY();");
+
+            return Convert.ToInt32(datos.EjecutarScalar());
+        }
+
+        private void InsertarLibroEnCompra(int idCompra, int idLibro)
+        {
+            AccesoSQL datos = new AccesoSQL();
+
+            datos.Consulta("INSERT INTO Compra_X_Libro (ID_Compra, ID_Libro) VALUES('" + idCompra + "', '" + idLibro + "'')");
+            datos.EjecutarAccion();
+        }
+
         public List<Compra> RemoveDuplicadosCompra(List<Compra> inputList)
         {
             Dictionary<string, string> uniqueStore = new Dictionary<string, string>();

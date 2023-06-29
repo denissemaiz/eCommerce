@@ -12,6 +12,7 @@ namespace negocio
         private SqlConnection conexion;
         private SqlCommand comando;
         private SqlDataReader lector;
+        private SqlTransaction transaccion;
 
         public SqlDataReader Lector
         {
@@ -76,6 +77,22 @@ namespace negocio
             {
                 throw ex;
             }
+        }
+
+        public void IniciarTransaccion()
+        {
+            conexion.Open();
+            transaccion = conexion.BeginTransaction();
+        }
+
+        public void CompletarTransaccion()
+        {
+            transaccion.Commit();
+        }
+
+        public void RevertirTransaccion()
+        {
+            transaccion.Rollback();
         }
 
         public void SetParametros(string Nombre, object Valor)

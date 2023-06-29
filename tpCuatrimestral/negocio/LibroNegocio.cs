@@ -47,6 +47,28 @@ namespace negocio
             }                               
         }
 
+        public void Agregar(Libro nuevo)
+        {
+            AccesoSQL datos = new AccesoSQL();
+
+            try
+            {
+                datos.Consulta("INSERT INTO Libro (Codigo, Titulo, Descripcion, Precio, Stock, PortadaURL) " +
+                              "VALUES ('" + nuevo.Codigo + "', '" + nuevo.Titulo + "', '" + nuevo.Descripcion + "', '" + nuevo.Precio + "', '" + nuevo.Stock + "', " +
+                              "'" + nuevo.PortadaURL +"')");
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+
         public List<Libro> RemoveDuplicadosLibro(List<Libro> inputList)
         {
             Dictionary<string, string> uniqueStore = new Dictionary<string, string>();

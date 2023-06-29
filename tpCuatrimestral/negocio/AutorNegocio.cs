@@ -42,6 +42,25 @@ namespace Conexiones
             }
         }
 
+        public void Agregar(Autor nuevo)
+        {
+            AccesoSQL datos = new AccesoSQL();
+
+            try
+            {
+                datos.Consulta("INSERT INTO Autor (Nombre, Apellido) VALUES('" + nuevo.Nombre + "', '" + nuevo.Apellido + "')");
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
         public List<Autor> RemoveDuplicadosGenero(List<Autor> inputList)
         {
             Dictionary<string, string> uniqueStore = new Dictionary<string, string>();

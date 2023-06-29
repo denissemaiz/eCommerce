@@ -62,6 +62,26 @@ namespace Conexiones
             }
         }
 
+        public void Agregar(Usuario nuevo)
+        {
+            AccesoSQL datos = new AccesoSQL();
+
+            try
+            {
+                datos.Consulta("INSERT INTO Usuario (NombreUsuario, Mail, Contraseña, EsAdmin) VALUES('" + nuevo.Username + "', '" + nuevo.Mail + "', '" + nuevo.Contraseña + "" +
+                    ", '" + nuevo.EsAdmin + "'')");
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
         public List<Usuario> RemoveDuplicadosUsuario(List<Usuario> inputList)
         {
             Dictionary<string, string> uniqueStore = new Dictionary<string, string>();

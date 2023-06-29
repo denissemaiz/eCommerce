@@ -1,4 +1,5 @@
 ﻿using Clases;
+using dominio;
 using negocio;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,26 @@ namespace Conexiones
             finally
             {
                 Datos.CerrarConexion();
+            }
+        }
+
+        public void Agregar(Direccion nuevo)
+        {
+            AccesoSQL datos = new AccesoSQL();
+
+            try
+            {
+                datos.Consulta("INSERT INTO Direccion (Calle, Altura, Localidad, CP, Provincia) VALUES('" + nuevo.Calle + "', '" + nuevo.Altura + "', '" + nuevo.Localidad + "" +
+                    ", '" + nuevo.Cp + "', '" + nuevo.Provincia + "'')");
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
             }
         }
 

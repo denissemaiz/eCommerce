@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Clases;
 using dominio;
 
 namespace negocio
@@ -37,6 +38,25 @@ namespace negocio
             finally
             {
                 Datos.CerrarConexion();
+            }
+        }
+
+        public void Agregar(Genero nuevo)
+        {
+            AccesoSQL datos = new AccesoSQL();
+
+            try
+            {
+                datos.Consulta("INSERT INTO Genero (Nombre, Descripcion) VALUES('" + nuevo.Nombre + "', '" + nuevo.Descripcion + "')");
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
             }
         }
 
