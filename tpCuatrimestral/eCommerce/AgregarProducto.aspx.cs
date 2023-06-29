@@ -32,6 +32,7 @@ namespace eCommerce
                 libro.Descripcion = txtDescripcion.Text;
                 libro.Precio = decimal.Parse(txtPrecio.Text);
                 libro.Stock = int.Parse(txtStock.Text);
+                libro.PortadaURL = txtportadaURL.Text;
 
                 negocio.Agregar(libro);
                 Response.Redirect("Default.aspx", false);
