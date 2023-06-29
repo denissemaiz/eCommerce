@@ -16,14 +16,15 @@ namespace negocio
 
             try
             {
-                Datos.Consulta("Select G.ID_Categoria, G.Nombre From GENERO G");
+                Datos.Consulta("SELECT G.ID_Genero, G.Nombre, G.Descripcion FROM Genero G");
                 Datos.EjecutarLectura();
 
                 while (Datos.Lector.Read())
                 {
                     Genero aux = new Genero();
-                    aux.Id = (int)Datos.Lector["Id"];
+                    aux.Id = (int)Datos.Lector["ID_Genero"];
                     aux.Nombre = (string)Datos.Lector["Nombre"];
+                    aux.Descripcion = (string)Datos.Lector["Descripcion"];
                     Listar.Add(aux);
                 }
                 return Listar;

@@ -17,18 +17,18 @@ namespace Conexiones
 
             try
             {
-                Datos.Consulta("Select C.ID_Articulo, C.ID_Cliente From COMPRA C");
+                Datos.Consulta("SELECT D.ID_Direccion, D.Calle, D.Altura, D.Localidad, D.CP, D.Provincia FROM Direccion D");
                 Datos.EjecutarLectura();
 
                 while (Datos.Lector.Read())
                 {
                     Direccion aux = new Direccion();
-                    aux.Id = (int)Datos.Lector["ID_Articulo"];
+                    aux.Id = (int)Datos.Lector["ID_Direccion"];
                     aux.Calle = (string)Datos.Lector["Calle"];
                     aux.Altura = (int)Datos.Lector["Altura"];
                     aux.Localidad = (string)Datos.Lector["Localidad"];
-                    aux.Cp = (int)Datos.Lector["Cp"];
-                    aux.Provincia = (string)Datos.Lector["Direccion"];
+                    aux.Cp = (int)Datos.Lector["CP"];
+                    aux.Provincia = (string)Datos.Lector["Provincia"];
                     lista.Add(aux);
                 }
                 return lista;

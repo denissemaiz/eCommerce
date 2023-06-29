@@ -19,17 +19,35 @@ namespace Conexiones
 
             try
             {
-                Datos.Consulta("Select U.Id, U.Nombre, U.Mail, U.Contraseña From USUARIO U");
+                Datos.Consulta("SELECT U.ID_Usuario, U.NombreUsuario, U.Mail, U.Contraseña, U.EsAdmin, " +
+                    "DU.Nombre, DU.Apellido, D.Calle, D.Altura, D.Localidad, D.CP, D.Provincia, DU.Telefono " +
+                    "FROM Usuario U INNER JOIN Datos_Usuario DU ON U.ID_Usuario = DU.ID_Usuario INNER JOIN Direccion D ON DU.ID_Direccion = D.ID_Direccion");
                 Datos.EjecutarLectura();
 
                 while (Datos.Lector.Read())
                 {
                     Usuario aux = new Usuario();
-                    aux.Id = (int)Datos.Lector["Id"];
-                    aux.Username = (string)Datos.Lector["Nombre"];
+                    Direccion auxDir = new Direccion();
+                    DatosUsuario auxDat = new DatosUsuario();
+                    aux.Id = (int)Datos.Lector["ID_Usuario"];
+                    aux.Username = (string)Datos.Lector["NombreUsuario"];
                     aux.Mail = (string)Datos.Lector["Mail"];
                     aux.Contraseña = (string)Datos.Lector["Contraseña"];
-                    //aux.DatosUsuario = (DatosUsuario)Datos.Lector[""];                   
+                    aux.EsAdmin = (bool)Datos.Lector["EsAdmin"];
+
+                    auxDat.Nombres = (string)Datos.Lector["Nombre"];
+                    auxDat.Apellidos = (string)Datos.Lector["Apellido"];
+                    auxDat.Telefono = (string)Datos.Lector["Telefono"];
+
+                    auxDir.Calle = (string)Datos.Lector["Calle"];
+                    auxDir.Altura = (int)Datos.Lector["Altura"];
+                    auxDir.Localidad = (string)Datos.Lector["Localidad"];
+                    auxDir.Cp = (int)Datos.Lector["CP"];
+                    auxDir.Provincia = (string)Datos.Lector["Provincia"];
+
+                    auxDat.Direccion = auxDir;
+                    aux.DatosUsuario = auxDat;
+
                     lista.Add(aux);
                 }
                 return lista;

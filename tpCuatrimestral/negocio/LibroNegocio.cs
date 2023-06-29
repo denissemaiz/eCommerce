@@ -18,21 +18,21 @@ namespace negocio
 
             try
             {
-                Datos.Consulta("Select A.ID_Articulo, A.Codigo, A.Nombre, A.Descripcion, A.Precio, A.Stock From ARTICULO A");
+                Datos.Consulta("SELECT L.ID_Libro, L.Codigo, L.Titulo, /*Autores*/ L.Descripcion, L.Precio, L.Stock, /*Genero*/ L.PortadaURL FROM Libro L");
                 Datos.EjecutarLectura();
 
                 while (Datos.Lector.Read())
                 {
                     Libro aux = new Libro();
-                    aux.Id = (int)Datos.Lector["ID_Articulo"];
+                    aux.Id = (int)Datos.Lector["ID_Libro"];
                     aux.Codigo = (Int16)Datos.Lector["Codigo"];
-                    aux.Titulo = (string)Datos.Lector["Nombre"];
-                    //aux.Autores = (List<Autor>)Datos.Lector["Autores"];
+                    aux.Titulo = (string)Datos.Lector["Titulo"];
+                    //aux.Autores = (List<Autor>)Datos.Lector["Autores"];*******
                     aux.Descripcion = (string)Datos.Lector["Descripcion"];
                     aux.Precio = Decimal.Round((decimal)Datos.Lector["Precio"], 2);
                     aux.Stock = (Int16)Datos.Lector["Stock"];
                     //aux.Generos = (List<Genero>)Datos.Lector["Generos"];
-                    //aux.Portada = (Portada)Datos.Lector["Portada"];
+                    aux.PortadaURL = (string)Datos.Lector["PortadaURL"];
                     lista.Add(aux);
                 }
                     return lista;

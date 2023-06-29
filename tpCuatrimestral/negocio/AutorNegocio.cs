@@ -18,14 +18,15 @@ namespace Conexiones
 
             try
             {
-                Datos.Consulta("Select G.ID_Categoria, G.Nombre From GENERO G");
+                Datos.Consulta("SELECT A.ID_Autor, A.Nombre, A.Apellido FROM Autor A");
                 Datos.EjecutarLectura();
 
                 while (Datos.Lector.Read())
                 {
                     Autor aux = new Autor();
-                    aux.Id = (int)Datos.Lector["Id"];
+                    aux.Id = (int)Datos.Lector["ID_Autor"];
                     aux.Nombre = (string)Datos.Lector["Nombre"];
+                    aux.Apellido = (string)Datos.Lector["Apellido"];
                     Listar.Add(aux);
                 }
                 return Listar;
