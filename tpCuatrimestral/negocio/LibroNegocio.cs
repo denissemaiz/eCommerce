@@ -26,7 +26,7 @@ namespace negocio
                 {
                     Libro aux = new Libro();
                     aux.Id = (int)datos.Lector["ID_Libro"];
-                    aux.Codigo = (Int16)datos.Lector["Codigo"];
+                    aux.Codigo = (string)datos.Lector["Codigo"];
                     aux.Titulo = (string)datos.Lector["Titulo"];
                     aux.Autores = ObtenerAutoresPorLibro(datos, aux.Id);
                     aux.Descripcion = (string)datos.Lector["Descripcion"];

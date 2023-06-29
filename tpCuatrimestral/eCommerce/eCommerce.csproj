@@ -70,6 +70,7 @@
     <Content Include="ComprarGuia.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Error.aspx" />
+    <Content Include="ProductosADM.aspx" />
     <Content Include="User\Login.aspx" />
     <Content Include="Productos.aspx" />
     <Content Include="User\Logout.aspx" />
@@ -111,6 +112,13 @@
     </Compile>
     <Compile Include="Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductosADM.aspx.cs">
+      <DependentUpon>ProductosADM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductosADM.aspx.designer.cs">
+      <DependentUpon>ProductosADM.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

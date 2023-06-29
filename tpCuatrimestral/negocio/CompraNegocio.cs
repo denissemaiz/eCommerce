@@ -58,7 +58,7 @@ namespace Conexiones
 
                     Libro auxLibro = new Libro();
                     auxLibro.Id = idLibro;
-                    auxLibro.Codigo = (int)Datos.Lector["Codigo"];
+                    auxLibro.Codigo = (string)Datos.Lector["Codigo"];
                     auxLibro.Titulo = (string)Datos.Lector["Titulo"];
                     auxLibro.Descripcion = (string)Datos.Lector["Descripcion"];
                     auxLibro.Precio = (decimal)Datos.Lector["Precio"];
