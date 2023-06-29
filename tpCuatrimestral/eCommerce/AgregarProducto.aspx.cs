@@ -15,8 +15,8 @@ namespace eCommerce
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            txtID.Enabled = false;  
-
+            txtID.Enabled = false;
+            // private string portadaURL;
 
         }
 
@@ -41,6 +41,11 @@ namespace eCommerce
                 Session.Add("Fallo al agregar", ex);
                 throw;
             }
+        }
+
+        protected void txtportadaURL_TextChanged(object sender, EventArgs e)
+        {
+            ImgPortada.ImageUrl = txtportadaURL.Text;
         }
     }
 }
