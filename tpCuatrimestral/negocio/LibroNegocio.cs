@@ -18,21 +18,17 @@ namespace negocio
 
             try
             {
-                Datos.Consulta("Select A.ID_Articulo, A.Codigo, A.Nombre, A.Descripcion, A.Precio, A.Stock From ARTICULO A");
+                Datos.Consulta("Select Codigo, Titulo, Descripcion, Precio, Stock from Libro");
                 Datos.EjecutarLectura();
 
                 while (Datos.Lector.Read())
                 {
                     Libro aux = new Libro();
-                    aux.Id = (int)Datos.Lector["ID_Articulo"];
                     aux.Codigo = (string)Datos.Lector["Codigo"];
-                    aux.Titulo = (string)Datos.Lector["Nombre"];
-                    //aux.Autores = (List<Autor>)Datos.Lector["Autores"];
+                    aux.Titulo = (string)Datos.Lector["Titulo"];
                     aux.Descripcion = (string)Datos.Lector["Descripcion"];
                     aux.Precio = Decimal.Round((decimal)Datos.Lector["Precio"], 2);
                     aux.Stock = (Int32)Datos.Lector["Stock"];
-                    //aux.Generos = (List<Genero>)Datos.Lector["Generos"];
-                    //aux.Portada = (Portada)Datos.Lector["Portada"];
                     lista.Add(aux);
                 }
                     return lista;
@@ -46,6 +42,40 @@ namespace negocio
                 Datos.CerrarConexion();
             }                               
         }
+
+
+        public List<Libro> ListarLibro()
+        {
+            List<Libro> lista = new List<Libro>();
+            AccesoSQL Datos = new AccesoSQL();
+
+            try
+            {
+                Datos.Consulta("Select Codigo, Titulo, Descripcion, Precio, Stock from Libro");
+                Datos.EjecutarLectura();
+
+                while (Datos.Lector.Read())
+                {
+                    Libro aux = new Libro();
+                    aux.Codigo = (string)Datos.Lector["Codigo"];
+                    aux.Titulo = (string)Datos.Lector["Titulo"];
+                    aux.Descripcion = (string)Datos.Lector["Descripcion"];
+                    aux.Precio = Decimal.Round((decimal)Datos.Lector["Precio"], 2);
+                    aux.Stock = (Int32)Datos.Lector["Stock"];
+                    lista.Add(aux);
+                }
+                    return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Datos.CerrarConexion();
+            }
+        }
+
 
 
         public void Agregar(Libro nuevo)
