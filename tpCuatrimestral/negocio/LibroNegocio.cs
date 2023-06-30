@@ -247,7 +247,7 @@ namespace negocio
             try
             {
                 datos.Consulta("UPDATE Libro SET Codigo = '" + libro.Codigo + "', Titulo = '" + libro.Titulo + "', Descripcion = '" + libro.Descripcion + "', Precio = " +
-                    "'" + nuevo.Precio + "', Stock = " + libro.Stock + "', PortadaURL = '" + libro.PortadaURL + "' WHERE ID_Libro = " + libro.Id);
+                    "'" + libro.Precio + "', Stock = " + libro.Stock + "', PortadaURL = '" + libro.PortadaURL + "' WHERE ID_Libro = " + libro.Id);
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
