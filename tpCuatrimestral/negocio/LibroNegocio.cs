@@ -334,11 +334,6 @@ namespace negocio
             }
         }
 
-
-
-
-
-
         public void ModificarTest(Libro libro)
         {
             AccesoSQL datos = new AccesoSQL();
