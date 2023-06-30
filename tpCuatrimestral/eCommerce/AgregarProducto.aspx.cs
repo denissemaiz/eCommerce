@@ -19,7 +19,7 @@ namespace eCommerce
 
             string Id = Request.QueryString["Id"] != null ? Request.QueryString["Id"].ToString() : "";
 
-            if (Id != "")
+            if (Id != "" && !IsPostBack)
             {
                 LibroNegocio neg = new LibroNegocio();
                 Libro seleccionado = (neg.PruebaBuscar(Id))[0];
@@ -31,6 +31,8 @@ namespace eCommerce
                 txtStock.Text = seleccionado.Stock.ToString();
                 txtPrecio.Text = seleccionado.Precio.ToString();
                 txtportadaURL.Text = seleccionado.PortadaURL.ToString();
+
+                txtportadaURL_TextChanged(sender, e);
 
 
             }
@@ -48,11 +50,24 @@ namespace eCommerce
                 libro.Titulo = txtTitulo.Text;
                 libro.Descripcion = txtDescripcion.Text;
                 libro.Precio = decimal.Parse(txtPrecio.Text);
-                libro.Stock = int.Parse(txtStock.Text);
+                libro.Stock = short.Parse(txtStock.Text);
                 libro.PortadaURL = txtportadaURL.Text;
 
-                negocio.Agregar(libro);
+
+                if(Request.QueryString["Id"] != null) 
+                {
+                    libro.Id = int.Parse(txtID.Text);
+                    negocio.ModificarTest(libro);
+                }
+                else
+                {
+
+                negocio.Agregar(libro);                                
                 Response.Redirect("Default.aspx", false);
+
+                }
+
+                
             }
             catch (Exception ex)
             {

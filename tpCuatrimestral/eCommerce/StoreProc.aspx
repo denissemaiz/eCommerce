@@ -10,6 +10,7 @@
             <asp:BoundField Headertext="Codigo" Datafield="Codigo"  />
             <asp:BoundField Headertext="Titulo" Datafield="Titulo"  />
             <asp:BoundField Headertext="Precio" Datafield="Precio"  />
+            <asp:BoundField Headertext="Stock" Datafield="Stock"  />
             <asp:CommandField HeaderText="Accion" ShowSelectButton="true" SelectText="Modificar" />
 
         </Columns>

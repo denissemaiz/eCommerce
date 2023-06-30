@@ -58,7 +58,7 @@
 
     <div class="row m-3">
         <div class="col-md-6">
-            <asp:Button ID="BtnAgregar" runat="server" OnClick="BtnAgregar_Click" Text="Agregar" CssClass="btn btn-primary" />
+            <asp:Button ID="BtnAgregar" runat="server" OnClick="BtnAgregar_Click" Text="Aceptar" CssClass="btn btn-primary" />
             <a href="Default.aspx" class="btn btn-primary">Volver</a>
         </div>
     </div>

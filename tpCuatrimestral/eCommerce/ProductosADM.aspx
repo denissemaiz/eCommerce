@@ -17,6 +17,7 @@
                             <p class="card-text mb-1 ms-1">$<%#Eval("Precio") %></p>
                             <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
                                 <div class="btn-group me-2" role="group" aria-label="First group">
+                                    <asp:Button ID="Btnmod" runat="server" Text="Modificar" CssClass="btn btn-primary" />
                                 </div>
                             </div>
                         </div>
