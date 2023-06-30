@@ -12,187 +12,160 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!--iconos-->    
+    <!--iconos-->
     <script src="https://kit.fontawesome.com/227b5d7dc2.js" crossorigin="anonymous"></script>
 
 
     <style>
-
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
-*
-{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-}
+        .Pagina-Principal {
+            width: 100%;
+            background-color: white;
+        }
 
-.Pagina-Principal
-{
-    width: 100%;
-    background-color: white;
+            .Pagina-Principal .Primer-Grupo {
+                width: 100%;
+                max-width: 1200px;
+                margin: auto;
+                display: grid;
+                grid-template-columns: repeat(4,1fr);
+                grid-gap: 50px;
+                padding: 45px 0px;
+            }
 
-}
+                .Pagina-Principal .Primer-Grupo .box {
+                    width: 100%;
+                    height: 100%;
+                    justify-content: center;
+                    align-items: center;
+                }
 
-.Pagina-Principal .Primer-Grupo
-{
-    width: 100%;
-    max-width: 1200px;
-    margin: auto;
-    display: grid;
-    grid-template-columns:  repeat(4,1fr);
-    grid-gap: 50px;
-    padding: 45px 0px;
-}
+                    .Pagina-Principal .Primer-Grupo .box h2 {
+                        margin-bottom: 15px;
+                        font-size: 25px;
+                    }
 
-.Pagina-Principal .Primer-Grupo .box
-{
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
+                    .Pagina-Principal .Primer-Grupo .box p {
+                        margin-bottom: 10px;
+                    }
 
-}
+                .Pagina-Principal .Primer-Grupo .Redes a {
+                    display: inline-block;
+                    text-decoration: none;
+                    width: 40px;
+                    height: 40px;
+                    line-height: 40px;
+                    color: black;
+                    margin-right: 10px;
+                    background-color: none;
+                    text-align: center;
+                    transition: all 300ms ease;
+                }
 
-.Pagina-Principal .Primer-Grupo .box h2
-{
-     margin-bottom: 15px;
-     font-size: 25px;
-}
+                    .Pagina-Principal .Primer-Grupo .Redes a:hover {
+                        color: aquamarine;
+                    }
 
-.Pagina-Principal .Primer-Grupo .box p
-{
-    margin-bottom: 10px;
-}
+            .Pagina-Principal .Segundo-Grupo {
+                padding: 15px 10px;
+                text-align: center;
+            }
 
-.Pagina-Principal .Primer-Grupo .Redes a
-{
-    display: inline-block;
-    text-decoration: none;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    color: black;
-    margin-right: 10px;
-    background-color: none;
-    text-align: center;
-    transition: all 300ms ease;
-}
-
-.Pagina-Principal .Primer-Grupo .Redes a:hover
-{
-    color:aquamarine;
-
-}
-
-.Pagina-Principal .Segundo-Grupo
-{
-    padding: 15px 10px;
-    text-align: center;
-
-}
-
-.Pagina-Principal .Segundo-Grupo small{
-
-    font-size: 15px;
-}
-
-
+                .Pagina-Principal .Segundo-Grupo small {
+                    font-size: 15px;
+                }
     </style>
 
 </head>
 <body>
     <form id="form1" runat="server">
-
- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="Default.aspx"><b>Inicio</b></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#">Categorias</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Nosotros</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Guia de compra</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Filtro
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="#">Autor</a></li>
-                  <li><a class="dropdown-item" href="#">..</a></li>
-                  <li><a class="dropdown-item" href="#">..</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <ul class="navbar-nav">
-                <%if (Session["Usuario"] != null){ %>
-                    <li class="nav-item"><a class="nav-link"  href="User/Logout.aspx"><b>Desconectarse</b></a></li>
-                <% } else { %>
-                    <li class="nav-item"><a class="nav-link"  href="User/Login.aspx"><b>Ingresar</b></a></li>
-                    <li class="nav-item"><a class="nav-link"  href="User/Registro.aspx"><b>Registrarse</b></a></li>
-                <% } %>
-            </ul>
-          </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="Default.aspx"><b>Inicio</b></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Categorias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Nosotros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Guia de compra</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Filtro
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">Autor</a></li>
+                                <li><a class="dropdown-item" href="#">..</a></li>
+                                <li><a class="dropdown-item" href="#">..</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <ul class="navbar-nav">
+                        <%if (Session["Usuario"] != null)
+                                       { %>
+                        <li class="nav-item"><a class="nav-link" href="User/Logout.aspx"><b>Desconectarse</b></a></li>
+                        <% }
+                                   else
+                                   { %>
+                        <li class="nav-item"><a class="nav-link" href="User/Login.aspx"><b>Ingresar</b></a></li>
+                        <li class="nav-item"><a class="nav-link" href="User/Registro.aspx"><b>Registrarse</b></a></li>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="position-relative overflow-hidden pb-md-3 mb-md-3 text-center bg-light">
+            <img class="img-fluid w-100" src="https://i.ibb.co/YjkBL6x/Captura.png" alt="Banner">
         </div>
-      </nav>
-
-<img src="https://i.ibb.co/YjkBL6x/Captura.png" alt="Banner">
-
-
-
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
-
-<footer class="Pagina-Principal">
-    <div class="Primer-Grupo">
-        <div class="box">
-            <figure>
-                <a href="#">
-                     <img src="https://thumbs2.imgbox.com/51/ed/LLtztkK9_t.png" alt="image host"/>
-                </a>
-            </figure>
-        </div>
-        
-        <div class="box">
-            <h2><b>Medios de pago</b></h2>
-            
-        </div>
-
-        <div class="box">
-            <h2><b>Contacto</b></h2>
-            <p>Telefono: 123123</p>
-            <p>Mail: sadas@hotmail.com</p>
-        </div>
-
-        <div class="box">
-            <h2><b>Redes sociales</b></h2>
-            <div class="Redes">
-                <a href="#" class="fa fa-facebook"></a>
-                <a href="#" class="fa fa-twitter"></a>
-                <a href="#" class="fa fa-instagram"></a>
-            </div>
-        </div>
-    </div>
-    <div class="Segundo-Grupo">
-        <small>&copy; 2023 <b>Grupo 8</b></small>
-    </div>
-
-   </footer>
-
-
+            <footer class="Pagina-Principal">
+                <div class="Primer-Grupo">
+                    <div class="box">
+                        <figure>
+                            <a href="#">
+                                <img src="https://thumbs2.imgbox.com/51/ed/LLtztkK9_t.png" alt="image host" />
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="box">
+                        <h2><b>Medios de pago</b></h2>
+                    </div>
+                    <div class="box">
+                        <h2><b>Contacto</b></h2>
+                        <p>Telefono: 123123</p>
+                        <p>Mail: sadas@hotmail.com</p>
+                    </div>
+                    <div class="box">
+                        <h2><b>Redes sociales</b></h2>
+                        <div class="Redes">
+                            <a href="#" class="fa fa-facebook"></a>
+                            <a href="#" class="fa fa-twitter"></a>
+                            <a href="#" class="fa fa-instagram"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="Segundo-Grupo">
+                    <small>&copy; 2023 <b>Grupo 8</b></small>
+                </div>
+            </footer>
         </div>
     </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
