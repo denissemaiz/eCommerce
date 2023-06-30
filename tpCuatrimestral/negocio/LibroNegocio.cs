@@ -97,15 +97,38 @@ namespace negocio
                               "'" + nuevo.PortadaURL +"')");
                 datos.EjecutarAccion();
 
-                int idLibro = ObtenerUltimoIdInsertado(datos);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
 
+            int idLibro = ObtenerUltimoIdInsertado(datos);
+
+            try
+            {
                 foreach (Autor autor in nuevo.Autores)
                 {
                     datos.Consulta("INSERT INTO Libro_X_Autor (ID_Libro, ID_Autor) " +
                                   "VALUES (" + idLibro + ", " + autor.Id + ")");
                     datos.EjecutarAccion();
                 }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
 
+            try
+            {
                 foreach (Genero genero in nuevo.Generos)
                 {
                     datos.Consulta("INSERT INTO Genero_X_Libro (ID_Genero, ID_Libro) " +
@@ -136,6 +159,8 @@ namespace negocio
             }
 
             datos.Lector.Close();
+            datos.CerrarConexion();
+
             return id;
         }
 
@@ -146,7 +171,17 @@ namespace negocio
             {
                 datos.Consulta("DELETE FROM Libro_X_Autor WHERE ID_Libro = " + Id);
                 datos.EjecutarAccion();
-
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+            try
+            {
                 datos.Consulta("DELETE FROM Libro WHERE ID_Libro = " + Id);
                 datos.EjecutarAccion();
             }
@@ -169,20 +204,60 @@ namespace negocio
                 datos.Consulta("UPDATE Libro SET Codigo = '" + libro.Codigo + "', Titulo = '" + libro.Titulo + "', Descripcion = '" + libro.Descripcion + "', Precio = " +
                     "" + libro.Precio + ", Stock = " + libro.Stock + ", PortadaURL = '" + libro.PortadaURL + "' WHERE ID_Libro = " + libro.Id);
                 datos.EjecutarAccion();
-
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+            try
+            {
                 datos.Consulta("DELETE FROM Libro_X_Autor WHERE ID_Libro = " + libro.Id);
                 datos.EjecutarAccion();
-
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+            try
+            {
                 foreach (Autor autor in libro.Autores)
                 {
                     datos.Consulta("INSERT INTO Libro_X_Autor (ID_Libro, ID_Autor) " +
                                   "VALUES (" + libro.Id + ", " + autor.Id + ")");
                     datos.EjecutarAccion();
                 }
-
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+            try
+            {
                 datos.Consulta("DELETE FROM Genero_X_Libro WHERE ID_Libro = " + libro.Id);
                 datos.EjecutarAccion();
-
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+            try
+            {
                 foreach (Genero genero in libro.Generos)
                 {
                     datos.Consulta("INSERT INTO Genero_X_Libro (ID_Genero, ID_Libro) " +
