@@ -17,11 +17,9 @@ namespace eCommerce
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-           LibroNegocio negocio = new LibroNegocio();
-           ListarLibros = negocio.Listar();
-            Repetidor.DataSource = ListarLibros;
-            Repetidor.DataBind();
+            LibroNegocio conexion = new LibroNegocio();
+            Repetidor.DataSource = conexion.Listar();
+            Repetidor.DataBind();            
         }
     }
 }

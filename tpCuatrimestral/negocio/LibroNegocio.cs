@@ -12,31 +12,69 @@ namespace negocio
 {
     public class LibroNegocio
     {
-        public List<Libro> Listar() 
+        public List<Libro> Listar()
         {
             List<Libro> lista = new List<Libro>();
             AccesoSQL datos = new AccesoSQL();
 
             try
             {
-                datos.Consulta("SELECT L.ID_Libro, L.Codigo, L.Titulo, L.Descripcion, L.Precio, L.Stock, L.PortadaURL FROM Libro L");
+                datos.Consulta("SELECT L.ID_Libro, L.Codigo, L.Titulo, L.Descripcion, L.Precio, L.Stock, L.PortadaURL, A.ID_Autor, A.Nombre AS AutorNombre, A.Apellido AS AutorApellido, G.ID_Genero, G.Nombre AS GeneroNombre, G.Descripcion AS GeneroDescripcion " +
+                               "FROM Libro L " +
+                               "LEFT JOIN Libro_X_Autor LA ON L.ID_Libro = LA.ID_Libro " +
+                               "LEFT JOIN Autor A ON LA.ID_Autor = A.ID_Autor " +
+                               "LEFT JOIN Genero_X_Libro GL ON L.ID_Libro = GL.ID_Libro " +
+                               "LEFT JOIN Genero G ON GL.ID_Genero = G.ID_Genero");
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())
                 {
-                    Libro aux = new Libro();
-                    aux.Id = (int)datos.Lector["ID_Libro"];
-                    aux.Codigo = (string)datos.Lector["Codigo"];
-                    aux.Titulo = (string)datos.Lector["Titulo"];
-                    aux.Autores = ObtenerAutoresPorLibro(datos, aux.Id);
-                    aux.Descripcion = (string)datos.Lector["Descripcion"];
-                    aux.Precio = Decimal.Round((decimal)datos.Lector["Precio"], 2);
-                    aux.Stock = (Int16)datos.Lector["Stock"];
-                    aux.Generos = ObtenerGenerosPorLibro(datos, aux.Id);
-                    aux.PortadaURL = (string)datos.Lector["PortadaURL"];
-                    lista.Add(aux);
+                    int idLibro = (int)datos.Lector["ID_Libro"];
+                    Libro aux = lista.FirstOrDefault(l => l.Id == idLibro);
+
+                    if (aux == null)
+                    {
+                        aux = new Libro();
+                        aux.Id = idLibro;
+                        aux.Codigo = (string)datos.Lector["Codigo"];
+                        aux.Titulo = (string)datos.Lector["Titulo"];
+                        aux.Descripcion = (string)datos.Lector["Descripcion"];
+                        aux.Precio = Decimal.Round((decimal)datos.Lector["Precio"], 2);
+                        aux.Stock = (Int16)datos.Lector["Stock"];
+                        aux.PortadaURL = (string)datos.Lector["PortadaURL"];
+                        aux.Autores = new List<Autor>();
+                        aux.Generos = new List<Genero>();
+
+                        lista.Add(aux);
+                    }
+
+                    int idAutor = (int)datos.Lector["ID_Autor"];
+                    string autorNombre = (string)datos.Lector["AutorNombre"];
+                    string autorApellido = (string)datos.Lector["AutorApellido"];
+
+                    if (idAutor != 0 && !string.IsNullOrEmpty(autorNombre))
+                    {
+                        Autor autor = new Autor();
+                        autor.Id = idAutor;
+                        autor.Nombre = autorNombre;
+                        autor.Apellido = autorApellido;
+                        aux.Autores.Add(autor);
+                    }
+
+                    int idGenero = (int)datos.Lector["ID_Genero"];
+                    string generoNombre = (string)datos.Lector["GeneroNombre"];
+                    string generoDescripcion = (string)datos.Lector["GeneroDescripcion"];
+
+                    if (idGenero != 0 && !string.IsNullOrEmpty(generoNombre))
+                    {
+                        Genero genero = new Genero();
+                        genero.Id = idGenero;
+                        genero.Nombre = generoNombre;
+                        genero.Descripcion = generoDescripcion;
+                        aux.Generos.Add(genero);
+                    }
                 }
-                    return lista;
+                return lista;
             }
             catch (Exception ex)
             {
@@ -45,51 +83,7 @@ namespace negocio
             finally
             {
                 datos.CerrarConexion();
-            }                               
-        }
-
-        private List<Autor> ObtenerAutoresPorLibro(AccesoSQL datos, int idLibro)
-        {
-            List<Autor> autores = new List<Autor>();
-
-            datos.Consulta("SELECT A.ID_Autor, A.Nombre, A.Apellido " +
-                           "FROM Libro_X_Autor LA " +
-                           "INNER JOIN Autor A ON LA.ID_Autor = A.ID_Autor " +
-                           "WHERE LA.ID_Libro = " + idLibro);
-            datos.EjecutarLectura();
-
-            while (datos.Lector.Read())
-            {
-                Autor autor = new Autor();
-                autor.Id = (int)datos.Lector["ID_Autor"];
-                autor.Nombre = (string)datos.Lector["Nombre"];
-                autor.Apellido = (string)datos.Lector["Apellido"];
-                autores.Add(autor);
             }
-
-            return autores;
-        }
-
-        private List<Genero> ObtenerGenerosPorLibro(AccesoSQL datos, int idLibro)
-        {
-            List<Genero> generos = new List<Genero>();
-
-            datos.Consulta("SELECT G.ID_Genero, G.Nombre, G.Descripcion " +
-                           "FROM Genero_X_Libro GL " +
-                           "INNER JOIN Genero G ON GL.ID_Genero = G.ID_Genero " +
-                           "WHERE GL.ID_Libro = " + idLibro);
-            datos.EjecutarLectura();
-
-            while (datos.Lector.Read())
-            {
-                Genero genero = new Genero();
-                genero.Id = (int)datos.Lector["ID_Genero"];
-                genero.Nombre = (string)datos.Lector["Nombre"];
-                genero.Descripcion = (string)datos.Lector["Descripcion"];
-                generos.Add(genero);
-            }
-
-            return generos;
         }
 
         public void Agregar(Libro nuevo)

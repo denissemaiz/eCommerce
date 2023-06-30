@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace negocio
 {
@@ -107,9 +108,10 @@ namespace negocio
         }
         public void CerrarConexion()
         {
-            if (lector != null)
+            if (lector != null && !lector.IsClosed)
                 lector.Close();
-            conexion.Close();
+            if (conexion.State != ConnectionState.Closed)
+                conexion.Close();
         }
     }
 }
