@@ -119,8 +119,11 @@
                 <a class="nav-link" href="#">Guia de compra</a>
               </li>
                
-                <li<>
-                    <a href="ProductosADM.aspx">Panel Administrador</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="ProductosADM.aspx">Panel Administrador</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="StoreProc.aspx">Store</a>
                 </li>
 
             </ul>

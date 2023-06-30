@@ -42,6 +42,27 @@ namespace eCommerce
                 Session.Add("Fallo al agregar", ex);
                 throw;
             }
+
+
+            string Id = Request.QueryString["Id"] != null ? Request.QueryString["Id"].ToString() : "";
+
+            if (Id != "")
+            {
+                LibroNegocio neg = new LibroNegocio();
+                Libro seleccionado = (neg.PruebaBuscar(Id))[0];
+
+                txtID.Text = Id;
+                txtCodigo.Text = seleccionado.Codigo;
+                txtTitulo.Text = seleccionado.Titulo;
+                txtDescripcion.Text = seleccionado.Descripcion;
+                txtStock.Text = seleccionado.Stock.ToString();
+                txtPrecio.Text = seleccionado.Precio.ToString();
+                txtportadaURL.Text = seleccionado.PortadaURL.ToString();
+                
+
+            }
+
+
         }
 
         protected void txtportadaURL_TextChanged(object sender, EventArgs e)
