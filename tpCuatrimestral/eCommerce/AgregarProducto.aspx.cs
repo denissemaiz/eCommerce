@@ -16,7 +16,24 @@ namespace eCommerce
         {
 
             txtID.Enabled = false;
-            // private string portadaURL;
+
+            string Id = Request.QueryString["Id"] != null ? Request.QueryString["Id"].ToString() : "";
+
+            if (Id != "")
+            {
+                LibroNegocio neg = new LibroNegocio();
+                Libro seleccionado = (neg.PruebaBuscar(Id))[0];
+
+                txtID.Text = Id;
+                txtCodigo.Text = seleccionado.Codigo;
+                txtTitulo.Text = seleccionado.Titulo;
+                txtDescripcion.Text = seleccionado.Descripcion;
+                txtStock.Text = seleccionado.Stock.ToString();
+                txtPrecio.Text = seleccionado.Precio.ToString();
+                txtportadaURL.Text = seleccionado.PortadaURL.ToString();
+
+
+            }
 
         }
 
@@ -44,23 +61,7 @@ namespace eCommerce
             }
 
 
-            string Id = Request.QueryString["Id"] != null ? Request.QueryString["Id"].ToString() : "";
-
-            if (Id != "")
-            {
-                LibroNegocio neg = new LibroNegocio();
-                Libro seleccionado = (neg.PruebaBuscar(Id))[0];
-
-                txtID.Text = Id;
-                txtCodigo.Text = seleccionado.Codigo;
-                txtTitulo.Text = seleccionado.Titulo;
-                txtDescripcion.Text = seleccionado.Descripcion;
-                txtStock.Text = seleccionado.Stock.ToString();
-                txtPrecio.Text = seleccionado.Precio.ToString();
-                txtportadaURL.Text = seleccionado.PortadaURL.ToString();
-                
-
-            }
+        
 
 
         }
