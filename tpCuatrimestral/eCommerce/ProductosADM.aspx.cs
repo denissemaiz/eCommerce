@@ -42,5 +42,10 @@ namespace eCommerce
                 Response.Redirect("ProductosADM.aspx");
             }
         }
+
+        protected void btnModificarLibro_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("StoreProc.aspx");
+        }
     }
 }
