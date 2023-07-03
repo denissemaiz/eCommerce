@@ -1,10 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="AgregarProducto.aspx.cs" Inherits="eCommerce.AgregarProducto" %>
-
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="ModificarProducto.aspx.cs" Inherits="eCommerce.ModificarProducto" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:ScriptManager ID="ScriptManager2" runat="server"></asp:ScriptManager>
+
+       <asp:ScriptManager ID="ScriptManager2" runat="server"></asp:ScriptManager>
 
     <div class="row">
 
@@ -45,23 +44,18 @@
             <ContentTemplate>
                 <div class="col-md-6">
                     <asp:Label for="txxportadaURL" runat="server" CssClass="form-label"><b>Imagen url:</b></asp:Label>
-                    <asp:TextBox ID="txtportadaURL" runat="server" cssclass="form-control" AutoPostBack="true" OnTextChanged="txtportadaURL_TextChanged" >
+                    <asp:TextBox ID="txtportadaURL" runat="server" cssclass="form-control" AutoPostBack="true" Ontextchanged="txtportadaURL_TextChanged" >
                     </asp:TextBox>
                 </div>
                 <asp:Image  ImageUrl="https://plantillasdememes.com/img/plantillas/imagen-no-disponible01601774755.jpg"   ID="ImgPortada" runat="server" width="30%"/>
             </ContentTemplate>
         </asp:UpdatePanel>
 
-
-
-
-
     <div class="row m-3">
         <div class="col-md-6">
-            <asp:Button ID="BtnAgregar" runat="server" OnClick="BtnAgregar_Click" Text="Aceptar" CssClass="btn btn-primary" />
-            <a href="Default.aspx" class="btn btn-primary">Volver</a>
+            <asp:Button ID="BtnModificar" runat="server" Onclick="BtnModificar_Click" Text="Modificar" CssClass="btn btn-primary" />
+            <a href="Default.aspx" class="btn btn-primary">Cancelar</a>
         </div>
     </div>
 
 </asp:Content>
-

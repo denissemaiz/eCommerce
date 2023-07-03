@@ -18,14 +18,15 @@ namespace Conexiones
 
             try
             {
-                Datos.Consulta("Select G.ID_Categoria, G.Nombre From GENERO G");
+                Datos.Consulta("SELECT A.ID_Autor, A.Nombre, A.Apellido FROM Autor A");
                 Datos.EjecutarLectura();
 
                 while (Datos.Lector.Read())
                 {
                     Autor aux = new Autor();
-                    aux.Id = (int)Datos.Lector["Id"];
+                    aux.Id = (int)Datos.Lector["ID_Autor"];
                     aux.Nombre = (string)Datos.Lector["Nombre"];
+                    aux.Apellido = (string)Datos.Lector["Apellido"];
                     Listar.Add(aux);
                 }
                 return Listar;
@@ -38,6 +39,61 @@ namespace Conexiones
             finally
             {
                 Datos.CerrarConexion();
+            }
+        }
+
+        public void Agregar(Autor nuevo)
+        {
+            AccesoSQL datos = new AccesoSQL();
+
+            try
+            {
+                datos.Consulta("INSERT INTO Autor (Nombre, Apellido) VALUES('" + nuevo.Nombre + "', '" + nuevo.Apellido + "')");
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public void Eliminar(int Id)
+        {
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("DELETE FROM Autor WHERE ID_Autor =" + Id);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public void Modificar(Autor autor)
+        {
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("UPDATE Autor SET Nombre = '" + autor.Nombre + "', Apellido = '" + autor.Apellido + "' WHERE ID_Autor = " + autor.Id);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
             }
         }
 

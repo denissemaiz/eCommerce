@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace negocio
 {
@@ -12,6 +13,7 @@ namespace negocio
         private SqlConnection conexion;
         private SqlCommand comando;
         private SqlDataReader lector;
+        private SqlTransaction transaccion;
 
         public SqlDataReader Lector
         {
@@ -24,7 +26,7 @@ namespace negocio
 
         public AccesoSQL()
         {
-            conexion = new SqlConnection("server =.\\SQLEXPRESS; database = ProyectoEditorial; integrated security=true");
+            conexion = new SqlConnection("server =.\\SQLLABORATORIO; database = ProyectoEditorial; integrated security=true");
             comando = new SqlCommand();
         }
 
@@ -78,6 +80,22 @@ namespace negocio
             }
         }
 
+        public void IniciarTransaccion()
+        {
+            conexion.Open();
+            transaccion = conexion.BeginTransaction();
+        }
+
+        public void CompletarTransaccion()
+        {
+            transaccion.Commit();
+        }
+
+        public void RevertirTransaccion()
+        {
+            transaccion.Rollback();
+        }
+
         public void SetParametros(string Nombre, object Valor)
         {
             comando.Parameters.AddWithValue(Nombre, Valor);
@@ -90,9 +108,10 @@ namespace negocio
         }
         public void CerrarConexion()
         {
-            if (lector != null)
+            if (lector != null && !lector.IsClosed)
                 lector.Close();
-            conexion.Close();
+            if (conexion.State != ConnectionState.Closed)
+                conexion.Close();
         }
     }
 }
