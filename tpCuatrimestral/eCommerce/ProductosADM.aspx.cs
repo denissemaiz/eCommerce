@@ -25,7 +25,7 @@ namespace eCommerce
                 Repetidor.DataSource = ListarLibros;
                 Repetidor.DataBind();
             }
-
+            
         }
 
         protected void btnEliminarLibro_Click(object sender, EventArgs e)

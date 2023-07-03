@@ -85,5 +85,16 @@ namespace eCommerce
         {
             ImgPortada.ImageUrl = txtportadaURL.Text;
         }
+
+        public bool ValidarAdmin()
+        {
+            Usuario user;
+            if (Session["Usuario"] != null)
+            {
+                user = ((Usuario)Session["Usuario"]);
+                return user.EsAdmin;
+            }
+            return false;
+        }
     }
 }
