@@ -64,14 +64,14 @@ namespace Conexiones
             AccesoSQL datos = new AccesoSQL();
             try
             {
-                datos.Consulta("Select ID_Usuario, Mail, EsAdmin, ID_Direccion from Usuario Where NombreUsuario = @user and Contraseña = @pass");
+                datos.Consulta("Select ID_Usuario, Mail, EsAdmin from Usuario Where NombreUsuario = @user and Contraseña = @pass");
                 datos.SetParametros("@user", user.Username);
                 datos.SetParametros("@pass", user.Contraseña);
 
                 datos.EjecutarLectura();
                 while (datos.Lector.Read())
                 {
-                    user.Id = (int)datos.Lector["ID_Usuario"];
+                    
                     user.Mail = (string)datos.Lector["Mail"];
                     user.EsAdmin = (bool)datos.Lector["EsAdmin"];
                     return true;
