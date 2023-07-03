@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Clases;
 using dominio;
 using negocio;
 
@@ -29,6 +30,17 @@ namespace eCommerce
         {
             DVGLibros.PageIndex = e.NewSelectedIndex;
             DVGLibros.DataBind();
+        }
+
+        public bool ValidarAdmin()
+        {
+            Usuario user;
+            if (Session["Usuario"] != null)
+            {
+                user = ((Usuario)Session["Usuario"]);
+                return user.EsAdmin;
+            }
+            return false;
         }
     }
 }
