@@ -32,6 +32,7 @@
                             ErrorMessage="Solo acepta números"></asp:RegularExpressionValidator>
                     </div>
                 </div>
+                    <asp:Button ID="btnCargarDatosPersonales" runat="server" Text="Cargar" CssClass="btn btn-primary col-1" />
                 
                 <div class="container row g-3">
                     <h1>Direccion</h1>
@@ -74,6 +75,7 @@
 
                         </div>
                     </div>
+                    <asp:Button ID="btnCargarDireccion" runat="server" Text="Cargar" CssClass="btn btn-primary col-1" />
                 </div>
              </div>
             
