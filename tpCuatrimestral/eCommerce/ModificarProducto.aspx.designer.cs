@@ -11,7 +11,7 @@ namespace eCommerce
 {
 
 
-    public partial class AgregarProducto
+    public partial class ModificarProducto
     {
 
         /// <summary>
@@ -105,12 +105,12 @@ namespace eCommerce
         protected global::System.Web.UI.WebControls.Image ImgPortada;
 
         /// <summary>
-        /// Control BtnAgregar.
+        /// Control BtnModificar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnAgregar;
+        protected global::System.Web.UI.WebControls.Button BtnModificar;
     }
 }

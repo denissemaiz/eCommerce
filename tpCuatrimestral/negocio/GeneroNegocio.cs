@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Clases;
 using dominio;
 
 namespace negocio
@@ -16,14 +17,15 @@ namespace negocio
 
             try
             {
-                Datos.Consulta("Select G.ID_Categoria, G.Nombre From GENERO G");
+                Datos.Consulta("SELECT G.ID_Genero, G.Nombre, G.Descripcion FROM Genero G");
                 Datos.EjecutarLectura();
 
                 while (Datos.Lector.Read())
                 {
                     Genero aux = new Genero();
-                    aux.Id = (int)Datos.Lector["Id"];
+                    aux.Id = (int)Datos.Lector["ID_Genero"];
                     aux.Nombre = (string)Datos.Lector["Nombre"];
+                    aux.Descripcion = (string)Datos.Lector["Descripcion"];
                     Listar.Add(aux);
                 }
                 return Listar;
@@ -38,6 +40,62 @@ namespace negocio
                 Datos.CerrarConexion();
             }
         }
+
+        public void Agregar(Genero nuevo)
+        {
+            AccesoSQL datos = new AccesoSQL();
+
+            try
+            {
+                datos.Consulta("INSERT INTO Genero (Nombre, Descripcion) VALUES('" + nuevo.Nombre + "', '" + nuevo.Descripcion + "')");
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public void Eliminar(int Id)
+        {
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("DELETE FROM Genero WHERE ID_Genero =" + Id);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public void Modificar(Genero genero)
+        {
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("UPDATE Genero SET Nombre = '" + genero.Nombre + "', Descripcion = '" + genero.Descripcion + "' WHERE ID_Genero = " + genero.Id);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
 
         public List<Genero> RemoveDuplicadosGenero(List<Genero> inputList)
         {

@@ -71,6 +71,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="ProductosADM.aspx" />
+    <Content Include="StoreProc.aspx" />
     <Content Include="User\Login.aspx" />
     <Content Include="Productos.aspx" />
     <Content Include="User\Logout.aspx" />
@@ -115,9 +116,17 @@
     </Compile>
     <Compile Include="ProductosADM.aspx.cs">
       <DependentUpon>ProductosADM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ProductosADM.aspx.designer.cs">
       <DependentUpon>ProductosADM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StoreProc.aspx.cs">
+      <DependentUpon>StoreProc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StoreProc.aspx.designer.cs">
+      <DependentUpon>StoreProc.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -165,8 +174,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Master.Master" />
-    <None Include="packages.config" />
     <Content Include="User\User.Master" />
+    <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

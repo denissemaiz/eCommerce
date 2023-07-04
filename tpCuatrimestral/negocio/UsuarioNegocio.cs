@@ -19,17 +19,35 @@ namespace Conexiones
 
             try
             {
-                Datos.Consulta("Select U.Id, U.Nombre, U.Mail, U.Contraseña From USUARIO U");
+                Datos.Consulta("SELECT U.ID_Usuario, U.NombreUsuario, U.Mail, U.Contraseña, U.EsAdmin, " +
+                    "DU.Nombre, DU.Apellido, D.Calle, D.Altura, D.Localidad, D.CP, D.Provincia, DU.Telefono " +
+                    "FROM Usuario U INNER JOIN Datos_Usuario DU ON U.ID_Usuario = DU.ID_Usuario INNER JOIN Direccion D ON DU.ID_Direccion = D.ID_Direccion");
                 Datos.EjecutarLectura();
 
                 while (Datos.Lector.Read())
                 {
                     Usuario aux = new Usuario();
-                    aux.Id = (int)Datos.Lector["Id"];
-                    aux.Username = (string)Datos.Lector["Nombre"];
+                    Direccion auxDir = new Direccion();
+                    DatosUsuario auxDat = new DatosUsuario();
+                    aux.Id = (int)Datos.Lector["ID_Usuario"];
+                    aux.Username = (string)Datos.Lector["NombreUsuario"];
                     aux.Mail = (string)Datos.Lector["Mail"];
                     aux.Contraseña = (string)Datos.Lector["Contraseña"];
-                    //aux.DatosUsuario = (DatosUsuario)Datos.Lector[""];                   
+                    aux.EsAdmin = (bool)Datos.Lector["EsAdmin"];
+
+                    auxDat.Nombres = (string)Datos.Lector["Nombre"];
+                    auxDat.Apellidos = (string)Datos.Lector["Apellido"];
+                    auxDat.Telefono = (string)Datos.Lector["Telefono"];
+
+                    auxDir.Calle = (string)Datos.Lector["Calle"];
+                    auxDir.Altura = (int)Datos.Lector["Altura"];
+                    auxDir.Localidad = (string)Datos.Lector["Localidad"];
+                    auxDir.Cp = (int)Datos.Lector["CP"];
+                    auxDir.Provincia = (string)Datos.Lector["Provincia"];
+
+                    auxDat.Direccion = auxDir;
+                    aux.DatosUsuario = auxDat;
+
                     lista.Add(aux);
                 }
                 return lista;
@@ -41,6 +59,67 @@ namespace Conexiones
             finally
             {
                 Datos.CerrarConexion();
+            }
+        }
+
+        public void Agregar(Usuario nuevo)
+        {
+            AccesoSQL datos = new AccesoSQL();
+
+            try
+            {
+                datos.Consulta("INSERT INTO Usuario (NombreUsuario, Mail, Contraseña, EsAdmin) VALUES('" + nuevo.Username + "', '" + nuevo.Mail + "', '" + nuevo.Contraseña + "" +
+                    ", '" + nuevo.EsAdmin + "'')");
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public void Eliminar(int Id)
+        {
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("DELETE FROM Datos_Usuario WHERE ID_Usuario = " + Id);
+                datos.EjecutarAccion();
+
+                datos.Consulta("DELETE FROM Usuario WHERE ID_Usuario = " + Id);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public void Modificar(Usuario usuario)
+        {
+            AccesoSQL datos = new AccesoSQL();
+
+            try
+            {
+                datos.Consulta("UPDATE Usuario SET NombreUsuario = '" + usuario.Username + "', Mail = '" + usuario.Mail + "', Contraseña = '" + usuario.Contraseña + "'," +
+                    " EsAdmin = " + usuario.EsAdmin + " WHERE ID_Usuario =" + usuario.Id);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
             }
         }
 
@@ -64,14 +143,14 @@ namespace Conexiones
             AccesoSQL datos = new AccesoSQL();
             try
             {
-                datos.Consulta("Select ID_Usuario, Mail, EsAdmin, ID_Direccion from Usuario Where NombreUsuario = @user and Contraseña = @pass");
+                datos.Consulta("Select ID_Usuario, Mail, EsAdmin from Usuario Where NombreUsuario = @user and Contraseña = @pass");
                 datos.SetParametros("@user", user.Username);
                 datos.SetParametros("@pass", user.Contraseña);
 
                 datos.EjecutarLectura();
                 while (datos.Lector.Read())
                 {
-                    user.Id = (int)datos.Lector["ID_Usuario"];
+                    
                     user.Mail = (string)datos.Lector["Mail"];
                     user.EsAdmin = (bool)datos.Lector["EsAdmin"];
                     return true;
