@@ -69,6 +69,7 @@
     <Content Include="Carro.aspx" />
     <Content Include="ComprarGuia.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="Detalles.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="ProductosADM.aspx" />
     <Content Include="StoreProc.aspx" />
@@ -106,6 +107,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Detalles.aspx.cs">
+      <DependentUpon>Detalles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Detalles.aspx.designer.cs">
+      <DependentUpon>Detalles.aspx</DependentUpon>
     </Compile>
     <Compile Include="Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
