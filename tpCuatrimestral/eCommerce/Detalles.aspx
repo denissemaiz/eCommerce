@@ -107,9 +107,11 @@ font-size: 15px;
 color: rgb(121, 38, 38);
 line-height: 22px;
 margin-top: 22px;
+}
 
-
-
+.contenedor-detalles ul
+{
+    padding: 0;
 }
 
 
