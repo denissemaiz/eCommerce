@@ -52,7 +52,7 @@ namespace Conexiones
             }
         }
 
-        public bool Agregar(DatosUsuario nuevo) /*Al agregar datos de usuarios se debe agregar explicitamente la Direccion con su correspondiente funcion de Agregar()*/
+        public void Agregar(DatosUsuario nuevo) /*Al agregar datos de usuarios se debe agregar explicitamente la Direccion con su correspondiente funcion de Agregar()*/
         {
             AccesoSQL datos = new AccesoSQL();
 
@@ -61,11 +61,34 @@ namespace Conexiones
                 datos.Consulta("INSERT INTO Datos_Usuario (ID_Usuario, Nombre, Apellido, ID_Direccion, Telefono) VALUES('" + nuevo.Id + "', '" + nuevo.Nombres + "', " +
                     "'" + nuevo.Apellidos + ", '" + nuevo.Direccion.Id + ", '" + nuevo.Telefono + "'')");
                 datos.EjecutarAccion();
-                return true;
             }
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        
+        public bool Agregar(DatosUsuario nuevo, ref string  Mensaje)///Devuelve un bool si carga y no carga el id de Direccion
+        {
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("INSERT INTO Datos_Usuario (ID_Usuario, Nombre, Apellido, Telefono) VALUES( @ID, @Nombre, @Apellido, @Telefono)");
+                datos.SetParametros("@ID", nuevo.Id);
+                datos.SetParametros("@Nombre", nuevo.Nombres);
+                datos.SetParametros("@Apellido", nuevo.Apellidos);
+                datos.SetParametros("@Telefono", nuevo.Telefono);
+                datos.EjecutarAccion();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.ToString();
                 return false;
             }
             finally

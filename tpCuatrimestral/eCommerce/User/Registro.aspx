@@ -112,7 +112,7 @@
                             ForeColor="Red"></asp:CompareValidator>
 
                         <br />
-                        <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" UseSubmitBehavior="false"/>
+                        <a href="..\Default.aspx" class="btn btn-secondary">Cancelar</a>
                         <asp:Button ID="btnRegistrar" runat="server" Text="Registrar" CssClass="btn btn-primary" OnClick="btnRegistrar_Click"/>
                     </div>
                 </div>

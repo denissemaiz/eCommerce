@@ -167,12 +167,13 @@ namespace Conexiones
                 datos.CerrarConexion();
             }
         }
-        
-        public bool Registro(Usuario user,ref string mensaje, DatosUsuario userData)
+
+        public bool Registro(Usuario user, ref string mensaje, DatosUsuario userData)
         {
             bool registrado;
 
             AccesoSQL datos = new AccesoSQL();
+            ///Primero intenta generar el nuevo registro de Usuario
             try
             {
                 datos.setearProcedimiento("sp_RegistrarUsuario");
@@ -184,11 +185,23 @@ namespace Conexiones
                 datos.Comando.Parameters.Add("Registrado", System.Data.SqlDbType.Bit).Direction = System.Data.ParameterDirection.Output;
                 datos.Comando.Parameters.Add("Mensaje", System.Data.SqlDbType.VarChar,100).Direction = System.Data.ParameterDirection.Output;
 
-                userData.Id = datos.EjecutarScalar();
+                userData.Id = datos.EjecutarScalar(); ///Obtengo el ID del nuevo usuario
 
                 registrado = Convert.ToBoolean(datos.Comando.Parameters["Registrado"].Value);
                 mensaje = datos.Comando.Parameters["Mensaje"].Value.ToString();
-
+                ///Con el ID del nuevo usuario intento generar un registro de DatosUsuario
+                try
+                {
+                    DatosUsuarioNegocio ConexionDatosUsuario = new DatosUsuarioNegocio();
+                    if (ConexionDatosUsuario.Agregar(userData, ref mensaje) != true)
+                        registrado = false;
+                }
+                catch (Exception ex)
+                {
+                    mensaje = ex.ToString();
+                    return false;
+                }
+                return registrado;
             }
             catch (Exception ex )
             {
@@ -200,17 +213,7 @@ namespace Conexiones
             {
                 datos.CerrarConexion();
             }
-            try
-            {
-                DatosUsuarioNegocio ConexionDatosUsuario = new DatosUsuarioNegocio();
-                if(ConexionDatosUsuario.Agregar(userData))
-                    return registrado;
-            }
-            catch (Exception ex)
-            {
-                mensaje = ex.ToString();
-                return false;
-            }
+            
         }
     }
 }
