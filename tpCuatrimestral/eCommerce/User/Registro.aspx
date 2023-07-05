@@ -51,7 +51,11 @@
                 <div class="row m-3 justify-content-center">
                     <div class="col-md-6">
                         <asp:Label ID="lblEmail" runat="server" CssClass="form-label">Email:</asp:Label> 
-                        <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email"></asp:TextBox>
+                        <asp:TextBox ID="txtEmail" runat="server" 
+                            CssClass="form-control" 
+                            TextMode="Email" 
+                            Placeholder="ejemplo@mail.com"></asp:TextBox>
+
                         <asp:RequiredFieldValidator ID="rfvEmail" runat="server" 
                             ControlToValidate="txtEmail"
                             Display="Dynamic"
@@ -63,8 +67,15 @@
                 <div class="row m-3 justify-content-center">
                     <div class="col-md-6">
                         <asp:Label ID="lblTelefono" runat="server" CssClass="form-label">Telefono:</asp:Label> 
-                        <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control"></asp:TextBox>
-                        
+                        <asp:TextBox ID="txtTelefono" runat="server" 
+                            Placeholder="11***********"
+                            MaxLength="11"
+                            CssClass="form-control"></asp:TextBox>
+                        <asp:RegularExpressionValidator ID="revTelefono" runat="server"
+                            ControlToValidate="txtTelefono"
+                            ValidationExpression="(^([0-9]*|\d*\d{1}?\d*)$)"
+                            ForeColor="Red"
+                            ErrorMessage="Solo se aceptan numeros"></asp:RegularExpressionValidator>
                     </div>
                 </div>
                 <div class="row m-3 justify-content-center">
