@@ -14,6 +14,7 @@ namespace eCommerce.User
     public partial class Registro : System.Web.UI.Page
     {
         Usuario usuario;
+        DatosUsuario datosUser;
         protected void Page_Load(object sender, EventArgs e)
         {
             usuario = new Usuario();
@@ -33,9 +34,14 @@ namespace eCommerce.User
 
             if (usuario.ConfirmarContraseña(txtConfPass.Text))
             {
+                int id = 0;
                 usuario.Contraseña = usuario.EncriptarPass(usuario.Contraseña);
-                if(datos.Registro(usuario,ref mensaje))
+                if(datos.Registro(usuario,ref mensaje, ref id))
                 {
+
+                    datosUser = new DatosUsuario(id, txtNombre.Text, txtApellido.Text, txtTelefono.Text);
+
+
                     Session.Add("mensaje", mensaje);
                     Response.Redirect("../Default.aspx");
                 }
