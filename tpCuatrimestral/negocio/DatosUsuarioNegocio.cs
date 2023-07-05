@@ -52,7 +52,7 @@ namespace Conexiones
             }
         }
 
-        public void Agregar(DatosUsuario nuevo) /*Al agregar datos de usuarios se debe agregar explicitamente la Direccion con su correspondiente funcion de Agregar()*/
+        public bool Agregar(DatosUsuario nuevo) /*Al agregar datos de usuarios se debe agregar explicitamente la Direccion con su correspondiente funcion de Agregar()*/
         {
             AccesoSQL datos = new AccesoSQL();
 
@@ -61,10 +61,12 @@ namespace Conexiones
                 datos.Consulta("INSERT INTO Datos_Usuario (ID_Usuario, Nombre, Apellido, ID_Direccion, Telefono) VALUES('" + nuevo.Id + "', '" + nuevo.Nombres + "', " +
                     "'" + nuevo.Apellidos + ", '" + nuevo.Direccion.Id + ", '" + nuevo.Telefono + "'')");
                 datos.EjecutarAccion();
+                return true;
             }
             catch (Exception ex)
             {
                 throw ex;
+                return false;
             }
             finally
             {

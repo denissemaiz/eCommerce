@@ -168,7 +168,7 @@ namespace Conexiones
             }
         }
         
-        public bool Registro(Usuario user,ref string mensaje, ref int id)
+        public bool Registro(Usuario user,ref string mensaje, DatosUsuario userData)
         {
             bool registrado;
 
@@ -184,12 +184,11 @@ namespace Conexiones
                 datos.Comando.Parameters.Add("Registrado", System.Data.SqlDbType.Bit).Direction = System.Data.ParameterDirection.Output;
                 datos.Comando.Parameters.Add("Mensaje", System.Data.SqlDbType.VarChar,100).Direction = System.Data.ParameterDirection.Output;
 
-                id = datos.EjecutarScalar();
+                userData.Id = datos.EjecutarScalar();
 
                 registrado = Convert.ToBoolean(datos.Comando.Parameters["Registrado"].Value);
                 mensaje = datos.Comando.Parameters["Mensaje"].Value.ToString();
 
-                return registrado;
             }
             catch (Exception ex )
             {
@@ -200,6 +199,17 @@ namespace Conexiones
             finally
             {
                 datos.CerrarConexion();
+            }
+            try
+            {
+                DatosUsuarioNegocio ConexionDatosUsuario = new DatosUsuarioNegocio();
+                if(ConexionDatosUsuario.Agregar(userData))
+                    return registrado;
+            }
+            catch (Exception ex)
+            {
+                mensaje = ex.ToString();
+                return false;
             }
         }
     }

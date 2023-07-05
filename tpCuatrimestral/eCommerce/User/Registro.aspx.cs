@@ -34,14 +34,10 @@ namespace eCommerce.User
 
             if (usuario.ConfirmarContraseña(txtConfPass.Text))
             {
-                int id = 0;
                 usuario.Contraseña = usuario.EncriptarPass(usuario.Contraseña);
-                if(datos.Registro(usuario,ref mensaje, ref id))
+                datosUser = new DatosUsuario(txtNombre.Text, txtApellido.Text, txtTelefono.Text);
+                if(datos.Registro(usuario,ref mensaje, datosUser))
                 {
-
-                    datosUser = new DatosUsuario(id, txtNombre.Text, txtApellido.Text, txtTelefono.Text);
-
-
                     Session.Add("mensaje", mensaje);
                     Response.Redirect("../Default.aspx");
                 }
