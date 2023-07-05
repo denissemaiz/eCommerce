@@ -26,6 +26,12 @@ namespace Clases
             this.direccion = direccion;
             this.telefono = telefono;
         }
+        public DatosUsuario(int id, string nombres, string apellidos,  string telefono)
+        {
+            this.nombres = nombres;
+            this.apellidos = apellidos;        
+            this.telefono = telefono;
+        }
 
         public int Id
         { 
