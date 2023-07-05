@@ -33,7 +33,7 @@ namespace eCommerce.User
 
             if (usuario.ConfirmarContraseña(txtConfPass.Text))
             {
-
+                usuario.Contraseña = usuario.EncriptarPass(usuario.Contraseña);
                 if(datos.Registro(usuario,ref mensaje))
                 {
                     Session.Add("mensaje", mensaje);

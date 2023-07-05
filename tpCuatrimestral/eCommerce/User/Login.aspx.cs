@@ -31,7 +31,9 @@ namespace eCommerce
             try
             {
                 user.Username = txtUser.Text;
-                user.Contraseña = txtPass.Text;
+                user.Contraseña =txtPass.Text;
+
+                user.Contraseña = user.EncriptarPass(user.Contraseña);
 
                 if (conexion.Login(user))
                 {

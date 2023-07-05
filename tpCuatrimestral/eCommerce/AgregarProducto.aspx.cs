@@ -58,14 +58,13 @@ namespace eCommerce
                 {
                     libro.Id = int.Parse(txtID.Text);
                     negocio.ModificarTest(libro);
-                    Response.Redirect("StoreProc.aspx", false);
+                    /*Response.Redirect("StoreProc.aspx", false);*/
+                    Response.Redirect("ProductosADM.aspx");
                 }
                 else
                 {
-
-                negocio.AgregarPrueba(libro);                                
-                Response.Redirect("Default.aspx", false);
-
+                    negocio.AgregarPrueba(libro);
+                    Response.Redirect("ProductosADM.aspx");
                 }
 
                 
@@ -85,6 +84,17 @@ namespace eCommerce
         protected void txtportadaURL_TextChanged(object sender, EventArgs e)
         {
             ImgPortada.ImageUrl = txtportadaURL.Text;
+        }
+
+        public bool ValidarAdmin()
+        {
+            Usuario user;
+            if (Session["Usuario"] != null)
+            {
+                user = ((Usuario)Session["Usuario"]);
+                return user.EsAdmin;
+            }
+            return false;
         }
     }
 }
