@@ -13,16 +13,6 @@
 			</div>
 	<%	}else{ %>
 			<form class="">
-                <div class="row m-3 justify-content-center">
-                    <div class="col-md-3">
-                        <asp:Label ID="lblNombre" runat="server" CssClass="form-label">Nombre:</asp:Label>
-                        <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
-                    </div>
-                    <div class="col-md-3">
-                        <asp:Label ID="lblApellido" runat="server" CssClass="form-label">Apellido:</asp:Label>
-                        <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control"></asp:TextBox>
-                    </div>
-                </div>
                 
                 <div class="row m-3 justify-content-center">
                     <div class="col-md-6">
@@ -37,6 +27,28 @@
                     </div>
                 </div>
                 <div class="row m-3 justify-content-center">
+                    <div class="col-md-3">
+                        <asp:Label ID="lblNombre" runat="server" CssClass="form-label">Nombre:</asp:Label>
+                        <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvNombre" runat="server"
+                            ControlToValidate="txtNombre"
+                            Display="Dynamic"
+                            ErrorMessage="Ingrese su nombre"
+                            CssClass="invalid-feedback"
+                            ForeColor="Red"></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="col-md-3">
+                        <asp:Label ID="lblApellido" runat="server" CssClass="form-label">Apellido:</asp:Label>
+                        <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvApellido" runat="server"
+                            ControlToValidate="txtApellido"
+                            Display="Dynamic"
+                            ErrorMessage="Ingrese su apellido"
+                            CssClass="invalid-feedback"
+                            ForeColor="Red"></asp:RequiredFieldValidator>
+                    </div>
+                </div>
+                <div class="row m-3 justify-content-center">
                     <div class="col-md-6">
                         <asp:Label ID="lblEmail" runat="server" CssClass="form-label">Email:</asp:Label> 
                         <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email"></asp:TextBox>
@@ -46,6 +58,13 @@
                             ErrorMessage="Por favor ingrese un mail"
                             CssClass="Invalid-Feedback"
                             ForeColor="Red"></asp:RequiredFieldValidator>
+                    </div>
+                </div>
+                <div class="row m-3 justify-content-center">
+                    <div class="col-md-6">
+                        <asp:Label ID="lblTelefono" runat="server" CssClass="form-label">Telefono:</asp:Label> 
+                        <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control"></asp:TextBox>
+                        
                     </div>
                 </div>
                 <div class="row m-3 justify-content-center">
