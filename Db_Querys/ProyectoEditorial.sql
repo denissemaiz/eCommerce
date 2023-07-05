@@ -14,7 +14,7 @@ Create Database ProyectoEditorial
 Go
 Use ProyectoEditorial
 Go
-
+ 
 Create table Direccion(
 	ID_Direccion int identity(1,1) not null primary key,
 	Calle varchar(50) not null,
@@ -39,7 +39,7 @@ Create table Datos_Usuario(
 	Nombre varchar(50) not null,
 	Apellido varchar(50) not null,
     ID_Direccion int null foreign key references Direccion(ID_Direccion),
-	Telefono bigint not null,
+	Telefono varchar(30) null,
 	Primary key(ID_Usuario),
 	Foreign key(ID_Usuario) references Usuario(ID_Usuario)
 )

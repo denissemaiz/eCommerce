@@ -72,6 +72,31 @@ namespace Conexiones
             }
         }
 
+        
+        public bool Agregar(DatosUsuario nuevo, ref string  Mensaje)///Devuelve un bool si carga y no carga el id de Direccion
+        {
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("INSERT INTO Datos_Usuario (ID_Usuario, Nombre, Apellido, Telefono) VALUES( @ID, @Nombre, @Apellido, @Telefono)");
+                datos.SetParametros("@ID", nuevo.Id);
+                datos.SetParametros("@Nombre", nuevo.Nombres);
+                datos.SetParametros("@Apellido", nuevo.Apellidos);
+                datos.SetParametros("@Telefono", nuevo.Telefono);
+                datos.EjecutarAccion();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.ToString();
+                return false;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
         public void Eliminar(int Id)
         {
             AccesoSQL datos = new AccesoSQL();

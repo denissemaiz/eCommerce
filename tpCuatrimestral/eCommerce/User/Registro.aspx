@@ -13,18 +13,7 @@
 			</div>
 	<%	}else{ %>
 			<form class="">
-                <div class="row m-3 justify-content-center">
-                    <div class="col-md-6">
-                        <asp:Label ID="lblEmail" runat="server" CssClass="form-label">Email:</asp:Label> 
-                        <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="rfvEmail" runat="server" 
-                            ControlToValidate="txtEmail"
-                            Display="Dynamic"
-                            ErrorMessage="Por favor ingrese un mail"
-                            CssClass="Invalid-Feedback"
-                            ForeColor="Red"></asp:RequiredFieldValidator>
-                    </div>
-                </div>
+                
                 <div class="row m-3 justify-content-center">
                     <div class="col-md-6">
                         <asp:Label ID="lblUsuario" runat="server" CssClass="form-label">Usuario:</asp:Label> 
@@ -35,6 +24,58 @@
                             ErrorMessage="Por favor ingrese un nombre de usuario"
                             CssClass="invalid-feedback"
                             ForeColor="Red"></asp:RequiredFieldValidator>
+                    </div>
+                </div>
+                <div class="row m-3 justify-content-center">
+                    <div class="col-md-3">
+                        <asp:Label ID="lblNombre" runat="server" CssClass="form-label">Nombre:</asp:Label>
+                        <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvNombre" runat="server"
+                            ControlToValidate="txtNombre"
+                            Display="Dynamic"
+                            ErrorMessage="Ingrese su nombre"
+                            CssClass="invalid-feedback"
+                            ForeColor="Red"></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="col-md-3">
+                        <asp:Label ID="lblApellido" runat="server" CssClass="form-label">Apellido:</asp:Label>
+                        <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvApellido" runat="server"
+                            ControlToValidate="txtApellido"
+                            Display="Dynamic"
+                            ErrorMessage="Ingrese su apellido"
+                            CssClass="invalid-feedback"
+                            ForeColor="Red"></asp:RequiredFieldValidator>
+                    </div>
+                </div>
+                <div class="row m-3 justify-content-center">
+                    <div class="col-md-6">
+                        <asp:Label ID="lblEmail" runat="server" CssClass="form-label">Email:</asp:Label> 
+                        <asp:TextBox ID="txtEmail" runat="server" 
+                            CssClass="form-control" 
+                            TextMode="Email" 
+                            Placeholder="ejemplo@mail.com"></asp:TextBox>
+
+                        <asp:RequiredFieldValidator ID="rfvEmail" runat="server" 
+                            ControlToValidate="txtEmail"
+                            Display="Dynamic"
+                            ErrorMessage="Por favor ingrese un mail"
+                            CssClass="Invalid-Feedback"
+                            ForeColor="Red"></asp:RequiredFieldValidator>
+                    </div>
+                </div>
+                <div class="row m-3 justify-content-center">
+                    <div class="col-md-6">
+                        <asp:Label ID="lblTelefono" runat="server" CssClass="form-label">Telefono:</asp:Label> 
+                        <asp:TextBox ID="txtTelefono" runat="server" 
+                            Placeholder="11***********"
+                            MaxLength="11"
+                            CssClass="form-control"></asp:TextBox>
+                        <asp:RegularExpressionValidator ID="revTelefono" runat="server"
+                            ControlToValidate="txtTelefono"
+                            ValidationExpression="(^([0-9]*|\d*\d{1}?\d*)$)"
+                            ForeColor="Red"
+                            ErrorMessage="Solo se aceptan numeros"></asp:RegularExpressionValidator>
                     </div>
                 </div>
                 <div class="row m-3 justify-content-center">
@@ -71,7 +112,7 @@
                             ForeColor="Red"></asp:CompareValidator>
 
                         <br />
-                        <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" UseSubmitBehavior="false"/>
+                        <a href="..\Default.aspx" class="btn btn-secondary">Cancelar</a>
                         <asp:Button ID="btnRegistrar" runat="server" Text="Registrar" CssClass="btn btn-primary" OnClick="btnRegistrar_Click"/>
                     </div>
                 </div>
