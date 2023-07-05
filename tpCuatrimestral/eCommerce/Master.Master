@@ -89,17 +89,14 @@
     <form id="form1" runat="server">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="Default.aspx"><b>Inicio</b></a>
-                <button class="navbar-toggler" type="button" 
-                    data-bs-toggle="collapse" 
-                    data-bs-target="#navbarNavDropdown" 
-                    aria-controls="navbarNavDropdown" 
-                    aria-expanded="false" 
-                    aria-label="Toggle navigation">
+                <a class="btn btn-light mx-3" data-bs-toggle="offcanvas" href="#barraDesplegableLateral" role="button" aria-controls="offcanvasExample">
                     <span class="navbar-toggler-icon"></span>
-                </button>
+                </a>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="fw-bolder nav-link" href="/">Inicio</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="ProductosADM.aspx">Catalogo</a>
                         </li>
@@ -138,6 +135,62 @@
         </nav>
         <div class="position-relative overflow-hidden pb-md-3 mb-md-3 text-center bg-light">
             <img class="img-fluid w-100" src="https://i.ibb.co/YjkBL6x/Captura.png" alt="Banner">
+        </div>
+        <div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="barraDesplegableLateral" aria-labelledby="offcanvasCatalogo">
+            <div class="offcanvas-header m-3">
+                <h5 class="offcanvas-title text-white px-3" id="offcanvasCatalogo">Catálogo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="container-fluid">
+                    <div class="row mb-4">
+                        <div id="accordion">
+                            <div class="card bg-dark">
+                                <div class="card-header" id="headingGenero">
+                                    <h5 class="mb-0">
+                                        <a class="btn btn-link text-white" data-toggle="collapse" href="#collapseGenero" role="button" aria-expanded="false" aria-controls="collapseGenero">Géneros
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id="collapseGenero" class="collapse show p-3" aria-labelledby="headingGenero" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <asp:Repeater ID="repGeneros" runat="server">
+                                            <ItemTemplate>
+                                                <div class="opacity-90">
+                                                    <ul class="list-unstyled mb-1">
+                                                        <li><a class="text-white text-decoration-none" href="Productos.aspx?generosLib=<%#Eval("Id") %>"><%#Eval("Nombre") %></a></li>
+                                                    </ul>
+                                                </div>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card bg-dark">
+                                <div class="card-header" id="headingAutores">
+                                    <h5 class="mb-0">
+                                        <a class="btn btn-link text-white" data-toggle="collapse" href="#collapseAutor" role="button" aria-expanded="true" aria-controls="collapseAutor">Autores
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id="collapseAutor" class="collapse show p-3" aria-labelledby="headingAutores" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <asp:Repeater ID="repAutores" runat="server">
+                                            <ItemTemplate>
+                                                <div class="opacity-90">
+                                                    <ul class="list-unstyled mb-1">
+                                                        <li><a class="text-white text-decoration-none" href="Productos.aspx?autoresLib=<%#Eval("Id") %>"><%#Eval("Apellido") %></a></li>
+                                                    </ul>
+                                                </div>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">

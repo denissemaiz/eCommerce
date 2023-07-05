@@ -1,4 +1,6 @@
 ﻿using Clases;
+using Conexiones;
+using negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +14,15 @@ namespace eCommerce
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            GeneroNegocio generosDB = new GeneroNegocio();
+            AutorNegocio autoresDB = new AutorNegocio();
+            if (!IsPostBack)
+            {
+                repGeneros.DataSource = generosDB.RemoveDuplicadosGenero(generosDB.Listar());
+                repGeneros.DataBind();
+                repAutores.DataSource = autoresDB.RemoveDuplicadosGenero(autoresDB.Listar());
+                repAutores.DataBind();
+            }
         }
     }
 }
