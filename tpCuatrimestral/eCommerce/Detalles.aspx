@@ -32,20 +32,19 @@
 
                     <ul style="list-style: none;">
                         <li>
-                            <b>Titulo: <%:Articulo.Titulo %></b>
+                            <p><b>Titulo: </b><%:Articulo.Titulo %></p>
                         </li>
                         <li>
-                            <b>Genero: <%:Genero.Nombre %> </b>
+                           <p> <b>Genero: </b><%:Genero.Nombre %></p>
                         </li>
                         <li>
-                            <b>Codigo: <%:Articulo.Codigo %></b>
+                            <p><b>Codigo: </b><%:Articulo.Codigo %></p>
                         </li>
                         <li>
-                            <b>Autor/es: <%:Autor.Nombre%> <%:Autor.Apellido %></b>
-                          
+                            <p> <b> Autor/es: </b> <%:Autor.Nombre%> <%:Autor.Apellido %> </p>
                         </li>
                         <li>
-                            <b>Stock: <%:Articulo.Stock %></b>
+                            <p><b>Stock: </b><%:Articulo.Stock %> </p>
                         </li>
                     </ul>
 
