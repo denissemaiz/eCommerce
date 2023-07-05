@@ -168,7 +168,7 @@ namespace Conexiones
             }
         }
         
-        public bool Registro(Usuario user,ref string mensaje)
+        public bool Registro(Usuario user,ref string mensaje, ref int id)
         {
             bool registrado;
 
@@ -184,7 +184,7 @@ namespace Conexiones
                 datos.Comando.Parameters.Add("Registrado", System.Data.SqlDbType.Bit).Direction = System.Data.ParameterDirection.Output;
                 datos.Comando.Parameters.Add("Mensaje", System.Data.SqlDbType.VarChar,100).Direction = System.Data.ParameterDirection.Output;
 
-                datos.EjecutarAccion();
+                id = datos.EjecutarScalar();
 
                 registrado = Convert.ToBoolean(datos.Comando.Parameters["Registrado"].Value);
                 mensaje = datos.Comando.Parameters["Mensaje"].Value.ToString();
