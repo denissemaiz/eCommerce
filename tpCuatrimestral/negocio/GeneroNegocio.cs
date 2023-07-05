@@ -41,6 +41,39 @@ namespace negocio
             }
         }
 
+
+        public List<Genero> BuscarGenero(string codigo)
+        {
+            List<Genero> lista = new List<Genero>();
+            AccesoSQL datos = new AccesoSQL();
+
+            try
+            {
+                datos.Consulta(" Select G.ID_Genero, G.Nombre, G.Descripcion from Genero G inner join Genero_X_Libro GXL on GXL.ID_Genero = G.ID_Genero inner join Libro L on L.ID_Libro = GXL.ID_Libro where L.Codigo = '" + codigo + "' ");
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Genero genero = new Genero();
+                    genero.Id = (int)datos.Lector["ID_Genero"];
+                    genero.Nombre = (string)datos.Lector["Nombre"];
+                    genero.Descripcion = (string)datos.Lector["Descripcion"];
+                    lista.Add(genero);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+
+
         public void Agregar(Genero nuevo)
         {
             AccesoSQL datos = new AccesoSQL();

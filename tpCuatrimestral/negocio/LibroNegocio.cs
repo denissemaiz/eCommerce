@@ -162,7 +162,7 @@ namespace negocio
 
             try
             {
-                datos.Consulta("SELECT L.ID_Libro, L.Codigo, L.Titulo, L.Descripcion, L.Precio, L.Stock, L.PortadaURL FROM Libro L WHERE L.Codigo = '" + codigo + "'" );
+                datos.Consulta(" SELECT L.ID_Libro, L.Codigo, L.Titulo, L.Descripcion, L.Precio, L.Stock, L.PortadaURL FROM Libro L WHERE L.Codigo = '" + codigo + "' ");
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())
@@ -189,6 +189,7 @@ namespace negocio
             }
         }
 
+ 
 
         private List<Autor> ObtenerAutoresPorLibro(AccesoSQL datos, int idLibro)
         {

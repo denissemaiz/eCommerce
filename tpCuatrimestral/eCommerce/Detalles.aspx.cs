@@ -1,4 +1,6 @@
-﻿using dominio;
+﻿using Clases;
+using Conexiones;
+using dominio;
 using negocio;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,8 @@ namespace eCommerce
     {
 
         public List<Libro> ListarLibros { get; set; }
+        public List<Autor> ListarAutor { get; set; }
+        public List<Genero> ListarGenero { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,7 +24,11 @@ namespace eCommerce
             { 
                 string codigo = Request.QueryString["cod"].ToString();
                 LibroNegocio libro = new LibroNegocio();
+                GeneroNegocio genero = new GeneroNegocio();
+                AutorNegocio autor = new AutorNegocio();
                 ListarLibros = libro.BuscarporCodigo(codigo);
+                ListarGenero = genero.BuscarGenero(codigo);
+                ListarAutor = autor.BuscarAutor(codigo);
 
             }
 

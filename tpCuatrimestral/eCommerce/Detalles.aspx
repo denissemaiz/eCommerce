@@ -9,10 +9,14 @@
     <body>
         <main>
 
-            <% 
-
-                foreach (dominio.Libro Articulo in ListarLibros)
+            <%  foreach (dominio.Libro Articulo in ListarLibros)
                 {%>
+
+            <%foreach (dominio.Genero Genero in ListarGenero)
+                {%>
+
+            <%foreach (dominio.Autor Autor in ListarAutor)
+                { %>
 
             <div class="contenedor-imagen">
                 <img src="<%: Articulo.PortadaURL %>"
@@ -31,13 +35,14 @@
                             <b>Titulo: <%:Articulo.Titulo %></b>
                         </li>
                         <li>
-                            <b>Genero: </b>
+                            <b>Genero: <%:Genero.Nombre %> </b>
                         </li>
                         <li>
                             <b>Codigo: <%:Articulo.Codigo %></b>
                         </li>
                         <li>
-                            <b>Autor/es:</b>
+                            <b>Autor/es: <%:Autor.Nombre%> <%:Autor.Apellido %></b>
+                          
                         </li>
                         <li>
                             <b>Stock: <%:Articulo.Stock %></b>
@@ -68,6 +73,15 @@
                 </div>
 
             </div>
+
+
+
+
+            <%} %>
+
+
+            <%} %>
+
 
             <% } %>
         </main>
