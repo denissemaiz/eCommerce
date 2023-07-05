@@ -39,7 +39,7 @@ Create table Datos_Usuario(
 	Nombre varchar(50) not null,
 	Apellido varchar(50) not null,
     ID_Direccion int null foreign key references Direccion(ID_Direccion),
-	Telefono bigint not null,
+	Telefono bigint null,
 	Primary key(ID_Usuario),
 	Foreign key(ID_Usuario) references Usuario(ID_Usuario)
 )
