@@ -1,7 +1,7 @@
 use ProyectoEditorial
 GO
 
-create proc sp_RegistrarUsuario(
+CREATE proc sp_RegistrarUsuario(
     @usuario varchar(50),
     @pass varchar(500),
     @mail varchar(100),
@@ -14,7 +14,7 @@ BEGIN
 
     if(not exists(select * from Usuario where Mail = @mail))
     begin
-        insert into Usuario(NombreUsuario, Contraseña, Mail, EsAdmin) values(@usuario, @pass, @mail, @admin)
+        insert into Usuario(NombreUsuario, Contraseña, Mail, EsAdmin)output INSERTED.ID_Usuario values(@usuario, @pass, @mail, @admin)
         set @Registrado = 1
         set @Mensaje = 'Usuario registrado'
     end 

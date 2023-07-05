@@ -28,6 +28,7 @@ namespace Clases
         }
         public DatosUsuario(int id, string nombres, string apellidos,  string telefono)
         {
+            this.id = id;
             this.nombres = nombres;
             this.apellidos = apellidos;        
             this.telefono = telefono;
