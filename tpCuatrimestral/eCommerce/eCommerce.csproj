@@ -70,7 +70,11 @@
     <Content Include="ComprarGuia.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Detalles.aspx" />
+    <Content Include="Detalles.css" />
     <Content Include="Error.aspx" />
+    <Content Include="EstiloPanelUser.css" />
+    <Content Include="Master.css" />
+    <Content Include="PanelUsuario.aspx" />
     <Content Include="ProductosADM.aspx" />
     <Content Include="StoreProc.aspx" />
     <Content Include="User\Login.aspx" />
@@ -121,6 +125,13 @@
     </Compile>
     <Compile Include="Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PanelUsuario.aspx.cs">
+      <DependentUpon>PanelUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PanelUsuario.aspx.designer.cs">
+      <DependentUpon>PanelUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="ProductosADM.aspx.cs">
       <DependentUpon>ProductosADM.aspx</DependentUpon>

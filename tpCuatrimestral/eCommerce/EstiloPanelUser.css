@@ -1,0 +1,77 @@
+﻿body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.contenedorxd {
+    display: flex;
+    gap: 18%;
+}
+
+
+.container-barras {
+    margin: 0 auto;
+}
+
+
+.BarraLateral {
+    margin-bottom: 90px;
+    padding: 8px;
+}
+
+    .BarraLateral h2 {
+        font-size: 20px;
+    }
+
+    .BarraLateral ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .BarraLateral li {
+        font-size: 15px;
+        color: rgb(128, 128, 128);
+        line-height: 22px;
+        margin-top: 3px;
+    }
+
+.BarraLateralDos {
+    padding: 8px;
+}
+
+    .BarraLateralDos h2 {
+        font-size: 20px;
+    }
+
+.EditarDatos {
+    border: none;
+    background-color: rgb(39, 136, 226);
+    color: aliceblue;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.EditarDireccion {
+    border: none;
+    background-color: rgb(39, 136, 226);
+    color: aliceblue;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.BarraLateralDos ul {
+    list-style: none;
+    padding: 0;
+}
+
+.BarraLateralDos li {
+    font-size: 15px;
+    color: rgb(128, 128, 128);
+    line-height: 22px;
+    margin-top: 3px;
+}
+
+.Centralxd {
+    width: 75%;
+    padding: 5px;
+    box-sizing: border-box;
+}
