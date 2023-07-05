@@ -7,79 +7,72 @@
     <link rel="stylesheet" type="text/css" href="Detalles.css">
 
     <body>
-    <main>
+        <main>
 
-        <div class="contenedor-imagen">
-            <img src="https://http2.mlstatic.com/D_NQ_NP_684301-MLA52624250137_112022-O.webp"
-                alt="https://plantillasdememes.com/img/plantillas/imagen-no-disponible01601774755.jpg">
-        </div>
+            <% 
 
-        <div class="contenedor-infoproducto">
-            <div class="contenedor-precio">
-                <span><b>Precio:</b></span>
+                foreach (dominio.Libro Articulo in ListarLibros)
+                {%>
+
+            <div class="contenedor-imagen">
+                <img src="<%: Articulo.PortadaURL %>"
+                    alt="No disponible">
             </div>
 
-            <div class="contenedor-detalles">
+            <div class="contenedor-infoproducto">
+                <div class="contenedor-precio">
+                    <span><b>Precio: $<%: Articulo.Precio %> </b></span>
+                </div>
 
-                <ul style="list-style: none;">
-                    <li>
-                        <b>Nombre:</b>
-                    </li>
-                    <li>
-                        <b>Genero:</b>
-                    </li>
-                    <li>
-                        <b>Codigo:</b>
-                    </li>
-                    <li>
-                        <b>Autor/es:</b>
-                    </li>
-                </ul>
+                <div class="contenedor-detalles">
 
-            </div>
-
-            <div class="contenedor-descripcion">
-
-                <div class="titulo-descripcion">
-
-                    <h4><b>Descripcion</b></h4>
+                    <ul style="list-style: none;">
+                        <li>
+                            <b>Titulo: <%:Articulo.Titulo %></b>
+                        </li>
+                        <li>
+                            <b>Genero: </b>
+                        </li>
+                        <li>
+                            <b>Codigo: <%:Articulo.Codigo %></b>
+                        </li>
+                        <li>
+                            <b>Autor/es:</b>
+                        </li>
+                        <li>
+                            <b>Stock: <%:Articulo.Stock %></b>
+                        </li>
+                    </ul>
 
                 </div>
 
-                <div class="text-descripcion">
-                    <p>
+                <div class="contenedor-descripcion">
 
-                        Lorem ipsum dolor sit amet. Ut nostrum dolorum ex placeat reiciendis quo natus deserunt ab alias
-                        maiores. Ea itaque enim ut illum fuga vel quidem excepturi et quas impedit eos architecto
-                        praesentium. Et tenetur facere ut dolorem perferendis non consequuntur autem. In cumque
-                        dignissimos sit dolorem illum eos placeat placeat hic aspernatur minus est modi doloremque vel
-                        nostrum facilis.
+                    <div class="titulo-descripcion">
 
-                        Cum enim quae ut harum beatae ad facere repellat. Ut rerum suscipit ut consequuntur esse aut
-                        voluptatibus neque ut repellendus eaque.
+                        <h4><b>Descripcion</b></h4>
 
-                        Et corporis enim et rerum amet est quia deserunt id facere itaque. Aut nostrum quod eos animi
-                        incidunt non nobis blanditiis sit quibusdam laudantium. Eos reprehenderit exercitationem quo
-                        necessitatibus unde 33 nostrum dolores est fugiat asperiores quo aliquam cumque. Et sint maiores
-                        et eaque voluptas hic doloremque quasi?
-                    
-                    </p>
+                    </div>
 
+                    <div class="text-descripcion">
+                        <p><%:Articulo.Descripcion %></p>
+
+                    </div>
+
+                </div>
+
+                <div class="contenedor-agregarproducto">
+                    <button class="btn-add-al-carrito">
+                        Agregar al carrito
+                    </button>
                 </div>
 
             </div>
 
-            <div class="contenedor-agregarproducto">
-                <button class="btn-add-al-carrito">
-                    Agregar al carrito
-                </button>
-            </div>
+            <% } %>
+        </main>
 
-        </div>
-
-    </main>
-
-</body>
+    </body>
 
 
 
