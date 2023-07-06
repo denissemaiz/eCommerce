@@ -13,8 +13,10 @@ namespace eCommerce
 {
     public partial class Productos : System.Web.UI.Page
     {
+        public List<Libro> listaLibros { get; set; }
+        public List<Libro> librosCarrito = new List<Libro>();
+        public Carrito carrito { get; set; }
 
-        public List<Libro> ListarLibros { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -53,9 +55,9 @@ namespace eCommerce
             string idLibro = ((Button)sender).CommandArgument;
 
             LibroNegocio articulos = new LibroNegocio();
-            ListarLibros = articulos.PruebaBuscar(idLibro);
+            listaLibros = articulos.PruebaBuscar(idLibro);
 
-            if (ListarLibros != null)
+            if (listaLibros != null)
             {
                 LibroNegocio negocio = new LibroNegocio();
                 int id = Convert.ToInt32(idLibro);
@@ -69,7 +71,32 @@ namespace eCommerce
             Response.Redirect("StoreProc.aspx");
         }
 
-        public bool ValidarAdmin()
+        protected void btnAgregarACarrito_Click(object sender, EventArgs e)
+        {
+            string codigo = ((Button)sender).CommandArgument;
+
+            LibroNegocio datosLibros = new LibroNegocio();
+            listaLibros = datosLibros.Buscar(codigo, "Codigo");
+
+            if (listaLibros != null)
+            {
+                if (Session["librosAgregados"] == null)
+                {
+                    librosCarrito.Add(listaLibros.First());
+                    Session.Add("librosAgregados", librosCarrito);
+                    Response.Redirect("Productos.aspx");
+                }
+                else
+                {
+                    librosCarrito = (List<Libro>)Session["librosAgregados"];
+                    librosCarrito.Add(listaLibros.First());
+                    Session.Add("librosAgregados", librosCarrito);
+                    Response.Redirect("Productos.aspx");
+                }
+            }
+        }
+
+    public bool ValidarAdmin()
         {
             Usuario user;
             if (Session["Usuario"] != null)

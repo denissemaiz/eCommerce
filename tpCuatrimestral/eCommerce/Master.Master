@@ -64,6 +64,27 @@
                         <% } %>
                     </ul>
                 </div>
+               <%-- Carrito --%>
+                <div>
+                    <ul class="nav navbar-nav navbar-right ">
+                        <li class="dropdown">
+                            <a href="FinalizarCompra.aspx" class="btn btn-light">
+                                <span>
+                                <asp:Label ID="lblContador" CssClass="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" OnLoad="lblContador_Load" Text="" runat="server"></asp:Label>
+                                </span>
+                                <%
+                                    if (Session["librosAgregados"] == null) 
+                                    { %>
+                                        <i class="bi bi-cart"></i>
+                                <% } %>
+                                <% else
+                                    { %>
+                                    <i class="bi bi-cart-fill"></i>
+                                <% } %>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
         <div class="position-relative overflow-hidden pb-md-3 mb-md-3 text-center bg-light">

@@ -53,9 +53,9 @@ namespace dominio
             return false;
         }
 
-        ~Carrito()
+       /* ~Carrito()
         {
             libros.Clear();
-        }
+        }*/
     }
 }
