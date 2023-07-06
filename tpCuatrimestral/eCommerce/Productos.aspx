@@ -15,7 +15,7 @@
       <asp:Repeater ID="repLibros" runat="server">
         <ItemTemplate>
             <div class="col">
-                <div class="card h-100">
+                <div class="card h-100" style="width: 18rem;">
                     <img src="<%#Eval("PortadaURL") %>" class="card-img-top img-fluid" alt="...">
                     <div class="card-body">
                         <h5 class="card-title ms-1"><%#Eval("Titulo") %></h5>
