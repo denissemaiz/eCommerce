@@ -15,7 +15,7 @@
       <asp:Repeater ID="repLibros" runat="server">
         <ItemTemplate>
             <div class="col">
-                <div class="card h-100" style="width: 18rem;">
+                <div class="card h-80" style="width: 18rem;">
                     <img src="<%#Eval("PortadaURL") %>" class="card-img-top img-fluid" alt="...">
                     <div class="card-body">
                         <h5 class="card-title ms-1"><%#Eval("Titulo") %></h5>
@@ -23,7 +23,8 @@
                         <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="button group">
                             <div class="btn btn-sm p-0" role="group" aria-label="First">
                                 <a href="Detalles.aspx?cod=<%#Eval("Codigo") %>" class="btn btn-light mt-1">Ver detalles</a>                                        
-                            </div>
+                            </div>                         
+                         </div>
                             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                                 <%if (ValidarAdmin()) { %>
                                     <div class="btn-group" role="group" aria-label="First group">
@@ -41,8 +42,11 @@
                                             CommandName="EliminarLibro" 
                                             OnClick="btnEliminarLibro_Click"/>
                                     </div>
-                                <% } %>
-                            </div>
+                                <%} else {%>
+                                    <div class="d-grid gap-2">
+                                        <asp:Button ID="btnAgregarACarrito" CssClass="btn btn-dark" Text="Agregar al carrito" CommandArgument='<%#Eval("Codigo") %>' CommandName="IdLibro" OnClick="btnAgregarACarrito_Click" runat="server" />
+                                    </div>
+                                <%}%>
                         </div>
                     </div>
                     <div class="card-footer">

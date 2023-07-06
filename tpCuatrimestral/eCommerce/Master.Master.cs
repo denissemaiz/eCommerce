@@ -30,9 +30,9 @@ namespace eCommerce
         protected void lblContador_Load(object sender, EventArgs e)
         {
             carritoNegocio = new Carrito();
-            if (Session["articulosAgregados"] != null)
+            if (Session["librosAgregados"] != null)
             {
-                carritoNegocio.Libros = (List<Libro>)Session["articulosAgregados"];
+                carritoNegocio.Libros = (List<Libro>)Session["librosAgregados"];
                 lblContador.Text = carritoNegocio.Libros.Count().ToString();
             }
         }

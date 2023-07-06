@@ -204,7 +204,7 @@ namespace negocio
                 return "G." + criterio;
             if (criterio == "ID_Autor")
                 return "A." + criterio;
-            if (criterio == "ID_Libro")
+            if (criterio == "ID_Libro" || criterio == "Codigo")
                 return "L." + criterio;
             //agregar criterios necesarios
             return criterio;
