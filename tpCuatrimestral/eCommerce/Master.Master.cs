@@ -20,7 +20,7 @@ namespace eCommerce
             {
                 repGeneros.DataSource = generosDB.RemoveDuplicadosGenero(generosDB.Listar());
                 repGeneros.DataBind();
-                repAutores.DataSource = autoresDB.RemoveDuplicadosGenero(autoresDB.Listar());
+                repAutores.DataSource = autoresDB.RemoveDuplicadosAutor(autoresDB.Listar());
                 repAutores.DataBind();
             }
         }

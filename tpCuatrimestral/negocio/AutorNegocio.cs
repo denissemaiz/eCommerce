@@ -129,15 +129,15 @@ namespace Conexiones
         }
 
 
-        public List<Autor> RemoveDuplicadosGenero(List<Autor> inputList)
+        public List<Autor> RemoveDuplicadosAutor(List<Autor> inputList)  ///va a sacra a todos los que tengan el mismo apellido
         {
             Dictionary<string, string> uniqueStore = new Dictionary<string, string>();
             List<Autor> finalList = new List<Autor>();
             foreach (Autor aut in inputList)
             {
-                if (!uniqueStore.ContainsKey(aut.Nombre))
+                if (!uniqueStore.ContainsKey(aut.Apellido))
                 {
-                    uniqueStore.Add(aut.Nombre, "0");
+                    uniqueStore.Add(aut.Apellido, "0");
                     finalList.Add(aut);
                 }
             }
