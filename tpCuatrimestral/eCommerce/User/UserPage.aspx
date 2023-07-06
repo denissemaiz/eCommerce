@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <% if (Session["Usuario"] != null){ %>
+    <%-- if (Session["Usuario"] != null){ --%>
             <div class="container gy-5">
 
                 <div class="container row g-3">
@@ -80,7 +80,7 @@
              </div>
             
             
-    <% }else{ %>
+    <%-- }else{ %>
         <div class="div row align-self-center">
 				<h1>Debe loguearse para ingresar a esta página</h1>
 				<div class="col">
@@ -88,5 +88,5 @@
 					<a href="../Default.aspx" class="btn btn-secondary">Inicio</a>
 				</div>
 			</div>
-    <% } %>
+    <% --} --%>
 </asp:Content>

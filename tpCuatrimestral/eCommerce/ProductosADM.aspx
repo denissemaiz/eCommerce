@@ -22,7 +22,7 @@
                         <p class="card-text mb-1 ms-1">$<%#Eval("Precio") %></p>
                         <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="button group">
                             <div class="btn btn-sm p-0" role="group" aria-label="First">
-                                <a href="Detalle.aspx?cod=<%#Eval("Codigo") %>" class="btn btn-light mt-1">Ver detalles</a>                                        
+                                <a href="Detalles.aspx?cod=<%#Eval("Codigo") %>" class="btn btn-light mt-1">Ver detalles</a>                                        
                             </div>
 
                             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">

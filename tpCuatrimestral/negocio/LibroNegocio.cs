@@ -155,6 +155,42 @@ namespace negocio
         }
 
 
+        public List<Libro> BuscarporCodigo(string codigo)
+        {
+            List<Libro> lista = new List<Libro>();
+            AccesoSQL datos = new AccesoSQL();
+
+            try
+            {
+                datos.Consulta(" SELECT L.ID_Libro, L.Codigo, L.Titulo, L.Descripcion, L.Precio, L.Stock, L.PortadaURL FROM Libro L WHERE L.Codigo = '" + codigo + "' ");
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Libro aux = new Libro();
+                    aux.Id = (int)datos.Lector["ID_Libro"];
+                    aux.Codigo = (string)datos.Lector["Codigo"];
+                    aux.Titulo = (string)datos.Lector["Titulo"];
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+                    aux.Precio = Decimal.Round((decimal)datos.Lector["Precio"], 2);
+                    aux.Stock = (Int16)datos.Lector["Stock"];
+                    aux.PortadaURL = (string)datos.Lector["PortadaURL"];
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+ 
+
         private List<Autor> ObtenerAutoresPorLibro(AccesoSQL datos, int idLibro)
         {
             List<Autor> autores = new List<Autor>();

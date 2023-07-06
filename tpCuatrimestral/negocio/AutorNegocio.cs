@@ -97,6 +97,38 @@ namespace Conexiones
             }
         }
 
+
+        public List<Autor> BuscarAutor(string codigo)
+        {
+            List<Autor> lista = new List<Autor>();
+            AccesoSQL datos = new AccesoSQL();
+
+            try
+            {
+                datos.Consulta(" Select A.ID_Autor,A.Nombre,A.Apellido from Autor A inner join Libro_X_Autor LXA on LXA.ID_Autor = A.ID_Autor inner join Libro L on L.ID_Libro = LXA.ID_Libro where L.Codigo = '" + codigo + "' ");
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Autor Autor = new Autor();
+                    Autor.Id = (int)datos.Lector["ID_Autor"];
+                    Autor.Nombre = (string)datos.Lector["Nombre"];
+                    Autor.Apellido = (string)datos.Lector["Apellido"];
+                    lista.Add(Autor);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+
         public List<Autor> RemoveDuplicadosGenero(List<Autor> inputList)
         {
             Dictionary<string, string> uniqueStore = new Dictionary<string, string>();
