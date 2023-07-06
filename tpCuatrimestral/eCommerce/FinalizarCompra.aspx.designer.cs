@@ -11,16 +11,25 @@ namespace eCommerce
 {
 
 
-    public partial class ProductosADM
+    public partial class FinalizarCompra
     {
 
         /// <summary>
-        /// Control Repetidor.
+        /// Control repLibros.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Repetidor;
+        protected global::System.Web.UI.WebControls.Repeater repLibros;
+
+        /// <summary>
+        /// Control PrecioFinal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label PrecioFinal;
     }
 }

@@ -52,7 +52,7 @@ namespace negocio
                     string autorNombre = (string)datos.Lector["AutorNombre"];
                     string autorApellido = (string)datos.Lector["AutorApellido"];
 
-                    if (idAutor != 0 && !string.IsNullOrEmpty(autorNombre))
+                    if (idAutor != 0 && !string.IsNullOrEmpty(autorNombre))   //esta repitiendo autores
                     {
                         Autor autor = new Autor();
                         autor.Id = idAutor;
@@ -119,6 +119,97 @@ namespace negocio
                 datos.CerrarConexion();
             }
         }
+
+        public List<Libro> Buscar(string busqueda, string criterio)
+        {
+            List<Libro> lista = new List<Libro>();
+            AccesoSQL datos = new AccesoSQL();
+
+            try
+            {
+                criterio = ManejoDeCriterio(criterio);
+
+                datos.Consulta("SELECT L.ID_Libro, L.Codigo, L.Titulo, L.Descripcion, L.Precio, L.Stock, L.PortadaURL, " +
+                    "A.ID_Autor, A.Nombre AS AutorNombre, A.Apellido AS AutorApellido, " +
+                    "G.ID_Genero, G.Nombre AS GeneroNombre, G.Descripcion AS GeneroDescripcion " +
+                    "FROM Libro L LEFT JOIN Libro_X_Autor LA ON L.ID_Libro = LA.ID_Libro " +
+                    "LEFT JOIN Autor A ON LA.ID_Autor = A.ID_Autor " +
+                    "LEFT JOIN Genero_X_Libro GL ON L.ID_Libro = GL.ID_Libro " +
+                    "LEFT JOIN Genero G ON GL.ID_Genero = G.ID_Genero " +
+                    "WHERE '" + busqueda + "' like " + criterio);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    int idLibro = (int)datos.Lector["ID_Libro"];
+                    Libro aux = lista.FirstOrDefault(l => l.Id == idLibro);
+
+                    if (aux == null)
+                    {
+                        aux = new Libro();
+                        aux.Id = idLibro;
+                        aux.Codigo = (string)datos.Lector["Codigo"];
+                        aux.Titulo = (string)datos.Lector["Titulo"];
+                        aux.Descripcion = (string)datos.Lector["Descripcion"];
+                        aux.Precio = Decimal.Round((decimal)datos.Lector["Precio"], 2);
+                        aux.Stock = (Int16)datos.Lector["Stock"];
+                        aux.PortadaURL = (string)datos.Lector["PortadaURL"];
+                        aux.Autores = new List<Autor>();
+                        aux.Generos = new List<Genero>();
+
+                        lista.Add(aux);
+                    }
+
+                    int idAutor = (int)datos.Lector["ID_Autor"];
+                    string autorNombre = (string)datos.Lector["AutorNombre"];
+                    string autorApellido = (string)datos.Lector["AutorApellido"];
+
+                    if (idAutor != 0 && !string.IsNullOrEmpty(autorNombre))   //esta repitiendo autores
+                    {
+                        Autor autor = new Autor();
+                        autor.Id = idAutor;
+                        autor.Nombre = autorNombre;
+                        autor.Apellido = autorApellido;
+                        aux.Autores.Add(autor);
+                    }
+
+                    int idGenero = (int)datos.Lector["ID_Genero"];
+                    string generoNombre = (string)datos.Lector["GeneroNombre"];
+                    string generoDescripcion = (string)datos.Lector["GeneroDescripcion"];
+
+                    if (idGenero != 0 && !string.IsNullOrEmpty(generoNombre))
+                    {
+                        Genero genero = new Genero();
+                        genero.Id = idGenero;
+                        genero.Nombre = generoNombre;
+                        genero.Descripcion = generoDescripcion;
+                        aux.Generos.Add(genero);
+                    }
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        private string ManejoDeCriterio(string criterio)
+        {
+            if (criterio == "ID_Genero")
+                return "G." + criterio;
+            if (criterio == "ID_Autor")
+                return "A." + criterio;
+            if (criterio == "ID_Libro")
+                return "L." + criterio;
+            //agregar criterios necesarios
+            return criterio;
+        }
+
 
         public List<Libro> PruebaBuscar(string Id = "")
         {
@@ -259,8 +350,6 @@ namespace negocio
         }
 
 
-
-
         public void Agregar(Libro nuevo)
         {
             AccesoSQL datos = new AccesoSQL();
@@ -282,7 +371,7 @@ namespace negocio
                 datos.CerrarConexion();
             }
 
-            int idLibro = ObtenerUltimoIdInsertado(datos);
+            int idLibro = ObtenerUltimoIdInsertado(datos, nuevo.Codigo);
 
             try
             {
@@ -321,19 +410,18 @@ namespace negocio
             }
         }
        
-        private int ObtenerUltimoIdInsertado(AccesoSQL datos)
+        private int ObtenerUltimoIdInsertado(AccesoSQL datos, string codigo)
         {
-            datos.Consulta("SELECT SCOPE_IDENTITY() AS ID");
+            datos.Consulta("SELECT L.ID_Libro FROM LIBRO L WHERE CODIGO = '" + codigo + "'");
             datos.EjecutarLectura();
 
             int id = 0;
 
             if (datos.Lector.Read())
             {
-                id = Convert.ToInt32(datos.Lector["ID"]);
+                id = Convert.ToInt32(datos.Lector["ID_Libro"]);
             }
 
-            datos.Lector.Close();
             datos.CerrarConexion();
 
             return id;

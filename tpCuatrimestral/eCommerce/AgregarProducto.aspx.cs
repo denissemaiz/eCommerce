@@ -59,12 +59,12 @@ namespace eCommerce
                     libro.Id = int.Parse(txtID.Text);
                     negocio.ModificarTest(libro);
                     /*Response.Redirect("StoreProc.aspx", false);*/
-                    Response.Redirect("ProductosADM.aspx");
+                    Response.Redirect("Productos.aspx");
                 }
                 else
                 {
                     negocio.AgregarPrueba(libro);
-                    Response.Redirect("ProductosADM.aspx");
+                    Response.Redirect("Productos.aspx");
                 }
 
                 
