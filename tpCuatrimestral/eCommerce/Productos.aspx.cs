@@ -18,12 +18,32 @@ namespace eCommerce
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            LibroNegocio librosDB = new LibroNegocio();
+
             if (!IsPostBack)
             {
-                LibroNegocio negocio = new LibroNegocio();
-                ListarLibros = negocio.ListarL();
-                Repetidor.DataSource = ListarLibros;
-                Repetidor.DataBind();
+                if (Request.QueryString.AllKeys.Contains("generosLib"))
+                {
+                    string genero = Request.QueryString["generosLib"].ToString();
+                    List<Libro> listaSinRepetidos = librosDB.RemoveDuplicadosLibro(librosDB.Buscar(genero, "ID_Genero"));
+                    repLibros.DataSource = listaSinRepetidos;
+                    repLibros.DataBind();
+                }
+
+                if (Request.QueryString.AllKeys.Contains("autoresLib"))
+                {
+                    string autor = Request.QueryString["autoresLib"].ToString();
+                    List<Libro> listaSinRepetidos = librosDB.RemoveDuplicadosLibro(librosDB.Buscar(autor, "ID_Autor"));
+                    repLibros.DataSource = listaSinRepetidos;
+                    repLibros.DataBind();
+                }
+
+                if (!Request.QueryString.AllKeys.Contains("autoresLib") && !Request.QueryString.AllKeys.Contains("generosLib"))
+                {
+                    List<Libro> listaSinRepetidos = librosDB.RemoveDuplicadosLibro(librosDB.Listar());
+                    repLibros.DataSource = listaSinRepetidos;
+                    repLibros.DataBind();
+                }
             }
             
         }
