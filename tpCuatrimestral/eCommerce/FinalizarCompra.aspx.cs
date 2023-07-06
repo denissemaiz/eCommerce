@@ -10,19 +10,19 @@ namespace eCommerce
 {
     public partial class FinalizarCompra : System.Web.UI.Page
     {
-        public Carrito Carro { get; set; }
+        public Carrito carrito { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Carro = new Carrito();
+            carrito = new Carrito();
 
-            Carro.Libros = (List<Libro>)Session["librosAgregados"];
-            repLibros.DataSource = Carro.Libros;
+            carrito.Libros = (List<Libro>)Session["librosAgregados"];
+            repLibros.DataSource = carrito.Libros;
             repLibros.DataBind();
 
             if (Session["librosAgregados"] != null)
             {
-                decimal Monto = Carro.CalcularMonto();
+                decimal Monto = carrito.CalcularMonto();
                 PrecioFinal.Text = Monto.ToString();
             }
         }
