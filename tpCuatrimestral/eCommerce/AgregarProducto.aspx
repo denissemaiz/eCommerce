@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager2" runat="server"></asp:ScriptManager>
 
-    <% if (ValidarAdmin()){ %>
+    <%-- if (ValidarAdmin()){ --%>
         <div class="row">
 
             <div class="col-md-3">
@@ -25,6 +25,20 @@
                 <asp:TextBox ID="txtTitulo" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
 
+            <div class="col-md-3">
+                <asp:Label for="txtGenero" runat="server" CssClass="form-label"><b>Genero:</b></asp:Label>
+                <asp:DropDownList ID="txtGenero" CssClass="form-select" runat="server"></asp:DropDownList>
+            </div>
+
+            <div class="col-md-3">
+                <asp:Label for="txtAutorNombre" runat="server" CssClass="form-label"><b>Nombre del autor:</b></asp:Label>
+                <asp:DropDownList ID="txtAutorNombre" CssClass="form-select" runat="server"></asp:DropDownList>
+            </div>
+
+            <div class="col-md-3">
+                <asp:Label for="txtAutorApellido" runat="server" CssClass="form-label"><b>Apellido:</b></asp:Label>
+                <asp:DropDownList ID="txtAutorApellido" CssClass="form-select" runat="server"></asp:DropDownList>
+            </div>
 
             <div class="col-md-6">
                 <asp:Label for="txtDescripcion" runat="server" CssClass="form-label"><b>Descripcion:</b></asp:Label>
@@ -63,7 +77,7 @@
                 <a href="Default.aspx" class="btn btn-primary">Volver</a>
             </div>
         </div>
-    <% }else { %>
+    <%-- }else { %>
         <div class="div row align-self-center">
 				<h1>Necesita ser un administrador para acceder a esta pagina</h1>
 			<div class="col">
@@ -72,7 +86,7 @@
 			</div>
 		</div>
         
-    <% } %>
+    <% } --%>
 
 </asp:Content>
 

@@ -37,5 +37,13 @@ namespace dominio
             get { return apellido; } 
             set { apellido = value; }
         }
+
+        public override string ToString()
+        {
+            return Nombre + " " + Apellido;
+        }
+
+
+
     }
 }
