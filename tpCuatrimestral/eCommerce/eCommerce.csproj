@@ -70,11 +70,12 @@
     <Content Include="ComprarGuia.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Detalles.aspx" />
-    <Content Include="Detalles.css" />
+    <Content Include="Styles\Carrito.css" />
+    <Content Include="Styles\Detalles.css" />
     <Content Include="Error.aspx" />
-    <Content Include="EstiloPanelUser.css" />
+    <Content Include="Styles\EstiloPanelUser.css" />
     <Content Include="FinalizarCompra.aspx" />
-    <Content Include="Master.css" />
+    <Content Include="Styles\Master.css" />
     <Content Include="PanelUsuario.aspx" />
     <Content Include="Productos.aspx" />
     <Content Include="StoreProc.aspx" />
