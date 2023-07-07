@@ -68,9 +68,13 @@
                 <div>
                     <ul class="nav navbar-nav navbar-right ">
                         <li class="dropdown">
-                            <a href="FinalizarCompra.aspx" class="btn btn-light">
+                            <a href="#" class="dropdown-toggle" role="button" aria-expanded="false">
                                 <span>
-                                <asp:Label ID="lblContador" CssClass="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" OnLoad="lblContador_Load" Text="" runat="server"></asp:Label>
+                                    <asp:Label ID="lblContador"
+                                        CssClass="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" 
+                                        OnLoad="lblContador_Load" 
+                                        Text="" 
+                                        runat="server"></asp:Label>
                                 </span>
                                 <%
                                     if (Session["librosAgregados"] == null) 
