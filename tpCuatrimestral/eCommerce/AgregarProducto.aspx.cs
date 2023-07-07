@@ -35,13 +35,9 @@ namespace eCommerce
 
                     txtAutorNombre.DataSource = lista2;
                     txtAutorNombre.DataValueField = "Id";
-                    txtAutorNombre.DataTextField = "Nombres";
+                    txtAutorNombre.DataTextField = "NombreApellido";
                     txtAutorNombre.DataBind();
 
-                    /*txtAutorApellido.DataSource = lista2;
-                    txtAutorApellido.DataValueField = "Id";
-                    txtAutorApellido.DataTextField = "Apellido";
-                    txtAutorApellido.DataBind();*/
 
                 }
             }
@@ -60,7 +56,7 @@ namespace eCommerce
             if (Id != "" && !IsPostBack)
             {
                 LibroNegocio neg = new LibroNegocio();
-                Libro seleccionado = (neg.PruebaBuscar(Id))[0];
+                Libro seleccionado = (neg.BuscarTest(Id))[0];
 
                 txtID.Text = Id;
                 txtCodigo.Text = seleccionado.Codigo;
@@ -69,6 +65,8 @@ namespace eCommerce
                 txtStock.Text = seleccionado.Stock.ToString();
                 txtPrecio.Text = seleccionado.Precio.ToString();
                 txtportadaURL.Text = seleccionado.PortadaURL.ToString();
+                txtAutorNombre.Text = seleccionado.Autores.ToString();
+                txtGenero.Text = seleccionado.Generos.ToString();
 
                 txtportadaURL_TextChanged(sender, e);
 
@@ -93,7 +91,6 @@ namespace eCommerce
                 libro.Stock = short.Parse(txtStock.Text);
                 libro.PortadaURL = txtportadaURL.Text;
                 autor.Id = int.Parse(txtAutorNombre.SelectedValue);
-                autor.Id = int.Parse(txtAutorApellido.SelectedValue);
                 genero.Id = int.Parse(txtGenero.SelectedValue);
                 libro.Generos = new List<Genero>();
                 libro.Generos.Add(genero);
@@ -105,13 +102,13 @@ namespace eCommerce
                 if (Request.QueryString["Id"] != null) 
                 {
                     libro.Id = int.Parse(txtID.Text);
-                    negocio.ModificarTest(libro);
+                    negocio.Modificar(libro);
                     /*Response.Redirect("StoreProc.aspx", false);*/
                     Response.Redirect("Productos.aspx");
                 }
                 else
                 {
-                    negocio.AgregarPrueba(libro);
+                    negocio.Agregar(libro);
                     Response.Redirect("Productos.aspx");
                 }
 
