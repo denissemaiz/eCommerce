@@ -53,6 +53,17 @@ namespace dominio
             return false;
         }
 
+        public int contabilizarLibro(int id)
+        {
+            int cant = 0;
+            foreach (Libro libro in libros)
+            {
+                if(libro.Id == id)
+                    cant++;
+            }
+            return cant;
+        }
+
        /* ~Carrito()
         {
             libros.Clear();

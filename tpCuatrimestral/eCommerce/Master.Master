@@ -62,12 +62,34 @@
                                    { %>
                         <li class="nav-item"><a class="nav-link" href="User/Login.aspx"><b>Ingresar</b></a></li>
                         <li class="nav-item"><a class="nav-link" href="User/Registro.aspx"><b>Registrarse</b></a></li>
-                        <% } %>
+                        <% }%>
                     </ul>
                 </div>
                <%-- Carrito --%>
                 <div>
-                    <ul class="nav navbar-nav navbar-right ">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a class ="" role="button" 
+                                href="#offcanvasCarrito"
+                                data-bs-toggle="offcanvas" 
+                                arias-controls="offcanvasCarrito">
+                                <span>
+                                    <asp:Label ID="lblContador"
+                                        CssClass="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" 
+                                        OnLoad="lblContador_Load" 
+                                        Text="" 
+                                        runat="server"></asp:Label>
+                                </span>
+                                <%if (Session["librosAgregados"] == null) { %>
+                                    <i class="bi bi-cart"></i>              
+                                <%}else{ %>
+                                    <i class="bi bi-cart-fill"></i>
+                                <%} %>
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <%--<ul class="nav navbar-nav navbar-right ">
                         <li class="dropdown-center">
                             <a href="#" class="brn dropdown-toggle" role="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-align="dynamic">
                                 <span>
@@ -111,13 +133,14 @@
                                 <%} %>
                             </ul>
                         </li>
-                    </ul>
+                    </ul>--%>
                 </div>
             </div>
         </nav>
         <div class="position-relative overflow-hidden pb-md-3 mb-md-3 text-center bg-light">
             <img class="img-fluid w-100" src="https://i.ibb.co/YjkBL6x/Captura.png" alt="Banner">
         </div>
+        <%--offcanvas del desplegable de filtros de busqueda--%>
         <div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="barraDesplegableLateral" aria-labelledby="offcanvasCatalogo">
             <div class="offcanvas-header m-3">
                 <h5 class="offcanvas-title text-white px-3" id="offcanvasCatalogo">Catálogo</h5>
@@ -174,6 +197,29 @@
                 </div>
             </div>
         </div>
+        <%--offcanvas del carrito de compras--%>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCarrito" aria-labellebdy="offcanvasCarritoLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasCarritoLabel">Carrito</h5>
+                            <button type="button" class="btn btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <div class="row">
+                                <div class="card">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <img src="..." class="img-fluid rounded-start" alt="..." />
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Titulo del libro</h5>
+                                            <p class="card-text">Texto placeholder</p>
+                                            <p class="card-text"><small class="text-body-secondary">texto small placeholder</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
