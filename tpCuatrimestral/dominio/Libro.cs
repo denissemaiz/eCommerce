@@ -87,5 +87,20 @@ namespace dominio
             get { return portadaURL; }
             set { portadaURL = value; }
         }
+
+        public string listarAutores()
+        {
+            string cadena="";
+            int i = 0;
+            foreach (Autor autor in autores)
+            {
+                if (i == 0)
+                    cadena = autor.ToString();
+                else
+                    cadena += ", " + autor.ToString();
+                i++;
+            }
+            return cadena;
+        }
     }
 }
