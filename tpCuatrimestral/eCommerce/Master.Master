@@ -198,7 +198,7 @@
             </div>
         </div>
         <%--offcanvas del carrito de compras--%>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCarrito" aria-labellebdy="offcanvasCarritoLabel">
+        <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasCarrito" aria-labellebdy="offcanvasCarritoLabel">
                         <div class="offcanvas-header">
                             <h5 class="offcanvas-title" id="offcanvasCarritoLabel">Carrito</h5>
                             <button type="button" class="btn btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -225,6 +225,13 @@
                              <% }else{ %>
                                     <p>Todavía no ha agregado nada a su carrito</p>
                              <% } %>
+                            </div> 
+                        </div>
+                        <div class="offcanvas-footer border border-top px-3 py-2" style="height:75px">
+                            <div class="row justify-content-end">
+                                <asp:Button ID="btnCheckout" runat="server" 
+                                    CssClass="btn btn-primary col-4"
+                                    Text="Ver Carrito"/>
                             </div>
                         </div>
                     </div>
