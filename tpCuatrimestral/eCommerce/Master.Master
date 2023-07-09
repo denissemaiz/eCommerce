@@ -88,52 +88,6 @@
                             </a>
                         </li>
                     </ul>
-                    
-                    <%--<ul class="nav navbar-nav navbar-right ">
-                        <li class="dropdown-center">
-                            <a href="#" class="brn dropdown-toggle" role="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-align="dynamic">
-                                <span>
-                                    <asp:Label ID="lblContador"
-                                        CssClass="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" 
-                                        OnLoad="lblContador_Load" 
-                                        Text="" 
-                                        runat="server"></asp:Label>
-                                </span>
-                                <%if (Session["librosAgregados"] == null) { %>
-                                        <i class="bi bi-cart"></i>
-                                <% } %>
-                                <% else{ %>
-                                    <i class="bi bi-cart-fill"></i>
-                                <% }%>
-                            </a>
-                            <ul class="dropdown-menu dropdown-cart dropdown-menu-end" role="menu">
-                                <%if (Session["librosAgregados"] != null) {
-                                        foreach (dominio.Libro producto in carritoNegocio.Libros) 
-                                        { %>
-                                            
-                                            <li>
-                                                <span class="item">
-                                                    <span class="item-left">
-                                                        <img style="max-height: 64px" src="<%:producto.PortadaURL %>" alt=""/>
-                                                    </span>
-                                                    <span class="item-info">
-                                                        <span><%:producto.Titulo %></span>
-                                                        <span>Precio: $<%:producto.Precio.ToString() %></span>
-                                                    </span>
-                                                <span class="item-right">
-                                                    <button class="btn btn-danger fa fa-close"></button>
-                                                </span>
-                                                </span>
-                                            </li>   
-                                     <% } %>
-                                    <li class="dropdown-divider"></li>
-                                    <li><a class="btn btn-secondary text-center" href="#">Ver carrito</a></li>
-                                <%} else{ %>
-                                        <li>Todavia no agregó nada a su carrito</li>      
-                                <%} %>
-                            </ul>
-                        </li>
-                    </ul>--%>
                 </div>
             </div>
         </nav>
@@ -218,6 +172,21 @@
                                                     <h5 class="card-title"><%:producto.Titulo %></h5>
                                                     <p class="card-text"><%:producto.listarAutores() %></p>
                                                     <p class="card-text"><small class="text-body-secondary">Precio: $<%:producto.Precio %></small></p>
+                                                    <div class="col-8">
+                                                        <div class="input-group">
+                                                            <asp:LinkButton ID="lbtnRestarLibro" runat="server" 
+                                                                CssClass="btn btn-secondary" type="button"><i class="bi bi-dash"></i>
+                                                            </asp:LinkButton>
+                                                            <asp:TextBox ID="txbContador" runat="server" CssClass="form-control"
+                                                                ReadOnly="true"
+                                                                Enabled="false"
+                                                                Text="0"></asp:TextBox>
+                                                            <asp:LinkButton ID="lbtnSumar" runat="server"
+                                                                CssClass="btn btn-secondary"><i class="bi bi-plus-lg"></i>
+                                                            </asp:LinkButton>
+                                                        </div>
+
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

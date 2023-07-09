@@ -60,6 +60,33 @@ namespace eCommerce
         protected global::System.Web.UI.WebControls.Repeater repAutores;
 
         /// <summary>
+        /// Control lbtnRestarLibro.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnRestarLibro;
+
+        /// <summary>
+        /// Control txbContador.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txbContador;
+
+        /// <summary>
+        /// Control lbtnSumar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnSumar;
+
+        /// <summary>
         /// Control btnCheckout.
         /// </summary>
         /// <remarks>
