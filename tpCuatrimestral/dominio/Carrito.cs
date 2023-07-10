@@ -73,17 +73,33 @@ namespace dominio
 
         public void agregarProd(Libro prod)
         {
-            foreach(ProductoCarrito art in productos)
+            if(productos != null)
             {
-                if (art.CodigoLibro == prod.Codigo)
+                foreach(ProductoCarrito art in productos)
                 {
-                    art.agregar(prod.Codigo);
-                    return;
+                    if (art.LibroCarrito.Codigo == prod.Codigo)
+                    {
+                        art.Agregar(prod.Codigo);
+                        return;
+                    }
                 }
-
+                    ProductoCarrito nuevo = new ProductoCarrito(prod);
+                    productos.Add(nuevo);
             }
-            ProductoCarrito nuevo = new ProductoCarrito(prod.Codigo, prod.Precio);
-            productos.Add(nuevo);
+            else
+            {
+                productos = new List<ProductoCarrito>();
+                ProductoCarrito nuevo = new ProductoCarrito(prod);
+                productos.Add(nuevo);
+            }
+        }
+
+        public void OrganizarProductos(List<Libro>nuevosProds)
+        {
+            foreach(Libro nuevoProd in nuevosProds)
+            {
+                agregarProd((Libro) nuevoProd);
+            }
         }
 
        /* ~Carrito()

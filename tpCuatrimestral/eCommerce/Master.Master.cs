@@ -33,13 +33,14 @@ namespace eCommerce
             if (Session["librosAgregados"] != null)
             {
                 carritoNegocio.Libros = (List<Libro>)Session["librosAgregados"];
+                carritoNegocio.OrganizarProductos((List<Libro>)Session["librosAgregados"]);
                 lblContador.Text = carritoNegocio.Libros.Count().ToString();
             }
         }
 
         protected void txbContador_Load(object sender, EventArgs e)
         {
-
+            
         }
     }
 }

@@ -5,26 +5,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Clases
+namespace dominio
 {
     public class ProductoCarrito
     {
-        int cantidad;
-        string codigoLibros;
-        decimal precio;
+        private int cantidad;
+        //string codigoLibros;
+        //decimal precio;
+        private Libro libroCarrito;
 
-        public ProductoCarrito(string codigo, decimal precio)
+        public ProductoCarrito(/*string codigo, decimal precio,*/ Libro libroCarrito)
         {
 
             this.cantidad = 1;
-            this.codigoLibros = codigo;
-            this.precio = precio;
-
+            //this.codigoLibros = codigo;
+            //this.precio = precio;
+            this.libroCarrito = libroCarrito;
         }
 
         public ProductoCarrito()
         {
-            this.cantidad=1;
+            this.cantidad = 1;
+            this.libroCarrito = new Libro();
         }
 
         public int Cantidad
@@ -32,25 +34,32 @@ namespace Clases
             get { return cantidad; }
         }
 
-        public string CodigoLibro
+        public Libro LibroCarrito
         {
-            get { return codigoLibros; }
-            set {  codigoLibros = value; }
-        }
-        public decimal Precio
-        {
-            get { return precio; }
-            set { precio = value; }
+            get { return libroCarrito; }
+            set { libroCarrito = value; }
         }
 
-        public decimal calcularMonto()
+        //public string CodigoLibro
+        //{
+        //    get { return codigoLibros; }
+        //    set {  codigoLibros = value; }
+        //}
+        //public decimal Precio
+        //{
+        //    get { return precio; }
+        //    set { precio = value; }
+        //}
+        
+
+        public decimal CalcularMonto()
         {
-            return precio * cantidad;
+            return libroCarrito.Precio * cantidad;
         }
 
-        public void agregar(string codigo)
+        public void Agregar(string codigo)
         {
-            if(codigo == this.CodigoLibro)
+            if(codigo == this.libroCarrito.Codigo)
                 cantidad++;
         }
     }

@@ -54,15 +54,14 @@
                 <div>
                     <ul class="navbar-nav">
                         <%if (Session["Usuario"] != null)
-                                       { %>
-                        <li class="nav-item"><a class="nav-link" href="User/UserPage.aspx"><b>Mi Cuenta</b> </a></li>
-                        <li class="nav-item"><a class="nav-link" href="User/Logout.aspx"><b>Desconectarse</b></a></li>
-                        <% }
-                                   else
-                                   { %>
-                        <li class="nav-item"><a class="nav-link" href="User/Login.aspx"><b>Ingresar</b></a></li>
-                        <li class="nav-item"><a class="nav-link" href="User/Registro.aspx"><b>Registrarse</b></a></li>
-                        <% }%>
+                          { %>
+                                <li class="nav-item"><a class="nav-link" href="User/UserPage.aspx"><b>Mi Cuenta</b> </a></li>
+                                <li class="nav-item"><a class="nav-link" href="User/Logout.aspx"><b>Desconectarse</b></a></li>
+                        <% }else
+                            { %>
+                                <li class="nav-item"><a class="nav-link" href="User/Login.aspx"><b>Ingresar</b></a></li>
+                                <li class="nav-item"><a class="nav-link" href="User/Registro.aspx"><b>Registrarse</b></a></li>
+                        <%  }%>
                     </ul>
                 </div>
                <%-- Carrito --%>
@@ -160,29 +159,25 @@
                         <div class="offcanvas-body">
                             <div class="row g-2">
                                 <%if (Session["librosAgregados"] != null)  
-                                foreach(dominio.Libro producto in carritoNegocio.Libros) 
+                                foreach(dominio.ProductoCarrito producto in carritoNegocio.Productos) 
                                 {%>
                                     
                                     <div class="card">
                                         <div class="row g-0">
                                             <div class="col-md-4">
-                                                <img src="<%:producto.PortadaURL %>" class="img-fluid rounded-start" alt="..." />
+                                                <img src="<%:producto.LibroCarrito.PortadaURL %>" class="img-fluid rounded-start" alt="..." />
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="card-body">
-                                                    <h5 class="card-title"><%:producto.Titulo %></h5>
-                                                    <p class="card-text"><%:producto.listarAutores() %></p>
-                                                    <p class="card-text"><small class="text-body-secondary">Precio: $<%:producto.Precio %></small></p>
+                                                    <h5 class="card-title"><%:producto.LibroCarrito.Titulo %></h5>
+                                                    <p class="card-text"><%:producto.LibroCarrito.listarAutores() %></p>
+                                                    <p class="card-text"><small class="text-body-secondary">Precio: $<%:producto.CalcularMonto() %></small></p>
                                                     <div class="col-8">
                                                         <div class="input-group">
                                                             <asp:LinkButton ID="lbtnRestarLibro" runat="server" 
                                                                 CssClass="btn btn-secondary" type="button"><i class="bi bi-dash"></i>
                                                             </asp:LinkButton>
-                                                            <asp:TextBox ID="txbContador" runat="server" CssClass="form-control"
-                                                                ReadOnly="true"
-                                                                Text="0"
-                                                                OnLoad="txbContador_Load">
-                                                            </asp:TextBox>
+                                                            <input type="text" class="form-control" placeholder="<%:producto.Cantidad %>" disabled="disabled" aria-label="inputContador" />
                                                             <asp:LinkButton ID="lbtnSumar" runat="server"
                                                                 CssClass="btn btn-secondary"><i class="bi bi-plus-lg"></i>
                                                             </asp:LinkButton>
