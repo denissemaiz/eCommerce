@@ -35,12 +35,22 @@ namespace eCommerce
                 carritoNegocio.Libros = (List<Libro>)Session["librosAgregados"];
                 carritoNegocio.OrganizarProductos((List<Libro>)Session["librosAgregados"]);
                 lblContador.Text = carritoNegocio.Libros.Count().ToString();
+                repProductos.DataSource = carritoNegocio.Productos;
             }
         }
 
         protected void txbContador_Load(object sender, EventArgs e)
         {
             
+        }
+
+        protected void repProductos_Load(object sender, EventArgs e)
+        {
+            if (Session["librosAgregados"] != null && carritoNegocio != null)
+            {
+                repProductos.DataSource = carritoNegocio.Productos; 
+                repProductos.DataBind();
+            }
         }
     }
 }

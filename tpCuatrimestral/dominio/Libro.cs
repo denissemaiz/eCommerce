@@ -88,7 +88,12 @@ namespace dominio
             set { portadaURL = value; }
         }
 
-        public string listarAutores()
+        public string CadenaAutores
+        {
+            get { return ListarAutores(); }
+        }
+
+        public string ListarAutores()
         {
             string cadena="";
             int i = 0;

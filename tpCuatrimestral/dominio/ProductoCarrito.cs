@@ -40,6 +40,11 @@ namespace dominio
             set { libroCarrito = value; }
         }
 
+        public decimal Monto
+        {
+            get { return CalcularMonto(); }
+        }
+
         //public string CodigoLibro
         //{
         //    get { return codigoLibros; }
