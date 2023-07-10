@@ -36,5 +36,11 @@ namespace eCommerce
                 lblContador.Text = carritoNegocio.Libros.Count().ToString();
             }
         }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            LibroNegocio librosDB = new LibroNegocio();
+            Response.Redirect("Productos.aspx?tituloLib=" + txtbxBuscar.Text);
+        }
     }
 }

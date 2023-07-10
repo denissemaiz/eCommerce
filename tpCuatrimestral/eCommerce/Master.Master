@@ -145,8 +145,8 @@
         <%--offcanvas de la nav de búsqueda--%>
         <nav class="nav justify-content-end mb-md-4">
             <div class="d-flex pt-md-3 pe-md-3" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-dark" type="submit">Search</button>
+                <asp:TextBox id="txtbxBuscar" CssClass="form-control me-2" placeholder="Buscar..." runat="server"/>
+                <asp:Button ID="btnBuscar" CssClass="btn btn-outline-dark" text="Buscar" OnClick="btnBuscar_Click" runat="server" />
             </div>
         </nav>
         <%--offcanvas del desplegable de filtros de busqueda--%>
