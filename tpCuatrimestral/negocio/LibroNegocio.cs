@@ -136,7 +136,7 @@ namespace negocio
                     "LEFT JOIN Autor A ON LA.ID_Autor = A.ID_Autor " +
                     "LEFT JOIN Genero_X_Libro GL ON L.ID_Libro = GL.ID_Libro " +
                     "LEFT JOIN Genero G ON GL.ID_Genero = G.ID_Genero " +
-                    "WHERE '" + busqueda + "' like " + criterio);
+                    "WHERE " + criterio + " LIKE '%" + busqueda + "%'");
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())
@@ -200,11 +200,11 @@ namespace negocio
 
         private string ManejoDeCriterio(string criterio)
         {
-            if (criterio == "ID_Genero")
+            if (criterio == "ID_Genero" || criterio == "Genero")
                 return "G." + criterio;
-            if (criterio == "ID_Autor")
+            if (criterio == "ID_Autor" || criterio == "Apellido" || criterio == "Nombre")
                 return "A." + criterio;
-            if (criterio == "ID_Libro" || criterio == "Codigo")
+            if (criterio == "ID_Libro" || criterio == "Codigo" || criterio == "Titulo")
                 return "L." + criterio;
             //agregar criterios necesarios
             return criterio;
