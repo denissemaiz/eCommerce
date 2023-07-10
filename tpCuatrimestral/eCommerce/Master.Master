@@ -161,7 +161,8 @@
                             <div class="row g-2">
                                 <%if (Session["librosAgregados"] != null)  
                                 foreach(dominio.Libro producto in carritoNegocio.Libros) 
-                                { %>
+                                {%>
+                                    
                                     <div class="card">
                                         <div class="row g-0">
                                             <div class="col-md-4">
@@ -179,8 +180,9 @@
                                                             </asp:LinkButton>
                                                             <asp:TextBox ID="txbContador" runat="server" CssClass="form-control"
                                                                 ReadOnly="true"
-                                                                Enabled="false"
-                                                                Text="0"></asp:TextBox>
+                                                                Text="0"
+                                                                OnLoad="txbContador_Load">
+                                                            </asp:TextBox>
                                                             <asp:LinkButton ID="lbtnSumar" runat="server"
                                                                 CssClass="btn btn-secondary"><i class="bi bi-plus-lg"></i>
                                                             </asp:LinkButton>

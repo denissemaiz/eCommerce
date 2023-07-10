@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Clases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ namespace dominio
     public class Carrito
     {
         private List <Libro> libros;
+        private List<ProductoCarrito> productos;
         private decimal monto;
 
         public Carrito()
@@ -26,6 +28,11 @@ namespace dominio
         {            
             get { return libros; }
             set { libros = value; }
+        }
+        public List<ProductoCarrito> Productos 
+        { 
+            get { return productos; } 
+            set { productos = value; }
         }
         public decimal Monto
         {
@@ -62,6 +69,21 @@ namespace dominio
                     cant++;
             }
             return cant;
+        }
+
+        public void agregarProd(Libro prod)
+        {
+            foreach(ProductoCarrito art in productos)
+            {
+                if (art.CodigoLibro == prod.Codigo)
+                {
+                    art.agregar(prod.Codigo);
+                    return;
+                }
+
+            }
+            ProductoCarrito nuevo = new ProductoCarrito(prod.Codigo, prod.Precio);
+            productos.Add(nuevo);
         }
 
        /* ~Carrito()

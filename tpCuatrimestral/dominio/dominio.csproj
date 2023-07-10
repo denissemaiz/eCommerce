@@ -49,6 +49,7 @@
     <Compile Include="Libro.cs" />
     <Compile Include="Carrito.cs" />
     <Compile Include="Genero.cs" />
+    <Compile Include="ProductoCarrito.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Usuario.cs" />
   </ItemGroup>

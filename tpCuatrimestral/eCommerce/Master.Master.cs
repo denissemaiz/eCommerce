@@ -36,5 +36,10 @@ namespace eCommerce
                 lblContador.Text = carritoNegocio.Libros.Count().ToString();
             }
         }
+
+        protected void txbContador_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
