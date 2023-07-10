@@ -52,5 +52,19 @@ namespace eCommerce
                 repProductos.DataBind();
             }
         }
+
+        protected void lbtnSumar_Click(object sender, EventArgs e)
+        {
+            string codigo = ((LinkButton)sender).CommandArgument;
+            LibroNegocio datos = new LibroNegocio();
+            List<Libro> busqueda = datos.Buscar(codigo, "Codigo");
+            if (busqueda != null && carritoNegocio != null)
+            {
+                carritoNegocio.agregarProd(busqueda.First());
+                carritoNegocio.Libros.Add(busqueda.First());
+                Session["librosAgregados"] = carritoNegocio.Libros;
+                repProductos_Load(sender, e);
+            }
+        }
     }
 }
