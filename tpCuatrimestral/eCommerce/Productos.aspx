@@ -3,7 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<h1></h1>
 <p>Catálogo de Libros</p>
     <%if (ValidarAdmin()) { %>
         <div class="btn-toolbar my-lg-0" role="toolbar" aria-label="A&B button group">
