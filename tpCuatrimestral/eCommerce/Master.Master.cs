@@ -32,22 +32,17 @@ namespace eCommerce
             carritoNegocio = new Carrito();
             if (Session["librosAgregados"] != null)
             {
-                carritoNegocio.Libros = (List<Libro>)Session["librosAgregados"];
-                carritoNegocio.OrganizarProductos((List<Libro>)Session["librosAgregados"]);
+                carritoNegocio.Libros = (List<Libro>)Session["librosAgregados"];                
                 lblContador.Text = carritoNegocio.Libros.Count().ToString();
-                repProductos.DataSource = carritoNegocio.Productos;
+                
             }
-        }
-
-        protected void txbContador_Load(object sender, EventArgs e)
-        {
-            
-        }
+        }        
 
         protected void repProductos_Load(object sender, EventArgs e)
         {
             if (Session["librosAgregados"] != null && carritoNegocio != null)
             {
+                carritoNegocio.OrganizarProductos(carritoNegocio.Libros);
                 repProductos.DataSource = carritoNegocio.Productos; 
                 repProductos.DataBind();
             }
@@ -62,6 +57,19 @@ namespace eCommerce
             {
                 carritoNegocio.agregarProd(busqueda.First());
                 carritoNegocio.Libros.Add(busqueda.First());
+                Session["librosAgregados"] = carritoNegocio.Libros;
+                
+            }
+        }
+
+        protected void lbtnRestarLibro_Click(object sender, EventArgs e)
+        {
+            string codigo = ((LinkButton)sender).CommandArgument;
+            LibroNegocio datos = new LibroNegocio();
+            List<Libro> busqueda = datos.Buscar(codigo, "Codigo");
+            if (busqueda != null && carritoNegocio != null)
+            {
+                carritoNegocio.QuitarProd(busqueda.First());
                 Session["librosAgregados"] = carritoNegocio.Libros;
                 repProductos_Load(sender, e);
             }

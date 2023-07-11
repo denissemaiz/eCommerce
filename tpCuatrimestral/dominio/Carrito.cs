@@ -94,6 +94,30 @@ namespace dominio
             }
         }
 
+        public void QuitarProd(Libro prod)
+        {
+            if(prod != null)
+            {
+                foreach (ProductoCarrito art in productos)
+                {
+                    if(art.LibroCarrito.Codigo == prod.Codigo)
+                    {
+                        if(art.Cantidad -1 == 0)
+                        {
+                            productos.Remove(art);
+                            return;
+                        }
+                        else
+                        {
+                            art.Quitar(prod.Codigo);
+                            Libros.Remove(prod);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
         public void OrganizarProductos(List<Libro>nuevosProds)
         {
             foreach(Libro nuevoProd in nuevosProds)

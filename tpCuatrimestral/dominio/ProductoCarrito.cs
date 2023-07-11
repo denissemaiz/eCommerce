@@ -67,5 +67,11 @@ namespace dominio
             if(codigo == this.libroCarrito.Codigo)
                 cantidad++;
         }
+
+        public void Quitar(string codigo)
+        {
+            if (codigo == this.libroCarrito.Codigo && cantidad -1 >= 1 && cantidad -1 != 0)
+                cantidad--;
+        }
     }
 }
