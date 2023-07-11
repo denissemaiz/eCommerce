@@ -10,7 +10,7 @@ namespace dominio
     public class Carrito
     {
         private List <Libro> libros;
-        private List<ProductoCarrito> productos;
+        
         private decimal monto;
 
         public Carrito()
@@ -29,11 +29,7 @@ namespace dominio
             get { return libros; }
             set { libros = value; }
         }
-        public List<ProductoCarrito> Productos 
-        { 
-            get { return productos; } 
-            set { productos = value; }
-        }
+        
         public decimal Monto
         {
             get { return monto; }
@@ -71,60 +67,7 @@ namespace dominio
             return cant;
         }
 
-        public void agregarProd(Libro prod)
-        {
-            if(productos != null)
-            {
-                foreach(ProductoCarrito art in productos)
-                {
-                    if (art.LibroCarrito.Codigo == prod.Codigo)
-                    {
-                        art.Agregar(prod.Codigo);
-                        return;
-                    }
-                }
-                    ProductoCarrito nuevo = new ProductoCarrito(prod);
-                    productos.Add(nuevo);
-            }
-            else
-            {
-                productos = new List<ProductoCarrito>();
-                ProductoCarrito nuevo = new ProductoCarrito(prod);
-                productos.Add(nuevo);
-            }
-        }
-
-        public void QuitarProd(Libro prod)
-        {
-            if(prod != null)
-            {
-                foreach (ProductoCarrito art in productos)
-                {
-                    if(art.LibroCarrito.Codigo == prod.Codigo)
-                    {
-                        if(art.Cantidad -1 == 0)
-                        {
-                            productos.Remove(art);
-                            return;
-                        }
-                        else
-                        {
-                            art.Quitar(prod.Codigo);
-                            Libros.Remove(prod);
-                            return;
-                        }
-                    }
-                }
-            }
-        }
-
-        public void OrganizarProductos(List<Libro>nuevosProds)
-        {
-            foreach(Libro nuevoProd in nuevosProds)
-            {
-                agregarProd((Libro) nuevoProd);
-            }
-        }
+        
 
        /* ~Carrito()
         {

@@ -88,6 +88,7 @@
                         </li>
                     </ul>
                 </div>
+                <%--cierro carrito--%>
             </div>
         </nav>
         <div class="position-relative overflow-hidden pb-md-3 mb-md-3 text-center bg-light">
@@ -158,7 +159,7 @@
                         </div>
                         <div class="offcanvas-body">
                             <div class="row g-2">                                
-                              <%if (Session["librosAgregados"] != null && carritoNegocio.Productos.Count() != 0)
+                              <%if (Session["librosAgregados"] != null && carritoNegocio.Libros.Count() != 0)
                                   //foreach(dominio.ProductoCarrito producto in carritoNegocio.Productos) 
                                 {%>
                                   <asp:Repeater ID="repProductos" runat="server" OnLoad="repProductos_Load">
@@ -166,26 +167,26 @@
                                           <div class="card">
                                               <div class="row g-0">
                                                   <div class="col-md-4">
-                                                      <img src="<%#Eval("LibroCarrito.PortadaURL") %>" class="img-fluid rounded-start" alt="..." />
+                                                      <img src="<%#Eval("PortadaURL") %>" class="img-fluid rounded-start" alt="..." />
                                                   </div>
                                                   <div class="col-md-8">
                                                       <div class="card-body">
-                                                          <h5 class="card-title"><%#Eval("LibroCarrito.Titulo") %></h5>
-                                                          <p class="card-text"><%#Eval("LibroCarrito.CadenaAutores") %></p>
-                                                          <p class="card-text"><small class="text-body-secondary">Precio: $<%#Eval("Monto") %></small></p>
+                                                          <h5 class="card-title"><%#Eval("Titulo") %></h5>
+                                                          <p class="card-text"><%#Eval("CadenaAutores") %></p>
+                                                          <p class="card-text"><small class="text-body-secondary">Precio: $<%#Eval("Precio") %></small></p>
                                                           <div class="col-8">
                                                               <div class="input-group">
                                                                   <asp:LinkButton ID="lbtnRestarLibro" runat="server" 
                                                                       CssClass="btn btn-secondary" 
                                                                       type="button"
-                                                                      CommandArgument='<%#Eval("LibroCarrito.Codigo") %>'
+                                                                      CommandArgument='<%#Eval("Codigo") %>'
                                                                       OnClick="lbtnRestarLibro_Click"><i class="bi bi-dash"></i>
                                                                   </asp:LinkButton>
-                                                                  <input type="text" class="form-control" placeholder="<%#Eval("Cantidad") %>" disabled="disabled" aria-label="inputContador" />                                                                  
+                                                                  <input type="text" class="form-control" placeholder="<%#:carritoNegocio.contabilizarLibro((int)Eval("Id")) %>" disabled="disabled" aria-label="inputContador" /> 
                                                                   <asp:LinkButton ID="lbtnSumar" runat="server"
                                                                       CssClass="btn btn-secondary"
                                                                       type="button"
-                                                                      CommandArgument='<%#Eval("LibroCarrito.Codigo") %>'
+                                                                      CommandArgument='<%#Eval("Codigo") %>'
                                                                       OnClick="lbtnSumar_Click"><i class="bi bi-plus-lg"></i>
                                                                   </asp:LinkButton>
                                                               </div>

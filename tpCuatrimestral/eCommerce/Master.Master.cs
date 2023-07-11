@@ -13,6 +13,7 @@ namespace eCommerce
 {
     public partial class Master : System.Web.UI.MasterPage
     {
+
         public Carrito carritoNegocio { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,23 +30,49 @@ namespace eCommerce
 
         protected void lblContador_Load(object sender, EventArgs e)
         {
-            carritoNegocio = new Carrito();
-            if (Session["librosAgregados"] != null)
-            {
-                carritoNegocio.Libros = (List<Libro>)Session["librosAgregados"];                
-                lblContador.Text = carritoNegocio.Libros.Count().ToString();
-                
-            }
+            //if (Session["CarritoCargado"] == null)
+            //{
+                carritoNegocio = new Carrito();
+                if (Session["librosAgregados"] != null)
+                {
+                    carritoNegocio.Libros = (List<Libro>)Session["librosAgregados"];                
+                    lblContador.Text = carritoNegocio.Libros.Count().ToString();
+                    //Session["CarritoCargado"] = carritoNegocio;
+                }
+            //}
+            //else
+            //{
+            //    if (Session["librosAgregados"] != null)
+            //    {
+            //        carritoNegocio = (Carrito)Session["CarritoCargado"];
+            //        lblContador.Text = carritoNegocio.Libros.Count().ToString();
+            //    }
+            //}
         }        
 
         protected void repProductos_Load(object sender, EventArgs e)
         {
-            if (Session["librosAgregados"] != null && carritoNegocio != null)
+            if (Session["librosAgregados"] != null)
             {
-                carritoNegocio.OrganizarProductos(carritoNegocio.Libros);
-                repProductos.DataSource = carritoNegocio.Productos; 
+                LibroNegocio manejoLista = new LibroNegocio();
+                repProductos.DataSource = manejoLista.RemoveDuplicadosLibro(carritoNegocio.Libros);
                 repProductos.DataBind();
             }
+            //if (Session["librosAgregados"] != null)
+            //{
+            //    if (Session["CarritoCargado"] != null)
+            //    {
+            //        Carrito carritoCargado = (Carrito)Session["CarritoCargado"];
+            //        if (carritoCargado.Productos == null)
+            //        {
+            //            carritoCargado.OrganizarProductos(carritoCargado.Libros);
+            //            Session["CarritoCargado"] = carritoCargado;
+            //        }
+            //        repProductos.DataSource = carritoCargado.Productos; 
+            //        repProductos.DataBind();
+
+            //    }
+            //}
         }
 
         protected void lbtnSumar_Click(object sender, EventArgs e)
@@ -55,10 +82,7 @@ namespace eCommerce
             List<Libro> busqueda = datos.Buscar(codigo, "Codigo");
             if (busqueda != null && carritoNegocio != null)
             {
-                carritoNegocio.agregarProd(busqueda.First());
                 carritoNegocio.Libros.Add(busqueda.First());
-                Session["librosAgregados"] = carritoNegocio.Libros;
-                
             }
         }
 
@@ -74,5 +98,6 @@ namespace eCommerce
                 repProductos_Load(sender, e);
             }
         }
+
     }
 }
