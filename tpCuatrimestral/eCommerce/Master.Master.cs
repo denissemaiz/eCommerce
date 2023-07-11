@@ -83,6 +83,7 @@ namespace eCommerce
             if (busqueda != null && carritoNegocio != null)
             {
                 carritoNegocio.Libros.Add(busqueda.First());
+                repProductos_Load(sender, e);
             }
         }
 
@@ -93,9 +94,8 @@ namespace eCommerce
             List<Libro> busqueda = datos.Buscar(codigo, "Codigo");
             if (busqueda != null && carritoNegocio != null)
             {
-                carritoNegocio.QuitarProd(busqueda.First());
-                Session["librosAgregados"] = carritoNegocio.Libros;
-                repProductos_Load(sender, e);
+                if(carritoNegocio.QuitarLibro(busqueda.First().Id))
+                    repProductos_Load(sender, e);
             }
         }
 
