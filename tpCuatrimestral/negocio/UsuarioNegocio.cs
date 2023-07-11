@@ -62,6 +62,43 @@ namespace Conexiones
             }
         }
 
+
+        public List<Usuario> ListarL()
+        {
+            List<Usuario> lista = new List<Usuario>();
+            AccesoSQL Datos = new AccesoSQL();
+
+            try
+            {
+                Datos.Consulta("Select U.ID_Usuario, U.NombreUsuario, U.Mail, U.Contraseña from Usuario U");
+                Datos.EjecutarLectura();
+
+                while (Datos.Lector.Read())
+                {
+                    Usuario aux = new Usuario();
+                    aux.Id = (int)Datos.Lector["ID_Usuario"];
+                    aux.Username = (string)Datos.Lector["NombreUsuario"];
+                    aux.Mail = (string)Datos.Lector["Mail"];
+                    aux.Contraseña = (string)Datos.Lector["Contraseña"];
+
+
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Datos.CerrarConexion();
+            }
+        }
+
+
+
+
         public void Agregar(Usuario nuevo)
         {
             AccesoSQL datos = new AccesoSQL();
