@@ -72,5 +72,9 @@ namespace eCommerce
             }
         }
 
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

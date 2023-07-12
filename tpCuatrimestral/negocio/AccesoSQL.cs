@@ -26,7 +26,7 @@ namespace negocio
 
         public AccesoSQL()
         {
-            conexion = new SqlConnection("server =.\\SQLLABORATORIO; database = ProyectoEditorial; integrated security=true");
+            conexion = new SqlConnection("server =.\\SQLEXPRESS; database = ProyectoEditorial; integrated security=true");
             comando = new SqlCommand();
         }
 
