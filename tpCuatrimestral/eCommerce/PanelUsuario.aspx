@@ -16,7 +16,7 @@
 
         <div class="BarraLateral">
           <h2><b>Datos personales</b></h2>
-          <button class="EditarDatos">Editar</button>
+          <asp:Button ID="BtnEditarDatosPersonales" runat="server" Text="Editar" CssClass="EditarDatos" />
           <ul>
             <li><i class="fa-regular fa-user"></i> Nombre Apellido</li>
             <li><i class="fa-regular fa-envelope"></i> Mail</li>
@@ -26,7 +26,7 @@
     
         <div class="BarraLateralDos">
             <h2><b>Direccion</b></h2>
-            <button class="EditarDireccion">Editar</button>
+            <asp:Button ID="BtnEditarDireccion" runat="server" Text="Editar" CssClass="EditarDireccion" />
             <ul>
               <li><i class="fa-solid fa-location-dot"></i> Calle, Direccion</li>
               <li>Localidad, Codigo postal</li>

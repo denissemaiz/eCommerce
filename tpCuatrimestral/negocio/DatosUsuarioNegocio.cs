@@ -1,5 +1,6 @@
 ﻿using Clases;
 using negocio;
+using dominio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Conexiones
 {
-    internal class DatosUsuarioNegocio
+    public class DatosUsuarioNegocio
     {
         public List<DatosUsuario> Listar()
         {

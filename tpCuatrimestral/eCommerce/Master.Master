@@ -44,7 +44,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a class="dropdown-item" href="StoreProc.aspx">Lista de productos</a></li>
-                                <li><a class="dropdown-item" href="#">Lista de usuarios</a></li>
+                                <li><a class="dropdown-item" href="ListaUsuarios.aspx">Lista de usuarios</a></li>
                                 <li><a class="dropdown-item" href="#">Estado pedidos</a></li>
                             </ul>
                         </li>

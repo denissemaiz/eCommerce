@@ -3,8 +3,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-
-    <h2>Informacion de inicio</h2>
     <%if (Session["Usuario"] != null)
             {   %>
         <h3>Usted está Logueado</h3>
