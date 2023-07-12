@@ -13,7 +13,6 @@ namespace eCommerce
 {
     public partial class Master : System.Web.UI.MasterPage
     {
-
         public Carrito carritoNegocio { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {

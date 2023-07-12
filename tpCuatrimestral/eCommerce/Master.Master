@@ -91,9 +91,16 @@
                 <%--cierro carrito--%>
             </div>
         </nav>
-        <div class="position-relative overflow-hidden pb-md-3 mb-md-3 text-center bg-light">
+        <div class="position-relative overflow-hidden text-center bg-light">
             <img class="img-fluid w-100" src="https://i.ibb.co/YjkBL6x/Captura.png" alt="Banner">
         </div>
+        <%--offcanvas de la nav de búsqueda--%>
+        <nav class="nav justify-content-end mb-md-4">
+            <div class="d-flex pt-md-3 pe-md-3" role="search">
+                <asp:TextBox id="txtbxBuscar" CssClass="form-control me-2" placeholder="Buscar..." runat="server"/>
+                <asp:Button ID="btnBuscar" CssClass="btn btn-outline-dark" text="Buscar" OnClick="btnBuscar_Click" runat="server" />
+            </div>
+        </nav>
         <%--offcanvas del desplegable de filtros de busqueda--%>
         <div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="barraDesplegableLateral" aria-labelledby="offcanvasCatalogo">
             <div class="offcanvas-header m-3">
