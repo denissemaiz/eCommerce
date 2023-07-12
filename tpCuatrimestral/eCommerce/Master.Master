@@ -54,16 +54,14 @@
                 <div>
                     <ul class="navbar-nav">
                         <%if (Session["Usuario"] != null)
-                                       { %>
-                        <li class="nav-item"><a class="nav-link" href="User/UserPage.aspx"><b>Mi Cuenta</b> </a></li>
-                        <li class="nav-item"><a class="nav-link" href="User/Logout.aspx"><b>Desconectarse</b></a></li>
-                        <% }
-                                   else
-                                   { %>
-                        <li class="nav-item"><a class="nav-link" href="User/Login.aspx"><b>Ingresar</b></a></li>
-                        <li class="nav-item"><a class="nav-link" href="User/Registro.aspx"><b>Registrarse</b></a></li>
-                        <% }
-%>
+                          { %>
+                                <li class="nav-item"><a class="nav-link" href="User/UserPage.aspx"><b>Mi Cuenta</b> </a></li>
+                                <li class="nav-item"><a class="nav-link" href="User/Logout.aspx"><b>Desconectarse</b></a></li>
+                        <% }else
+                            { %>
+                                <li class="nav-item"><a class="nav-link" href="User/Login.aspx"><b>Ingresar</b></a></li>
+                                <li class="nav-item"><a class="nav-link" href="User/Registro.aspx"><b>Registrarse</b></a></li>
+                        <%  } %>
                     </ul>
                 </div>
                <%-- Carrito --%>
@@ -85,58 +83,12 @@
                                     <i class="bi bi-cart"></i>              
                                 <%}else{ %>
                                     <i class="bi bi-cart-fill"></i>
-                                <%}
-%>
+                                <%} %>
                             </a>
                         </li>
                     </ul>
-                    
-                    <%--<ul class="nav navbar-nav navbar-right ">
-                        <li class="dropdown-center">
-                            <a href="#" class="brn dropdown-toggle" role="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-align="dynamic">
-                                <span>
-                                    <asp:Label ID="lblContador"
-                                        CssClass="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" 
-                                        OnLoad="lblContador_Load" 
-                                        Text="" 
-                                        runat="server"></asp:Label>
-                                </span>
-                                <%if (Session["librosAgregados"] == null) { %>
-                                        <i class="bi bi-cart"></i>
-                                <% } %>
-                                <% else{ %>
-                                    <i class="bi bi-cart-fill"></i>
-                                <% }%>
-                            </a>
-                            <ul class="dropdown-menu dropdown-cart dropdown-menu-end" role="menu">
-                                <%if (Session["librosAgregados"] != null) {
-                                        foreach (dominio.Libro producto in carritoNegocio.Libros) 
-                                        { %>
-                                            
-                                            <li>
-                                                <span class="item">
-                                                    <span class="item-left">
-                                                        <img style="max-height: 64px" src="<%:producto.PortadaURL %>" alt=""/>
-                                                    </span>
-                                                    <span class="item-info">
-                                                        <span><%:producto.Titulo %></span>
-                                                        <span>Precio: $<%:producto.Precio.ToString() %></span>
-                                                    </span>
-                                                <span class="item-right">
-                                                    <button class="btn btn-danger fa fa-close"></button>
-                                                </span>
-                                                </span>
-                                            </li>   
-                                     <% } %>
-                                    <li class="dropdown-divider"></li>
-                                    <li><a class="btn btn-secondary text-center" href="#">Ver carrito</a></li>
-                                <%} else{ %>
-                                        <li>Todavia no agregó nada a su carrito</li>      
-                                <%} %>
-                            </ul>
-                        </li>
-                    </ul>--%>
                 </div>
+                <%--cierro carrito--%>
             </div>
         </nav>
         <div class="position-relative overflow-hidden text-center bg-light">
@@ -207,33 +159,62 @@
             </div>
         </div>
         <%--offcanvas del carrito de compras--%>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCarrito" aria-labellebdy="offcanvasCarritoLabel">
+        <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasCarrito" aria-labellebdy="offcanvasCarritoLabel">
                         <div class="offcanvas-header">
                             <h5 class="offcanvas-title" id="offcanvasCarritoLabel">Carrito</h5>
                             <button type="button" class="btn btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         </div>
                         <div class="offcanvas-body">
-                            <div class="row g-2">
-                                <%if (Session["librosAgregados"] != null)  
-                                foreach(dominio.Libro producto in carritoNegocio.Libros) 
-                                { %>
-                                    <div class="card">
-                                        <div class="row g-0">
-                                            <div class="col-md-4">
-                                                <img src="<%:producto.PortadaURL %>" class="img-fluid rounded-start" alt="..." />
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="card-body">
-                                                    <h5 class="card-title"><%:producto.Titulo %></h5>
-                                                    <p class="card-text"><%:producto.listarAutores() %></p>
-                                                    <p class="card-text"><small class="text-body-secondary">Precio: $<%:producto.Precio %></small></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                             <% }else{ %>
-                                    <p>Todavía no ha agregado nada a su carrito</p>
-                             <% } %>
+                            <div class="row g-2">                                
+                              <%if (Session["librosAgregados"] != null && carritoNegocio.Libros.Count() != 0)
+                                  //foreach(dominio.ProductoCarrito producto in carritoNegocio.Productos) 
+                                {%>
+                                  <asp:Repeater ID="repProductos" runat="server" OnLoad="repProductos_Load">
+                                      <ItemTemplate>
+                                          <div class="card">
+                                              <div class="row g-0">
+                                                  <div class="col-md-4">
+                                                      <img src="<%#Eval("PortadaURL") %>" class="img-fluid rounded-start" alt="..." />
+                                                  </div>
+                                                  <div class="col-md-8">
+                                                      <div class="card-body">
+                                                          <h5 class="card-title"><%#Eval("Titulo") %></h5>
+                                                          <p class="card-text"><%#Eval("CadenaAutores") %></p>
+                                                          <p class="card-text"><small class="text-body-secondary">Precio: $<%#Eval("Precio") %></small></p>
+                                                          <div class="col-8">
+                                                              <div class="input-group">
+                                                                  <asp:LinkButton ID="lbtnRestarLibro" runat="server" 
+                                                                      CssClass="btn btn-secondary" 
+                                                                      type="button"
+                                                                      CommandArgument='<%#Eval("Codigo") %>'
+                                                                      OnClick="lbtnRestarLibro_Click"><i class="bi bi-dash"></i>
+                                                                  </asp:LinkButton>
+                                                                  <input type="text" class="form-control" placeholder="<%#:carritoNegocio.contabilizarLibro((int)Eval("Id")) %>" disabled="disabled" aria-label="inputContador" /> 
+                                                                  <asp:LinkButton ID="lbtnSumar" runat="server"
+                                                                      CssClass="btn btn-secondary"
+                                                                      type="button"
+                                                                      CommandArgument='<%#Eval("Codigo") %>'
+                                                                      OnClick="lbtnSumar_Click"><i class="bi bi-plus-lg"></i>
+                                                                  </asp:LinkButton>
+                                                              </div>
+
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </ItemTemplate>
+                                 </asp:Repeater>
+                            <%}else{ %>
+                                  <p>Todavía no ha agregado nada a su carrito</p>
+                            <%} %>                                    
+                            </div> 
+                        </div>
+                        <div class="offcanvas-footer border border-top px-3 py-2" style="height:75px">
+                            <div class="row justify-content-end">
+                                <asp:Button ID="btnCheckout" runat="server" 
+                                    CssClass="btn btn-primary col-4"
+                                    Text="Ver Carrito"/>
                             </div>
                         </div>
                     </div>

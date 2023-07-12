@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Clases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ namespace dominio
     public class Carrito
     {
         private List <Libro> libros;
+        
         private decimal monto;
 
         public Carrito()
@@ -27,6 +29,7 @@ namespace dominio
             get { return libros; }
             set { libros = value; }
         }
+        
         public decimal Monto
         {
             get { return monto; }
@@ -63,6 +66,8 @@ namespace dominio
             }
             return cant;
         }
+
+        
 
        /* ~Carrito()
         {
