@@ -38,7 +38,7 @@ namespace eCommerce
                 if (conexion.Login(user))
                 {
                     Session.Add("Usuario", user);
-                    Response.Redirect("../Default.aspx", false);
+                    Response.Redirect("../PanelUsuario.aspx?cod=" + user.Id , false);
                 }
                 else
                 {

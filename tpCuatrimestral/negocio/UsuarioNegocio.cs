@@ -96,7 +96,42 @@ namespace Conexiones
             }
         }
 
+        public List<Usuario> ListarLPrueba(int Id)
+        {
+            List<Usuario> lista = new List<Usuario>();
+            AccesoSQL Datos = new AccesoSQL();
 
+            try
+            {
+                Datos.Consulta("Select U.Mail, U.ID_Usuario, DU.Nombre, DU.Apellido,DU.Telefono from Usuario U inner join Datos_Usuario DU on DU.ID_Usuario = U.ID_Usuario where U.ID_Usuario =" + Id);
+                Datos.EjecutarLectura();
+
+                while (Datos.Lector.Read())
+                {
+                    Usuario aux = new Usuario();
+                    DatosUsuario aux2 = new DatosUsuario();
+                    aux.Id = (int)Datos.Lector["ID_Usuario"];
+                    aux.Mail = (string)Datos.Lector["Mail"];
+ 
+                    aux2.Nombres = (string)Datos.Lector["Nombre"];
+                    aux2.Apellidos = (string)Datos.Lector["Apellido"];
+                    aux2.Telefono = (string)Datos.Lector["Telefono"];
+
+                    aux.DatosUsuario = aux2;
+
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Datos.CerrarConexion();
+            }
+        }
 
 
         public void Agregar(Usuario nuevo)
@@ -187,7 +222,7 @@ namespace Conexiones
                 datos.EjecutarLectura();
                 while (datos.Lector.Read())
                 {
-                    
+                    user.Id = (int)datos.Lector["ID_Usuario"];
                     user.Mail = (string)datos.Lector["Mail"];
                     user.EsAdmin = (bool)datos.Lector["EsAdmin"];
                     return true;

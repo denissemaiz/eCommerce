@@ -15,21 +15,12 @@ namespace eCommerce
     {
 
         /// <summary>
-        /// Control BtnEditarDatosPersonales.
+        /// Control RepeaterDatos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnEditarDatosPersonales;
-
-        /// <summary>
-        /// Control BtnEditarDireccion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnEditarDireccion;
+        protected global::System.Web.UI.WebControls.Repeater RepeaterDatos;
     }
 }
