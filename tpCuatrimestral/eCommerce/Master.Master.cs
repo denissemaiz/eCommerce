@@ -30,24 +30,12 @@ namespace eCommerce
 
         protected void lblContador_Load(object sender, EventArgs e)
         {
-            //if (Session["CarritoCargado"] == null)
-            //{
-                carritoNegocio = new Carrito();
-                if (Session["librosAgregados"] != null)
-                {
-                    carritoNegocio.Libros = (List<Libro>)Session["librosAgregados"];                
-                    lblContador.Text = carritoNegocio.Libros.Count().ToString();
-                    //Session["CarritoCargado"] = carritoNegocio;
-                }
-            //}
-            //else
-            //{
-            //    if (Session["librosAgregados"] != null)
-            //    {
-            //        carritoNegocio = (Carrito)Session["CarritoCargado"];
-            //        lblContador.Text = carritoNegocio.Libros.Count().ToString();
-            //    }
-            //}
+            carritoNegocio = new Carrito();
+            if (Session["librosAgregados"] != null)
+            {
+                carritoNegocio.Libros = (List<Libro>)Session["librosAgregados"];                
+                lblContador.Text = carritoNegocio.Libros.Count().ToString();
+            }
         }        
 
         protected void repProductos_Load(object sender, EventArgs e)
@@ -58,21 +46,7 @@ namespace eCommerce
                 repProductos.DataSource = manejoLista.RemoveDuplicadosLibro(carritoNegocio.Libros);
                 repProductos.DataBind();
             }
-            //if (Session["librosAgregados"] != null)
-            //{
-            //    if (Session["CarritoCargado"] != null)
-            //    {
-            //        Carrito carritoCargado = (Carrito)Session["CarritoCargado"];
-            //        if (carritoCargado.Productos == null)
-            //        {
-            //            carritoCargado.OrganizarProductos(carritoCargado.Libros);
-            //            Session["CarritoCargado"] = carritoCargado;
-            //        }
-            //        repProductos.DataSource = carritoCargado.Productos; 
-            //        repProductos.DataBind();
-
-            //    }
-            //}
+            
         }
 
         protected void lbtnSumar_Click(object sender, EventArgs e)

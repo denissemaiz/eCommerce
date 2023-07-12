@@ -150,7 +150,7 @@ namespace Conexiones
                 datos.EjecutarLectura();
                 while (datos.Lector.Read())
                 {
-                    
+                    user.Id = (int)datos.Lector["ID_Usuario"];
                     user.Mail = (string)datos.Lector["Mail"];
                     user.EsAdmin = (bool)datos.Lector["EsAdmin"];
                     return true;
