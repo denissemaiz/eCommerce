@@ -494,6 +494,19 @@ namespace negocio
             }
             try
             {
+                datos.Consulta("DELETE FROM Genero_X_Libro WHERE ID_Libro = " + Id);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+            try
+            {
                 datos.Consulta("DELETE FROM Libro WHERE ID_Libro = " + Id);
                 datos.EjecutarAccion();
             }

@@ -19,9 +19,11 @@ namespace dominio
         private List<Genero> generos;
         private string portadaURL;
 
+        private bool activo;
+
         public Libro()
         {
-
+            activo = true;
         }
 
         public Libro(int id, string codigo, string titulo, List<Autor> autores, string descripcion, decimal precio, int stock, List<Genero> generos, string portadaURL)
@@ -35,6 +37,8 @@ namespace dominio
             this.stock = stock;
             this.generos = generos;
             this.portadaURL = portadaURL;
+
+            activo = true;
         }
 
         public int Id
@@ -88,6 +92,11 @@ namespace dominio
             set { portadaURL = value; }
         }
 
+        public bool Activo
+        {
+            get { return activo; }
+        }
+
         public string CadenaAutores
         {
             get { return ListarAutores(); }
@@ -123,6 +132,12 @@ namespace dominio
                 i++;
             }
             return cadena;
+        }
+
+
+        public void bajaLogica()
+        {
+            activo = false;
         }
     }
 }
