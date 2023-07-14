@@ -18,6 +18,8 @@ namespace eCommerce
         public List<Autor> ListarAutor { get; set; }
         public List<Genero> ListarGenero { get; set; }
 
+        public Libro Librito = new Libro();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.QueryString.AllKeys.Contains("cod")) 
@@ -29,6 +31,13 @@ namespace eCommerce
                 ListarLibros = libro.BuscarporCodigo(codigo);
                 ListarGenero = genero.BuscarGenero(codigo);
                 ListarAutor = autor.BuscarAutor(codigo);
+
+                if(ListarLibros.Count() != 0) 
+                {
+                    Librito = ListarLibros.First();
+                    Librito.Generos = ListarGenero;
+                    Librito.Autores = ListarAutor;
+                }
 
             }
 
