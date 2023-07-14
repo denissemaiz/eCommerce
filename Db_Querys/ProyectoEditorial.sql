@@ -92,9 +92,9 @@ GO
 
 Create table Compra_X_Libro(
 	ID_Compra int,
-	ID_Libro int,
+	ID_Libro int null,
 	Cantidad smallint not null,
-	Primary key(ID_Compra, ID_Libro),
+	Primary key(ID_Compra),
 	Foreign key(ID_Compra) references Compra(ID_Compra),
 	Foreign key(ID_Libro) references Libro(ID_Libro)
 )
@@ -195,15 +195,15 @@ FROM Usuario U
 CROSS JOIN Libro L
 ORDER BY NEWID();
 GO
-INSERT INTO Compra_X_Libro (ID_Compra, ID_Libro, Cantidad)
-SELECT TOP 30
-    C.ID_Compra,
-    L.ID_Libro,
-    CASE WHEN RAND() < 0.9 THEN 1 ELSE 2 END
-FROM Compra C
-CROSS JOIN Libro L
-ORDER BY NEWID();
-GO
+--INSERT INTO Compra_X_Libro (ID_Compra, ID_Libro, Cantidad)
+--SELECT TOP 30
+--    C.ID_Compra,
+--    L.ID_Libro,
+--    CASE WHEN RAND() < 0.9 THEN 1 ELSE 2 END
+--FROM Compra C
+--CROSS JOIN Libro L
+--ORDER BY NEWID();
+--GO
 INSERT INTO Libro_X_Autor (ID_Libro, ID_Autor)
 VALUES
     (1, 1),
