@@ -93,6 +93,23 @@ namespace dominio
             get { return ListarAutores(); }
         }
 
+
+        public string ListarGenero()
+        {
+            string cadena = "";
+            int i = 0;
+            foreach (Genero genero in generos)
+            {
+                if (i == 0)
+                    cadena = genero.ToString();
+                else
+                    cadena += ", " + genero.ToString();
+                i++;
+            }
+            return cadena;
+        }
+
+
         public string ListarAutores()
         {
             string cadena="";
