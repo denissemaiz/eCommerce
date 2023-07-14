@@ -11,7 +11,7 @@ namespace Clases
         public int id;
         public string nombres;
         public string apellidos;
-        public Direccion direccion;
+        
         public string telefono;
 
         public DatosUsuario()
@@ -23,7 +23,7 @@ namespace Clases
         {
             this.nombres = nombres;
             this.apellidos = apellidos;
-            this.direccion = direccion;
+            
             this.telefono = telefono;
         }
         public DatosUsuario(string nombres, string apellidos,  string telefono)
@@ -49,11 +49,7 @@ namespace Clases
             get { return apellidos; } 
             set { apellidos = value; } 
         }
-        public Direccion Direccion
-        {
-            get { return direccion; }
-            set { direccion = value; }
-        }
+        
         public string Telefono
         { 
             get { return telefono; } 

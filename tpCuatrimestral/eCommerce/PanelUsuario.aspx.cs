@@ -16,7 +16,7 @@ namespace eCommerce
 
         public Usuario user;
         //public List<DatosUsuario> ListarDatos;
-        public Direccion direccion;
+        //public Direccion direccion;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -38,14 +38,18 @@ namespace eCommerce
             //}
             if(!IsPostBack && Session["Usuario"] != null)
             {
-                List<DatosUsuario> datosList;
-                user = (Usuario)Session["Usuario"];
+               user = (Usuario)Session["Usuario"];
+                
                 DatosUsuarioNegocio datosUser = new DatosUsuarioNegocio();
-                datosList = datosUser.ListarPrueba(user.Id);
-                if(datosList.Count() != 0)
-                    user.DatosUsuario = datosList.First();
-                else
-                    user.DatosUsuario = new DatosUsuario();
+                user.DatosUsuario = datosUser.Buscar_x_Usuario(user.Id);
+                if(user.DatosUsuario == null)
+                    user.DatosUsuario= new DatosUsuario();
+
+                user.DireccionUsuario = new Direccion();
+                DireccionNegocio datosDireccion = new DireccionNegocio();
+                user.DireccionUsuario = datosDireccion.Buscar(user.DireccionUsuario.Id);
+                //if(user.DireccionUsuario == null)
+                //    user.DireccionUsuario = new Direccion();
 
             }
         }

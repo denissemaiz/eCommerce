@@ -55,7 +55,7 @@
                     <ul class="navbar-nav">
                         <%if (Session["Usuario"] != null)
                           { %>
-                                <li class="nav-item"><a class="nav-link" href="User/UserPage.aspx"><b>Mi Cuenta</b> </a></li>
+                                <li class="nav-item"><a class="nav-link" href="PanelUsuario.aspx"><b>Mi Cuenta</b> </a></li>
                                 <li class="nav-item"><a class="nav-link" href="User/Logout.aspx"><b>Desconectarse</b></a></li>
                         <% }else
                             { %>

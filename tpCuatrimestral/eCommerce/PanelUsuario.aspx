@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 
-    <link rel="stylesheet" type="text/css" href="EstiloPanelUser.css">
+    <link rel="stylesheet" type="text/css" href="Styles\EstiloPanelUser.css">
   <script src="https://kit.fontawesome.com/acc2095c9d.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -14,8 +14,8 @@
             <ItemTemplate>--%>
         <%if (Session["Usuario"] != null) 
             { %>
-            <div class="contenedorxd">
-                <div class="container-barras">
+            <%--<div class="contenedorxd">
+                <div class="container-barras">--%>
 
                 <div class="contenedorxd">
                     <div class="container-barras">
@@ -24,31 +24,28 @@
                             <h2><b>Datos personales</b></h2>
                             <asp:Button ID="BtnEditarDatosPersonales" runat="server" Text="Editar" CssClass="EditarDatos" />
                             <ul>
-                                <li><i class="fa-regular fa-user"></i> <%# Eval("DatosUsuario.Nombres") %> <%#Eval("DatosUsuario.Apellidos") %> </li>
-                                <li><i class="fa-solid fa-phone"></i> <%#Eval("DatosUsuario.Telefono") %></li>
-                                <li><i class="fa-regular fa-envelope"></i> <%#Eval("Mail") %></li>
+                                <li><i class="fa-regular fa-user"></i> <%:user.datosUsuario.Nombres %> <%:user.DatosUsuario.Apellidos %> </li>
+                                <li><i class="fa-solid fa-phone"></i> <%:user.DatosUsuario.Telefono %></li>
+                                <li><i class="fa-regular fa-envelope"></i> <%:user.Mail %></li>
                             </ul>
                         </div>
 
                         <div class="BarraLateralDos">
                             <h2><b>Direccion</b></h2>
-                            <asp:Button ID="BtnEditarDireccion" runat="server" Text="Editar" CssClass="EditarDireccion" />
-                            <ul>
-                                <li><i class="fa-solid fa-location-dot"></i> <%#Eval("DatosUsuario.Direccion.Calle")%>, <%#Eval("DatosUsuario.Direccion.Altura") %></li>
-                                <li> <%#Eval("DatosUsuario.Direccion.Localidad")%>, <%#Eval("DatosUsuario.Direccion.Cp")%></li>
-                                <li> <%#Eval("DatosUsuario.Direccion.Provincia")%></li>
-                            </ul>
-                        </div>
-                    </div>
+                            <%if (user.DireccionUsuario != null)
+                                { %>
+                                <asp:Button ID="BtnEditarDireccion" runat="server" Text="Editar" CssClass="EditarDireccion" />
+                                <ul>
+                                    <li><i class="fa-solid fa-location-dot"></i> <%:user.DireccionUsuario.Calle%>, <%:user.DireccionUsuario.Altura %></li>
+                                    <li> <%:user.DireccionUsuario.Localidad%>, <%:user.DireccionUsuario.Cp%></li>
+                                    <li> <%:user.DireccionUsuario.Provincia%></li>
+                                </ul>
+                            <%}else{ %>
+                                <h5>Usted no a cargado su dirección todavía</h5>
+                                <asp:Button ID="btnCargar" runat="server" Text="Cargar" CssClass="EditarDireccion" />
 
-                        <div class="BarraLateralDos">
-                            <h2><b>Direccion</b></h2>
-                            <asp:Button ID="BtnEditarDireccion" runat="server" Text="Editar" CssClass="EditarDireccion" />
-                            <ul>
-                                <li><i class="fa-solid fa-location-dot"></i> <%#Eval("DatosUsuario.Direccion.Calle")%>, <%#Eval("DatosUsuario.Direccion.Altura") %></li>
-                                <li> <%#Eval("DatosUsuario.Direccion.Localidad")%>, <%#Eval("DatosUsuario.Direccion.Cp")%></li>
-                                <li> <%#Eval("DatosUsuario.Direccion.Provincia")%></li>
-                            </ul>
+
+                            <%} %>
                         </div>
                     </div>
 

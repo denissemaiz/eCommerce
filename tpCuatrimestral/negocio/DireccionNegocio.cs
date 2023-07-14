@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Conexiones
 {
-    internal class DireccionNegocio
+    public class DireccionNegocio
     {
         public List<Direccion> Listar()
         {
@@ -41,6 +41,37 @@ namespace Conexiones
             finally
             {
                 Datos.CerrarConexion();
+            }
+        }
+
+        public Direccion Buscar(int ID)
+        {
+            Direccion aux = null ;
+            AccesoSQL datos = new AccesoSQL();
+
+            try
+            {
+                datos.Consulta("SELECT D.ID_Usuario, D.Calle, D.Altura, D.Localidad, D.CP, D.Provincia FROM Direccion D WHERE D.ID_Usuario = " + ID);
+                datos.EjecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    aux = new Direccion();
+                    aux.Id = (int)datos.Lector["ID_Usuario"];
+                    aux.Calle = (string)datos.Lector["Calle"];
+                    aux.Altura = (int)datos.Lector["Altura"];
+                    aux.Localidad = (string)datos.Lector["Localidad"];
+                    aux.Cp = (int)datos.Lector["CP"];
+                    aux.Provincia = (string)datos.Lector["Provincia"];
+                }
+                return aux;
+            }
+            catch(Exception ex) 
+            { 
+                throw ex; 
+            }
+            finally
+            {
+                datos.CerrarConexion();
             }
         }
 
