@@ -40,13 +40,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Guia de compra</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Filtro
+                         <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Administracion
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">Autor</a></li>
-                                <li><a class="dropdown-item" href="#">..</a></li>
-                                <li><a class="dropdown-item" href="#">..</a></li>
+                                <li><a class="dropdown-item" href="StoreProc.aspx">Lista de productos</a></li>
+                                <li><a class="dropdown-item" href="ListaUsuarios.aspx">Lista de usuarios</a></li>
+                                <li><a class="dropdown-item" href="#">Estado pedidos</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -233,18 +233,27 @@
                     </div>
                     <div class="box">
                         <h2><b>Medios de pago</b></h2>
+                        <img src="https://d26lpennugtm8s.cloudfront.net/assets/common/img/logos/payment/new_logos_payment/visa@2x.png" alt="Visa" width="60" height="40" />
+                            <img src="https://d26lpennugtm8s.cloudfront.net/assets/common/img/logos/payment/new_logos_payment/mastercard@2x.png" alt="mastercard" width="60" height="40" />
+                            <img src="https://d26lpennugtm8s.cloudfront.net/assets/common/img/logos/payment/new_logos_payment/amex@2x.png" alt="Amex" width="60" height="40" />
+                            <img src="https://d26lpennugtm8s.cloudfront.net/assets/common/img/logos/payment/new_logos_payment/pagofacil@2x.png" alt="Pagofacil" width="60" height="40" />
+                            <img src="https://d26lpennugtm8s.cloudfront.net/assets/common/img/logos/payment/new_logos_payment/rapipago@2x.png" alt="Rapipago" width="60" height="40" />
+                            <img src="https://d26lpennugtm8s.cloudfront.net/assets/common/img/logos/payment/new_logos_payment/visadebit@2x.png" alt="Visadebito" width="60" height="40" />
+                            <img src="https://d26lpennugtm8s.cloudfront.net/assets/common/img/logos/payment/new_logos_payment/mercadopago@2x.png" alt="Mercadopago" width="60" height="40" />
+                            <img src="https://d26lpennugtm8s.cloudfront.net/assets/common/img/logos/payment/new_logos_payment/santander@2x.png" alt="Santander" width="60" height="40" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Maestro_2016.svg/1200px-Maestro_2016.svg.png" alt="Maestro" width="60" height="40" />
                     </div>
                     <div class="box">
                         <h2><b>Contacto</b></h2>
-                        <p>Telefono: 123123</p>
-                        <p>Mail: sadas@hotmail.com</p>
+                        <p><i class="fa-brands fa-whatsapp"></i><b>Whatsapp:</b> 1138296245</p>
+                        <p><i class="fa-regular fa-envelope"></i><b>Mail:</b> EditorialUTN@hotmail.com</p>
                     </div>
                     <div class="box">
                         <h2><b>Redes sociales</b></h2>
                         <div class="Redes">
-                            <a href="#" class="fa fa-facebook"></a>
-                            <a href="#" class="fa fa-twitter"></a>
-                            <a href="#" class="fa fa-instagram"></a>
+                            <a href="https://www.facebook.com/" target="_blank" class="fa fa-facebook"></a>
+                            <a href="https://twitter.com/" target="_blank" class="fa fa-twitter"></a>
+                            <a href="https://www.instagram.com/" target="_blank" class="fa fa-instagram"></a>
                         </div>
                     </div>
                 </div>

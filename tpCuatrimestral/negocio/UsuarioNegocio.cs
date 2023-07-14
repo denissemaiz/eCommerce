@@ -62,6 +62,78 @@ namespace Conexiones
             }
         }
 
+
+        public List<Usuario> ListarL()
+        {
+            List<Usuario> lista = new List<Usuario>();
+            AccesoSQL Datos = new AccesoSQL();
+
+            try
+            {
+                Datos.Consulta("Select U.ID_Usuario, U.NombreUsuario, U.Mail, U.Contraseña from Usuario U");
+                Datos.EjecutarLectura();
+
+                while (Datos.Lector.Read())
+                {
+                    Usuario aux = new Usuario();
+                    aux.Id = (int)Datos.Lector["ID_Usuario"];
+                    aux.Username = (string)Datos.Lector["NombreUsuario"];
+                    aux.Mail = (string)Datos.Lector["Mail"];
+                    aux.Contraseña = (string)Datos.Lector["Contraseña"];
+
+
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Datos.CerrarConexion();
+            }
+        }
+
+        public List<Usuario> ListarLPrueba(int Id)
+        {
+            List<Usuario> lista = new List<Usuario>();
+            AccesoSQL Datos = new AccesoSQL();
+
+            try
+            {
+                Datos.Consulta("Select U.Mail, U.ID_Usuario, DU.Nombre, DU.Apellido,DU.Telefono from Usuario U inner join Datos_Usuario DU on DU.ID_Usuario = U.ID_Usuario where U.ID_Usuario =" + Id);
+                Datos.EjecutarLectura();
+
+                while (Datos.Lector.Read())
+                {
+                    Usuario aux = new Usuario();
+                    DatosUsuario aux2 = new DatosUsuario();
+                    aux.Id = (int)Datos.Lector["ID_Usuario"];
+                    aux.Mail = (string)Datos.Lector["Mail"];
+ 
+                    aux2.Nombres = (string)Datos.Lector["Nombre"];
+                    aux2.Apellidos = (string)Datos.Lector["Apellido"];
+                    aux2.Telefono = (string)Datos.Lector["Telefono"];
+
+                    aux.DatosUsuario = aux2;
+
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Datos.CerrarConexion();
+            }
+        }
+
+
         public void Agregar(Usuario nuevo)
         {
             AccesoSQL datos = new AccesoSQL();

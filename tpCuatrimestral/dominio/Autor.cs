@@ -11,6 +11,11 @@ namespace dominio
         private int id;
         private string nombre;
         private string apellido;
+        public string NombreApellido
+        {
+            get { return string.Format("{0} {1}", nombre, apellido); }
+        }
+
 
         public Autor()
         {

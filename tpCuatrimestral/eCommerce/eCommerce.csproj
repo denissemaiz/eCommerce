@@ -76,6 +76,7 @@
     <Content Include="Styles\EstiloPanelUser.css" />
     <Content Include="FinalizarCompra.aspx" />
     <Content Include="Styles\Master.css" />
+    <Content Include="ListaUsuarios.aspx" />
     <Content Include="PanelUsuario.aspx" />
     <Content Include="Productos.aspx" />
     <Content Include="StoreProc.aspx" />
@@ -134,6 +135,13 @@
     </Compile>
     <Compile Include="FinalizarCompra.aspx.designer.cs">
       <DependentUpon>FinalizarCompra.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListaUsuarios.aspx.cs">
+      <DependentUpon>ListaUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListaUsuarios.aspx.designer.cs">
+      <DependentUpon>ListaUsuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="PanelUsuario.aspx.cs">
       <DependentUpon>PanelUsuario.aspx</DependentUpon>

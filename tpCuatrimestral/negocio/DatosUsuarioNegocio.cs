@@ -1,5 +1,6 @@
 ﻿using Clases;
 using negocio;
+using dominio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Conexiones
 {
-    internal class DatosUsuarioNegocio
+    public class DatosUsuarioNegocio
     {
         public List<DatosUsuario> Listar()
         {
@@ -51,6 +52,52 @@ namespace Conexiones
                 Datos.CerrarConexion();
             }
         }
+
+        public List<DatosUsuario> ListarPrueba(int Id)
+        {
+            List<DatosUsuario> lista = new List<DatosUsuario>();
+            AccesoSQL Datos = new AccesoSQL();
+
+            try
+            {
+                Datos.Consulta("Select DU.ID_Usuario, DU.Nombre, DU.Apellido, DU.Telefono, U.Mail from Datos_Usuario DU inner join Usuario U on U.ID_Usuario = DU.ID_Usuario where DU.ID_Usuario =" + Id);
+                Datos.EjecutarLectura();
+
+                while (Datos.Lector.Read())
+                {
+                    Direccion auxDir = new Direccion();
+                    DatosUsuario aux = new DatosUsuario();
+                    Usuario auxx = new Usuario();
+                    aux.id = (int)Datos.Lector["ID_Usuario"];
+                    aux.Nombres = (string)Datos.Lector["Nombre"];
+                    aux.Apellidos = (string)Datos.Lector["Apellido"];
+                    aux.Telefono = (string)Datos.Lector["Telefono"];
+                    
+                    auxx.Mail = (string)Datos.Lector["Mail"];
+
+                   /* auxDir.Calle = (string)Datos.Lector["Calle"];
+                    auxDir.Altura = (int)Datos.Lector["Altura"];
+                    auxDir.Localidad = (string)Datos.Lector["Localidad"];
+                    auxDir.Cp = (int)Datos.Lector["CP"];
+                    auxDir.Provincia = (string)Datos.Lector["Provincia"];
+
+                    aux.Direccion = auxDir; */
+
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Datos.CerrarConexion();
+            }
+        }
+
+
 
         public void Agregar(DatosUsuario nuevo) /*Al agregar datos de usuarios se debe agregar explicitamente la Direccion con su correspondiente funcion de Agregar()*/
         {

@@ -25,6 +25,15 @@
                 <asp:TextBox ID="txtTitulo" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
 
+            <div class="col-md-3">
+                <asp:Label for="txtGenero" runat="server" CssClass="form-label"><b>Genero:</b></asp:Label>
+                <asp:DropDownList ID="txtGenero" CssClass="form-select" runat="server"></asp:DropDownList>
+            </div>
+
+            <div class="col-md-3">
+                <asp:Label for="txtAutorNombre" runat="server" CssClass="form-label"><b>Nombre del autor:</b></asp:Label>
+                <asp:DropDownList ID="txtAutorNombre" CssClass="form-select" runat="server"></asp:DropDownList>
+            </div>
 
             <div class="col-md-6">
                 <asp:Label for="txtDescripcion" runat="server" CssClass="form-label"><b>Descripcion:</b></asp:Label>
