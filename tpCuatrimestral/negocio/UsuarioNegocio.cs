@@ -45,7 +45,7 @@ namespace Conexiones
                     auxDir.Cp = (int)Datos.Lector["CP"];
                     auxDir.Provincia = (string)Datos.Lector["Provincia"];
 
-                    auxDat.Direccion = auxDir;
+                    aux.DireccionUsuario = auxDir;
                     aux.DatosUsuario = auxDat;
 
                     lista.Add(aux);
@@ -96,9 +96,10 @@ namespace Conexiones
             }
         }
 
-        public List<Usuario> ListarLPrueba(int Id)
+        public Usuario ListarLPrueba(int Id)
         {
-            List<Usuario> lista = new List<Usuario>();
+            //List<Usuario> lista = new List<Usuario>();
+            Usuario aux = null;
             AccesoSQL Datos = new AccesoSQL();
 
             try
@@ -108,7 +109,7 @@ namespace Conexiones
 
                 while (Datos.Lector.Read())
                 {
-                    Usuario aux = new Usuario();
+                    aux = new Usuario();
                     DatosUsuario aux2 = new DatosUsuario();
                     Direccion aux3 = new Direccion();
 
@@ -127,11 +128,12 @@ namespace Conexiones
 
 
                     aux.DatosUsuario = aux2;
-                    aux2.Direccion = aux3;
+                    aux.DireccionUsuario = aux3;
 
-                    lista.Add(aux);
+                    
+                   
                 }
-                return lista;
+                return aux;
             }
             catch (Exception ex)
             {

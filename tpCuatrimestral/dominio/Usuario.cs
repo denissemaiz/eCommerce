@@ -20,13 +20,14 @@ namespace Clases
         public string contraseña;
         public bool esAdmin;
         public DatosUsuario datosUsuario;
+        public Direccion direccionUsuario;
 
         public Usuario()
         {
 
         }
 
-        public Usuario(int id, string username, string mail, string contraseña, bool esAdmin, DatosUsuario datosUsuario)
+        public Usuario(int id, string username, string mail, string contraseña, bool esAdmin, DatosUsuario datosUsuario, Direccion direccionUsuario)
         {
             this.id = id;
             this.username = username;
@@ -34,6 +35,7 @@ namespace Clases
             this.contraseña = contraseña;
             this.esAdmin = esAdmin;
             this.datosUsuario = datosUsuario;
+            this.direccionUsuario = direccionUsuario;
         }
 
         public int Id
@@ -66,7 +68,11 @@ namespace Clases
             get { return datosUsuario; }
             set { datosUsuario = value; }
         }
-
+        public Direccion DireccionUsuario
+        {
+            get { return direccionUsuario; }
+            set { direccionUsuario = value; }
+        }
         public bool ConfirmarContraseña(string confirmar)
         {
             if(Contraseña ==  confirmar) return true;

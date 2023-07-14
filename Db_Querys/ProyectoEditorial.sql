@@ -15,16 +15,6 @@ Go
 Use ProyectoEditorial
 Go
  
-Create table Direccion(
-	ID_Direccion int identity(1,1) not null primary key,
-	Calle varchar(50) not null,
-	Altura smallint not null,
-	Localidad varchar(80) not null,
-	CP smallint not null,
-	Provincia varchar(50) not null,
-)
-GO
-
 Create table Usuario(
 	ID_Usuario int not null identity(1,1) primary key,
 	NombreUsuario varchar(50) unique not null,
@@ -34,11 +24,24 @@ Create table Usuario(
 )
 GO
 
+Create table Direccion(
+	ID_Usuario int,
+	Calle varchar(50) not null,
+	Altura smallint not null,
+	Localidad varchar(80) not null,
+	CP smallint not null,
+	Provincia varchar(50) not null,
+	Primary Key(ID_Usuario),
+	Foreign Key(ID_Usuario) references Usuario(ID_Usuario)
+)
+GO
+
+
 Create table Datos_Usuario(
 	ID_Usuario int,
 	Nombre varchar(50) not null,
 	Apellido varchar(50) not null,
-    ID_Direccion int null foreign key references Direccion(ID_Direccion),
+    --ID_Direccion int null foreign key references Direccion(ID_Direccion),
 	Telefono varchar(30) null,
 	Primary key(ID_Usuario),
 	Foreign key(ID_Usuario) references Usuario(ID_Usuario)
