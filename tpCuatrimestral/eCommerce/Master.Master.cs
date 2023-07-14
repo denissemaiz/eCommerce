@@ -74,8 +74,10 @@ namespace eCommerce
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-
+                LibroNegocio librosDB = new LibroNegocio();
+                Response.Redirect("Productos.aspx?tituloLib=" + txtbxBuscar.Text);
         }
+
         public bool ValidarAdmin()
         {
             Usuario user;
