@@ -17,26 +17,40 @@
             <div class="contenedorxd">
                 <div class="container-barras">
 
-                    <div class="BarraLateral">
-                        <h2><b>Datos personales</b></h2>
-                        <asp:Button ID="BtnEditarDatosPersonales" runat="server" Text="Editar" CssClass="EditarDatos" />
-                        <ul>
-                            <li><i class="fa-regular fa-user"></i><%:user.DatosUsuario.Nombres%> <%:user.DatosUsuario.Apellidos%> </li>
-                            <li><i class="fa-solid fa-phone"></i><%:user.DatosUsuario.Telefono %></li>
-                            <li><i class="fa-regular fa-envelope"></i><%:user.Mail %></li>
-                        </ul>
+                <div class="contenedorxd">
+                    <div class="container-barras">
+
+                        <div class="BarraLateral">
+                            <h2><b>Datos personales</b></h2>
+                            <asp:Button ID="BtnEditarDatosPersonales" runat="server" Text="Editar" CssClass="EditarDatos" />
+                            <ul>
+                                <li><i class="fa-regular fa-user"></i> <%# Eval("DatosUsuario.Nombres") %> <%#Eval("DatosUsuario.Apellidos") %> </li>
+                                <li><i class="fa-solid fa-phone"></i> <%#Eval("DatosUsuario.Telefono") %></li>
+                                <li><i class="fa-regular fa-envelope"></i> <%#Eval("Mail") %></li>
+                            </ul>
+                        </div>
+
+                        <div class="BarraLateralDos">
+                            <h2><b>Direccion</b></h2>
+                            <asp:Button ID="BtnEditarDireccion" runat="server" Text="Editar" CssClass="EditarDireccion" />
+                            <ul>
+                                <li><i class="fa-solid fa-location-dot"></i> <%#Eval("DatosUsuario.Direccion.Calle")%>, <%#Eval("DatosUsuario.Direccion.Altura") %></li>
+                                <li> <%#Eval("DatosUsuario.Direccion.Localidad")%>, <%#Eval("DatosUsuario.Direccion.Cp")%></li>
+                                <li> <%#Eval("DatosUsuario.Direccion.Provincia")%></li>
+                            </ul>
+                        </div>
                     </div>
 
-                    <div class="BarraLateralDos">
-                        <h2><b>Direccion</b></h2>
-                        <asp:Button ID="BtnEditarDireccion" runat="server" Text="Editar" CssClass="EditarDireccion" />
-                        <ul>
-                            <li><i class="fa-solid fa-location-dot"></i>Calle, Direccion</li>
-                            <li>Localidad, Codigo postal</li>
-                            <li>Provincia</li>
-                        </ul>
+                        <div class="BarraLateralDos">
+                            <h2><b>Direccion</b></h2>
+                            <asp:Button ID="BtnEditarDireccion" runat="server" Text="Editar" CssClass="EditarDireccion" />
+                            <ul>
+                                <li><i class="fa-solid fa-location-dot"></i> <%#Eval("DatosUsuario.Direccion.Calle")%>, <%#Eval("DatosUsuario.Direccion.Altura") %></li>
+                                <li> <%#Eval("DatosUsuario.Direccion.Localidad")%>, <%#Eval("DatosUsuario.Direccion.Cp")%></li>
+                                <li> <%#Eval("DatosUsuario.Direccion.Provincia")%></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
 
                 <div class="Centralxd">
                     <h2><b>Pedidos</b></h2>

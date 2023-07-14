@@ -103,13 +103,15 @@ namespace Conexiones
 
             try
             {
-                Datos.Consulta("Select U.Mail, U.ID_Usuario, DU.Nombre, DU.Apellido,DU.Telefono from Usuario U inner join Datos_Usuario DU on DU.ID_Usuario = U.ID_Usuario where U.ID_Usuario =" + Id);
+                Datos.Consulta("Select U.Mail, U.ID_Usuario, DU.Nombre, DU.Apellido, DU.Telefono, D.Calle, D.Altura, D.CP, D.Localidad, D.Provincia from Usuario U inner join Datos_Usuario DU on DU.ID_Usuario = U.ID_Usuario inner join Direccion D on D.ID_Direccion = DU.ID_Direccion where U.ID_Usuario =" + Id);
                 Datos.EjecutarLectura();
 
                 while (Datos.Lector.Read())
                 {
                     Usuario aux = new Usuario();
                     DatosUsuario aux2 = new DatosUsuario();
+                    Direccion aux3 = new Direccion();
+
                     aux.Id = (int)Datos.Lector["ID_Usuario"];
                     aux.Mail = (string)Datos.Lector["Mail"];
  
@@ -117,7 +119,15 @@ namespace Conexiones
                     aux2.Apellidos = (string)Datos.Lector["Apellido"];
                     aux2.Telefono = (string)Datos.Lector["Telefono"];
 
+                    aux3.Calle = (string)Datos.Lector["Calle"];
+                    aux3.Altura = (Int16)Datos.Lector["Altura"];
+                    aux3.Cp = (Int16)Datos.Lector["CP"];
+                    aux3.Localidad = (string)Datos.Lector["Localidad"];
+                    aux3.Provincia = (string)Datos.Lector["Provincia"];
+
+
                     aux.DatosUsuario = aux2;
+                    aux2.Direccion = aux3;
 
                     lista.Add(aux);
                 }

@@ -507,31 +507,6 @@ namespace negocio
             }
         }
 
-        public void ModificarTest(Libro libro)
-        {
-            AccesoSQL datos = new AccesoSQL();
-
-            try
-            {
-                datos.Consulta("UPDATE Libro SET Codigo = '" + libro.Codigo + "', Titulo = '" + libro.Titulo + "', Descripcion = '" + libro.Descripcion + "', Precio = '" + libro.Precio + "', Stock = '"
-                    + libro.Stock + "', PortadaURL = '" + libro.PortadaURL + "' WHERE ID_Libro = " + libro.Id);
-                datos.EjecutarAccion();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                datos.CerrarConexion();
-            }
-        }
-
-
-
-
-
-
         public void Modificar(Libro libro)
         {
             AccesoSQL datos = new AccesoSQL();
