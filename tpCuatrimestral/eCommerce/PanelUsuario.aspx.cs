@@ -28,10 +28,10 @@ namespace eCommerce
                 if (int.TryParse(codigo, out code)) 
                 {
 
-                    //UsuarioNegocio usuarioss = new UsuarioNegocio();
-                    //ListarUsuarios = usuarioss.ListarLPrueba(code);
-                    //RepeaterDatos.DataSource = ListarUsuarios;
-                    //RepeaterDatos.DataBind();
+                    UsuarioNegocio usuarioss = new UsuarioNegocio();
+                    ListarUsuarios = usuarioss.ListarLPrueba(code);
+                    RepeaterDatos.DataSource = ListarUsuarios;
+                    RepeaterDatos.DataBind();
 
                 }
         
