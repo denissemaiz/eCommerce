@@ -104,7 +104,7 @@ namespace eCommerce
             }
         }
 
-    public bool ValidarAdmin()
+        public bool ValidarAdmin()
         {
             Usuario user;
             if (Session["Usuario"] != null)
