@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager2" runat="server"></asp:ScriptManager>
 
-    <%--<% if (ValidarAdmin()){ %>--%>
+    <% if (ValidarAdmin()){ %>
         <div class="row">
 
             <div class="col-md-3">
@@ -40,11 +40,25 @@
             <div class="col-md-3">
                 <asp:Label for="txtGenero" runat="server" CssClass="form-label"><b>Genero:</b></asp:Label>
                 <asp:DropDownList ID="txtGenero" CssClass="form-select" runat="server"></asp:DropDownList>
+                <asp:RequiredFieldValidator ID="rfvGenero" runat="server"
+                    ControlToValidate="txtGenero"
+                    InitialValue="NA"
+                    Display="Dynamic"
+                    ErrorMessage="Debe seleccionar un genero para el libro"
+                    CssClass="invalid-feedback"
+                    ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
 
             <div class="col-md-3">
                 <asp:Label for="txtAutorNombre" runat="server" CssClass="form-label"><b>Nombre del autor:</b></asp:Label>
                 <asp:DropDownList ID="txtAutorNombre" CssClass="form-select" runat="server"></asp:DropDownList>
+                <asp:RequiredFieldValidator ID="rfvAutor" runat="server"
+                    ControlToValidate="txtAutorNombre"
+                    InitialValue="NA"
+                    Display="Dynamic"
+                    ErrorMessage="Debe seleccionar un autor para el libro"
+                    CssClass="invalid-feedback"
+                    ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
 
             <div class="col-md-6">
@@ -110,7 +124,7 @@
                 <a href="Default.aspx" class="btn btn-primary">Volver</a>
             </div>
         </div>
-    <%--<% }else { %>--%>
+    <% }else { %>
         <div class="div row align-self-center">
 				<h1>Necesita ser un administrador para acceder a esta pagina</h1>
 			<div class="col">
@@ -119,7 +133,7 @@
 			</div>
 		</div>
         
-    <%--<% } %>--%>
+    <% } %>
 
 </asp:Content>
 

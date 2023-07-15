@@ -78,6 +78,15 @@ namespace eCommerce
         protected global::System.Web.UI.WebControls.DropDownList txtGenero;
 
         /// <summary>
+        /// Control rfvGenero.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvGenero;
+
+        /// <summary>
         /// Control txtAutorNombre.
         /// </summary>
         /// <remarks>
@@ -85,6 +94,15 @@ namespace eCommerce
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList txtAutorNombre;
+
+        /// <summary>
+        /// Control rfvAutor.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvAutor;
 
         /// <summary>
         /// Control txtDescripcion.
