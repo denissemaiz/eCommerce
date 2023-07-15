@@ -33,6 +33,15 @@ namespace eCommerce
         protected global::System.Web.UI.WebControls.TextBox txtUser;
 
         /// <summary>
+        /// Control rfvUser.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvUser;
+
+        /// <summary>
         /// Control lblContra.
         /// </summary>
         /// <remarks>
@@ -51,13 +60,13 @@ namespace eCommerce
         protected global::System.Web.UI.WebControls.TextBox txtPass;
 
         /// <summary>
-        /// Control btnCancelar.
+        /// Control rfvPassword.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelar;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPassword;
 
         /// <summary>
         /// Control btnIngresar.
