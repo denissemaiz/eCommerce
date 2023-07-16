@@ -71,6 +71,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Detalles.aspx" />
     <Content Include="Styles\Carrito.css" />
+    <Content Include="Styles\Checkout.css" />
     <Content Include="Styles\Detalles.css" />
     <Content Include="Error.aspx" />
     <Content Include="Styles\EstiloPanelUser.css" />
@@ -80,6 +81,7 @@
     <Content Include="PanelUsuario.aspx" />
     <Content Include="Productos.aspx" />
     <Content Include="StoreProc.aspx" />
+    <Content Include="User\Checkfinal.aspx" />
     <Content Include="User\Login.aspx" />
     <Content Include="User\Logout.aspx" />
     <Content Include="User\Registro.aspx" />
@@ -163,6 +165,13 @@
     </Compile>
     <Compile Include="StoreProc.aspx.designer.cs">
       <DependentUpon>StoreProc.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\Checkfinal.aspx.cs">
+      <DependentUpon>Checkfinal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\Checkfinal.aspx.designer.cs">
+      <DependentUpon>Checkfinal.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
