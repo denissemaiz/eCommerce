@@ -193,8 +193,12 @@ namespace Conexiones
 
             try
             {
-                datos.Consulta("UPDATE Usuario SET NombreUsuario = '" + usuario.Username + "', Mail = '" + usuario.Mail + "', Contraseña = '" + usuario.Contraseña + "'," +
-                    " EsAdmin = " + usuario.EsAdmin + " WHERE ID_Usuario =" + usuario.Id);
+                datos.Consulta("UPDATE Usuario SET NombreUsuario = @nombre, Mail = @mail, Contraseña = @pass, EsAdmin = @admin where ID_Usuario = @ID ");
+                datos.SetParametros("@nombre", usuario.Username);
+                datos.SetParametros("@mail", usuario.Mail);
+                datos.SetParametros("@pass", usuario.Contraseña);
+                datos.SetParametros("@admin", usuario.EsAdmin);
+                datos.SetParametros("@ID", usuario.Id);
                 datos.EjecutarAccion();
             }
             catch (Exception ex)

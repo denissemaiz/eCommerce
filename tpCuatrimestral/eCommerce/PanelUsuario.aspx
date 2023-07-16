@@ -70,7 +70,8 @@
                             Text="Guardar"
                             CssClass="btn btn-primary"
                             Enabled="false"
-                            Visible="false" />
+                            Visible="false" 
+                            OnClick="btnGuardarDatosPersonales_Click"/>
                         <%--<ul>
                             <li><i class="fa-regular fa-user"></i> <%:user.datosUsuario.Nombres %> <%:user.DatosUsuario.Apellidos %> </li>
                             <li><i class="fa-solid fa-phone"></i> <%:user.DatosUsuario.Telefono %></li>

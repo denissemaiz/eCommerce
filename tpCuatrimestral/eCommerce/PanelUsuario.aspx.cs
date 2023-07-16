@@ -40,34 +40,10 @@ namespace eCommerce
             }
             else
             {
-                if(user != null)
+                if (Session["Usuario"] != null)
                 {
-                    txbNombres.Text = user.DatosUsuario.Nombres;
-                    txbApellidos.Text = user.DatosUsuario.Apellidos;
-                    txbTelefono.Text = user.DatosUsuario.Telefono;
-                    txbMail.Text = user.Mail;
-                }
-                else
-                {
-                    if (Session["Usuario"] != null)
-                    {
-                        user = (Usuario)Session["Usuario"];
-
-                        DatosUsuarioNegocio datosUser = new DatosUsuarioNegocio();
-                        user.DatosUsuario = datosUser.Buscar_x_Usuario(user.Id);
-                        if (user.DatosUsuario == null)
-                            user.DatosUsuario = new DatosUsuario();
-
-                        user.DireccionUsuario = new Direccion();
-                        DireccionNegocio datosDireccion = new DireccionNegocio();
-                        user.DireccionUsuario = datosDireccion.Buscar(user.DireccionUsuario.Id);
-
-                        txbNombres.Text = user.DatosUsuario.Nombres;
-                        txbApellidos.Text = user.DatosUsuario.Apellidos;
-                        txbTelefono.Text = user.DatosUsuario.Telefono;
-                        txbMail.Text = user.Mail;
-                    }
-                }
+                    user = (Usuario)Session["Usuario"];
+                }           
             }
         }
 
@@ -103,6 +79,39 @@ namespace eCommerce
 
             BtnEditarDatosPersonales.Enabled = true;
             BtnEditarDatosPersonales.Visible = true;
+        }
+
+        protected void btnGuardarDatosPersonales_Click(object sender, EventArgs e)
+        {
+            user.DatosUsuario.Nombres = txbNombres.Text.ToString();
+            user.DatosUsuario.Apellidos = txbApellidos.Text.ToString(); 
+            user.DatosUsuario.Telefono = txbTelefono.Text.ToString();
+            user.Mail = txbMail.Text.ToString();
+            try
+            {
+                UsuarioNegocio datos = new UsuarioNegocio();
+                datos.Modificar(user);
+
+                txbNombres.Enabled = false;
+                txbApellidos.Enabled = false;
+                txbTelefono.Enabled = false;
+                txbMail.Enabled = false;
+
+                btnCancelarEditarDatosPersonales.Enabled = false;
+                btnCancelarEditarDatosPersonales.Visible = false;
+
+                btnGuardarDatosPersonales.Enabled = false;
+                btnGuardarDatosPersonales.Visible = false;
+
+                BtnEditarDatosPersonales.Enabled = true;
+                BtnEditarDatosPersonales.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                string mensaje = ex.ToString();
+                Session.Add("error", mensaje);
+                Response.Redirect("Error.aspx");
+            }
         }
     }
 }
