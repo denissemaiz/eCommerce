@@ -87,5 +87,22 @@ namespace eCommerce
             btnGuardarDatosPersonales.Enabled = true;
             btnGuardarDatosPersonales.Visible = true;
         }
+
+        protected void btnCancelarEditarDatosPersonales_Click(object sender, EventArgs e)
+        {
+            txbNombres.Enabled = false;
+            txbApellidos.Enabled = false;
+            txbTelefono.Enabled = false;
+            txbMail.Enabled = false;
+
+            btnCancelarEditarDatosPersonales.Enabled = false;
+            btnCancelarEditarDatosPersonales.Visible = false;
+
+            btnGuardarDatosPersonales.Enabled = false;
+            btnGuardarDatosPersonales.Visible = false;
+
+            BtnEditarDatosPersonales.Enabled = true;
+            BtnEditarDatosPersonales.Visible = true;
+        }
     }
 }

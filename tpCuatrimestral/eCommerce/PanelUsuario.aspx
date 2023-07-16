@@ -64,7 +64,8 @@
                             Text="Cancelar"
                             CssClass="btn btn-secondary"
                             Enabled="false"
-                            Visible="false" />
+                            Visible="false" 
+                            OnClick="btnCancelarEditarDatosPersonales_Click"/>
                         <asp:Button ID="btnGuardarDatosPersonales" runat="server"
                             Text="Guardar"
                             CssClass="btn btn-primary"
