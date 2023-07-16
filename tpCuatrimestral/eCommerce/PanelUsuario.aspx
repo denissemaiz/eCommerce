@@ -17,43 +17,90 @@
             <%--<div class="contenedorxd">
                 <div class="container-barras">--%>
 
-                <div class="contenedorxd">
-                    <div class="container-barras">
+            <div class="contenedorxd">
+                <div class="container-barras">
 
-                        <div class="BarraLateral">
-                            <h2><b>Datos personales</b></h2>
-                            <asp:Button ID="BtnEditarDatosPersonales" runat="server" Text="Editar" CssClass="EditarDatos" />
-                            <ul>
-                                <li><i class="fa-regular fa-user"></i> <%:user.datosUsuario.Nombres %> <%:user.DatosUsuario.Apellidos %> </li>
-                                <li><i class="fa-solid fa-phone"></i> <%:user.DatosUsuario.Telefono %></li>
-                                <li><i class="fa-regular fa-envelope"></i> <%:user.Mail %></li>
-                            </ul>
+                    <div class="BarraLateral">
+                        <h2><b>Datos personales</b></h2>                      
+                        <div class="row mb-2">
+                            <label for="txbNombres" class="col-sm-1 col-form-label"><i class="fa-regular fa-user"></i></label>
+                            <div class="col">
+                                <asp:TextBox ID="txbNombres" runat="server"
+                                    Enabled="false"
+                                    CssClass="form-control"
+                                    placeholder="Nombres"></asp:TextBox>
+                            </div>
+                            <div class="col">
+                                <asp:TextBox ID="txbApellidos" runat="server"
+                                    Enabled="false"
+                                    CssClass="form-control"
+                                    placeholder="Apellidos"></asp:TextBox>
+                            </div>
                         </div>
-
-                        <div class="BarraLateralDos">
-                            <h2><b>Direccion</b></h2>
-                            <%if (user.DireccionUsuario != null)
-                                { %>
-                                <asp:Button ID="BtnEditarDireccion" runat="server" Text="Editar" CssClass="EditarDireccion" />
-                                <ul>
-                                    <li><i class="fa-solid fa-location-dot"></i> <%:user.DireccionUsuario.Calle%>, <%:user.DireccionUsuario.Altura %></li>
-                                    <li> <%:user.DireccionUsuario.Localidad%>, <%:user.DireccionUsuario.Cp%></li>
-                                    <li> <%:user.DireccionUsuario.Provincia%></li>
-                                </ul>
-                            <%}else{ %>
-                                <h5>Usted no a cargado su dirección todavía</h5>
-                                <asp:Button ID="btnCargar" runat="server" Text="Cargar" CssClass="EditarDireccion" />
-
-
-                            <%} %>
+                        <div class="row mb-2">
+                            <label for="txbTelefono" class="col-sm-1 col-form-label"><i class="fa-solid fa-phone"></i></label>
+                            <div class="col-sm-11">
+                                <asp:TextBox ID="txbTelefono" runat="server"
+                                    Enabled="false"
+                                    CssClass="form-control"
+                                    placeholder="Telefono"></asp:TextBox>
+                            </div>
                         </div>
+                        <div class="row mb-2">
+                            <label for="txbMail" class="col-sm-1 col-form-label"><i class="fa-regular fa-envelope"></i></label>
+                            <div class="col-sm-11">
+                                <asp:TextBox ID="txbMail" runat="server"
+                                    Enabled="false"
+                                    CssClass="form-control"
+                                    placeholder="E-Mail"></asp:TextBox>
+                            </div>
+                        </div>
+                        <asp:Button ID="BtnEditarDatosPersonales" runat="server" 
+                            Text="Editar" 
+                            CssClass="EditarDatos" 
+                            OnClick="BtnEditarDatosPersonales_Click"/>
+
+                        <asp:Button ID="btnCancelarEditarDatosPersonales" runat="server"
+                            Text="Cancelar"
+                            CssClass="btn btn-secondary"
+                            Enabled="false"
+                            Visible="false" />
+                        <asp:Button ID="btnGuardarDatosPersonales" runat="server"
+                            Text="Guardar"
+                            CssClass="btn btn-primary"
+                            Enabled="false"
+                            Visible="false" />
+                        <%--<ul>
+                            <li><i class="fa-regular fa-user"></i> <%:user.datosUsuario.Nombres %> <%:user.DatosUsuario.Apellidos %> </li>
+                            <li><i class="fa-solid fa-phone"></i> <%:user.DatosUsuario.Telefono %></li>
+                            <li><i class="fa-regular fa-envelope"></i> <%:user.Mail %></li>
+                        </ul>--%>
                     </div>
+
+                    <div class="BarraLateralDos">
+                        <h2><b>Direccion</b></h2>
+                        <%if (user.DireccionUsuario != null)
+                            { %>
+                            <asp:Button ID="BtnEditarDireccion" runat="server" Text="Editar" CssClass="EditarDireccion" />
+                            <ul>
+                                <li><i class="fa-solid fa-location-dot"></i> <%:user.DireccionUsuario.Calle%>, <%:user.DireccionUsuario.Altura %></li>
+                                <li> <%:user.DireccionUsuario.Localidad%>, <%:user.DireccionUsuario.Cp%></li>
+                                <li> <%:user.DireccionUsuario.Provincia%></li>
+                            </ul>
+                        <%}else{ %>
+                            <h5>Usted no a cargado su dirección todavía</h5>
+                            <asp:Button ID="btnCargar" runat="server" Text="Cargar" CssClass="EditarDireccion" />
+
+
+                        <%} %>
+                    </div>
+                </div>
 
                 <div class="Centralxd">
                     <h2><b>Pedidos</b></h2>
                     <p>Aca van los pedidos</p>
                 </div>
-
+            
             </div>
         <%} %>
 
