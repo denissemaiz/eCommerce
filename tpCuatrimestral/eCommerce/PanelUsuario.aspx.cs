@@ -43,6 +43,14 @@ namespace eCommerce
                 if (Session["Usuario"] != null)
                 {
                     user = (Usuario)Session["Usuario"];
+                    DatosUsuarioNegocio datosUser = new DatosUsuarioNegocio();
+                    user.DatosUsuario = datosUser.Buscar_x_Usuario(user.Id);
+                    if (user.DatosUsuario == null)
+                        user.DatosUsuario = new DatosUsuario();
+
+                    user.DireccionUsuario = new Direccion();
+                    DireccionNegocio datosDireccion = new DireccionNegocio();
+                    user.DireccionUsuario = datosDireccion.Buscar(user.DireccionUsuario.Id);
                 }           
             }
         }
@@ -92,6 +100,9 @@ namespace eCommerce
                 UsuarioNegocio datos = new UsuarioNegocio();
                 datos.Modificar(user);
 
+                DatosUsuarioNegocio datUsuariosDat = new DatosUsuarioNegocio();
+                datUsuariosDat.Modificar(user.DatosUsuario);
+
                 txbNombres.Enabled = false;
                 txbApellidos.Enabled = false;
                 txbTelefono.Enabled = false;
@@ -111,6 +122,10 @@ namespace eCommerce
                 string mensaje = ex.ToString();
                 Session.Add("error", mensaje);
                 Response.Redirect("Error.aspx");
+            }
+            finally
+            {
+                Session["Usuario"] = user;
             }
         }
     }

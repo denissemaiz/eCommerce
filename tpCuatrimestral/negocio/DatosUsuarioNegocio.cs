@@ -183,9 +183,11 @@ namespace Conexiones
 
             try
             {
-                datos.Consulta("UPDATE Datos_Usuario SET Nombre = '" + datosUsuario.Nombres + "', Apellido = '" + datosUsuario.Apellidos + ", Telefono = '" + 
-                    datosUsuario.Telefono + "' WHERE ID_Usuario =" + datosUsuario.Id);
-
+                datos.Consulta("UPDATE Datos_Usuario SET Nombre = @nombre, Apellido = @apellido, Telefono = @telefono WHERE ID_Usuario = @ID ");
+                datos.SetParametros("nombre", datosUsuario.Nombres);
+                datos.SetParametros("apellido", datosUsuario.Apellidos);
+                datos.SetParametros("telefono", datosUsuario.Telefono);
+                datos.SetParametros("ID", datosUsuario.Id);
                 /*Cuando actualizo datos de usuario, debería actualizar la direccion en su tabla? O agrego una nueva direccion a la tabla y le cambio el Id acá?*/
                 datos.EjecutarAccion();
             }
