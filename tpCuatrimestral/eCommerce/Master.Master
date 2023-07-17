@@ -69,24 +69,24 @@
                 </div>
                <%-- Carrito --%>
                 <div>
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right px-1">
                         <li>
                             <a class ="" role="button" 
                                 href="#offcanvasCarrito"
                                 data-bs-toggle="offcanvas" 
                                 arias-controls="offcanvasCarrito">
-                                <span>
-                                    <asp:Label ID="lblContador"
-                                        CssClass="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" 
-                                        OnLoad="lblContador_Load" 
-                                        Text="" 
-                                        runat="server"></asp:Label>
-                                </span>
                                 <%if (Session["librosAgregados"] == null) { %>
                                     <i class="bi bi-cart"></i>              
                                 <%}else{ %>
                                     <i class="bi bi-cart-fill"></i>
                                 <%} %>
+                                <span>
+                                    <asp:Label ID="lblContador"
+                                        CssClass="translate-middle badge rounded-pill bg-danger" 
+                                        OnLoad="lblContador_Load" 
+                                        Text="" 
+                                        runat="server"></asp:Label>
+                                </span>
                             </a>
                         </li>
                     </ul>
