@@ -13,12 +13,12 @@ namespace eCommerce
 {
     public partial class Detalles : System.Web.UI.Page
     {
+        public List<Libro> listarLibros { get; set; }
+        public List<Autor> listarAutor { get; set; }
+        public List<Genero> listarGenero { get; set; }
 
-        public List<Libro> ListarLibros { get; set; }
-        public List<Autor> ListarAutor { get; set; }
-        public List<Genero> ListarGenero { get; set; }
-
-        public Libro Librito = new Libro();
+        public Libro librito = new Libro();
+        public List<Libro> librosCarrito = new List<Libro>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,19 +28,46 @@ namespace eCommerce
                 LibroNegocio libro = new LibroNegocio();
                 GeneroNegocio genero = new GeneroNegocio();
                 AutorNegocio autor = new AutorNegocio();
-                ListarLibros = libro.BuscarporCodigo(codigo);
-                ListarGenero = genero.BuscarGenero(codigo);
-                ListarAutor = autor.BuscarAutor(codigo);
+                listarLibros = libro.BuscarporCodigo(codigo);
+                listarGenero = genero.BuscarGenero(codigo);
+                listarAutor = autor.BuscarAutor(codigo);
 
-                if(ListarLibros.Count() != 0) 
+                if(listarLibros.Count() != 0) 
                 {
-                    Librito = ListarLibros.First();
-                    Librito.Generos = ListarGenero;
-                    Librito.Autores = ListarAutor;
+                    librito = listarLibros.First();
+                    librito.Generos = listarGenero;
+                    librito.Autores = listarAutor;
                 }
-
             }
-
+            else
+            {
+                Response.Redirect("Productos.aspx");
+            }
          }
+
+        protected void btnAgregarACarritoDetalles_Click(object sender, EventArgs e)
+        {
+            string codigo = Request.QueryString["cod"].ToString();
+
+            LibroNegocio datosLibros = new LibroNegocio();
+            listarLibros = datosLibros.Buscar(codigo, "Codigo");
+
+            if (listarLibros != null)
+            {
+                if (Session["librosAgregados"] == null)
+                {
+                    librosCarrito.Add(listarLibros.First());
+                    Session.Add("librosAgregados", librosCarrito);
+                    Response.Redirect("Productos.aspx");
+                }
+                else
+                {
+                    librosCarrito = (List<Libro>)Session["librosAgregados"];
+                    librosCarrito.Add(listarLibros.First());
+                    Session.Add("librosAgregados", librosCarrito);
+                    Response.Redirect("Productos.aspx");
+                }
+            }
+        }
     }
 }
