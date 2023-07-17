@@ -21,7 +21,7 @@
                 <asp:Label ID="lblContraseñaConfirmar" runat="server" CssClass="form-label"><b>Confirmar contraseña</b> </asp:Label>
                 <asp:TextBox ID="txtContraseñaNuevaConfirmar" runat="server" CssClass="form-control" TextMode="Password" placeholder="*********"></asp:TextBox>
                 <br />
-                <a href="..\Default.aspx" class="btn btn-secondary">Cancelar</a>
+                <a href="..\PanelUsuario.aspx" class="btn btn-secondary">Cancelar</a>
                 <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary"/>
             </div>
         </div>
