@@ -215,9 +215,10 @@
                         </div>
                         <div class="offcanvas-footer border border-top px-3 py-2" style="height:75px">
                             <div class="row justify-content-end">
-                                <asp:Button ID="btnCheckout" runat="server" 
+                                <a class="btn btn-primary col-4" role="button" href="FinalizarCompra.aspx">Ver Carrito</a>
+                                <%--<asp:Button ID="btnCheckout" runat="server" 
                                     CssClass="btn btn-primary col-4"
-                                    Text="Ver Carrito"/>
+                                    Text="Ver Carrito"/>--%>
                             </div>
                         </div>
                     </div>

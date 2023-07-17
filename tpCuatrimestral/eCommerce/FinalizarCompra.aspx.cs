@@ -1,4 +1,5 @@
 ﻿using dominio;
+using negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,20 +12,40 @@ namespace eCommerce
     public partial class FinalizarCompra : System.Web.UI.Page
     {
         public Carrito carrito { get; set; }
+        public List<Libro> LibrosSinRepetidos { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            carrito = new Carrito();
-
-            carrito.Libros = (List<Libro>)Session["librosAgregados"];
-            repLibros.DataSource = carrito.Libros;
-            repLibros.DataBind();
-
-            if (Session["librosAgregados"] != null)
+            LibroNegocio libroNegocio = new LibroNegocio();
+            if(!IsPostBack || Session["librosAgregados"] != null && carrito == null)
             {
-                decimal Monto = carrito.CalcularMonto();
-                PrecioFinal.Text = Monto.ToString();
+                carrito = new Carrito();
+                if (Session["librosAgregados"] != null)
+                {
+                    carrito.Libros = (List<Libro>)Session["librosAgregados"];
+                    LibrosSinRepetidos = libroNegocio.RemoveDuplicadosLibro(carrito.Libros);
+                }else 
+                    LibrosSinRepetidos = new List<Libro>();
+
+                repLibros.DataSource = LibrosSinRepetidos;
+                repLibros.DataBind();
             }
+            else
+            {
+                if (Session["librosAgregados"] != null)
+                {
+                    carrito.Libros = (List<Libro>)Session["librosAgregados"];
+                    LibrosSinRepetidos = libroNegocio.RemoveDuplicadosLibro(carrito.Libros);
+                    repLibros.DataSource=LibrosSinRepetidos;
+                    repLibros.DataBind();
+                }
+            }
+        }
+
+        protected void PrecioFinal_Load(object sender, EventArgs e)
+        {
+            if (carrito.Libros != null)
+                PrecioFinal.Text = carrito.CalcularMonto().ToString();
         }
     }
 }
