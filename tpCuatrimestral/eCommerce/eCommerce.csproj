@@ -81,9 +81,11 @@
     <Content Include="PanelUsuario.aspx" />
     <Content Include="Productos.aspx" />
     <Content Include="StoreProc.aspx" />
+    <Content Include="User\CambiarContraseña.aspx" />
     <Content Include="User\Checkfinal.aspx" />
     <Content Include="User\Login.aspx" />
     <Content Include="User\Logout.aspx" />
+    <Content Include="User\RecuperarContraseña.aspx" />
     <Content Include="User\Registro.aspx" />
     <Content Include="User\UserPage.aspx" />
     <Content Include="Web.config" />
@@ -166,6 +168,13 @@
     <Compile Include="StoreProc.aspx.designer.cs">
       <DependentUpon>StoreProc.aspx</DependentUpon>
     </Compile>
+    <Compile Include="User\CambiarContraseña.aspx.cs">
+      <DependentUpon>CambiarContraseña.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\CambiarContraseña.aspx.designer.cs">
+      <DependentUpon>CambiarContraseña.aspx</DependentUpon>
+    </Compile>
     <Compile Include="User\Checkfinal.aspx.cs">
       <DependentUpon>Checkfinal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -194,6 +203,13 @@
     </Compile>
     <Compile Include="User\Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\RecuperarContraseña.aspx.cs">
+      <DependentUpon>RecuperarContraseña.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\RecuperarContraseña.aspx.designer.cs">
+      <DependentUpon>RecuperarContraseña.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\Registro.aspx.cs">
       <DependentUpon>Registro.aspx</DependentUpon>
