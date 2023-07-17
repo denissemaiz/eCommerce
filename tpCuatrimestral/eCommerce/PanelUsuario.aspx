@@ -118,6 +118,18 @@
                                 Text="Editar"
                                 CssClass="EditarDireccion" 
                                 OnClick="BtnEditarDireccion_Click"/>
+
+                            <asp:Button ID="btnCancelarEdicionDire" runat="server"
+                                Enabled="false"
+                                Visible="false"
+                                Text="Cancelar"
+                                CssClass="btn btn-secondary" />
+                            <asp:Button ID="btnGuardarDireccion" runat="server"
+                                Enabled="false"
+                                Visible="false"
+                                Text="Guardar"
+                                CssClass="btn btn-primary" />
+                                
                             <%--<ul>
                                 <li><i class="fa-solid fa-location-dot"></i> <%:user.DireccionUsuario.Calle%>, <%:user.DireccionUsuario.Altura %></li>
                                 <li> <%:user.DireccionUsuario.Localidad%>, <%:user.DireccionUsuario.Cp%></li>

@@ -123,6 +123,24 @@ namespace eCommerce
         protected global::System.Web.UI.WebControls.Button BtnEditarDireccion;
 
         /// <summary>
+        /// Control btnCancelarEdicionDire.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelarEdicionDire;
+
+        /// <summary>
+        /// Control btnGuardarDireccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGuardarDireccion;
+
+        /// <summary>
         /// Control btnCargar.
         /// </summary>
         /// <remarks>

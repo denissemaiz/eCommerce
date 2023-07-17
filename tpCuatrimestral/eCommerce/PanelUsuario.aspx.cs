@@ -141,6 +141,12 @@ namespace eCommerce
             txbLocalidad.Enabled = true;
             txbProvincia.Enabled = true;
 
+            btnCancelarEdicionDire.Enabled = true;
+            btnCancelarEdicionDire.Visible = true;
+
+            btnGuardarDireccion.Enabled = true;
+            btnGuardarDireccion.Visible = true;
+
             btnCargar.Enabled = false;
             btnCargar.Visible = false;
 
