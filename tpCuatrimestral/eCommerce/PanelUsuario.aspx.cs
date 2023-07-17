@@ -32,6 +32,8 @@ namespace eCommerce
                 user.DireccionUsuario = new Direccion();
                 DireccionNegocio datosDireccion = new DireccionNegocio();
                 user.DireccionUsuario = datosDireccion.Buscar(user.DireccionUsuario.Id);
+                if (user.DireccionUsuario == null)
+                    user.DireccionUsuario = new Direccion();
 
                 txbNombres.Text = user.DatosUsuario.Nombres;
                 txbApellidos.Text = user.DatosUsuario.Apellidos;
@@ -51,6 +53,8 @@ namespace eCommerce
                     user.DireccionUsuario = new Direccion();
                     DireccionNegocio datosDireccion = new DireccionNegocio();
                     user.DireccionUsuario = datosDireccion.Buscar(user.DireccionUsuario.Id);
+                    if(user.DireccionUsuario == null)
+                        user.DireccionUsuario = new Direccion();
                 }           
             }
         }

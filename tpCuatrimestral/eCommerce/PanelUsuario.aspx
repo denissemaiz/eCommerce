@@ -83,12 +83,43 @@
                         <h2><b>Direccion</b></h2>
                         <%if (user.DireccionUsuario != null)
                             { %>
+                            <div class="row mb-2">
+                                <label for="txbCalle" class="col-sm-1 col-form-label"><i class="fa-solid fa-location-dot"></i></label>
+                                <div class="col">
+                                    <asp:TextBox ID="txbCalle" runat="server"
+                                        Enabled="false"
+                                        CssClass="form-control"
+                                        placeholder="Calle"></asp:TextBox>
+                                </div>
+                                <div class="col">
+                                    <asp:TextBox ID="txbAltura" runat="server"
+                                        Enabled="false"
+                                        CssClass="form-control"
+                                        placeholder="Altura"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="row mb-2">                              
+                                <div class="col">
+                                    <asp:TextBox ID="txbLocalidad" runat="server"
+                                        Enabled="false"
+                                        CssClass="form-control"
+                                        placeholder="Localidad"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <asp:TextBox ID="txbProvincia" runat="server" 
+                                        Enabled="false"
+                                        CssClass="form-control"
+                                        placeholder="Provincia"></asp:TextBox>
+                                </div>
+                            </div>
                             <asp:Button ID="BtnEditarDireccion" runat="server" Text="Editar" CssClass="EditarDireccion" />
-                            <ul>
+                            <%--<ul>
                                 <li><i class="fa-solid fa-location-dot"></i> <%:user.DireccionUsuario.Calle%>, <%:user.DireccionUsuario.Altura %></li>
                                 <li> <%:user.DireccionUsuario.Localidad%>, <%:user.DireccionUsuario.Cp%></li>
                                 <li> <%:user.DireccionUsuario.Provincia%></li>
-                            </ul>
+                            </ul>--%>
                         <%}else{ %>
                             <h5>Usted no a cargado su dirección todavía</h5>
                             <asp:Button ID="btnCargar" runat="server" Text="Cargar" CssClass="EditarDireccion" />
