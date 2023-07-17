@@ -123,7 +123,7 @@ namespace Conexiones
             AccesoSQL datos = new AccesoSQL();
             try
             {
-                datos.Consulta("UPDATE Direccion SET Calle = @calle, Altura = @altura, Localidad = @localidad, CP = @cp, Provincia = @provincia WHERE ID_Direccion = @ID");
+                datos.Consulta("UPDATE Direccion SET Calle = @calle, Altura = @altura, Localidad = @localidad, CP = @cp, Provincia = @provincia WHERE ID_Usuario = @ID");
                 datos.SetParametros("@ID", direccion.Id);
                 datos.SetParametros("@calle", direccion.Calle);
                 datos.SetParametros("@localidad", direccion.Localidad);

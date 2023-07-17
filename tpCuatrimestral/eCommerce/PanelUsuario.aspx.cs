@@ -59,7 +59,7 @@ namespace eCommerce
 
                     user.DireccionUsuario = new Direccion();
                     DireccionNegocio datosDireccion = new DireccionNegocio();
-                    user.DireccionUsuario = datosDireccion.Buscar(user.DireccionUsuario.Id);
+                    user.DireccionUsuario = datosDireccion.Buscar(user.Id);
                 }           
             }
         }
@@ -140,7 +140,21 @@ namespace eCommerce
 
         protected void BtnEditarDireccion_Click(object sender, EventArgs e)
         {
+            txbCalle.Enabled = true;
+            txbAltura.Enabled = true;
+            txbLocalidad.Enabled = true;
+            txbCp.Enabled = true;
+            txbProvincia.Enabled = true;
 
+            btnCancelarEdicionDire.Enabled = true;
+            btnCancelarEdicionDire.Visible = true;
+
+            btnGuardarDireccion.Enabled = true;
+            btnGuardarDireccion.Visible = true;
+
+            BtnEditarDireccion.Enabled = false;
+            BtnEditarDireccion.Visible = false;
+            
         }
 
         protected void btnCargar_Click(object sender, EventArgs e)
@@ -222,7 +236,6 @@ namespace eCommerce
             }
             else
             {
-                user.DireccionUsuario = null;
                 user.DireccionUsuario.Calle = txbCalle.Text.ToString();
                 user.DireccionUsuario.Altura = int.Parse(txbAltura.Text);
                 user.DireccionUsuario.Localidad = txbLocalidad.Text.ToString();
