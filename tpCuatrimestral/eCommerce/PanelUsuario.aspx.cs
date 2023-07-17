@@ -156,5 +156,34 @@ namespace eCommerce
             user.DireccionUsuario = new Direccion();
             Session["Usuario"] = user;
         }
+
+        protected void btnCancelarEdicionDire_Click(object sender, EventArgs e)
+        {
+            if(user.DireccionUsuario == null || user.DireccionUsuario.Id == 0)
+            {
+                btnGuardarDireccion.Enabled = false;
+                btnGuardarDireccion.Visible = false;
+
+                btnCancelarEdicionDire.Enabled = false;
+                btnCancelarEdicionDire.Visible = false;
+
+                btnCargar.Enabled = true;
+                btnCargar.Visible = true;
+
+                user.DireccionUsuario = null;
+                Session["Usuario"] = user;
+            }
+            else
+            {
+                btnGuardarDireccion.Enabled = false;
+                btnGuardarDireccion.Visible = false;
+
+                btnCancelarEdicionDire.Enabled = false;
+                btnCancelarEdicionDire.Visible = false;
+
+                BtnEditarDireccion.Enabled = true;
+                BtnEditarDireccion.Visible = true;
+            }
+        }
     }
 }

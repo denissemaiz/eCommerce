@@ -123,7 +123,8 @@
                                 Enabled="false"
                                 Visible="false"
                                 Text="Cancelar"
-                                CssClass="btn btn-secondary" />
+                                CssClass="btn btn-secondary" 
+                                OnClick="btnCancelarEdicionDire_Click"/>
                             <asp:Button ID="btnGuardarDireccion" runat="server"
                                 Enabled="false"
                                 Visible="false"
