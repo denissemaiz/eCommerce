@@ -105,6 +105,12 @@
                                         CssClass="form-control"
                                         placeholder="Localidad"></asp:TextBox>
                                 </div>
+                                <div class="col">
+                                    <asp:TextBox ID="txbCp" runat="server"
+                                        Enabled="false"
+                                        CssClass="form-control"
+                                        placeholder="Cp"></asp:TextBox>
+                                </div>
                             </div>
                             <div class="row mb-2">
                                 <div class="col">
@@ -129,7 +135,8 @@
                                 Enabled="false"
                                 Visible="false"
                                 Text="Guardar"
-                                CssClass="btn btn-primary" />
+                                CssClass="btn btn-primary" 
+                                OnClick="btnGuardarDireccion_Click"/>
                                 
                             <%--<ul>
                                 <li><i class="fa-solid fa-location-dot"></i> <%:user.DireccionUsuario.Calle%>, <%:user.DireccionUsuario.Altura %></li>

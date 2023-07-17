@@ -31,12 +31,21 @@ namespace eCommerce
 
                 user.DireccionUsuario = new Direccion();
                 DireccionNegocio datosDireccion = new DireccionNegocio();
-                user.DireccionUsuario = datosDireccion.Buscar(user.DireccionUsuario.Id);
+                user.DireccionUsuario = datosDireccion.Buscar(user.Id);
 
                 txbNombres.Text = user.DatosUsuario.Nombres;
                 txbApellidos.Text = user.DatosUsuario.Apellidos;
                 txbTelefono.Text = user.DatosUsuario.Telefono;
                 txbMail.Text = user.Mail;
+
+                if(user.DireccionUsuario != null)
+                {
+                    txbCalle.Text = user.DireccionUsuario.Calle;
+                    txbAltura.Text = user.DireccionUsuario.Altura.ToString();
+                    txbLocalidad.Text = user.DireccionUsuario.Localidad;
+                    txbCp.Text = user.DireccionUsuario.Cp.ToString();
+                    txbProvincia.Text = user.DireccionUsuario.Provincia.ToString();
+                }
             }
             else
             {
@@ -139,6 +148,7 @@ namespace eCommerce
             txbCalle.Enabled = true; 
             txbAltura.Enabled = true;
             txbLocalidad.Enabled = true;
+            txbCp.Enabled = true;
             txbProvincia.Enabled = true;
 
             btnCancelarEdicionDire.Enabled = true;
@@ -184,6 +194,65 @@ namespace eCommerce
                 BtnEditarDireccion.Enabled = true;
                 BtnEditarDireccion.Visible = true;
             }
+        }
+
+        protected void btnGuardarDireccion_Click(object sender, EventArgs e)
+        {
+            DireccionNegocio dire = new DireccionNegocio();
+            if(user.DireccionUsuario == null)
+            {
+                user.DireccionUsuario = new Direccion();
+                user.DireccionUsuario.Id = user.Id;
+                user.DireccionUsuario.Calle = txbCalle.Text.ToString();
+                user.DireccionUsuario.Altura = int.Parse(txbAltura.Text);
+                user.DireccionUsuario.Localidad = txbLocalidad.Text.ToString();
+                user.DireccionUsuario.Provincia = txbProvincia.Text.ToString();
+                user.DireccionUsuario.Cp = int.Parse(txbCp.Text.ToString());
+
+                try
+                {
+                    dire.Agregar(user.DireccionUsuario);
+                    Session["Usuario"] = user;
+                }
+                catch (Exception ex)
+                {
+                    Session["error"] = ex.ToString();
+                    Response.Redirect("Error.aspx");
+                }
+            }
+            else
+            {
+                user.DireccionUsuario = null;
+                user.DireccionUsuario.Calle = txbCalle.Text.ToString();
+                user.DireccionUsuario.Altura = int.Parse(txbAltura.Text);
+                user.DireccionUsuario.Localidad = txbLocalidad.Text.ToString();
+                user.DireccionUsuario.Provincia = txbProvincia.Text.ToString();
+                user.DireccionUsuario.Cp = int.Parse(txbCp.Text.ToString());
+                try
+                {
+                    dire.Modificar(user.DireccionUsuario);
+                    Session["Usuario"] = user;
+                }
+                catch (Exception ex)
+                {
+                    Session["error"] = ex.ToString();
+                    Response.Redirect("Error.aspx");
+                }
+            }
+            txbCalle.Enabled = false;
+            txbAltura.Enabled = false;
+            txbLocalidad.Enabled = false;
+            txbCp.Enabled = false;
+            txbProvincia.Enabled = false;
+
+            btnGuardarDireccion.Enabled = false;
+            btnGuardarDireccion.Visible = false;
+
+            btnCancelarEdicionDire.Enabled = false;
+            btnCancelarEdicionDire.Visible = false;
+
+            BtnEditarDireccion.Enabled = true;
+            BtnEditarDireccion.Visible = true;
         }
     }
 }

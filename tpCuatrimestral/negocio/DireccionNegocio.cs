@@ -58,9 +58,9 @@ namespace Conexiones
                     aux = new Direccion();
                     aux.Id = (int)datos.Lector["ID_Usuario"];
                     aux.Calle = (string)datos.Lector["Calle"];
-                    aux.Altura = (int)datos.Lector["Altura"];
+                    aux.Altura = Convert.ToInt32((Int16)datos.Lector["Altura"]);
                     aux.Localidad = (string)datos.Lector["Localidad"];
-                    aux.Cp = (int)datos.Lector["CP"];
+                    aux.Cp = Convert.ToInt32((Int16)datos.Lector["CP"]);
                     aux.Provincia = (string)datos.Lector["Provincia"];
                 }
                 return aux;
@@ -81,8 +81,13 @@ namespace Conexiones
 
             try
             {
-                datos.Consulta("INSERT INTO Direccion (Calle, Altura, Localidad, CP, Provincia) VALUES('" + nuevo.Calle + "', '" + nuevo.Altura + "', '" + nuevo.Localidad + "" +
-                    ", '" + nuevo.Cp + "', '" + nuevo.Provincia + "'')");
+                datos.Consulta("INSERT INTO Direccion (ID_Usuario, Calle, Altura, Localidad, CP, Provincia) VALUES(@ID, @calle, @altura, @localidad, @cp, @provincia)");
+                datos.SetParametros("@ID", nuevo.Id);
+                datos.SetParametros("@calle", nuevo.Calle);
+                datos.SetParametros("@altura", (Int16)nuevo.Altura);
+                datos.SetParametros("@localidad", nuevo.Localidad);
+                datos.SetParametros("@cp", (Int16)nuevo.Cp);
+                datos.SetParametros("@provincia", nuevo.Provincia);
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
@@ -118,8 +123,13 @@ namespace Conexiones
             AccesoSQL datos = new AccesoSQL();
             try
             {
-                datos.Consulta("UPDATE Direccion SET Calle = '" + direccion.calle + "', Altura = " + direccion.altura + ", Localidad = '" + direccion.localidad + "', CP = " +
-                    "" + direccion.cp + ", Provincia = '" + direccion.provincia + "' WHERE ID_Direccion =" + direccion.id);
+                datos.Consulta("UPDATE Direccion SET Calle = @calle, Altura = @altura, Localidad = @localidad, CP = @cp, Provincia = @provincia WHERE ID_Direccion = @ID");
+                datos.SetParametros("@ID", direccion.Id);
+                datos.SetParametros("@calle", direccion.Calle);
+                datos.SetParametros("@localidad", direccion.Localidad);
+                datos.SetParametros("@cp", (Int16)direccion.Cp);
+                datos.SetParametros("@altura",(Int16)direccion.Altura);
+                datos.SetParametros("@provincia",direccion.Provincia);
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
