@@ -114,7 +114,10 @@
                                         placeholder="Provincia"></asp:TextBox>
                                 </div>
                             </div>
-                            <asp:Button ID="BtnEditarDireccion" runat="server" Text="Editar" CssClass="EditarDireccion" />
+                            <asp:Button ID="BtnEditarDireccion" runat="server" 
+                                Text="Editar"
+                                CssClass="EditarDireccion" 
+                                OnClick="BtnEditarDireccion_Click"/>
                             <%--<ul>
                                 <li><i class="fa-solid fa-location-dot"></i> <%:user.DireccionUsuario.Calle%>, <%:user.DireccionUsuario.Altura %></li>
                                 <li> <%:user.DireccionUsuario.Localidad%>, <%:user.DireccionUsuario.Cp%></li>
@@ -122,7 +125,10 @@
                             </ul>--%>
                         <%}else{ %>
                             <h5>Usted no a cargado su dirección todavía</h5>
-                            <asp:Button ID="btnCargar" runat="server" Text="Cargar" CssClass="EditarDireccion" />
+                            <asp:Button ID="btnCargar" runat="server" 
+                                Text="Cargar" 
+                                CssClass="EditarDireccion" 
+                                OnClick="btnCargar_Click"/>
 
 
                         <%} %>

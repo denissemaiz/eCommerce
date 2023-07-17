@@ -32,8 +32,6 @@ namespace eCommerce
                 user.DireccionUsuario = new Direccion();
                 DireccionNegocio datosDireccion = new DireccionNegocio();
                 user.DireccionUsuario = datosDireccion.Buscar(user.DireccionUsuario.Id);
-                if (user.DireccionUsuario == null)
-                    user.DireccionUsuario = new Direccion();
 
                 txbNombres.Text = user.DatosUsuario.Nombres;
                 txbApellidos.Text = user.DatosUsuario.Apellidos;
@@ -53,8 +51,6 @@ namespace eCommerce
                     user.DireccionUsuario = new Direccion();
                     DireccionNegocio datosDireccion = new DireccionNegocio();
                     user.DireccionUsuario = datosDireccion.Buscar(user.DireccionUsuario.Id);
-                    if(user.DireccionUsuario == null)
-                        user.DireccionUsuario = new Direccion();
                 }           
             }
         }
@@ -131,6 +127,28 @@ namespace eCommerce
             {
                 Session["Usuario"] = user;
             }
+        }
+
+        protected void BtnEditarDireccion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnCargar_Click(object sender, EventArgs e)
+        {
+            txbCalle.Enabled = true; 
+            txbAltura.Enabled = true;
+            txbLocalidad.Enabled = true;
+            txbProvincia.Enabled = true;
+
+            btnCargar.Enabled = false;
+            btnCargar.Visible = false;
+
+            BtnEditarDireccion.Enabled = false;
+            BtnEditarDireccion.Visible = false;
+
+            user.DireccionUsuario = new Direccion();
+            Session["Usuario"] = user;
         }
     }
 }
