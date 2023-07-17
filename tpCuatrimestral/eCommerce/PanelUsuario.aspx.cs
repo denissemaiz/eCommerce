@@ -83,6 +83,8 @@ namespace eCommerce
 
         protected void btnCancelarEditarDatosPersonales_Click(object sender, EventArgs e)
         {
+            if (txbMail.Text == "")
+                txbMail.Text = user.Mail;
             txbNombres.Enabled = false;
             txbApellidos.Enabled = false;
             txbTelefono.Enabled = false;
@@ -199,6 +201,12 @@ namespace eCommerce
             }
             else
             {
+                txbCalle.Text = user.DireccionUsuario.Calle;
+                txbAltura.Text = user.DireccionUsuario.Altura.ToString();
+                txbLocalidad.Text = user.DireccionUsuario.Localidad;
+                txbCp.Text = user.DireccionUsuario.Cp.ToString();
+                txbProvincia.Text = user.DireccionUsuario.Provincia.ToString();
+
                 btnGuardarDireccion.Enabled = false;
                 btnGuardarDireccion.Visible = false;
 

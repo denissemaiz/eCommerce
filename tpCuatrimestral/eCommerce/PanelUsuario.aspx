@@ -44,6 +44,11 @@
                                     Enabled="false"
                                     CssClass="form-control"
                                     placeholder="Telefono"></asp:TextBox>
+                                <asp:RegularExpressionValidator ID="revTelefono" runat="server"
+                                    ControlToValidate="txbTelefono"
+                                    ValidationExpression="(^([0-9]*|\d*\d{1}?\d*)$)"
+                                    ForeColor="Red"
+                                    ErrorMessage="Solo se aceptan numeros"></asp:RegularExpressionValidator>
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -52,7 +57,15 @@
                                 <asp:TextBox ID="txbMail" runat="server"
                                     Enabled="false"
                                     CssClass="form-control"
+                                    TextMode="Email"
                                     placeholder="E-Mail"></asp:TextBox>
+                                
+                                    <asp:RequiredFieldValidator ID="rfvMail" runat="server"
+                                        ControlToValidate="txbMail"
+                                        Display="Dynamic"
+                                        CssClass="invalid-feedback"
+                                        ForeColor="Red"
+                                        Text="Debe ingresar su dirección de correo electronico"></asp:RequiredFieldValidator>
                             </div>
                         </div>
                         <asp:Button ID="BtnEditarDatosPersonales" runat="server" 
@@ -61,10 +74,11 @@
                             OnClick="BtnEditarDatosPersonales_Click"/>
 
                         <asp:Button ID="btnCancelarEditarDatosPersonales" runat="server"
-                            Text="Cancelar"
-                            CssClass="btn btn-secondary"
                             Enabled="false"
                             Visible="false" 
+                            CausesValidation="false"
+                            Text="Cancelar"
+                            CssClass="btn btn-secondary"
                             OnClick="btnCancelarEditarDatosPersonales_Click"/>
                         <asp:Button ID="btnGuardarDatosPersonales" runat="server"
                             Text="Guardar"
@@ -90,34 +104,85 @@
                                         Enabled="false"
                                         CssClass="form-control"
                                         placeholder="Calle"></asp:TextBox>
+
+                                    <asp:RequiredFieldValidator ID="rfvCalle" runat="server"
+                                        ControlToValidate="txbCalle"
+                                        Display="Dynamic"
+                                        CssClass="invalid-feedback"
+                                        ForeColor="Red"
+                                        Text="Debe ingresar un nombre de calle"></asp:RequiredFieldValidator>
                                 </div>
+
                                 <div class="col">
                                     <asp:TextBox ID="txbAltura" runat="server"
                                         Enabled="false"
                                         CssClass="form-control"
                                         placeholder="Altura"></asp:TextBox>
+
+                                    <asp:RequiredFieldValidator ID="rfvAltura" runat="server"
+                                        ControlToValidate="txbAltura"
+                                        Display="Dynamic"
+                                        CssClass="invalid-feedback"
+                                        ForeColor="Red"
+                                        Text="Debe ingresar el numero de su dirección"></asp:RequiredFieldValidator>
+
+                                    <asp:RegularExpressionValidator ID="revAltura" runat="server"
+                                        ControlToValidate="txbAltura"
+                                        ValidationExpression="(^([0-9]*|\d*\d{1}?\d*)$)"
+                                        ForeColor="Red"
+                                        ErrorMessage="Solo se aceptan numeros"></asp:RegularExpressionValidator>
                                 </div>
                             </div>
+
                             <div class="row mb-2">                              
                                 <div class="col">
                                     <asp:TextBox ID="txbLocalidad" runat="server"
                                         Enabled="false"
                                         CssClass="form-control"
                                         placeholder="Localidad"></asp:TextBox>
+
+                                    <asp:RequiredFieldValidator ID="rfvLocalidad" runat="server"
+                                        ControlToValidate="txbLocalidad"
+                                        Display="Dynamic"
+                                        CssClass="invalid-feedback"
+                                        ForeColor="Red"
+                                        Text="Debe ingresar el nombre de su localidad"></asp:RequiredFieldValidator>
                                 </div>
+
                                 <div class="col">
                                     <asp:TextBox ID="txbCp" runat="server"
                                         Enabled="false"
                                         CssClass="form-control"
                                         placeholder="Cp"></asp:TextBox>
+
+                                    <asp:RequiredFieldValidator ID="rfvCp" runat="server"
+                                        ControlToValidate="txbCp"
+                                        Display="Dynamic"
+                                        CssClass="invalid-feedback"
+                                        ForeColor="Red"
+                                        Text="Debe ingresar su código postal"></asp:RequiredFieldValidator>
+
+                                    <asp:RegularExpressionValidator ID="revCp" runat="server"
+                                        ControlToValidate="txbCp"
+                                        ValidationExpression="(^([0-9]*|\d*\d{1}?\d*)$)"
+                                        ForeColor="Red"
+                                        ErrorMessage="Solo se aceptan numeros"></asp:RegularExpressionValidator>
                                 </div>
                             </div>
+
                             <div class="row mb-2">
                                 <div class="col">
                                     <asp:TextBox ID="txbProvincia" runat="server" 
                                         Enabled="false"
                                         CssClass="form-control"
                                         placeholder="Provincia"></asp:TextBox>
+
+                                    <asp:RequiredFieldValidator ID="rfvProvincia" runat="server"
+                                        ControlToValidate="txbProvincia"
+                                        Display="Dynamic"
+                                        CssClass="invalid-feedback"
+                                        ForeColor="Red"
+                                        Text="Debe ingresar el nombre de su provincia"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                             <asp:Button ID="BtnEditarDireccion" runat="server" 
@@ -128,9 +193,11 @@
                             <asp:Button ID="btnCancelarEdicionDire" runat="server"
                                 Enabled="false"
                                 Visible="false"
+                                CausesValidation="false"
                                 Text="Cancelar"
                                 CssClass="btn btn-secondary" 
                                 OnClick="btnCancelarEdicionDire_Click"/>
+
                             <asp:Button ID="btnGuardarDireccion" runat="server"
                                 Enabled="false"
                                 Visible="false"
