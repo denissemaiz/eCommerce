@@ -275,5 +275,10 @@ namespace eCommerce
             BtnEditarDireccion.Enabled = true;
             BtnEditarDireccion.Visible = true;
         }
+
+        protected void BtonCambiarContraseña_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/User/CambiarContraseña.aspx", false);
+        }
     }
 }

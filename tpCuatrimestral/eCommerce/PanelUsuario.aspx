@@ -67,10 +67,13 @@
                                         Text="Debe ingresar su dirección de correo electronico"></asp:RequiredFieldValidator>
                             </div>
                         </div>
+
                         <asp:Button ID="BtnEditarDatosPersonales" runat="server" 
                             Text="Editar" 
                             CssClass="EditarDatos" 
                             OnClick="BtnEditarDatosPersonales_Click"/>
+
+                           <asp:Button Text="Cambiar contraseña" runat="server" CssClass="EditarDatos" OnClick="BtonCambiarContraseña_Click"/>
 
                         <asp:Button ID="btnCancelarEditarDatosPersonales" runat="server"
                             Enabled="false"
@@ -219,6 +222,9 @@
 
                         <%} %>
                     </div>
+
+                    
+
                 </div>
 
                 <div class="Centralxd">
