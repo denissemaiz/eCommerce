@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <%if (Session["librosAgregados"] != null)
+    <%if (LibrosSinRepetidos.Count() != 0)
       { %>
         <asp:Repeater ID="repLibros" runat="server">
             <ItemTemplate>
@@ -28,7 +28,7 @@
         </asp:Repeater>
         <div>       
             <h5>Total a pagar: $
-                <asp:Label ID="PrecioFinal" runat="server" Text="Precion Final"> Total a pagar </asp:Label>
+                <asp:Label ID="PrecioFinal" runat="server" Text="Precion Final" OnLoad="PrecioFinal_Load"> Total a pagar </asp:Label>
             </h5>   
          </div>         
     <%}

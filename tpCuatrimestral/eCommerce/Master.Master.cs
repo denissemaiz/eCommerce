@@ -44,6 +44,7 @@ namespace eCommerce
                 LibroNegocio manejoLista = new LibroNegocio();
                 repProductos.DataSource = manejoLista.RemoveDuplicadosLibro(carritoNegocio.Libros);
                 repProductos.DataBind();
+                lblContador_Load(sender, e);
             }
             
         }
@@ -68,7 +69,7 @@ namespace eCommerce
             if (busqueda != null && carritoNegocio != null)
             {
                 if(carritoNegocio.QuitarLibro(busqueda.First().Id))
-                    repProductos_Load(sender, e);
+                repProductos_Load(sender, e);
             }
         }
 
@@ -88,6 +89,5 @@ namespace eCommerce
             }
             return false;
         }
-
     }
 }
