@@ -33,15 +33,6 @@ namespace eCommerce.User
         protected global::System.Web.UI.WebControls.TextBox txbContraseñaActual;
 
         /// <summary>
-        /// Control lblErrorCoincidencia.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorCoincidencia;
-
-        /// <summary>
         /// Control rfvContraseñaActual.
         /// </summary>
         /// <remarks>
@@ -103,6 +94,15 @@ namespace eCommerce.User
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvConfContra;
+
+        /// <summary>
+        /// Control cmpvConfPass.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cmpvConfPass;
 
         /// <summary>
         /// Control btnAceptar.

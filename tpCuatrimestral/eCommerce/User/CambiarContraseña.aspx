@@ -10,11 +10,7 @@
                 <asp:TextBox ID="txbContraseñaActual" runat="server" 
                     CssClass="form-control" 
                     TextMode="Password" 
-                    placeholder="*********">
-                </asp:TextBox>
-                <asp:Label ID="lblErrorCoincidencia" runat="server"
-                    Visible="false"
-                    CssClass="invalid-feedback"></asp:Label>
+                    placeholder="*********"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvContraseñaActual" runat="server"
                     ControlToValidate="txbContraseñaActual"
                     Display="Dynamic"
@@ -52,6 +48,13 @@
                     ErrorMessage="Debe confirmar su nueva contraseña"
                     CssClass="invalid-feedback"
                     ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:CompareValidator ID="cmpvConfPass" runat="server"
+                    ControlToValidate="txbContraseñaNuevaConfirmar"
+                    ControlToCompare="txbContraseñaNueva"
+                    Display="Dynamic"
+                    CssClass="invalid-feedback"
+                    ForeColor="Red"
+                    ErrorMessage="Contraseñas no coinciden"></asp:CompareValidator>
                 <br />
                 <a href="..\Default.aspx" class="btn btn-secondary">Cancelar</a>
                 <asp:Button ID="btnAceptar" runat="server" 
