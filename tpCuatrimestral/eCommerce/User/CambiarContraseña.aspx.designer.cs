@@ -24,13 +24,31 @@ namespace eCommerce.User
         protected global::System.Web.UI.WebControls.Label LblContraseñaActual;
 
         /// <summary>
-        /// Control TxtContraseñaActual.
+        /// Control txbContraseñaActual.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtContraseñaActual;
+        protected global::System.Web.UI.WebControls.TextBox txbContraseñaActual;
+
+        /// <summary>
+        /// Control lblErrorCoincidencia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorCoincidencia;
+
+        /// <summary>
+        /// Control rfvContraseñaActual.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvContraseñaActual;
 
         /// <summary>
         /// Control LblContraseñaNueva.
@@ -42,13 +60,22 @@ namespace eCommerce.User
         protected global::System.Web.UI.WebControls.Label LblContraseñaNueva;
 
         /// <summary>
-        /// Control txtContraseñaNueva.
+        /// Control txbContraseñaNueva.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtContraseñaNueva;
+        protected global::System.Web.UI.WebControls.TextBox txbContraseñaNueva;
+
+        /// <summary>
+        /// Control rfvContraNueva.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvContraNueva;
 
         /// <summary>
         /// Control lblContraseñaConfirmar.
@@ -60,13 +87,22 @@ namespace eCommerce.User
         protected global::System.Web.UI.WebControls.Label lblContraseñaConfirmar;
 
         /// <summary>
-        /// Control txtContraseñaNuevaConfirmar.
+        /// Control txbContraseñaNuevaConfirmar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtContraseñaNuevaConfirmar;
+        protected global::System.Web.UI.WebControls.TextBox txbContraseñaNuevaConfirmar;
+
+        /// <summary>
+        /// Control rfvConfContra.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvConfContra;
 
         /// <summary>
         /// Control btnAceptar.
