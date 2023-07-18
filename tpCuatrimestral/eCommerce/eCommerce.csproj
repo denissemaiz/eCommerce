@@ -86,6 +86,7 @@
     <Content Include="User\Login.aspx" />
     <Content Include="User\Logout.aspx" />
     <Content Include="User\RecuperarContraseña.aspx" />
+    <Content Include="User\RecuperarPasswordMail.aspx" />
     <Content Include="User\Registro.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -209,6 +210,13 @@
     </Compile>
     <Compile Include="User\RecuperarContraseña.aspx.designer.cs">
       <DependentUpon>RecuperarContraseña.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\RecuperarPasswordMail.aspx.cs">
+      <DependentUpon>RecuperarPasswordMail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\RecuperarPasswordMail.aspx.designer.cs">
+      <DependentUpon>RecuperarPasswordMail.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\Registro.aspx.cs">
       <DependentUpon>Registro.aspx</DependentUpon>
