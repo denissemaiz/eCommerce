@@ -16,13 +16,12 @@ namespace dominio
         public ServicioMail() 
         {
             server = new SmtpClient();
-            server.Credentials = new NetworkCredential("Acavaelmail@mail","Proeycto");
+            server.Credentials = new NetworkCredential("c2d95ed84f907e", "********bce1");
             server.EnableSsl = true;
-            server.Port = 587;
-            server.Host = "smtp.gmail.com";
+            server.Port = 2525;
+            server.Host = "sandbox.smtp.mailtrap.ios";
         
         }
-
 
     }
 }
