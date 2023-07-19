@@ -59,7 +59,6 @@
                                     CssClass="form-control"
                                     TextMode="Email"
                                     placeholder="E-Mail"></asp:TextBox>
-                                
                                     <asp:RequiredFieldValidator ID="rfvMail" runat="server"
                                         ControlToValidate="txbMail"
                                         Display="Dynamic"

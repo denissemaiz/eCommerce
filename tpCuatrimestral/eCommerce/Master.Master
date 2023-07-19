@@ -75,18 +75,19 @@
                                 href="#offcanvasCarrito"
                                 data-bs-toggle="offcanvas" 
                                 arias-controls="offcanvasCarrito">
-                                <%if (Session["librosAgregados"] == null) { %>
+                                <%if (carritoNegocio == null || carritoNegocio.Libros == null || carritoNegocio.Libros.Count() == 0) { %>
                                     <i class="bi bi-cart"></i>              
                                 <%}else{ %>
                                     <i class="bi bi-cart-fill"></i>
+                                    <span>
+                                        <asp:Label ID="lblContador"
+                                            CssClass="translate-middle badge rounded-pill bg-danger" 
+                                            OnLoad="lblContador_Load" 
+                                            Text="" 
+                                            runat="server"></asp:Label>
+                                    </span>
                                 <%} %>
-                                <span>
-                                    <asp:Label ID="lblContador"
-                                        CssClass="translate-middle badge rounded-pill bg-danger" 
-                                        OnLoad="lblContador_Load" 
-                                        Text="" 
-                                        runat="server"></asp:Label>
-                                </span>
+                                
                             </a>
                         </li>
                     </ul>

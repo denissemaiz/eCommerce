@@ -74,10 +74,28 @@ Create table Autor(
 )
 GO
 
+create table Estados(
+ID_Estado int not null primary key,
+TipoEstados varchar(30)
+)
+GO
+
+
 create table Compra(
 	ID_Compra int not null identity(1,1) primary key,
 	ID_Usuario int not null foreign key references Usuario(ID_Usuario),
+	ID_Estado int null foreign key references Estados(ID_Estado),
+	FechaCompra datetime DEFAULT GETDATE(),
 	PrecioTotal money
+)
+GO
+
+create table Estados_X_Compra(
+	ID_Compra int,
+	ID_Estado int,
+	Primary key(ID_Compra, ID_Estado),
+	Foreign key(ID_Compra) references Compra(ID_Compra),
+	Foreign key(ID_Estado) references Estados(ID_Estado)
 )
 GO
 
@@ -249,4 +267,11 @@ VALUES
     (8, 1),
     (6, 1),
     (7, 7);
+GO
+
+insert into Estados (ID_Estado, TipoEstados) values
+(1, 'En proceso'),
+(2, 'Enviado'),
+(3, 'Completo'),
+(4, 'Cancelado');
 GO
