@@ -238,6 +238,35 @@ namespace Conexiones
             }
         }
 
+
+
+
+
+
+        public void NuevaContraseña (string Contraseña)
+        {
+            AccesoSQL datos = new AccesoSQL();
+
+            try
+            {
+                datos.Consulta("UPDATE Usuario SET NombreUsuario = @nombre, Mail = @mail, Contraseña = @pass, EsAdmin = @admin where ID_Usuario = @ID ");
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+
+
+
+
+
         public List<Usuario> RemoveDuplicadosUsuario(List<Usuario> inputList)
         {
             Dictionary<string, string> uniqueStore = new Dictionary<string, string>();

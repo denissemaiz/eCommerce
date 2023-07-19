@@ -26,6 +26,7 @@
                     ErrorMessage="Debe ingresar una contraseña"
                     CssClass="invalid-feedback"
                     ForeColor="Red"></asp:RequiredFieldValidator>
+                    <a href="RecuperarPasswordMail.aspx">Olvido su contraseña?</a>
                 <br />
                 <a href="..\Default.aspx" class="btn btn-secondary">Cancelar</a>
                 <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" CssClass="btn btn-primary" OnClick="btnIngresar_Click1"/>
