@@ -58,14 +58,14 @@ namespace eCommerce
                 {
                     librosCarrito.Add(listarLibros.First());
                     Session.Add("librosAgregados", librosCarrito);
-                    Response.Redirect("Productos.aspx");
+                    Response.Redirect("Detalles.aspx?cod=" + codigo);
                 }
                 else
                 {
                     librosCarrito = (List<Libro>)Session["librosAgregados"];
                     librosCarrito.Add(listarLibros.First());
                     Session.Add("librosAgregados", librosCarrito);
-                    Response.Redirect("Productos.aspx");
+                    Response.Redirect("Detalles.aspx?cod=" + codigo);
                 }
             }
         }

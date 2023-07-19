@@ -99,6 +99,15 @@ create table Estados_X_Compra(
 )
 GO
 
+create table Estados_X_Compra(
+	ID_Compra int,
+	ID_Estado int,
+	Primary key(ID_Compra, ID_Estado),
+	Foreign key(ID_Compra) references Compra(ID_Compra),
+	Foreign key(ID_Estado) references Estados(ID_Estado)
+)
+GO
+
 Create table Genero_X_Libro(
 	ID_Libro int,
 	ID_Genero int,

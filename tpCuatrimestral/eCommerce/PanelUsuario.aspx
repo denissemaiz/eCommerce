@@ -7,9 +7,6 @@
     <link rel="stylesheet" type="text/css" href="Styles\EstiloPanelUser.css">
   <script src="https://kit.fontawesome.com/acc2095c9d.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
-    <body>
         <%--<asp:Repeater ID="RepeaterDatos" runat="server">
             <ItemTemplate>--%>
         <%if (Session["Usuario"] != null) 
@@ -213,7 +210,7 @@
                                 <li> <%:user.DireccionUsuario.Provincia%></li>
                             </ul>--%>
                         <%}else{ %>
-                            <h5>Usted no a cargado su dirección todavía</h5>
+                            <h5>Usted no ha cargado su dirección todavía</h5>
                             <asp:Button ID="btnCargar" runat="server" 
                                 Text="Cargar" 
                                 CssClass="EditarDireccion" 
@@ -229,7 +226,20 @@
 
                 <div class="Centralxd">
                     <h2><b>Pedidos</b></h2>
-                    <p>Aca van los pedidos</p>
+                    <asp:GridView ID="DGVPedidos" runat="server"
+                        DataKeyNames="Id"
+                        CssClass="table"
+                        AutoGenerateColumns="false"
+                        OnLoad="DGVPedidos_Load"
+                        OnSelectedIndexChanged="DGVPedidos_SelectedIndexChanged"
+                        OnSelectedIndexChanging="DGVPedidos_SelectedIndexChanging">
+                        <Columns>
+                            <asp:BoundField HeaderText="Fecha" DataField="FechaCompra" />
+                            <asp:BoundField HeaderText="ID" DataField="Id" />                           
+                            <asp:BoundField HeaderText="Estado" DataField="Estado" />
+                            <asp:CommandField HeaderText="Accion" ShowSelectButton="true" SelectText="Cancelar" />
+                        </Columns>
+                    </asp:GridView>
                 </div>
             
             </div>
@@ -270,6 +280,4 @@
     </div>
 
   </div>--%>
-</body>
-
 </asp:Content>
