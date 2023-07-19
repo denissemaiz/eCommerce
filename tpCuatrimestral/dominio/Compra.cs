@@ -11,6 +11,8 @@ namespace Clases
     {
         private int id;
         private int idCliente;
+        private string estado;
+        private DateTime fechaCompra;
         private Carrito carrito;
 
         public Compra()
@@ -18,11 +20,13 @@ namespace Clases
 
         }
 
-        public Compra(int id, int idCliente, Carrito carrito)
+        public Compra(int id, int idCliente, Carrito carrito, string estado, DateTime fechaCompra)
         {
             this.id = id;
             this.idCliente = idCliente;
             this.carrito = carrito;
+            this.estado = estado;
+            this.fechaCompra = fechaCompra;
         }
 
         public int Id
@@ -39,6 +43,16 @@ namespace Clases
         {
             get { return carrito; }
             set { carrito = value; }
+        }
+        public string Estado
+        {
+            get { return estado; }
+            set { estado = value; }
+        }
+        public DateTime FechaCompra
+        {
+            get { return fechaCompra; }
+            set { fechaCompra = value; }
         }
     }
 }

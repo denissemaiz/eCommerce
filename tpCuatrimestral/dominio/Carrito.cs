@@ -9,8 +9,7 @@ namespace dominio
 {
     public class Carrito
     {
-        private List <Libro> libros;
-        
+        private List <Libro> libros;        
         private decimal monto;
 
         public Carrito()
