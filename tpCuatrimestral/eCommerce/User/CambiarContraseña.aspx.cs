@@ -16,8 +16,7 @@ namespace eCommerce.User
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack && Session["Usuario"] != null || user == null && Session["Usuario"] != null)
-                user = (Usuario)Session["Usuario"];
-                
+                user = (Usuario)Session["Usuario"];  
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e)
