@@ -7,92 +7,110 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace eCommerce
+namespace eCommerce.User
 {
 
 
-    public partial class Master
+    public partial class CambiarContraseña
     {
 
         /// <summary>
-        /// Control head.
+        /// Control LblContraseñaActual.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.Label LblContraseñaActual;
 
         /// <summary>
-        /// Control form1.
+        /// Control txbContraseñaActual.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.TextBox txbContraseñaActual;
 
         /// <summary>
-        /// Control lblContador.
+        /// Control rfvContraseñaActual.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblContador;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvContraseñaActual;
 
         /// <summary>
-        /// Control txtbxBuscar.
+        /// Control LblContraseñaNueva.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtbxBuscar;
+        protected global::System.Web.UI.WebControls.Label LblContraseñaNueva;
 
         /// <summary>
-        /// Control btnBuscar.
+        /// Control txbContraseñaNueva.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscar;
+        protected global::System.Web.UI.WebControls.TextBox txbContraseñaNueva;
 
         /// <summary>
-        /// Control repGeneros.
+        /// Control rfvContraNueva.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater repGeneros;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvContraNueva;
 
         /// <summary>
-        /// Control repAutores.
+        /// Control lblContraseñaConfirmar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater repAutores;
+        protected global::System.Web.UI.WebControls.Label lblContraseñaConfirmar;
 
         /// <summary>
-        /// Control repProductos.
+        /// Control txbContraseñaNuevaConfirmar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater repProductos;
+        protected global::System.Web.UI.WebControls.TextBox txbContraseñaNuevaConfirmar;
 
         /// <summary>
-        /// Control ContentPlaceHolder1.
+        /// Control rfvConfContra.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvConfContra;
+
+        /// <summary>
+        /// Control cmpvConfPass.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cmpvConfPass;
+
+        /// <summary>
+        /// Control btnAceptar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAceptar;
     }
 }

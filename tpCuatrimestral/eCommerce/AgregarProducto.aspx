@@ -18,36 +18,80 @@
             <div class="col-md-3">
                 <asp:Label for="txtCodigo" runat="server" CssClass="form-label"><b>Codigo:</b></asp:Label>
                 <asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvCodigo" runat="server" 
+                    ControlToValidate="txtCodigo"
+                    Display="Dynamic"
+                    ErrorMessage="Debe ingresar un código para el libro"
+                    CssClass="invalid-feedback"
+                    ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
 
             <div class="col-md-3">
                 <asp:Label for="txtTitulo" runat="server" CssClass="form-label"><b>Titulo:</b></asp:Label>
                 <asp:TextBox ID="txtTitulo" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvTitulo" runat="server" 
+                    ControlToValidate="txtTitulo"
+                    Display="Dynamic"
+                    ErrorMessage="Debe ingresar un titulo para el libro"
+                    CssClass="invalid-feedback"
+                    ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
 
             <div class="col-md-3">
                 <asp:Label for="txtGenero" runat="server" CssClass="form-label"><b>Genero:</b></asp:Label>
                 <asp:DropDownList ID="txtGenero" CssClass="form-select" runat="server"></asp:DropDownList>
+                <asp:RequiredFieldValidator ID="rfvGenero" runat="server"
+                    ControlToValidate="txtGenero"
+                    InitialValue="NA"
+                    Display="Dynamic"
+                    ErrorMessage="Debe seleccionar un genero para el libro"
+                    CssClass="invalid-feedback"
+                    ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
 
             <div class="col-md-3">
                 <asp:Label for="txtAutorNombre" runat="server" CssClass="form-label"><b>Nombre del autor:</b></asp:Label>
                 <asp:DropDownList ID="txtAutorNombre" CssClass="form-select" runat="server"></asp:DropDownList>
+                <asp:RequiredFieldValidator ID="rfvAutor" runat="server"
+                    ControlToValidate="txtAutorNombre"
+                    InitialValue="NA"
+                    Display="Dynamic"
+                    ErrorMessage="Debe seleccionar un autor para el libro"
+                    CssClass="invalid-feedback"
+                    ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
 
             <div class="col-md-6">
                 <asp:Label for="txtDescripcion" runat="server" CssClass="form-label"><b>Descripcion:</b></asp:Label>
                 <asp:TextBox ID="txtDescripcion" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvDescripcion" runat="server" 
+                    ControlToValidate="txtDescripcion"
+                    Display="Dynamic"
+                    ErrorMessage="Debe ingresar una descripción para el libro"
+                    CssClass="invalid-feedback"
+                    ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
 
             <div class="col-md-3">
                 <asp:Label for="txtStock" runat="server" CssClass="form-label"><b>Stock:</b></asp:Label>
                 <asp:TextBox ID="txtStock" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvStock" runat="server" 
+                    ControlToValidate="txtStock"
+                    Display="Dynamic"
+                    ErrorMessage="Debe ingresar un valor de stock para el libro"
+                    CssClass="invalid-feedback"
+                    ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
 
             <div class="col-md-3">
                 <asp:Label for="txtPrecio" runat="server" CssClass="form-label"><b>Precio:</b></asp:Label>
                 <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvPrecio" runat="server" 
+                    ControlToValidate="txtPrecio"
+                    Display="Dynamic"
+                    ErrorMessage="Debe ingresar el precio del libro"
+                    CssClass="invalid-feedback"
+                    ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
         </div>
 
@@ -55,8 +99,16 @@
                 <ContentTemplate>
                     <div class="col-md-6">
                         <asp:Label for="txxportadaURL" runat="server" CssClass="form-label"><b>Imagen url:</b></asp:Label>
-                        <asp:TextBox ID="txtportadaURL" runat="server" cssclass="form-control" AutoPostBack="true" OnTextChanged="txtportadaURL_TextChanged" >
-                        </asp:TextBox>
+                        <asp:TextBox ID="txtportadaURL" runat="server" 
+                            CssClass="form-control" 
+                            AutoPostBack="true" 
+                            OnTextChanged="txtportadaURL_TextChanged" ></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvPortada" runat="server" 
+                            ControlToValidate="txtportadaURL"
+                            Display="Dynamic"
+                            ErrorMessage="Debe cargar el URL de la portada del libro"
+                            CssClass="invalid-feedback"
+                            ForeColor="Red"></asp:RequiredFieldValidator>
                     </div>
                     <asp:Image  ImageUrl="https://plantillasdememes.com/img/plantillas/imagen-no-disponible01601774755.jpg"   ID="ImgPortada" runat="server" width="30%"/>
                 </ContentTemplate>

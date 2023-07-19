@@ -80,10 +80,12 @@ TipoEstados varchar(30)
 )
 GO
 
-	
+
 create table Compra(
 	ID_Compra int not null identity(1,1) primary key,
 	ID_Usuario int not null foreign key references Usuario(ID_Usuario),
+	ID_Estado int null foreign key references Estados(ID_Estado),
+	FechaCompra datetime DEFAULT GETDATE(),
 	PrecioTotal money
 )
 GO
@@ -97,8 +99,15 @@ create table Estados_X_Compra(
 )
 GO
 
+create table Estados_X_Compra(
+	ID_Compra int,
+	ID_Estado int,
+	Primary key(ID_Compra, ID_Estado),
+	Foreign key(ID_Compra) references Compra(ID_Compra),
+	Foreign key(ID_Estado) references Estados(ID_Estado)
+)
+GO
 
-	
 Create table Genero_X_Libro(
 	ID_Libro int,
 	ID_Genero int,
@@ -110,9 +119,9 @@ GO
 
 Create table Compra_X_Libro(
 	ID_Compra int,
-	ID_Libro int,
+	ID_Libro int null,
 	Cantidad smallint not null,
-	Primary key(ID_Compra, ID_Libro),
+	Primary key(ID_Compra),
 	Foreign key(ID_Compra) references Compra(ID_Compra),
 	Foreign key(ID_Libro) references Libro(ID_Libro)
 )
@@ -213,15 +222,15 @@ FROM Usuario U
 CROSS JOIN Libro L
 ORDER BY NEWID();
 GO
-INSERT INTO Compra_X_Libro (ID_Compra, ID_Libro, Cantidad)
-SELECT TOP 30
-    C.ID_Compra,
-    L.ID_Libro,
-    CASE WHEN RAND() < 0.9 THEN 1 ELSE 2 END
-FROM Compra C
-CROSS JOIN Libro L
-ORDER BY NEWID();
-GO
+--INSERT INTO Compra_X_Libro (ID_Compra, ID_Libro, Cantidad)
+--SELECT TOP 30
+--    C.ID_Compra,
+--    L.ID_Libro,
+--    CASE WHEN RAND() < 0.9 THEN 1 ELSE 2 END
+--FROM Compra C
+--CROSS JOIN Libro L
+--ORDER BY NEWID();
+--GO
 INSERT INTO Libro_X_Autor (ID_Libro, ID_Autor)
 VALUES
     (1, 1),
@@ -267,4 +276,11 @@ VALUES
     (8, 1),
     (6, 1),
     (7, 7);
+GO
+
+insert into Estados (ID_Estado, TipoEstados) values
+(1, 'En proceso'),
+(2, 'Enviado'),
+(3, 'Completo'),
+(4, 'Cancelado');
 GO

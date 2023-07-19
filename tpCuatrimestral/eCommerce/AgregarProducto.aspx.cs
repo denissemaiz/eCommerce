@@ -32,11 +32,13 @@ namespace eCommerce
                     txtGenero.DataValueField = "Id";
                     txtGenero.DataTextField = "Nombre";
                     txtGenero.DataBind();
+                    txtGenero.Items.Insert(0, new ListItem("--Vacío--", "NA"));
 
                     txtAutorNombre.DataSource = lista2;
                     txtAutorNombre.DataValueField = "Id";
                     txtAutorNombre.DataTextField = "NombreApellido";
                     txtAutorNombre.DataBind();
+                    txtAutorNombre.Items.Insert(0, new ListItem("--Vacío--", "NA"));
 
 
                 }
