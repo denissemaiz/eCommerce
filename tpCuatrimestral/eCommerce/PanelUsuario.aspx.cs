@@ -1,6 +1,7 @@
 ﻿using Clases;
 using Conexiones;
 using dominio;
+using negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -279,6 +280,31 @@ namespace eCommerce
         protected void BtonCambiarContraseña_Click(object sender, EventArgs e)
         {
             Response.Redirect("/User/CambiarContraseña.aspx", false);
+        }
+
+        protected void DGVPedidos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int Id = (int)DGVPedidos.SelectedDataKey.Value;
+            CompraNegocio negocio = new CompraNegocio();
+            negocio.ModificarEstado(4, Id);
+            Response.Redirect("PanelUsuario.aspx");
+        }
+
+        protected void DGVPedidos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            DGVPedidos.PageIndex = e.NewSelectedIndex;
+            DGVPedidos.DataBind();
+        }
+
+        protected void DGVPedidos_Load(object sender, EventArgs e)
+        {
+            if (Session["Usuario"] != null)
+            {
+                user = (Usuario)Session["Usuario"];
+                CompraNegocio negocio = new CompraNegocio();
+                DGVPedidos.DataSource = negocio.Listar(user.Id);
+                DGVPedidos.DataBind();
+            }
         }
     }
 }
