@@ -302,9 +302,28 @@ namespace eCommerce
             {
                 user = (Usuario)Session["Usuario"];
                 CompraNegocio negocio = new CompraNegocio();
-                DGVPedidos.DataSource = negocio.Listar(user.Id);
-                DGVPedidos.DataBind();
+                if (user.EsAdmin)
+                {
+                    DGVPedidos.DataSource = negocio.Listar();
+                    DGVPedidos.DataBind();
+                }
+                else
+                {
+                    DGVPedidos.DataSource = negocio.Listar(user.Id);
+                    DGVPedidos.DataBind();
+                }
             }
+        }
+
+        public bool ValidarAdmin()
+        {
+            Usuario user;
+            if (Session["Usuario"] != null)
+            {
+                user = ((Usuario)Session["Usuario"]);
+                return user.EsAdmin;
+            }
+            return false;
         }
     }
 }
