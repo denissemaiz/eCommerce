@@ -16,10 +16,11 @@ namespace dominio
         public ServicioMail() 
         {
             server = new SmtpClient();
-            server.Credentials = new NetworkCredential("EditorialUTN@hotmail.com", "Proyectofinal");
+            server.Credentials = new NetworkCredential("c2d95ed84f907e", "84ec398023bce1");
             server.EnableSsl = true;
             server.Port = 465;
-            server.Host = "smtp.live.com";
+            server.Host = "sandbox.smtp.mailtrap.io";
+            
         }
 
         public void EnviarEnlaceRecuperacion(string CorreoUsuario, string EnlacedePassword) 
@@ -29,7 +30,8 @@ namespace dominio
             email.To.Add(CorreoUsuario);
             email.Subject = "Recuperar contraseña";
             email.Body = $"Hola, aca te dejamos el enlace para que puedas generar tu nueva contraseña, haz click aqui: {EnlacedePassword}";
-        
+            
+            server.Send(email);
         }
 
     }
