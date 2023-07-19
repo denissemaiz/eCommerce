@@ -5,6 +5,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using negocio;
+using Conexiones;
+using dominio;
 
 namespace eCommerce.User
 {
@@ -18,28 +21,33 @@ namespace eCommerce.User
         protected void BtnEnviar_Click(object sender, EventArgs e)
         {
 
+            UsuarioNegocio conexion = new UsuarioNegocio();
+
             string Correo = txtRecuperarMail.Text;
 
-            
+            ServicioMail Mail = new ServicioMail();
+
+            if (conexion.VerificarCorreo(Correo)) 
+            {
+
+                string valor = Guid.NewGuid().ToString();
+
+                string RecuperarMail = $"https://localhost:44313/User/RecuperarContrase%C3%B1a.aspx?ref={valor}";
+
+                Mail.EnviarEnlaceRecuperacion(Correo, RecuperarMail);
+                   
+                lblExito.Visible = true;
+
+            }
+
+            else
+            {
+                lblFallo.Visible = true;
+            }
+
+
 
         }
-
-        //private bool Verificar(string correo)
-        //{
-            
-        //    string connectionString = "tu cadena de conexión a la base de datos";
-        //    using (SqlConnection connection = new SqlConnection(connectionString))
-        //    {
-        //        connection.Open();
-        //        string query = "SELECT COUNT(*) FROM Usuarios WHERE CorreoElectronico = @CorreoElectronico";
-        //        using (SqlCommand command = new SqlCommand(query, connection))
-        //        {
-        //            command.Parameters.AddWithValue("@CorreoElectronico", correo);
-        //            int count = (int)command.ExecuteScalar();
-        //            return count > 0;
-        //        }
-        //    }
-        //}
 
 
     }

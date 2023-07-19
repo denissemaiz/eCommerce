@@ -11,6 +11,8 @@
                 <br />
                 <a href="..\Default.aspx" class="btn btn-secondary">Cancelar</a>
                 <asp:Button ID="BtnEnviar" runat="server" Text="Enviar" CssClass="btn btn-primary" OnClick="BtnEnviar_Click"/>
+                <asp:Label ID="lblExito" Visible="false" runat="server" CssClass="form-label"><b>Se envio el mail a su casilla de correo.</b> </asp:Label>
+                <asp:Label ID="lblFallo" Visible="false" runat="server" CssClass="form-label"><b>El correo ingresado no esta registrado.</b> </asp:Label>
             </div>
         </div>
        
