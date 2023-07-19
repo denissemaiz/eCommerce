@@ -33,6 +33,15 @@ namespace eCommerce.User
         protected global::System.Web.UI.WebControls.TextBox txtContraseñaNueva;
 
         /// <summary>
+        /// Control rfvContraNueva.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvContraNueva;
+
+        /// <summary>
         /// Control lblContraseñaConfirmar.
         /// </summary>
         /// <remarks>
@@ -51,6 +60,24 @@ namespace eCommerce.User
         protected global::System.Web.UI.WebControls.TextBox txtContraseñaNuevaConfirmar;
 
         /// <summary>
+        /// Control rfvConfPass.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvConfPass;
+
+        /// <summary>
+        /// Control cmpvConfPass.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cmpvConfPass;
+
+        /// <summary>
         /// Control btnAceptar.
         /// </summary>
         /// <remarks>
@@ -60,21 +87,12 @@ namespace eCommerce.User
         protected global::System.Web.UI.WebControls.Button btnAceptar;
 
         /// <summary>
-        /// Control LblExito.
+        /// Control lblMensaje.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblExito;
-
-        /// <summary>
-        /// Control LblFallo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblFallo;
+        protected global::System.Web.UI.WebControls.Label lblMensaje;
     }
 }

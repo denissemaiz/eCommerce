@@ -30,26 +30,11 @@ namespace eCommerce.User
 
             nuevo = new Usuario();
 
-            string aux = txtContraseñaNueva.Text;
-            string aux2 = txtContraseñaNuevaConfirmar.Text;
-
-            string Nuevapass = nuevo.EncriptarPass(aux);
-            string Confirmarpass = nuevo.EncriptarPass(aux2);
-
-            if (Nuevapass == Confirmarpass) 
-            {
-
-  
-
-
-
-            }
-            else 
-            { 
-                LblFallo.Visible = true;
+            string nuevaPass = txtContraseñaNueva.Text;
+            string nuevaPassEncryptada = nuevo.EncriptarPass(nuevaPass);
             
+
             
-            }
 
         }
     }
