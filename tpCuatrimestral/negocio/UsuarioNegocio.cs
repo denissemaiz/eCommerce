@@ -96,6 +96,33 @@ namespace Conexiones
             }
         }
 
+
+        public bool VerificarCorreo(string correo)
+        {
+            List<Usuario> lista = new List<Usuario>();
+            AccesoSQL Datos = new AccesoSQL();
+
+            try
+            {
+                Datos.Consulta("SELECT COUNT(*) FROM Usuario WHERE Mail = @correo");
+                Datos.SetParametros("@correo", correo);
+                int count = Datos.EjecutarScalar();
+                return count > 0;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                Datos.CerrarConexion();
+            }
+        }
+
+
+
         public Usuario ListarLPrueba(int Id)
         {
             //List<Usuario> lista = new List<Usuario>();

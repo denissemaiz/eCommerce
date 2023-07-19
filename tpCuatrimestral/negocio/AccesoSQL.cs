@@ -67,12 +67,12 @@ namespace negocio
         public int EjecutarScalar()
         {
             comando.Connection = conexion;
-            int idEjecucion;
+            int Entero;
             try
             {
                 conexion.Open();
-                idEjecucion =  (int)comando.ExecuteScalar();
-                return idEjecucion;
+                Entero =  (int)comando.ExecuteScalar();
+                return Entero;
             }
             catch (Exception ex)
             {
