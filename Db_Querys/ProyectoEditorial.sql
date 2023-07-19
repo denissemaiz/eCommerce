@@ -84,12 +84,11 @@ GO
 create table Compra(
 	ID_Compra int not null identity(1,1) primary key,
 	ID_Usuario int not null foreign key references Usuario(ID_Usuario),
-	ID_Estado int not null foreign key references Estados(ID_Estado),
+	ID_Estado int null foreign key references Estados(ID_Estado),
 	FechaCompra datetime DEFAULT GETDATE(),
 	PrecioTotal money
 )
 GO
-
 
 create table Estados_X_Compra(
 	ID_Compra int,
