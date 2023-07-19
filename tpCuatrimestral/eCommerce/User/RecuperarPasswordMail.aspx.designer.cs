@@ -33,6 +33,15 @@ namespace eCommerce.User
         protected global::System.Web.UI.WebControls.TextBox txtRecuperarMail;
 
         /// <summary>
+        /// Control rfvtxtRecuperarMail.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvtxtRecuperarMail;
+
+        /// <summary>
         /// Control BtnEnviar.
         /// </summary>
         /// <remarks>
