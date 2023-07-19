@@ -36,13 +36,14 @@ namespace eCommerce.User
 
                 Mail.EnviarEnlaceRecuperacion(Correo, RecuperarMail);
                    
-                lblExito.Visible = true;
-
+                lblMensaje.Visible = true;
+                lblMensaje.Text = "Correo enviado!";
             }
 
             else
             {
-                lblFallo.Visible = true;
+                lblMensaje.Visible = true;
+                lblMensaje.Text = "Correo ingresado no registrado";
             }
 
 
