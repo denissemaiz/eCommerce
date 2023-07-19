@@ -14,27 +14,39 @@ namespace eCommerce.User
 {
     public partial class RecuperarContraseña : System.Web.UI.Page
     {
+        
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
+
         }
+
+
+        public Usuario nuevo { get; set; }
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            string Nuevapass = txtContraseñaNueva.Text;
-            string Confirmarpass = txtContraseñaNuevaConfirmar.Text;
-            UsuarioNegocio usuario = new UsuarioNegocio();
 
-            
+            nuevo = new Usuario();
 
-            if(Nuevapass == Confirmarpass) 
+            string aux = txtContraseñaNueva.Text;
+            string aux2 = txtContraseñaNuevaConfirmar.Text;
+
+            string Nuevapass = nuevo.EncriptarPass(aux);
+            string Confirmarpass = nuevo.EncriptarPass(aux2);
+
+            if (Nuevapass == Confirmarpass) 
             {
-                usuario.NuevaContraseña(Nuevapass);
-                
+
+  
+
+
+
             }
             else 
             { 
-            
+                LblFallo.Visible = true;
             
             
             }
