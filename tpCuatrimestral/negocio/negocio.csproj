@@ -50,6 +50,7 @@
     <Compile Include="GeneroNegocio.cs" />
     <Compile Include="LibroNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TokensNegocio.cs" />
     <Compile Include="UsuarioNegocio.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -29,7 +29,8 @@ namespace eCommerce.User
 
             if (conexion.VerificarCorreo(Correo)) 
             {
-
+                TokensNegocio token = new TokensNegocio();
+                
                 string valor = Guid.NewGuid().ToString();
 
                 string RecuperarMail = $"https://localhost:44313/User/RecuperarContrase%C3%B1a.aspx?ref={valor}";
@@ -38,8 +39,17 @@ namespace eCommerce.User
                    
                 lblMensaje.Visible = true;
                 lblMensaje.Text = "Correo enviado!";
-            }
 
+                try
+                {
+                    token.Cargar(valor, Correo);
+                }
+                catch (Exception ex)
+                {
+                    Session.Add("error", ex.ToString());
+                    Response.Redirect("../error.aspx");
+                }
+            }
             else
             {
                 lblMensaje.Visible = true;
