@@ -36,8 +36,9 @@ namespace eCommerce.User
             try
             {
                 TokensNegocio tokenConexion = new TokensNegocio();
-                string mail = tokenConexion.BuscarMail_x_Token(token);
+                UsuarioNegocio usuarioDatos = new UsuarioNegocio();
 
+                tokenConexion.UpdatePass_x_Token(token, nuevaPassEncryptada);
             }
             catch (Exception ex)
             {

@@ -58,5 +58,26 @@ namespace negocio
             }
         }
 
+        public void UpdatePass_x_Token(string token, string pass)
+        {
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("Update Usuario\r\nSET Contraseña = @pass FROM Usuario Inner JOIN Tokens ON Tokens.Mail = Usuario.Mail Where Tokens.Token = @token");
+                datos.SetParametros("@token", token);
+                datos.SetParametros("@pass", pass);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
     }
 }
