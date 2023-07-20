@@ -113,7 +113,6 @@ GO
 Create table Compra_X_Libro(
 	ID_Compra int,
 	ID_Libro int null,
-	Cantidad smallint not null,
 	Primary key(ID_Compra),
 	Foreign key(ID_Compra) references Compra(ID_Compra),
 	Foreign key(ID_Libro) references Libro(ID_Libro)
