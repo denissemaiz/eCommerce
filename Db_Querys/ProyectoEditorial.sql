@@ -136,6 +136,15 @@ Create table Libro_X_Autor(
 )
 GO
 
+
+Create table Tokens(
+	ID_Token int not null primary key identity(1,1),
+	Token varchar(100) not null unique,
+	Mail varchar(100) not null,
+)
+GO
+
+
 INSERT INTO Usuario (NombreUsuario, Mail, Contraseña, EsAdmin)
 VALUES 
     ('admin', 'admin@admin.com', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 1);
