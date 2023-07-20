@@ -113,7 +113,6 @@ GO
 Create table Compra_X_Libro(
 	ID_Compra int,
 	ID_Libro int null,
-	Cantidad smallint not null,
 	Primary key(ID_Compra),
 	Foreign key(ID_Compra) references Compra(ID_Compra),
 	Foreign key(ID_Libro) references Libro(ID_Libro)
@@ -217,14 +216,6 @@ VALUES
     ('PIZA001', 'Extracción de la Piedra de Locura', 'Una obra poética que aborda la locura y la angustia existencial.', 1600.00, 9, 'https://images.cdn3.buscalibre.com/fit-in/360x360/df/af/dfaf78d0874e410b93c3de7be884aa2a.jpg'),
     ('PIZA002', 'La tierra más ajena', 'Poemas intensos exploran soledad y angustia en La Tierra Más Ajena obra lírica de Pizarnik.', 1800.00, 7, 'https://www.clarin.com/img/2019/08/29/wk9K40979_720x0__1.jpg')
 GO
-INSERT INTO Compra (ID_Usuario, PrecioTotal)
-SELECT TOP 25
-    U.ID_Usuario,
-    L.Precio
-FROM Usuario U
-CROSS JOIN Libro L
-ORDER BY NEWID();
-GO
 --INSERT INTO Compra_X_Libro (ID_Compra, ID_Libro, Cantidad)
 --SELECT TOP 30
 --    C.ID_Compra,
@@ -287,3 +278,26 @@ insert into Estados (ID_Estado, TipoEstados) values
 (3, 'Completo'),
 (4, 'Cancelado');
 GO
+
+INSERT INTO Compra (ID_Usuario, PrecioTotal, ID_Estado)
+SELECT TOP 10
+    U.ID_Usuario,
+    L.Precio,
+    E.ID_Estado
+FROM Usuario U
+CROSS JOIN Libro L
+CROSS JOIN Estados E
+WHERE U.ID_Usuario <> 1
+ORDER BY NEWID();
+
+INSERT INTO Compra_X_Libro (ID_Compra, ID_Libro)
+SELECT ID_Compra, ID_Libro
+FROM (
+    SELECT 
+        C.ID_Compra,
+        L.ID_Libro,
+        ROW_NUMBER() OVER (PARTITION BY C.ID_Compra ORDER BY NEWID()) as RowNum
+    FROM Compra C
+    CROSS JOIN Libro L
+) AS Subquery
+WHERE RowNum = 1;
