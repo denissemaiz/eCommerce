@@ -32,7 +32,31 @@ namespace negocio
             }
         }
 
+        public string BuscarMail_x_Token(string token)
+        {
+            AccesoSQL datos = new AccesoSQL();
+            string mail = "";
+            try
+            {
+                datos.Consulta("Select T.Mail FROM Tokens T Where T.Mail = @token");
+                datos.SetParametros("token", token);
+                datos.EjecutarAccion();
+                while (datos.Lector.Read())
+                {
+                    mail = (string)datos.Lector["Mail"];
+                }
+                return mail;
+            }
+            catch (Exception ex)
+            {
 
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
 
     }
 }

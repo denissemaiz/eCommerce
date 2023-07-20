@@ -14,11 +14,11 @@ namespace eCommerce.User
 {
     public partial class RecuperarContraseña : System.Web.UI.Page
     {
-        
+        public string token { set; get; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            token = Request.QueryString["ref"];
 
         }
 
