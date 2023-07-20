@@ -8,6 +8,8 @@ using System.Web.UI.WebControls;
 using negocio;
 using Conexiones;
 using dominio;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace eCommerce.User
 {
@@ -32,6 +34,8 @@ namespace eCommerce.User
                 TokensNegocio token = new TokensNegocio();
                 
                 string valor = Guid.NewGuid().ToString();
+                valor = EncriptarToken(valor);
+
 
                 string RecuperarMail = $"https://localhost:44313/User/RecuperarContrase%C3%B1a.aspx?ref={valor}";
 
@@ -60,6 +64,19 @@ namespace eCommerce.User
 
         }
 
+        internal string EncriptarToken(string pass)
+        {
+            StringBuilder sb = new StringBuilder();
+            using (SHA256 hash = SHA256.Create())
+            {
+                Encoding enc = Encoding.UTF8;
+                byte[] result = hash.ComputeHash(enc.GetBytes(pass));
+
+                foreach (byte b in result)
+                    sb.Append(b.ToString("X2"));
+            }
+            return sb.ToString();
+        }
 
     }
 }
