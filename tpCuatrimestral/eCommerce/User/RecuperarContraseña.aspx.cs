@@ -18,7 +18,7 @@ namespace eCommerce.User
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            token = Request.QueryString["ref"];
+            token = Request.QueryString["ref"].ToString();
 
         }
 
@@ -32,8 +32,18 @@ namespace eCommerce.User
 
             string nuevaPass = txtContraseñaNueva.Text;
             string nuevaPassEncryptada = nuevo.EncriptarPass(nuevaPass);
-            
 
+            try
+            {
+                TokensNegocio tokenConexion = new TokensNegocio();
+                string mail = tokenConexion.BuscarMail_x_Token(token);
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex.ToString());
+                Response.Redirect("../error.aspx");
+            }
             
 
         }

@@ -38,9 +38,9 @@ namespace negocio
             string mail = "";
             try
             {
-                datos.Consulta("Select T.Mail FROM Tokens T Where T.Mail = @token");
+                datos.Consulta("Select T.Mail FROM Tokens T Where T.Token = @token");
                 datos.SetParametros("token", token);
-                datos.EjecutarAccion();
+                datos.EjecutarLectura();
                 while (datos.Lector.Read())
                 {
                     mail = (string)datos.Lector["Mail"];
