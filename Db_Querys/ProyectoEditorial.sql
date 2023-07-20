@@ -90,23 +90,16 @@ create table Compra(
 )
 GO
 
-create table Estados_X_Compra(
-	ID_Compra int,
-	ID_Estado int,
-	Primary key(ID_Compra, ID_Estado),
-	Foreign key(ID_Compra) references Compra(ID_Compra),
-	Foreign key(ID_Estado) references Estados(ID_Estado)
-)
-GO
+--create table Estados_X_Compra(
+--	ID_Compra int,
+--	ID_Estado int,
+--	Primary key(ID_Compra, ID_Estado),
+--	Foreign key(ID_Compra) references Compra(ID_Compra),
+--	Foreign key(ID_Estado) references Estados(ID_Estado)
+--)
+--GO
 
-create table Estados_X_Compra(
-	ID_Compra int,
-	ID_Estado int,
-	Primary key(ID_Compra, ID_Estado),
-	Foreign key(ID_Compra) references Compra(ID_Compra),
-	Foreign key(ID_Estado) references Estados(ID_Estado)
-)
-GO
+
 
 Create table Genero_X_Libro(
 	ID_Libro int,
@@ -147,7 +140,8 @@ GO
 
 INSERT INTO Usuario (NombreUsuario, Mail, Contraseña, EsAdmin)
 VALUES 
-    ('admin', 'admin@admin.com', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 1);
+    ('admin', 'admin@admin.com', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 1),
+	('user' , 'EditorialUTN@hotmail.com', '04F8996DA763B7A969B1028EE3007569EAF3A635486DDAB211D512C85B9DF8FB', 0);
 GO
 --INSERT INTO Direccion (Calle, Altura, Localidad, CP, Provincia)
 --VALUES 
