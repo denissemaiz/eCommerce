@@ -1,11 +1,13 @@
-﻿using dominio;
-using negocio;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using dominio;
+using negocio;
+using Conexiones;
+using Clases;
 
 namespace eCommerce
 {
@@ -46,6 +48,29 @@ namespace eCommerce
         {
             if (carrito.Libros != null)
                 PrecioFinal.Text = carrito.CalcularMonto().ToString();
+        }
+
+        protected void btnFinalizarCompra_Click(object sender, EventArgs e)
+        {
+            Compra compra = new Compra();
+            compra.Carrito = carrito;
+            if (Session["Usuario"] != null)
+            {
+                Usuario user = (Usuario)Session["Usuario"];
+                compra.IdCliente = user.Id;
+            } 
+ 
+            try
+            {
+                CompraNegocio compraConexion = new CompraNegocio();
+                compraConexion.Agregar(compra);
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex.ToString());
+                Response.Redirect("error.aspx");
+            }
+            
         }
     }
 }

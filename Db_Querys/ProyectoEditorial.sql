@@ -112,12 +112,14 @@ GO
 
 Create table Compra_X_Libro(
 	ID_Compra int,
-	ID_Libro int null,
-	Primary key(ID_Compra),
+	ID_Libro int not null,
+	Cantidad int not null,
+	Primary key(ID_Compra, ID_Libro),
 	Foreign key(ID_Compra) references Compra(ID_Compra),
 	Foreign key(ID_Libro) references Libro(ID_Libro)
 )
 GO
+
 
 Create table Libro_X_Autor(
 	ID_Libro int,
@@ -135,6 +137,8 @@ Create table Tokens(
 	Mail varchar(100) not null,
 )
 GO
+
+
 
 
 INSERT INTO Usuario (NombreUsuario, Mail, Contraseña, EsAdmin)

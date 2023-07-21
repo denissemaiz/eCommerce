@@ -194,9 +194,10 @@ namespace Conexiones
 
                 int idCompra = InsertarCompra(nuevo);
 
-                foreach (Libro libro in nuevo.Carrito.Libros)
+                LibroNegocio libroNegocio = new LibroNegocio();
+                foreach (Libro libro in libroNegocio.RemoveDuplicadosLibro(nuevo.Carrito.Libros))
                 {
-                    int cantidad = CalcularCantidadLibros(nuevo.Carrito.Libros, libro.Id);
+                    int cantidad = nuevo.Carrito.contabilizarLibro(libro.Id);
                     InsertarLibroEnCompra(idCompra, libro.Id, cantidad);
                     DescuentoStock(libro.Id, cantidad);
                 }
@@ -286,7 +287,10 @@ namespace Conexiones
         {
             AccesoSQL datos = new AccesoSQL();
 
-            datos.Consulta("INSERT INTO Compra_X_Libro (ID_Compra, ID_Libro, Cantidad) VALUES(" + idCompra + ", " + idLibro + ", " + cantidad + ")");
+            datos.Consulta("INSERT INTO Compra_X_Libro (ID_Compra, ID_Libro, Cantidad) VALUES(@idCompra, @idLibro, @cantidad)");
+            datos.SetParametros("idCompra", idCompra);
+            datos.SetParametros("idLibro", idLibro);
+            datos.SetParametros("cantidad", cantidad);
             datos.EjecutarAccion();
         }
 
@@ -295,10 +299,21 @@ namespace Conexiones
         {
             AccesoSQL datos = new AccesoSQL();
 
-            datos.Consulta("INSERT INTO Compra (ID_Cliente, PrecioTotal) VALUES('" + nuevo.IdCliente + "', '" + nuevo.Carrito.Monto + "''); " +
-                      "SELECT SCOPE_IDENTITY();");
+            try
+            {
+                datos.Consulta("INSERT INTO Compra (ID_Usuario, PrecioTotal, ID_Estado) output INSERTED.ID_Compra VALUES(@idCliente, @monto , 1)");
+                datos.SetParametros("idCliente", nuevo.IdCliente);
+                datos.SetParametros("monto", nuevo.Carrito.Monto);
+               
+                int id = datos.EjecutarScalar();
 
-            return Convert.ToInt32(datos.EjecutarScalar());
+                return id;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }  
         }
 
         private void DescuentoStock(int idLibro, int cantidadComprada)
