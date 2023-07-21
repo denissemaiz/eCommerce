@@ -45,6 +45,7 @@
                                     ControlToValidate="txbTelefono"
                                     ValidationExpression="(^([0-9]*|\d*\d{1}?\d*)$)"
                                     ForeColor="Red"
+                                    CssClass="invalid-feedback"
                                     ErrorMessage="Solo se aceptan numeros"></asp:RegularExpressionValidator>
                             </div>
                         </div>
@@ -97,13 +98,12 @@
                         <%if (user.DireccionUsuario != null)
                             { %>
                             <div class="row mb-2">
-                                <label for="txbCalle" class="col-sm-1 col-form-label"><i class="fa-solid fa-location-dot"></i></label>
+                                <label for="txbCalle" class="col-sm-1 col-form-label"><i class="bi bi-signpost"></i></label>
                                 <div class="col">
                                     <asp:TextBox ID="txbCalle" runat="server"
                                         Enabled="false"
                                         CssClass="form-control"
                                         placeholder="Calle"></asp:TextBox>
-
                                     <asp:RequiredFieldValidator ID="rfvCalle" runat="server"
                                         ControlToValidate="txbCalle"
                                         Display="Dynamic"
@@ -117,29 +117,28 @@
                                         Enabled="false"
                                         CssClass="form-control"
                                         placeholder="Altura"></asp:TextBox>
-
                                     <asp:RequiredFieldValidator ID="rfvAltura" runat="server"
                                         ControlToValidate="txbAltura"
                                         Display="Dynamic"
                                         CssClass="invalid-feedback"
                                         ForeColor="Red"
                                         Text="Debe ingresar el numero de su dirección"></asp:RequiredFieldValidator>
-
                                     <asp:RegularExpressionValidator ID="revAltura" runat="server"
                                         ControlToValidate="txbAltura"
                                         ValidationExpression="(^([0-9]*|\d*\d{1}?\d*)$)"
                                         ForeColor="Red"
+                                        CssClass="invalid-feedback"
                                         ErrorMessage="Solo se aceptan numeros"></asp:RegularExpressionValidator>
                                 </div>
                             </div>
 
                             <div class="row mb-2">                              
+                                <label for="txbLocalidad" class="col-sm-1 col-form-label"><i class="fa-solid fa-city"></i></label>
                                 <div class="col">
                                     <asp:TextBox ID="txbLocalidad" runat="server"
                                         Enabled="false"
                                         CssClass="form-control"
                                         placeholder="Localidad"></asp:TextBox>
-
                                     <asp:RequiredFieldValidator ID="rfvLocalidad" runat="server"
                                         ControlToValidate="txbLocalidad"
                                         Display="Dynamic"
@@ -153,29 +152,28 @@
                                         Enabled="false"
                                         CssClass="form-control"
                                         placeholder="Cp"></asp:TextBox>
-
                                     <asp:RequiredFieldValidator ID="rfvCp" runat="server"
                                         ControlToValidate="txbCp"
                                         Display="Dynamic"
                                         CssClass="invalid-feedback"
                                         ForeColor="Red"
                                         Text="Debe ingresar su código postal"></asp:RequiredFieldValidator>
-
                                     <asp:RegularExpressionValidator ID="revCp" runat="server"
                                         ControlToValidate="txbCp"
                                         ValidationExpression="(^([0-9]*|\d*\d{1}?\d*)$)"
+                                        CssClass="invalid-feedback"
                                         ForeColor="Red"
                                         ErrorMessage="Solo se aceptan numeros"></asp:RegularExpressionValidator>
                                 </div>
                             </div>
 
                             <div class="row mb-2">
+                                <label for="txbProvincia" class="col-sm-1 col-form-label"><i class="bi bi-map"></i></label>
                                 <div class="col">
                                     <asp:TextBox ID="txbProvincia" runat="server" 
                                         Enabled="false"
                                         CssClass="form-control"
                                         placeholder="Provincia"></asp:TextBox>
-
                                     <asp:RequiredFieldValidator ID="rfvProvincia" runat="server"
                                         ControlToValidate="txbProvincia"
                                         Display="Dynamic"
