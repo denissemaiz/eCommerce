@@ -75,6 +75,9 @@ namespace eCommerce
             BtnEditarDatosPersonales.Enabled = false;
             BtnEditarDatosPersonales.Visible = false;
 
+            btnCambiarPass.Enabled = false;
+            btnCambiarPass.Visible = false;
+
             btnCancelarEditarDatosPersonales.Enabled = true;
             btnCancelarEditarDatosPersonales.Visible = true;
 
@@ -99,6 +102,9 @@ namespace eCommerce
 
             BtnEditarDatosPersonales.Enabled = true;
             BtnEditarDatosPersonales.Visible = true;
+
+            btnCambiarPass.Enabled = true;
+            btnCambiarPass.Visible = true;
         }
 
         protected void btnGuardarDatosPersonales_Click(object sender, EventArgs e)
@@ -128,6 +134,9 @@ namespace eCommerce
 
                 BtnEditarDatosPersonales.Enabled = true;
                 BtnEditarDatosPersonales.Visible = true;
+
+                btnCambiarPass.Enabled = true;
+                btnCambiarPass.Visible = true;
             }
             catch (Exception ex)
             {

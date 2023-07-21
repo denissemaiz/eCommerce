@@ -71,7 +71,10 @@
                             CssClass="EditarDatos" 
                             OnClick="BtnEditarDatosPersonales_Click"/>
 
-                           <asp:Button Text="Cambiar contraseña" runat="server" CssClass="EditarDatos" OnClick="BtonCambiarContraseña_Click"/>
+                           <asp:Button ID="btnCambiarPass" runat="server" 
+                               Text="Cambiar contraseña" 
+                               CssClass="EditarDatos" 
+                               OnClick="BtonCambiarContraseña_Click"/>
 
                         <asp:Button ID="btnCancelarEditarDatosPersonales" runat="server"
                             Enabled="false"

@@ -121,6 +121,7 @@ Create table Compra_X_Libro(
 GO
 
 
+
 Create table Libro_X_Autor(
 	ID_Libro int,
 	ID_Autor int,
@@ -294,8 +295,8 @@ CROSS JOIN Estados E
 WHERE U.ID_Usuario <> 1
 ORDER BY NEWID();
 
-INSERT INTO Compra_X_Libro (ID_Compra, ID_Libro)
-SELECT ID_Compra, ID_Libro
+INSERT INTO Compra_X_Libro (ID_Compra, ID_Libro, Cantidad)
+SELECT ID_Compra, ID_Libro, 1 as Cantidad
 FROM (
     SELECT 
         C.ID_Compra,
