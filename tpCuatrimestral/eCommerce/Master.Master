@@ -184,7 +184,7 @@
                                                       <div class="card-body">
                                                           <h5 class="card-title"><%#Eval("Titulo") %></h5>
                                                           <p class="card-text"><%#Eval("CadenaAutores") %></p>
-                                                          <p class="card-text"><small class="text-body-secondary">Precio: $<%#Eval("Precio") %></small></p>
+                                                          <p class="card-text"><small class="text-body-secondary">Precio: $<%#:carritoNegocio.CalcularMontoLibro((int)Eval("Id")) %></small></p>
                                                           <div class="col-8">
                                                               <div class="input-group">
                                                                   <asp:LinkButton ID="lbtnRestarLibro" runat="server" 
@@ -216,6 +216,12 @@
                         </div>
                         <div class="offcanvas-footer border border-top px-3 py-2" style="height:75px">
                             <div class="row justify-content-end">
+                                <%if (Session["librosAgregados"] != null && carritoNegocio.Libros.Count() != 0)
+                                    { %>
+                                        <div class="col justify-self-start">
+                                            <h5>Monto total: $<%:carritoNegocio.CalcularMonto() %></h5>
+                                        </div>
+                                  <%} %>
                                 <a class="btn btn-primary col-4" role="button" href="FinalizarCompra.aspx">Ver Carrito</a>
                                 <%--<asp:Button ID="btnCheckout" runat="server" 
                                     CssClass="btn btn-primary col-4"

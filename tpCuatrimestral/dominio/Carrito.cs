@@ -45,6 +45,16 @@ namespace dominio
             return monto;
         }
 
+        public decimal CalcularMontoLibro(int id)
+        {
+            decimal monto = 0;
+            foreach (Libro libro in libros)
+            {
+                if (libro.Id == id)
+                    monto += libro.Precio;
+            }
+            return monto;
+        }
         public bool QuitarLibro(int id)
         {
             foreach (Libro art in libros)
