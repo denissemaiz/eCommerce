@@ -53,11 +53,14 @@ namespace eCommerce
         {
             string codigo = ((LinkButton)sender).CommandArgument;
             LibroNegocio datos = new LibroNegocio();
-            List<Libro> busqueda = datos.Buscar(codigo, "Codigo");
+            Libro busqueda = datos.Buscar(codigo, "Codigo").First();
             if (busqueda != null && carritoNegocio != null)
             {
-                carritoNegocio.Libros.Add(busqueda.First());
-                repProductos_Load(sender, e);
+                if(busqueda.Stock >= carritoNegocio.contabilizarLibro(busqueda.Id) + 1) 
+                {
+                    carritoNegocio.Libros.Add(busqueda);
+                    repProductos_Load(sender, e);
+                }
             }
         }
 
