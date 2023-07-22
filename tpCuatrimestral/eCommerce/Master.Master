@@ -40,6 +40,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Guia de compra</a>
                         </li>
+                        <%--Controles de Admin--%>
                         <%if (ValidarAdmin())
                             { %>
                              <li class="nav-item dropdown">
@@ -54,6 +55,7 @@
                         <%} %>
                     </ul>
                 </div>
+                <%--Controles de usuario--%>
                 <div>
                     <ul class="navbar-nav">
                         <%if (Session["Usuario"] != null)
@@ -67,6 +69,7 @@
                         <%  } %>
                     </ul>
                 </div>
+
                <%-- Carrito --%>
                 <div>
                     <ul class="nav navbar-nav navbar-right px-1">
@@ -75,7 +78,7 @@
                                 href="#offcanvasCarrito"
                                 data-bs-toggle="offcanvas" 
                                 arias-controls="offcanvasCarrito">
-                                <%if (carritoNegocio == null || carritoNegocio.Libros == null || carritoNegocio.Libros.Count() == 0) { %>
+                                <%if (carritoNegocio.Libros.Count() == 0) { %>
                                     <i class="bi bi-cart"></i>              
                                 <%}else{ %>
                                     <i class="bi bi-cart-fill"></i>
@@ -170,7 +173,7 @@
                         </div>
                         <div class="offcanvas-body">
                             <div class="row g-2">                                
-                              <%if (Session["librosAgregados"] != null && carritoNegocio.Libros.Count() != 0)
+                              <%if (LibrosSinRepetidos != null && LibrosSinRepetidos.Count() != 0)
                                   //foreach(dominio.ProductoCarrito producto in carritoNegocio.Productos) 
                                 {%>
                                   <asp:Repeater ID="repProductos" runat="server" OnLoad="repProductos_Load">

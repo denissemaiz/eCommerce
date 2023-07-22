@@ -14,6 +14,7 @@ namespace eCommerce
     public partial class Master : System.Web.UI.MasterPage
     {
         public Carrito carritoNegocio { get; set; }
+        public List<Libro> LibrosSinRepetidos { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             GeneroNegocio generosDB = new GeneroNegocio();
@@ -24,27 +25,44 @@ namespace eCommerce
                 repGeneros.DataBind();
                 repAutores.DataSource = autoresDB.RemoveDuplicadosAutor(autoresDB.Listar());
                 repAutores.DataBind();
+
+                carritoNegocio = new Carrito();
+                carritoNegocio.Libros = new List<Libro>();
+                
+                if (Session["librosAgregados"] != null)
+                {
+                    carritoNegocio.Libros = (List<Libro>)Session["librosAgregados"];
+                    
+                    LibroNegocio manejoLibros = new LibroNegocio();
+                    LibrosSinRepetidos = manejoLibros.RemoveDuplicadosLibro(carritoNegocio.Libros);
+                }
+            }
+            else
+            {
+                carritoNegocio = new Carrito();
+                carritoNegocio.Libros = new List<Libro>();
+                if (Session["librosAgregados"] != null)
+                {
+                    carritoNegocio.Libros = (List<Libro>)Session["librosAgregados"];
+
+                    LibroNegocio manejoLibros = new LibroNegocio();
+                    LibrosSinRepetidos = manejoLibros.RemoveDuplicadosLibro(carritoNegocio.Libros);
+                }   
             }
         }
 
         protected void lblContador_Load(object sender, EventArgs e)
         {
-            carritoNegocio = new Carrito();
-            if (Session["librosAgregados"] != null)
-            {
-                carritoNegocio.Libros = (List<Libro>)Session["librosAgregados"];                
+            if (carritoNegocio.Libros.Count() > 0)
                 lblContador.Text = carritoNegocio.Libros.Count().ToString();
-            }
         }        
 
         protected void repProductos_Load(object sender, EventArgs e)
         {
-            if (Session["librosAgregados"] != null)
+            if(LibrosSinRepetidos != null)
             {
-                LibroNegocio manejoLista = new LibroNegocio();
-                repProductos.DataSource = manejoLista.RemoveDuplicadosLibro(carritoNegocio.Libros);
+                repProductos.DataSource = LibrosSinRepetidos;
                 repProductos.DataBind();
-                lblContador_Load(sender, e);
             }
             
         }
@@ -59,7 +77,11 @@ namespace eCommerce
                 if(busqueda.Stock >= carritoNegocio.contabilizarLibro(busqueda.Id) + 1) 
                 {
                     carritoNegocio.Libros.Add(busqueda);
+                    Session["librosAgregados"] = carritoNegocio.Libros;
+
+                    lblContador_Load(sender, e);
                     repProductos_Load(sender, e);
+
                 }
             }
         }
@@ -72,6 +94,10 @@ namespace eCommerce
             if (busqueda != null && carritoNegocio != null)
             {
                 if(carritoNegocio.QuitarLibro(busqueda.First().Id))
+                    Session["librosAgregados"] = carritoNegocio.Libros;
+                LibrosSinRepetidos = datos.RemoveDuplicadosLibro(carritoNegocio.Libros);
+
+                lblContador_Load(sender, e);
                 repProductos_Load(sender, e);
             }
         }
@@ -92,5 +118,6 @@ namespace eCommerce
             }
             return false;
         }
+
     }
 }
