@@ -39,8 +39,11 @@ namespace eCommerce
             }
             else
             {
-                carritoNegocio = new Carrito();
-                carritoNegocio.Libros = new List<Libro>();
+                if (carritoNegocio == null || carritoNegocio.Libros == null)
+                {
+                    carritoNegocio = new Carrito();
+                    carritoNegocio.Libros = new List<Libro>();
+                }
                 if (Session["librosAgregados"] != null)
                 {
                     carritoNegocio.Libros = (List<Libro>)Session["librosAgregados"];
