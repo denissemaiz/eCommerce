@@ -13,12 +13,10 @@ namespace eCommerce
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(ValidarAdmin() == false)
-                Response.Redirect("User/Login.aspx");
             UsuarioNegocio User = new UsuarioNegocio();
             DVGUsuarios.DataSource = User.ListarL();
             DVGUsuarios.DataBind();
-
+            
         }
 
         public bool ValidarAdmin()
@@ -30,6 +28,13 @@ namespace eCommerce
                 return user.EsAdmin;
             }
             return false;
+        }
+
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            bool loginNecesario = true;
+            Session.Add("loginNecesario", loginNecesario);
+            Response.Redirect("User/Login.aspx");
         }
     }
 }
