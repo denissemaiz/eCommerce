@@ -34,6 +34,9 @@ namespace eCommerce
         {
             bool loginNecesario = true;
             Session.Add("loginNecesario", loginNecesario);
+            if (Session["Usuario"] != null)
+                Session.Remove("Usuario");
+
             Response.Redirect("User/Login.aspx");
         }
     }
