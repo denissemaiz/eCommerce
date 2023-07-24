@@ -1,4 +1,5 @@
-﻿using Conexiones;
+﻿using Clases;
+using Conexiones;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,23 @@ namespace eCommerce
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(ValidarAdmin() == false)
+                Response.Redirect("User/Login.aspx");
             UsuarioNegocio User = new UsuarioNegocio();
             DVGUsuarios.DataSource = User.ListarL();
             DVGUsuarios.DataBind();
 
+        }
+
+        public bool ValidarAdmin()
+        {
+            Usuario user;
+            if (Session["Usuario"] != null)
+            {
+                user = ((Usuario)Session["Usuario"]);
+                return user.EsAdmin;
+            }
+            return false;
         }
     }
 }
