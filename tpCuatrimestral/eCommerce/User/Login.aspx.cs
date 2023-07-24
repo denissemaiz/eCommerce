@@ -40,8 +40,9 @@ namespace eCommerce
                     Session.Add("Usuario", user);
                     if (Session["loginNecesario"] != null)
                     {
+                        string url = Session["loginNecesario"] as string;
                         Session.Remove("loginNecesario");
-                        Response.Redirect("../ListaUsuarios.aspx", false);
+                        Response.Redirect(url, false);
                     }else
                         Response.Redirect("../PanelUsuario.aspx", false);
                 }
