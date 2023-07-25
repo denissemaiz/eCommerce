@@ -10,8 +10,7 @@
        
         <%if (Session["Usuario"] != null)
             { %>
-            <%--<div class="contenedorxd">
-                <div class="container-barras">--%>
+            
 
             <div class="contenedorxd">
                 <div class="container-barras">
@@ -88,11 +87,7 @@
                             Enabled="false"
                             Visible="false" 
                             OnClick="btnGuardarDatosPersonales_Click"/>
-                        <%--<ul>
-                            <li><i class="fa-regular fa-user"></i> <%:user.datosUsuario.Nombres %> <%:user.DatosUsuario.Apellidos %> </li>
-                            <li><i class="fa-solid fa-phone"></i> <%:user.DatosUsuario.Telefono %></li>
-                            <li><i class="fa-regular fa-envelope"></i> <%:user.Mail %></li>
-                        </ul>--%>
+                        
                     </div>
 
                     <div class="BarraLateralDos">
@@ -204,11 +199,7 @@
                                 CssClass="btn btn-primary" 
                                 OnClick="btnGuardarDireccion_Click"/>
                                 
-                            <%--<ul>
-                                <li><i class="fa-solid fa-location-dot"></i> <%:user.DireccionUsuario.Calle%>, <%:user.DireccionUsuario.Altura %></li>
-                                <li> <%:user.DireccionUsuario.Localidad%>, <%:user.DireccionUsuario.Cp%></li>
-                                <li> <%:user.DireccionUsuario.Provincia%></li>
-                            </ul>--%>
+                            
                         <%} else { %>
                             <h5>Usted no ha cargado su dirección todavía</h5>
                             <asp:Button ID="btnCargar" runat="server" 
@@ -257,38 +248,5 @@
         <%} %>
 
 
-            <%--</ItemTemplate>
-        </asp:Repeater>--%>
-
-
-  <%--<div class="contenedorxd">
-    <div class="container-barras">
-
-        <div class="BarraLateral">
-          <h2><b>Datos personales</b></h2>
-          <asp:Button ID="BtnEditarDatosPersonales" runat="server" Text="Editar" CssClass="EditarDatos" />
-          <ul>
-            <li><i class="fa-regular fa-user"></i> Nombre Apellido</li>
-            <li><i class="fa-regular fa-envelope"></i> Mail</li>
-            <li><i class="fa-solid fa-phone"></i>Telefono</li>
-          </ul>
-        </div>
-    
-        <div class="BarraLateralDos">
-            <h2><b>Direccion</b></h2>
-            <asp:Button ID="BtnEditarDireccion" runat="server" Text="Editar" CssClass="EditarDireccion" />
-            <ul>
-              <li><i class="fa-solid fa-location-dot"></i> Calle, Direccion</li>
-              <li>Localidad, Codigo postal</li>
-              <li>Provincia</li>
-            </ul>
-          </div>
-    </div>
-
-    <div class="Centralxd">
-      <h2><b>Pedidos</b></h2>
-      <p>Aca van los pedidos</p>
-    </div>
-
-  </div>--%>
+            
 </asp:Content>
