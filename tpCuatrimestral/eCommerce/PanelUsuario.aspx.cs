@@ -324,6 +324,16 @@ namespace eCommerce
             }
         }
 
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            string loginNecesario = HttpContext.Current.Request.Url.AbsolutePath;
+            Session.Add("loginNecesario", loginNecesario);
+            if (Session["Usuario"] != null)
+                Session.Remove("Usuario");
+
+            Response.Redirect("User/Login.aspx");
+        }
+
         public bool ValidarAdmin()
         {
             Usuario user;

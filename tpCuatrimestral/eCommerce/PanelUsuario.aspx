@@ -8,7 +8,7 @@
   <script src="https://kit.fontawesome.com/acc2095c9d.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
        
-        <%if (Session["Usuario"] != null) 
+        <%if (Session["Usuario"] != null)
             { %>
             <%--<div class="contenedorxd">
                 <div class="container-barras">--%>
@@ -209,7 +209,7 @@
                                 <li> <%:user.DireccionUsuario.Localidad%>, <%:user.DireccionUsuario.Cp%></li>
                                 <li> <%:user.DireccionUsuario.Provincia%></li>
                             </ul>--%>
-                        <%}else{ %>
+                        <%} else { %>
                             <h5>Usted no ha cargado su dirección todavía</h5>
                             <asp:Button ID="btnCargar" runat="server" 
                                 Text="Cargar" 
@@ -243,6 +243,17 @@
                 </div>
             
             </div>
+        <%} else { %>
+                <div class="div row align-self-center">
+				        <h1>Necesita estar logueado para acceder a esta página</h1>
+			        <div class="col">
+				        <a href="../Default.aspx" class="btn btn-secondary">Inicio</a>
+				        <asp:Button ID="btnLogin" runat="server" 
+                        Text="Login"
+                        CssClass="btn btn-primary"
+                        OnClick="btnLogin_Click"/>
+			        </div>
+		        </div>
         <%} %>
 
 
