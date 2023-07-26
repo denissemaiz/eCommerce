@@ -53,6 +53,7 @@ namespace eCommerce.User
             try
             {
                 tokenConexion.UpdatePass_x_Token(token, nuevaPassEncryptada);
+                Response.Redirect("Login.aspx", false);
             }
             catch (Exception ex)
             {
