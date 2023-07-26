@@ -134,11 +134,10 @@ GO
 
 Create table Tokens(
 	ID_Token int not null primary key identity(1,1),
-	Token varchar(100) not null unique,
+	Token varchar(100) null unique,
 	Mail varchar(100) not null,
 )
 GO
-
 
 
 
