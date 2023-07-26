@@ -18,7 +18,15 @@ namespace eCommerce.User
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            token = Request.QueryString["ref"].ToString();
+            if (Request.QueryString["token"] != null)
+            {
+                token = Request.QueryString["ref"].ToString();
+            }
+            else
+            {
+                Session.Add("error", "Error, usted no posee un token valido");
+                Response.Redirect("../Error.aspx");
+            }
 
         }
 
