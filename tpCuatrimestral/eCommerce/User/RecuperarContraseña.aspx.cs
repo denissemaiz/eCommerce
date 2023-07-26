@@ -18,9 +18,17 @@ namespace eCommerce.User
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.QueryString["token"] != null)
+            if (Request.QueryString["ref"] != null)
             {
                 token = Request.QueryString["ref"].ToString();
+                
+                TokensNegocio tokenData = new TokensNegocio();
+                if (tokenData.ValidarToken(token) == false) 
+                {
+                    Session.Add("error", "ERROR, Token a expirado");
+                    Response.Redirect("../Error.aspx");
+                }
+
             }
             else
             {
@@ -44,7 +52,6 @@ namespace eCommerce.User
             try
             {
                 TokensNegocio tokenConexion = new TokensNegocio();
-                UsuarioNegocio usuarioDatos = new UsuarioNegocio();
 
                 tokenConexion.UpdatePass_x_Token(token, nuevaPassEncryptada);
             }

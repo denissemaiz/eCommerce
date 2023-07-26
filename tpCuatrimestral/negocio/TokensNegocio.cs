@@ -79,5 +79,26 @@ namespace negocio
             }
         }
 
+        public bool ValidarToken(string token)
+        {
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("Select * From Tokens WHERE Tokens.Token = @token");
+                datos.SetParametros("token", token);
+                datos.EjecutarLectura();
+                return datos.Lector.Read();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
     }
 }
