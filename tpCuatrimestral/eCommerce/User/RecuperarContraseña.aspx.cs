@@ -44,6 +44,7 @@ namespace eCommerce.User
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
 
+            TokensNegocio tokenConexion = new TokensNegocio();
             nuevo = new Usuario();
 
             string nuevaPass = txtContraseñaNueva.Text;
@@ -51,8 +52,6 @@ namespace eCommerce.User
 
             try
             {
-                TokensNegocio tokenConexion = new TokensNegocio();
-
                 tokenConexion.UpdatePass_x_Token(token, nuevaPassEncryptada);
             }
             catch (Exception ex)
@@ -60,7 +59,10 @@ namespace eCommerce.User
                 Session.Add("error", ex.ToString());
                 Response.Redirect("../error.aspx");
             }
-            
+            finally
+            {
+                tokenConexion.BajaToken(token);
+            }
 
         }
     }
