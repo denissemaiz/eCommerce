@@ -25,6 +25,21 @@
                         <label for="lblestado"> <b>Estado:</b></label>
                         <label for="lblestadocompra"> En espera </label>
                         <br />
+                        <label for="lblcodigo"> <b>Nombre:</b></label>
+                        <label for="lblcodigocompra"> Alan </label>
+                        <br />
+                        <label for="lblfecha"> <b>Apellido:</b></label>
+                        <label for="lblfechacompra"> Ibañez </label>
+                        <br />
+                        <label for="lblproductos"> <b>Mail:</b></label>
+                        <label for="lblproductoscompra"> Ejemplo@ejemplo.com </label>
+                        <br />
+                        <label for="lblmonto"> <b>Telefono:</b></label>
+                        <label for="lblmontototal"> 111111111 </label>
+                        <br />
+                        <label for="lblestado"> <b>Dirrecion:</b></label>
+                        <label for="lblestadocompra"> UTN FRGP </label>
+                        <br />
                         <br />
                         <p><b>La compra se cancelara unicamente si el producto todavia no fue despachado, osea, si el producto no fue enviado</b></p>
                         <asp:Button Text="Volver" CssClass="btn btn-secondary" runat="server" /> 

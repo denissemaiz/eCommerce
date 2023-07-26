@@ -70,6 +70,7 @@
     <Content Include="ComprarGuia.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Detalles.aspx" />
+    <Content Include="Compras\DetallesCompra2.aspx" />
     <Content Include="Styles\Carrito.css" />
     <Content Include="Styles\Checkout.css" />
     <Content Include="Styles\Detalles.css" />
@@ -126,6 +127,13 @@
     </Compile>
     <Compile Include="Detalles.aspx.designer.cs">
       <DependentUpon>Detalles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Compras\DetallesCompra2.aspx.cs">
+      <DependentUpon>DetallesCompra2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Compras\DetallesCompra2.aspx.designer.cs">
+      <DependentUpon>DetallesCompra2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
