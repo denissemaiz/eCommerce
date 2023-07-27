@@ -10,6 +10,9 @@ IF EXISTS (
 DROP DATABASE ProyectoEditorial
 GO*/
 
+USE master
+GO
+
 Create Database ProyectoEditorial
 Go
 Use ProyectoEditorial
