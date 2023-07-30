@@ -50,19 +50,32 @@ namespace eCommerce.User
             string nuevaPass = txtContraseñaNueva.Text;
             string nuevaPassEncryptada = nuevo.EncriptarPass(nuevaPass);
 
-            try
+            nuevo.Mail = tokenConexion.BuscarMail_x_Token(token);
+            nuevo.Contraseña = nuevaPassEncryptada;
+
+            UsuarioNegocio userConexion = new UsuarioNegocio();
+            
+            if(userConexion.VerificarPassUsada(nuevo.Mail, nuevo.Contraseña) != true)
             {
-                tokenConexion.UpdatePass_x_Token(token, nuevaPassEncryptada);
-                Response.Redirect("Login.aspx", false);
+                try
+                {
+                    tokenConexion.UpdatePass_x_Token(token, nuevaPassEncryptada);
+                    Response.Redirect("Login.aspx", false);
+                }
+                catch (Exception ex)
+                {
+                    Session.Add("error", ex.ToString());
+                    Response.Redirect("../error.aspx");
+                }
+                finally
+                {
+                    tokenConexion.BajaToken(token);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                Session.Add("error", ex.ToString());
-                Response.Redirect("../error.aspx");
-            }
-            finally
-            {
-                tokenConexion.BajaToken(token);
+                Session.Add("error", "Su contraseña no puede ser igual a su contraseña anterior");
+                Response.Redirect("../Error.aspx");
             }
 
         }
