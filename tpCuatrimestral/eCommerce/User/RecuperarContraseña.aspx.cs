@@ -74,8 +74,8 @@ namespace eCommerce.User
             }
             else
             {
-                Session.Add("error", "Su contraseña no puede ser igual a su contraseña anterior");
-                Response.Redirect("../Error.aspx");
+                lblMensaje.Text = "Su contraseña no puede ser igual a su contraseña anterior";
+                lblMensaje.Visible = true;
             }
 
         }
