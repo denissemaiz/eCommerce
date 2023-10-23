@@ -293,10 +293,18 @@ namespace eCommerce
 
         protected void DGVPedidos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int Id = (int)DGVPedidos.SelectedDataKey.Value;
+            int id = (int)DGVPedidos.SelectedValue;
             CompraNegocio negocio = new CompraNegocio();
-            negocio.ModificarEstado(4, Id);
-            Response.Redirect("PanelUsuario.aspx");
+            if (negocio.BuscarCompra(id).Estado.Equals("En proceso"))
+            {
+                negocio.ModificarEstado(4, id);
+                Response.Redirect("PanelUsuario.aspx");
+            }
+            else
+            {
+                //Agregar mensaje de error
+                Response.Redirect("PanelUsuario.aspx");
+            }
         }
 
         protected void DGVPedidos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
@@ -312,7 +320,7 @@ namespace eCommerce
                 user = (Usuario)Session["Usuario"];
                 CompraNegocio negocio = new CompraNegocio();
                 if (user.EsAdmin)
-                {
+                {                 
                     DGVPedidos.DataSource = negocio.Listar();
                     DGVPedidos.DataBind();
                 }
@@ -324,7 +332,7 @@ namespace eCommerce
             }
         }
 
-        protected void btnLogin_Click(object sender, EventArgs e)
+            protected void btnLogin_Click(object sender, EventArgs e)
         {
             string loginNecesario = HttpContext.Current.Request.Url.AbsolutePath;
             Session.Add("loginNecesario", loginNecesario);
