@@ -223,12 +223,18 @@
                         AutoGenerateColumns="false"
                         OnLoad="DGVPedidos_Load"
                         OnSelectedIndexChanged="DGVPedidos_SelectedIndexChanged"
-                        OnSelectedIndexChanging="DGVPedidos_SelectedIndexChanging">
-                        <Columns>
-                            <asp:BoundField HeaderText="Fecha" DataField="FechaCompra" />
-                            <asp:BoundField HeaderText="ID" DataField="Id" />                           
+                        OnSelectedIndexChanging="DGVPedidos_SelectedIndexChanging"
+                        OnRowDataBound="DGVPedidos_RowDataBound">
+                        <Columns>                            
+                            <asp:TemplateField HeaderText="">
+                                <ItemTemplate>
+                                    <asp:Button ID="btnVer" runat="server" Text="Ver" OnClick="btnVer_Click" CommandArgument='<%# Eval("Id") %>' />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:BoundField HeaderText="ID" DataField="Id" />  
+                            <asp:BoundField HeaderText="Fecha" DataField="FechaCompra" />                         
                             <asp:BoundField HeaderText="Estado" DataField="Estado" />
-                            <asp:CommandField HeaderText="Accion" ShowSelectButton="true" SelectText="Cancelar" />
+                            <asp:CommandField HeaderText="Cancelar" ShowSelectButton="true" SelectText="Cancelar" />
                         </Columns>
                     </asp:GridView>
                 </div>

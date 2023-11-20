@@ -320,7 +320,14 @@ namespace eCommerce
                 user = (Usuario)Session["Usuario"];
                 CompraNegocio negocio = new CompraNegocio();
                 if (user.EsAdmin)
-                {                 
+                {
+                    List<Compra> listaCompra = negocio.Listar();
+                    /*foreach (Compra comp in listaCompra)
+                    {                        
+                        string fechaFormateada = comp.FechaCompra.ToString("dd/MM/yyyy");
+                        comp.FechaCompra = fechaFormateada;
+                    }*/
+
                     DGVPedidos.DataSource = negocio.Listar();
                     DGVPedidos.DataBind();
                 }
@@ -351,6 +358,30 @@ namespace eCommerce
                 return user.EsAdmin;
             }
             return false;
+        }
+
+        protected void DGVPedidos_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string estado = DataBinder.Eval(e.Row.DataItem, "Estado").ToString();
+
+                LinkButton selectButton = (LinkButton)e.Row.Cells[4].Controls[0];
+
+                if (estado == "En proceso")
+                {
+                    selectButton.Text = "Cancelar";
+                }
+                else
+                {
+                    selectButton.Text = "";
+                }
+            }
+        }
+
+        protected void btnVer_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
