@@ -12,7 +12,12 @@ namespace eCommerce
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["error"] != null)
+            {
                 lbError.Text = Session["error"].ToString();
+                Session.Remove("error");
+            }
+            else
+                Response.Redirect("Default.aspx");
         }
     }
 }

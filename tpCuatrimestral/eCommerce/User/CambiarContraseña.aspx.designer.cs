@@ -69,6 +69,15 @@ namespace eCommerce.User
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvContraNueva;
 
         /// <summary>
+        /// Control cmpvPassNueva.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cmpvPassNueva;
+
+        /// <summary>
         /// Control lblContraseñaConfirmar.
         /// </summary>
         /// <remarks>

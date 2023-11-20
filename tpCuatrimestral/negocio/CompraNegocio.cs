@@ -184,6 +184,90 @@ namespace Conexiones
             }
         }
 
+        public Compra BuscarCompra(int ID_Compra)
+        {
+            Compra compra = new Compra();
+            AccesoSQL Datos = new AccesoSQL();
+
+            try
+            {
+                Datos.Consulta("SELECT C.ID_Usuario, C.FechaCompra, E.TipoEstados, L.ID_Libro, L.Codigo, L.Titulo, L.Descripcion, L.Precio, A.ID_Autor, A.Nombre AS AutorNombre, A.Apellido AS AutorApellido " +
+                    "FROM Compra C INNER JOIN Compra_X_Libro CL ON C.ID_Compra = CL.ID_Compra " +
+                    "INNER JOIN Libro L ON CL.ID_Libro = L.ID_Libro " +
+                    "INNER JOIN Estados E ON E.ID_Estado = C.ID_Estado " +
+                    "INNER JOIN Libro_X_Autor LA ON L.ID_Libro = LA.ID_Libro " +
+                    "INNER JOIN Autor A ON LA.ID_Autor = A.ID_Autor WHERE C.ID_Compra = " + ID_Compra);
+
+                Datos.EjecutarLectura();
+
+                Dictionary<int, Compra> compras = new Dictionary<int, Compra>();
+
+                while (Datos.Lector.Read())
+                {
+                    int idCompra = ID_Compra;
+                    int idLibro = (int)Datos.Lector["ID_Libro"];
+
+                    Compra auxCompra;
+                    if (!compras.ContainsKey(idCompra))
+                    {
+                        auxCompra = new Compra();
+                        auxCompra.Id = idCompra;
+                        auxCompra.FechaCompra = (DateTime)Datos.Lector["FechaCompra"];
+                        auxCompra.Estado = (string)Datos.Lector["TipoEstados"];
+                        auxCompra.Carrito = new Carrito();
+                        auxCompra.Carrito.Libros = new List<Libro>();
+                        auxCompra.Carrito.Monto = 0;
+
+                        compras.Add(idCompra, auxCompra);
+                    }
+                    else
+                    {
+                        auxCompra = compras[idCompra];
+                    }
+
+                    Libro auxLibro = new Libro();
+                    auxLibro.Id = idLibro;
+                    auxLibro.Codigo = (string)Datos.Lector["Codigo"];
+                    auxLibro.Titulo = (string)Datos.Lector["Titulo"];
+                    auxLibro.Descripcion = (string)Datos.Lector["Descripcion"];
+                    auxLibro.Precio = (decimal)Datos.Lector["Precio"];
+
+                    Autor auxAutor = new Autor();
+                    auxAutor.Id = (int)Datos.Lector["ID_Autor"];
+                    auxAutor.Nombre = (string)Datos.Lector["AutorNombre"];
+                    auxAutor.Apellido = (string)Datos.Lector["AutorApellido"];
+
+                    auxLibro.Autores = new List<Autor>();
+                    auxLibro.Autores.Add(auxAutor);
+
+                    if (auxCompra.Carrito != null && auxCompra.Carrito.Libros != null)
+                    {
+                        auxCompra.Carrito.Libros.Add(auxLibro);
+                        auxCompra.Carrito.Monto += auxLibro.Precio;
+                    }
+
+                    /*Genero auxGenero = new Genero();
+                    auxGenero.Id = (int)Datos.Lector["ID_Genero"];
+                    auxGenero.Nombre = (string)Datos.Lector["GeneroNombre"];
+                    auxGenero.Descripcion = (string)Datos.Lector["GeneroDescripcion"];
+
+                    auxLibro.Generos = new List<Genero>();
+                    auxLibro.Generos.Add(auxGenero);*/
+
+                    compra =  auxCompra;
+                }
+                return compra;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Datos.CerrarConexion();
+            }
+        }
+
         public void Agregar(Compra nuevo)
         {
             AccesoSQL datos = new AccesoSQL();
@@ -194,9 +278,10 @@ namespace Conexiones
 
                 int idCompra = InsertarCompra(nuevo);
 
-                foreach (Libro libro in nuevo.Carrito.Libros)
+                LibroNegocio libroNegocio = new LibroNegocio();
+                foreach (Libro libro in libroNegocio.RemoveDuplicadosLibro(nuevo.Carrito.Libros))
                 {
-                    int cantidad = CalcularCantidadLibros(nuevo.Carrito.Libros, libro.Id);
+                    int cantidad = nuevo.Carrito.contabilizarLibro(libro.Id);
                     InsertarLibroEnCompra(idCompra, libro.Id, cantidad);
                     DescuentoStock(libro.Id, cantidad);
                 }
@@ -286,7 +371,10 @@ namespace Conexiones
         {
             AccesoSQL datos = new AccesoSQL();
 
-            datos.Consulta("INSERT INTO Compra_X_Libro (ID_Compra, ID_Libro, Cantidad) VALUES(" + idCompra + ", " + idLibro + ", " + cantidad + ")");
+            datos.Consulta("INSERT INTO Compra_X_Libro (ID_Compra, ID_Libro, Cantidad) VALUES(@idCompra, @idLibro, @cantidad)");
+            datos.SetParametros("idCompra", idCompra);
+            datos.SetParametros("idLibro", idLibro);
+            datos.SetParametros("cantidad", cantidad);
             datos.EjecutarAccion();
         }
 
@@ -295,10 +383,21 @@ namespace Conexiones
         {
             AccesoSQL datos = new AccesoSQL();
 
-            datos.Consulta("INSERT INTO Compra (ID_Cliente, PrecioTotal) VALUES('" + nuevo.IdCliente + "', '" + nuevo.Carrito.Monto + "''); " +
-                      "SELECT SCOPE_IDENTITY();");
+            try
+            {
+                datos.Consulta("INSERT INTO Compra (ID_Usuario, PrecioTotal, ID_Estado) output INSERTED.ID_Compra VALUES(@idCliente, @monto , 1)");
+                datos.SetParametros("idCliente", nuevo.IdCliente);
+                datos.SetParametros("monto", nuevo.Carrito.Monto);
+               
+                int id = datos.EjecutarScalar();
 
-            return Convert.ToInt32(datos.EjecutarScalar());
+                return id;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }  
         }
 
         private void DescuentoStock(int idLibro, int cantidadComprada)

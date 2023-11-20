@@ -128,8 +128,11 @@
         <div class="div row align-self-center">
 				<h1>Necesita ser un administrador para acceder a esta pagina</h1>
 			<div class="col">
-				<a href="User/Login.aspx" class="btn btn-primary">Login</a>
 				<a href="../Default.aspx" class="btn btn-secondary">Inicio</a>
+				<asp:Button ID="btnLogin" runat="server" 
+                    Text="Login"
+                    CssClass="btn btn-primary"
+                    OnClick="btnLogin_Click"/>
 			</div>
 		</div>
         

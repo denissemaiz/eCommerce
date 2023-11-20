@@ -1,4 +1,5 @@
-﻿using Conexiones;
+﻿using Clases;
+using Conexiones;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,28 @@ namespace eCommerce
             UsuarioNegocio User = new UsuarioNegocio();
             DVGUsuarios.DataSource = User.ListarL();
             DVGUsuarios.DataBind();
+            
+        }
 
+        public bool ValidarAdmin()
+        {
+            Usuario user;
+            if (Session["Usuario"] != null)
+            {
+                user = ((Usuario)Session["Usuario"]);
+                return user.EsAdmin;
+            }
+            return false;
+        }
+
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            string loginNecesario = HttpContext.Current.Request.Url.AbsolutePath;
+            Session.Add("loginNecesario", loginNecesario);
+            if (Session["Usuario"] != null)
+                Session.Remove("Usuario");
+
+            Response.Redirect("User/Login.aspx");
         }
     }
 }

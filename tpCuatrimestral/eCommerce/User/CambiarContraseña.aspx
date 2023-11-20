@@ -33,6 +33,13 @@
                     ErrorMessage="Debe ingresar una nueva contraseña"
                     CssClass="invalid-feedback"
                     ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:CompareValidator ID="cmpvPassNueva" runat="server"
+                    ControlToValidate="txbContraseñaNueva"
+                    Operator="Equal"
+                    Display="Dynamic"
+                    ErrorMessage="La contraseña nueva no puede ser igual a su anterior contraseña"
+                    CssClass="invalid-feedback"
+                    ForeColor="Red"></asp:CompareValidator>
             </div>
         </div>
         <div class="row m-3 justify-content-center">

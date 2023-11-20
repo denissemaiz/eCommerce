@@ -99,7 +99,6 @@ namespace Conexiones
 
         public bool VerificarCorreo(string correo)
         {
-            List<Usuario> lista = new List<Usuario>();
             AccesoSQL Datos = new AccesoSQL();
 
             try
@@ -121,7 +120,28 @@ namespace Conexiones
             }
         }
 
+        public bool VerificarPassUsada(string mail, string pass)
+        {
+            AccesoSQL Datos = new AccesoSQL();
+            try
+            {
+                Datos.Consulta("SELECT COUNT(*) FROM Usuario WHERE Mail = @correo AND Contraseña = @pass");
+                Datos.SetParametros("@correo", mail);
+                Datos.SetParametros("@pass", pass);
+                int count = Datos.EjecutarScalar();
+                return count > 0;
 
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                Datos.CerrarConexion();
+            }
+        }
 
         public Usuario ListarLPrueba(int Id)
         {

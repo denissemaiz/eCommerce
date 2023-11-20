@@ -30,7 +30,13 @@
             <h5>Total a pagar: $
                 <asp:Label ID="PrecioFinal" runat="server" Text="Precion Final" OnLoad="PrecioFinal_Load"> Total a pagar </asp:Label>
             </h5>   
-         </div>         
+         </div>
+        <div>
+            <asp:Button ID="btnFinalizarCompra" runat="server" 
+                CssClass="btn btn-primary"
+                Text="Finalizar Compra"
+                OnClick="btnFinalizarCompra_Click"/>
+        </div>
     <%}
       else
       { %>

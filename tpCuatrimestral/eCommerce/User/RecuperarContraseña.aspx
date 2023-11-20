@@ -36,7 +36,7 @@
                 <br />
                 <a href="..\Default.aspx" class="btn btn-secondary">Cancelar</a>
                 <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary" OnClick="btnAceptar_Click" />
-                <asp:Label ID="lblMensaje" Visible="false" runat="server" CssClass="form-label"><b></b></asp:Label>
+                <asp:Label ID="lblMensaje" Visible="false" runat="server" CssClass="form-label" ForeColor="Red"><b></b></asp:Label>
             </div>
         </div>
     </form>

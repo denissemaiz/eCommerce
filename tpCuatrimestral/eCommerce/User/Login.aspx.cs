@@ -38,7 +38,13 @@ namespace eCommerce
                 if (conexion.Login(user))
                 {
                     Session.Add("Usuario", user);
-                    Response.Redirect("../PanelUsuario.aspx", false);
+                    if (Session["loginNecesario"] != null)
+                    {
+                        string url = Session["loginNecesario"] as string;
+                        Session.Remove("loginNecesario");
+                        Response.Redirect(url, false);
+                    }else
+                        Response.Redirect("../PanelUsuario.aspx", false);
                 }
                 else
                 {

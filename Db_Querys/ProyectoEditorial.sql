@@ -10,6 +10,9 @@ IF EXISTS (
 DROP DATABASE ProyectoEditorial
 GO*/
 
+USE master
+GO
+
 Create Database ProyectoEditorial
 Go
 Use ProyectoEditorial
@@ -112,12 +115,15 @@ GO
 
 Create table Compra_X_Libro(
 	ID_Compra int,
-	ID_Libro int null,
-	Primary key(ID_Compra),
+	ID_Libro int not null,
+	Cantidad int not null,
+	Primary key(ID_Compra, ID_Libro),
 	Foreign key(ID_Compra) references Compra(ID_Compra),
 	Foreign key(ID_Libro) references Libro(ID_Libro)
 )
 GO
+
+
 
 Create table Libro_X_Autor(
 	ID_Libro int,
@@ -131,10 +137,11 @@ GO
 
 Create table Tokens(
 	ID_Token int not null primary key identity(1,1),
-	Token varchar(100) not null unique,
+	Token varchar(100) null,
 	Mail varchar(100) not null,
 )
 GO
+
 
 
 INSERT INTO Usuario (NombreUsuario, Mail, Contraseña, EsAdmin)
@@ -290,8 +297,8 @@ CROSS JOIN Estados E
 WHERE U.ID_Usuario <> 1
 ORDER BY NEWID();
 
-INSERT INTO Compra_X_Libro (ID_Compra, ID_Libro)
-SELECT ID_Compra, ID_Libro
+INSERT INTO Compra_X_Libro (ID_Compra, ID_Libro, Cantidad)
+SELECT ID_Compra, ID_Libro, 1 as Cantidad
 FROM (
     SELECT 
         C.ID_Compra,
