@@ -224,18 +224,13 @@
                         OnLoad="DGVPedidos_Load"
                         OnSelectedIndexChanged="DGVPedidos_SelectedIndexChanged"
                         OnSelectedIndexChanging="DGVPedidos_SelectedIndexChanging"
-                        OnRowDataBound="DGVPedidos_RowDataBound"
-                        OnRowCommand="DGVPedidos_RowCommand">
-                        <Columns>           
-                            <%--<asp:TemplateField HeaderText="" Visible="true">
+                        OnRowDataBound="DGVPedidos_RowDataBound">
+                        <Columns> 
+                            <asp:TemplateField HeaderText="Detalle" >
                                 <ItemTemplate>
-                                    <asp:HyperLink ID="hlVer" runat="server" NavigateUrl='Compras/DetallesCompra2.aspx?idCompra=<%#Eval("Id") %>'></asp:HyperLink>
-                                </ItemTemplate>
-                            </asp:TemplateField>--%>
-                            <asp:TemplateField HeaderText="" >
-                                <ItemTemplate>
-                                    <%--<asp:Button CommandName="btnVer" runat="server" Text="Ver" OnClick="Unnamed_Click" CommandArgument='<%# Container.DataItemIndex %>' />--%>
-                                    <asp:HyperLink ID="hlVer" Text="Ver" runat="server" NavigateUrl='<%#Eval("Id", "Compras/DetallesCompra2.aspx?idCompra={0}") %>'></asp:HyperLink>
+                                    <asp:HyperLink ID="hlVer" Text="Ver" runat="server" 
+                                        NavigateUrl='<%#Eval("Id", "Compras/DetallesCompra2.aspx?idCompra={0}") %>'>
+                                    </asp:HyperLink>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField HeaderText="ID" DataField="Id" />  

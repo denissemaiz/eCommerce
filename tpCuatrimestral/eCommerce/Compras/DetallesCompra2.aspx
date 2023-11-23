@@ -16,7 +16,7 @@
                     <div class="col-50">
                         <h3>Datos de envio</h3>
                         <label for="fname"><i class="fa fa-user"></i> <b>Nombre completo</b></label>
-                        <label for="na">Alan Ibañez</label>
+                        <label for="na"><%#Eval(pedido.IdCliente.ToString()) %></label>
                         <label for="email"><i class="fa fa-envelope"></i> <b>Mail</b></label>
                         <label for="mail">ejemplo@ejemplo.com</label>
                         <label for="adr"><i class="fa-solid fa-house"></i> <b>Direccion</b></label>

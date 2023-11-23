@@ -151,7 +151,7 @@ namespace Conexiones
 
             try
             {
-                Datos.Consulta("Select U.Mail, U.ID_Usuario, DU.Nombre, DU.Apellido, DU.Telefono, D.Calle, D.Altura, D.CP, D.Localidad, D.Provincia from Usuario U inner join Datos_Usuario DU on DU.ID_Usuario = U.ID_Usuario inner join Direccion D on D.ID_Direccion = DU.ID_Direccion where U.ID_Usuario =" + Id);
+                Datos.Consulta("Select U.Mail, U.ID_Usuario, DU.Nombre, DU.Apellido, DU.Telefono, D.Calle, D.Altura, D.CP, D.Localidad, D.Provincia from Usuario U inner join Datos_Usuario DU on DU.ID_Usuario = U.ID_Usuario inner join Direccion D on D.ID_Usuario = DU.ID_Usuario where U.ID_Usuario =" + Id);
                 Datos.EjecutarLectura();
 
                 while (Datos.Lector.Read())
@@ -192,6 +192,31 @@ namespace Conexiones
             }
         }
 
+        public Usuario buscarUsuario_x_Id(int id)
+        {
+            AccesoSQL datos = new AccesoSQL();
+            Usuario usuario = null;
+            try
+            {
+                datos.Consulta("SELECT * FROM Usuario WHERE ID_Usuario = @id");
+                datos.SetParametros("@id", id);
+                datos.EjecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    usuario = new Usuario();
+                    usuario.Id = id;
+                    usuario.Username = (string)datos.Lector["NombreUsuario"];
+                    usuario.Mail = (string)datos.Lector["Mail"];
+                    usuario.Contraseña = (string)datos.Lector["Contraseña"];
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return usuario;
+        }
 
         public void Agregar(Usuario nuevo)
         {
