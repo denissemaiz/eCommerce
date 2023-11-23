@@ -379,57 +379,6 @@ namespace eCommerce
                 }
             }
         }
-
-        protected void DGVPedidos_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if(e.CommandName == "btnVer")
-            {
-                try
-                {
-                    int index = Convert.ToInt32(e.CommandArgument);
-
-                    GridViewRow row = DGVPedidos.Rows[index];
-
-                    string idPedido = (row.FindControl("IdPedido") as Button).CommandArgument;
-
-                    Session.Add("idPedido", idPedido);
-
-                    Response.Redirect("Compras/DetallesCompras2.aspx", false);
-
-                }
-                catch (Exception ex)
-                {
-                    Session.Add("error", ex.ToString());
-                    Response.Redirect("../Error.aspx");
-                    throw ex;
-                }
-            }
-        }
-
-        protected void Unnamed_Click(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName == "btnVer")
-            {
-                try
-                {
-                    int index = Convert.ToInt32(e.CommandArgument);
-
-                    GridViewRow row = DGVPedidos.Rows[index];
-
-                    string idPedido = (row.FindControl("IdPedido") as Button).CommandArgument;
-
-                    Session.Add("idPedido", idPedido);
-
-                    Response.Redirect("Compras/DetallesCompras2.aspx", false);
-
-                }
-                catch (Exception ex)
-                {
-                    Session.Add("error", ex.ToString());
-                    Response.Redirect("../Error.aspx");
-                    throw ex;
-                }
-            }
-        }
+        
     }
 }
