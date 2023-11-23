@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="PanelUsuario.aspx.cs" Inherits="eCommerce.PanelUsuario" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="PanelUsuario.aspx.cs" Inherits="eCommerce.PanelUsuario" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -224,11 +224,18 @@
                         OnLoad="DGVPedidos_Load"
                         OnSelectedIndexChanged="DGVPedidos_SelectedIndexChanged"
                         OnSelectedIndexChanging="DGVPedidos_SelectedIndexChanging"
-                        OnRowDataBound="DGVPedidos_RowDataBound">
-                        <Columns>                            
-                            <asp:TemplateField HeaderText="">
+                        OnRowDataBound="DGVPedidos_RowDataBound"
+                        OnRowCommand="DGVPedidos_RowCommand">
+                        <Columns>           
+                            <%--<asp:TemplateField HeaderText="" Visible="true">
                                 <ItemTemplate>
-                                    <asp:Button ID="btnVer" runat="server" Text="Ver" OnClick="btnVer_Click" CommandArgument='<%# Eval("Id") %>' />
+                                    <asp:HyperLink ID="hlVer" runat="server" NavigateUrl='Compras/DetallesCompra2.aspx?idCompra=<%#Eval("Id") %>'></asp:HyperLink>
+                                </ItemTemplate>
+                            </asp:TemplateField>--%>
+                            <asp:TemplateField HeaderText="" >
+                                <ItemTemplate>
+                                    <%--<asp:Button CommandName="btnVer" runat="server" Text="Ver" OnClick="Unnamed_Click" CommandArgument='<%# Container.DataItemIndex %>' />--%>
+                                    <asp:HyperLink ID="hlVer" Text="Ver" runat="server" NavigateUrl='Compras/DetallesCompra2.aspx?idCompra=<%#Eval("Id") %>'></asp:HyperLink>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField HeaderText="ID" DataField="Id" />  
