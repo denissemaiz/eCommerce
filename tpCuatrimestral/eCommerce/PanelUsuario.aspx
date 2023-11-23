@@ -235,7 +235,7 @@
                             <asp:TemplateField HeaderText="" >
                                 <ItemTemplate>
                                     <%--<asp:Button CommandName="btnVer" runat="server" Text="Ver" OnClick="Unnamed_Click" CommandArgument='<%# Container.DataItemIndex %>' />--%>
-                                    <asp:HyperLink ID="hlVer" Text="Ver" runat="server" NavigateUrl='Compras/DetallesCompra2.aspx?idCompra=<%#Eval("Id") %>'></asp:HyperLink>
+                                    <asp:HyperLink ID="hlVer" Text="Ver" runat="server" NavigateUrl='<%#Eval("Id", "Compras/DetallesCompra2.aspx?idCompra={0}") %>'></asp:HyperLink>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField HeaderText="ID" DataField="Id" />  
