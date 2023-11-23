@@ -293,6 +293,7 @@ namespace eCommerce
 
         protected void DGVPedidos_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             int id = (int)DGVPedidos.SelectedValue;
             CompraNegocio negocio = new CompraNegocio();
             if (negocio.BuscarCompra(id).Estado.Equals("En proceso"))
@@ -379,9 +380,56 @@ namespace eCommerce
             }
         }
 
-        protected void btnVer_Click(object sender, EventArgs e)
+        protected void DGVPedidos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            if(e.CommandName == "btnVer")
+            {
+                try
+                {
+                    int index = Convert.ToInt32(e.CommandArgument);
 
+                    GridViewRow row = DGVPedidos.Rows[index];
+
+                    string idPedido = (row.FindControl("IdPedido") as Button).CommandArgument;
+
+                    Session.Add("idPedido", idPedido);
+
+                    Response.Redirect("Compras/DetallesCompras2.aspx", false);
+
+                }
+                catch (Exception ex)
+                {
+                    Session.Add("error", ex.ToString());
+                    Response.Redirect("../Error.aspx");
+                    throw ex;
+                }
+            }
+        }
+
+        protected void Unnamed_Click(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "btnVer")
+            {
+                try
+                {
+                    int index = Convert.ToInt32(e.CommandArgument);
+
+                    GridViewRow row = DGVPedidos.Rows[index];
+
+                    string idPedido = (row.FindControl("IdPedido") as Button).CommandArgument;
+
+                    Session.Add("idPedido", idPedido);
+
+                    Response.Redirect("Compras/DetallesCompras2.aspx", false);
+
+                }
+                catch (Exception ex)
+                {
+                    Session.Add("error", ex.ToString());
+                    Response.Redirect("../Error.aspx");
+                    throw ex;
+                }
+            }
         }
     }
 }
