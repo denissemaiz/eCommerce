@@ -212,6 +212,7 @@ namespace Conexiones
                     {
                         auxCompra = new Compra();
                         auxCompra.Id = idCompra;
+                        auxCompra.IdCliente = (int)Datos.Lector["ID_Usuario"];
                         auxCompra.FechaCompra = (DateTime)Datos.Lector["FechaCompra"];
                         auxCompra.Estado = (string)Datos.Lector["TipoEstados"];
                         auxCompra.Carrito = new Carrito();
@@ -246,6 +247,7 @@ namespace Conexiones
                         auxCompra.Carrito.Monto += auxLibro.Precio;
                     }
 
+                    
                     /*Genero auxGenero = new Genero();
                     auxGenero.Id = (int)Datos.Lector["ID_Genero"];
                     auxGenero.Nombre = (string)Datos.Lector["GeneroNombre"];
