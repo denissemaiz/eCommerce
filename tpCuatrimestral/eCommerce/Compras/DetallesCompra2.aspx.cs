@@ -6,7 +6,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Clases;
 using Conexiones;
-using eCommerce.User;
 
 namespace eCommerce
 {
@@ -27,30 +26,32 @@ namespace eCommerce
                     pedido = negocio.BuscarCompra(idPedido);
                     if(pedido != null) 
                     {
-                        //if (Session["user"] != null && ((Usuario)Session["user"]).Id == pedido.IdCliente )
-                        //{
-                        //    cliente = (Usuario)Session["user"];
-                        //}
-                        //else{
-                        //    UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
-                        //    cliente = usuarioNegocio.buscarUsuario_x_Id(pedido.IdCliente);
-                        //    if( cliente != null)
-                        //    {
-                        //        DatosUsuarioNegocio datosUser = new DatosUsuarioNegocio();
-                        //        cliente.DatosUsuario = datosUser.Buscar_x_Usuario(cliente.Id);
-                        //        if (cliente.DatosUsuario == null)
-                        //            cliente.DatosUsuario = new DatosUsuario();
+                        if (Session["cliente"] != null && ((Usuario)Session["cliente"]).Id == pedido.IdCliente)
+                        {
+                            cliente = (Usuario)Session["cliente"];
+                        }
+                        else
+                        {
+                            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+                            cliente = usuarioNegocio.buscarUsuario_x_Id(pedido.IdCliente);
+                            if (cliente != null)
+                            {
+                                DatosUsuarioNegocio datoscliente = new DatosUsuarioNegocio();
+                                cliente.DatosUsuario = datoscliente.Buscar_x_Usuario(cliente.Id);
+                                if (cliente.DatosUsuario == null)
+                                    cliente.DatosUsuario = new DatosUsuario();
 
-                        //        cliente.DireccionUsuario = new Direccion();
-                        //        DireccionNegocio datosDireccion = new DireccionNegocio();
-                        //        cliente.DireccionUsuario = datosDireccion.Buscar(cliente.Id);
-                        //    }
-                        //    else
-                        //    {
-                        //        Session.Add("error", "No se encontró un cliente relacionado a este pedido");
-                        //        Response.Redirect("../Error.aspx", false);
-                        //    }
-                        //}
+                                cliente.DireccionUsuario = new Direccion();
+                                DireccionNegocio datosDireccion = new DireccionNegocio();
+                                cliente.DireccionUsuario = datosDireccion.Buscar(cliente.Id);
+                                
+                            }
+                            else
+                            {
+                                Session.Add("error", "No se encontró un cliente relacionado a este pedido");
+                                Response.Redirect("../Error.aspx", false);
+                            }
+                        }
 
                     }
                 }
