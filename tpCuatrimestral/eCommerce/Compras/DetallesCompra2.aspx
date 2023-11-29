@@ -16,24 +16,31 @@
                     <div class="col-50">
                         <h3>Datos de envio</h3>
                         <label for="fname"><i class="fa fa-user"></i> <b>Nombre completo</b></label>
-                        <label for="na"><%#:Eval(cliente.Username) %></label>
+                        <asp:Label ID="lblNombre" runat="server" Visible="true" ></asp:Label>
+                        <%--<label for="na"></label>--%>
                         <label for="email"><i class="fa fa-envelope"></i> <b>Mail</b></label>
-                        <label for="mail">ejemplo@ejemplo.com</label>
+                        <asp:Label ID="lblEmail" runat="server" Visible="true"></asp:Label>
+                        <%--<label for="mail">ejemplo@ejemplo.com</label>--%>
                         <label for="adr"><i class="fa-solid fa-house"></i> <b>Direccion</b></label>
-                        <label for="direccion">Cordero 2312</label>
+                        <asp:Label ID="lblDireccion" runat="server" Visible="true"></asp:Label>
+                        <%--<label for="direccion">Cordero 2312</label>--%>
                         <label for="phone"><i class="fa-solid fa-mobile-screen-button"></i> <b>Telefono</b></label>
-                        <label for="Telefono">1138296242</label>
+                        <asp:Label ID="lblTelefono" runat="server" Visible="true"></asp:Label>
+                        <%--<label for="Telefono">1138296242</label>--%>
                         <label for="city"><i class="fa-solid fa-city"></i> <b>Ciudad</b></label>
-                        <label for="ciudad">Tigre</label>
+                        <asp:Label ID="lblCiudad" runat="server" Visible="true"></asp:Label>
+                        <%--<label for="ciudad">Tigre</label>--%>
 
                         <div class="row">
                             <div class="col-50">
                                 <label for="state"><b>Provincia</b></label>
-                                <label for="pv">Buenos Aires</label>
+                                <asp:Label ID="lblProvincia" runat="server" Visible="true"></asp:Label>
+                                <%--<label for="pv">Buenos Aires</label>--%>
                             </div>
                             <div class="col-50">
                                 <label for="zip"><b>Codigo postal</b></label>
-                                <label for="cp">1647</label>
+                                <asp:Label ID="lblCp" runat="server" Visible="true"></asp:Label>
+                                <%--<label for="cp">1647</label>--%>
                             </div>
                         </div>
                     </div>
