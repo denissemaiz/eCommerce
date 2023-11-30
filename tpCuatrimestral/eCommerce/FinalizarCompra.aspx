@@ -2,8 +2,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
-
+    <link rel="stylesheet" type="text/css" href="Styles/CompraFinal.css">
+    <!DOCTYPE html>
+    <html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>Carrito de Compra</title>
@@ -12,29 +13,33 @@
 
     <%if (LibrosSinRepetidos.Count() != 0)
       { %>
+           
+        <h2>Carrito de Compra</h2>
+ 
         <asp:Repeater ID="repLibros" runat="server">
             <ItemTemplate>
 
                 <body>
                     <div class="cart">
-                        <h2>Carrito de Compra</h2>
                         <ul class="cart-items">
                             <!-- Elementos para no perderme -->
                             <li class="item">
                                 <img src=" <%#Eval("PortadaURL")%> " alt="Producto">
                                 <span class="item-name"> <%#Eval("Titulo")%> </span>
-                                <span class="item-price"> <%#Eval("Precio")%> </span>
+                                <span class="item-price"> <%#Eval("Precio")%> $ </span>
                                 <button class="remove-item">Eliminar</button>
                             </li>
                             <!-- Agregar mas cosas por si se da -->
                         </ul>
+                     </div>
                 </body>
 
             </ItemTemplate>
         </asp:Repeater>
         <div>       
-            <h5>Total a pagar: $
-                <asp:Label ID="PrecioFinal" runat="server" Text="Precion Final" OnLoad="PrecioFinal_Load"> Total a pagar </asp:Label>
+            <h5><b>Total a pagar: $</b>
+                <b>
+                <asp:Label ID="PrecioFinal" runat="server" Text="Precion Final" OnLoad="PrecioFinal_Load"> <b>Total a pagar</b> </asp:Label></b>
             </h5>   
          </div>
         <div>
@@ -47,6 +52,8 @@
       else
       { %>
         <h2>No hay productos</h2>
-    <%} %>
 
+
+    <%} %>
+    </html>
 </asp:Content>
