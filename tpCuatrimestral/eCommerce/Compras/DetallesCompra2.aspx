@@ -67,8 +67,12 @@
                     </div>
 
                 </div>
-                <input type="button" value="Volver" class="btn">
-                <input type="button" value="Cancelar compra" class="btn2">
+                <asp:Button ID="btnVolver" runat="server" 
+                    Text="Volver"
+                    CssClass="btn" 
+                    OnClick="btnVolver_Click" />
+                <%--<input type="button" value="Volver" class="btn">--%>
+                <%--<input type="button" value="Cancelar compra" class="btn2">--%>
             </form>
         </div>
     </div>
