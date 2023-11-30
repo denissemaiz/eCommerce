@@ -73,6 +73,7 @@
     <Content Include="Compras\DetallesCompra2.aspx" />
     <Content Include="Styles\Carrito.css" />
     <Content Include="Styles\Checkout.css" />
+    <Content Include="Styles\CompraFinal.css" />
     <Content Include="Styles\Detalles.css" />
     <Content Include="Error.aspx" />
     <Content Include="Styles\EstiloPanelUser.css" />
