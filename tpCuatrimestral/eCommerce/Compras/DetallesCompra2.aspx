@@ -48,13 +48,17 @@
                     <div class="col-50">
                         <h3>Datos del producto</h3>
                         <label for="cname"><i class="fa-solid fa-shop"></i> <b>Codigo de compra</b></label>
-                        <label for="codigo">B3F123</label>
+                        <asp:Label ID="lblCodigoCompra" runat="server" Visible="true"></asp:Label>
+                        <%--<label for="codigo">B3F123</label>--%>
                         <label for="datefecha"><i class="fa-solid fa-calendar-days"></i> <b>Fecha de la compra</b></label>
-                        <label for="datefechacompra">10/10/10</label>
+                        <asp:Label ID="lblFechaCompra" runat="server" Visible="true"></asp:Label>
+                        <%--<label for="datefechacompra">10/10/10</label>--%>
                         <label for="prodnum"><i class="fa-solid fa-cart-shopping"></i> <b>Producto</b></label>
-                        <label for="producto">Libro, cantidad: 10</label>
+                        <asp:ListBox ID="lbxProductos" runat="server" ></asp:ListBox>
+                        <%--<label for="producto">Libro, cantidad: 10</label>--%>
                         <label for="Pago"><i class="fa-solid fa-dollar-sign"></i> <b>Monto total</b></label>
-                        <label for="PagoTotal">1000</label>
+                        <asp:Label ID="lblMonto" runat="server" Visible="true"></asp:Label>
+                        <%--<label for="PagoTotal">1000</label>--%>
                         <label for="estado"><i class="fa-solid fa-truck-fast"></i> <b>Estado</b></label>
                         <label for="estadoactual">En espera</label>
 
