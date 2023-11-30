@@ -54,13 +54,14 @@
                         <asp:Label ID="lblFechaCompra" runat="server" Visible="true"></asp:Label>
                         <%--<label for="datefechacompra">10/10/10</label>--%>
                         <label for="prodnum"><i class="fa-solid fa-cart-shopping"></i> <b>Producto</b></label>
-                        <asp:ListBox ID="lbxProductos" runat="server" ></asp:ListBox>
+                        <asp:ListBox ID="lbxProductos" runat="server" CssClass="form-control"></asp:ListBox>
                         <%--<label for="producto">Libro, cantidad: 10</label>--%>
                         <label for="Pago"><i class="fa-solid fa-dollar-sign"></i> <b>Monto total</b></label>
                         <asp:Label ID="lblMonto" runat="server" Visible="true"></asp:Label>
                         <%--<label for="PagoTotal">1000</label>--%>
                         <label for="estado"><i class="fa-solid fa-truck-fast"></i> <b>Estado</b></label>
-                        <label for="estadoactual">En espera</label>
+                        <asp:Label ID="lblEstado" runat="server" Visible="true"></asp:Label>
+                        <%--<label for="estadoactual">En espera</label>--%>
 
 
                     </div>
