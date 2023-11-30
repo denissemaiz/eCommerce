@@ -139,5 +139,10 @@ namespace dominio
         {
             activo = false;
         }
+
+        public override string ToString()
+        {
+            return this.codigo + " - " + this.titulo;
+        }
     }
 }

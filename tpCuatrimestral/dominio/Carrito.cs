@@ -42,7 +42,7 @@ namespace dominio
             {
                 monto += art.Precio;
             }
-            return monto;
+            return Math.Round(monto, 2);
         }
 
         public decimal CalcularMontoLibro(int id)
