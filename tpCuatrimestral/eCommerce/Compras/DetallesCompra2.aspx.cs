@@ -30,6 +30,7 @@ namespace eCommerce
                         //Asignación de datos de la compra
                         lblCodigoCompra.Text = pedido.Id.ToString();
                         lblFechaCompra.Text = pedido.FechaCompra.ToString();
+                        lblEstado.Text = pedido.Estado.ToString();
                         
                         //Lista de cadenas para mostrar los libros vendidos y la cantidad vendida
                         List<String> productos = new List<String>();
@@ -44,6 +45,7 @@ namespace eCommerce
                         lbxProductos.DataBind();
 
                         lblMonto.Text = pedido.Carrito.CalcularMonto().ToString();
+                       
 
                         //Valido que haya un usuario logueado y que su ID de usuario no sea igual al ID del cliente del pedido
                         if (Session["cliente"] != null && ((Usuario)Session["cliente"]).Id == pedido.IdCliente)
