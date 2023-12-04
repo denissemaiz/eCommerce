@@ -65,6 +65,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AgregarAutor.aspx" />
+    <Content Include="AgregarGenero.aspx" />
     <Content Include="AgregarProducto.aspx" />
     <Content Include="Carro.aspx" />
     <Content Include="ComprarGuia.aspx" />
@@ -94,6 +96,20 @@
     <Content Include="DetallesVenta.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgregarAutor.aspx.cs">
+      <DependentUpon>AgregarAutor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgregarAutor.aspx.designer.cs">
+      <DependentUpon>AgregarAutor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarGenero.aspx.cs">
+      <DependentUpon>AgregarGenero.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgregarGenero.aspx.designer.cs">
+      <DependentUpon>AgregarGenero.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AgregarProducto.aspx.cs">
       <DependentUpon>AgregarProducto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
