@@ -7,7 +7,10 @@
     <%if (ValidarAdmin()) { %>
         <div class="btn-toolbar my-lg-0" role="toolbar" aria-label="A&B button group">
             <a href="AgregarProducto.aspx" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Agregar Libro</a>
+            <a href="" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Agregar Autor</a>
+            <a href="" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Agregar Genero</a>
             <a href="StoreProc.aspx" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Modificar</a>
+
         </div>
     <% } %>
   <div class="row row-cols-1 row-cols-md-3 g-4">              
