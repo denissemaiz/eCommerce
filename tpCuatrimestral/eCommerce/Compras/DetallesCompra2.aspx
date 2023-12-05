@@ -42,6 +42,14 @@
                                 <asp:Label ID="lblCp" runat="server" Visible="true"></asp:Label>
                                 <%--<label for="cp">1647</label>--%>
                             </div>
+
+                            <%if (ValidarAdmin())
+                            { %>
+                            <div class="col-50">
+                                <label for="estado">Cambiar estado</label>
+                                <asp:DropDownList ID="ListaEstados" runat="server"></asp:DropDownList>
+                            </div>
+                            <% } %>
                         </div>
                     </div>
 

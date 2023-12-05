@@ -33,6 +33,10 @@
                                 <label for="zip">CP</label>
                                 <input type="text" id="zip" name="zip" placeholder="1646">
                             </div>
+                             <div class="col-50">
+                                <label for="state">Provincia</label>
+                                <input type="text" id="state" name="state" placeholder="Buenos Aires">
+                            </div>
                         </div>
                     </div>
 
