@@ -13,9 +13,10 @@ namespace eCommerce
 {
     public partial class AgregarProducto : System.Web.UI.Page
     {
+        public Libro libro;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
             txtID.Enabled = false;
 
 
@@ -23,6 +24,7 @@ namespace eCommerce
             {
                 if (!IsPostBack)
                 {
+                    libro = new Libro();
                     GeneroNegocio Gene = new GeneroNegocio();
                     List<Genero> lista = Gene.Listar();
                     AutorNegocio Autor = new AutorNegocio();
@@ -40,8 +42,14 @@ namespace eCommerce
                     txtAutorNombre.DataBind();
                     txtAutorNombre.Items.Insert(0, new ListItem("--Vacío--", "NA"));
 
+                    Session.Add("libro", libro);
 
                 }
+                else if (libro == null)
+                    if (Session["Libro"] != null)
+                        libro = (Libro)Session["Libro"];
+                    else
+                        libro = new Libro();
             }
             catch (Exception ex)
             {
@@ -81,7 +89,7 @@ namespace eCommerce
         {
             try
             {
-                Libro libro = new Libro();
+                //Libro libro = new Libro();
                 LibroNegocio negocio = new LibroNegocio();
                 Genero genero = new Genero();
                 Autor autor = new Autor();
@@ -94,9 +102,7 @@ namespace eCommerce
                 libro.PortadaURL = txtportadaURL.Text;
                 autor.Id = int.Parse(txtAutorNombre.SelectedValue);
                 genero.Id = int.Parse(txtGenero.SelectedValue);
-                libro.Generos = new List<Genero>();
-                libro.Generos.Add(genero);
-                libro.Autores = new List<Autor>();
+                //libro.Generos.Add(genero);
                 libro.Autores.Add(autor);  
 
                 
@@ -152,6 +158,20 @@ namespace eCommerce
                 Session.Remove("Usuario");
 
             Response.Redirect("User/Login.aspx");
+        }
+
+        protected void btnAgregarGenero_Click(object sender, EventArgs e)
+        {
+            Genero genero = new Genero();
+            genero.Id = Int32.Parse(txtGenero.SelectedValue);
+            genero.Nombre = txtGenero.SelectedItem.ToString();
+
+            libro.Generos.Add(genero);
+
+            Session["Libro"] = libro;
+
+            lbxGeneros.DataSource = libro.Generos;
+            lbxGeneros.DataBind();
         }
     }
 }

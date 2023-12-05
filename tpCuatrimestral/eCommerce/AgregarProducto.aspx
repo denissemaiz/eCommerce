@@ -6,59 +6,104 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager2" runat="server"></asp:ScriptManager>
 
-    <% if (ValidarAdmin()){ %>
-        <div class="row">
+    <% //if (ValidarAdmin()){ %>
+        <div>
+            <%--Fila para el ID (Habría que buscar formas de mostrar el ID autoasignado--%>
+            <div class="row">
+                <div class="col-md-3">
+                    <asp:Label for="txtID" runat="server" CssClass="form-label"><b>ID:</b></asp:Label>
+                    <asp:TextBox ID="txtID" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
 
-            <div class="col-md-3">
-                <asp:Label for="txtID" runat="server" CssClass="form-label"><b>ID:</b></asp:Label>
-                <asp:TextBox ID="txtID" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
 
-
-            <div class="col-md-3">
-                <asp:Label for="txtCodigo" runat="server" CssClass="form-label"><b>Codigo:</b></asp:Label>
-                <asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rfvCodigo" runat="server" 
-                    ControlToValidate="txtCodigo"
-                    Display="Dynamic"
-                    ErrorMessage="Debe ingresar un código para el libro"
-                    CssClass="invalid-feedback"
-                    ForeColor="Red"></asp:RequiredFieldValidator>
+            <div class="row">
+                <div class="col-md-2">
+                    <asp:Label for="txtCodigo" runat="server" CssClass="form-label"><b>Codigo:</b></asp:Label>
+                    <asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvCodigo" runat="server" 
+                        ControlToValidate="txtCodigo"
+                        Display="Dynamic"
+                        ErrorMessage="Debe ingresar un código para el libro"
+                        CssClass="invalid-feedback"
+                        ForeColor="Red"></asp:RequiredFieldValidator>
+                </div>
+                <div class="col-md-4">
+                    <asp:Label for="txtTitulo" runat="server" CssClass="form-label"><b>Titulo:</b></asp:Label>
+                    <asp:TextBox ID="txtTitulo" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvTitulo" runat="server" 
+                        ControlToValidate="txtTitulo"
+                        Display="Dynamic"
+                        ErrorMessage="Debe ingresar un titulo para el libro"
+                        CssClass="invalid-feedback"
+                        ForeColor="Red"></asp:RequiredFieldValidator>
+                </div>
             </div>
 
-            <div class="col-md-3">
-                <asp:Label for="txtTitulo" runat="server" CssClass="form-label"><b>Titulo:</b></asp:Label>
-                <asp:TextBox ID="txtTitulo" runat="server" CssClass="form-control"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rfvTitulo" runat="server" 
-                    ControlToValidate="txtTitulo"
-                    Display="Dynamic"
-                    ErrorMessage="Debe ingresar un titulo para el libro"
-                    CssClass="invalid-feedback"
-                    ForeColor="Red"></asp:RequiredFieldValidator>
-            </div>
+            <asp:UpdatePanel ID="updListas" runat="server">
+                <ContentTemplate>
 
-            <div class="col-md-3">
-                <asp:Label for="txtGenero" runat="server" CssClass="form-label"><b>Genero:</b></asp:Label>
-                <asp:DropDownList ID="txtGenero" CssClass="form-select" runat="server"></asp:DropDownList>
-                <asp:RequiredFieldValidator ID="rfvGenero" runat="server"
-                    ControlToValidate="txtGenero"
-                    InitialValue="NA"
-                    Display="Dynamic"
-                    ErrorMessage="Debe seleccionar un genero para el libro"
-                    CssClass="invalid-feedback"
-                    ForeColor="Red"></asp:RequiredFieldValidator>
-            </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <asp:Label for="txtGenero" runat="server" CssClass="form-label"><b>Genero:</b></asp:Label>
+                            <%-- Agrupo los controles con un div="Input-Group" para que se dibujen sobre la misma fila --%>
+                            <div class="input-group">
+                                <asp:DropDownList ID="txtGenero" CssClass="form-select" runat="server"></asp:DropDownList>
+                                <asp:LinkButton ID="btnAgregarGenero" runat="server"
+                                    CssClass="btn btn-success"
+                                    OnClick="btnAgregarGenero_Click"
+                                    ValidationGroup="GrupoGenero">
+                                    <i class="bi bi-plus-lg"></i></asp:LinkButton>
+                            </div>
+                            <%--Validador para el genero--%>
+                            <asp:RequiredFieldValidator ID="rfvGenero" runat="server"
+                                ControlToValidate="txtGenero"
+                                ValidationGroup="GrupoGenero"
+                                InitialValue="NA"
+                                Display="Dynamic"
+                                ErrorMessage="Debe seleccionar un genero para el libro"
+                                CssClass="invalid-feedback"
+                                ForeColor="Red"></asp:RequiredFieldValidator>
+                        </div>
 
-            <div class="col-md-3">
-                <asp:Label for="txtAutorNombre" runat="server" CssClass="form-label"><b>Nombre del autor:</b></asp:Label>
-                <asp:DropDownList ID="txtAutorNombre" CssClass="form-select" runat="server"></asp:DropDownList>
-                <asp:RequiredFieldValidator ID="rfvAutor" runat="server"
-                    ControlToValidate="txtAutorNombre"
-                    InitialValue="NA"
-                    Display="Dynamic"
-                    ErrorMessage="Debe seleccionar un autor para el libro"
-                    CssClass="invalid-feedback"
-                    ForeColor="Red"></asp:RequiredFieldValidator>
+                        <div class="row g-2">
+                            <div class="col-md-3">
+                                <asp:ListBox ID="lbxGeneros" runat="server" CssClass="form-control">
+                                </asp:ListBox>
+                                <asp:RequiredFieldValidator ID="rfvGeneros" runat="server"
+                                    ControlToValidate="lbxGeneros"
+                                    InitialValue=""
+                                    Display="Dynamic"
+                                    ErrorMessage="Debe agregar un género para el libro"
+                                    CssClass="invalid-feedback"
+                                    ForeColor="Red"></asp:RequiredFieldValidator>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </ContentTemplate>
+            </asp:UpdatePanel>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <asp:Label for="txtAutorNombre" runat="server" CssClass="form-label"><b>Nombre del autor:</b></asp:Label>
+                    <div class="input-group">
+                        <asp:DropDownList ID="txtAutorNombre" CssClass="form-select" runat="server"></asp:DropDownList>
+                        <asp:LinkButton ID="btnAgregarAutor" runat="server"
+                            CssClass="btn btn-success"><i class="bi bi-plus-lg"></i></asp:LinkButton>
+
+                    </div>
+
+                    <%-- Validador del autor --%>
+                    <asp:RequiredFieldValidator ID="rfvAutor" runat="server"
+                        ControlToValidate="txtAutorNombre"
+                        InitialValue="NA"
+                        Display="Dynamic"
+                        ErrorMessage="Debe seleccionar un autor para el libro"
+                        CssClass="invalid-feedback"
+                        ForeColor="Red"></asp:RequiredFieldValidator>
+                </div>
             </div>
 
             <div class="col-md-6">
@@ -124,7 +169,7 @@
                 <a href="Default.aspx" class="btn btn-primary">Volver</a>
             </div>
         </div>
-    <% }else { %>
+    <% //}else { %>
         <div class="div row align-self-center">
 				<h1>Necesita ser un administrador para acceder a esta pagina</h1>
 			<div class="col">
@@ -136,7 +181,7 @@
 			</div>
 		</div>
         
-    <% } %>
+    <% //} %>
 
 </asp:Content>
 

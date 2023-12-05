@@ -24,6 +24,8 @@ namespace dominio
         public Libro()
         {
             activo = true;
+            this.autores = new List<Autor>();
+            this.generos = new List<Genero>();
         }
 
         public Libro(int id, string codigo, string titulo, List<Autor> autores, string descripcion, decimal precio, int stock, List<Genero> generos, string portadaURL)

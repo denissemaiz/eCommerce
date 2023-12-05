@@ -69,6 +69,15 @@ namespace eCommerce
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTitulo;
 
         /// <summary>
+        /// Control updListas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updListas;
+
+        /// <summary>
         /// Control txtGenero.
         /// </summary>
         /// <remarks>
@@ -76,6 +85,15 @@ namespace eCommerce
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList txtGenero;
+
+        /// <summary>
+        /// Control btnAgregarGenero.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnAgregarGenero;
 
         /// <summary>
         /// Control rfvGenero.
@@ -87,6 +105,24 @@ namespace eCommerce
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvGenero;
 
         /// <summary>
+        /// Control lbxGeneros.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox lbxGeneros;
+
+        /// <summary>
+        /// Control rfvGeneros.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvGeneros;
+
+        /// <summary>
         /// Control txtAutorNombre.
         /// </summary>
         /// <remarks>
@@ -94,6 +130,15 @@ namespace eCommerce
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList txtAutorNombre;
+
+        /// <summary>
+        /// Control btnAgregarAutor.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnAgregarAutor;
 
         /// <summary>
         /// Control rfvAutor.
