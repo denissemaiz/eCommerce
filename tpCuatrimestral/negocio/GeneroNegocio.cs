@@ -72,7 +72,7 @@ namespace negocio
             }
         }
 
-
+        
 
         public void Agregar(Genero nuevo)
         {

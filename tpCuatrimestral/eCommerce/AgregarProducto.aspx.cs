@@ -66,7 +66,7 @@ namespace eCommerce
             if (Id != "" && !IsPostBack)
             {
                 LibroNegocio neg = new LibroNegocio();
-                Libro seleccionado = (neg.BuscarTest(Id))[0];
+                Libro seleccionado = neg.Buscar_X_Id(Id); //Busco el libro X ID
 
                 txtID.Text = Id;
                 txtCodigo.Text = seleccionado.Codigo;
@@ -75,8 +75,15 @@ namespace eCommerce
                 txtStock.Text = seleccionado.Stock.ToString();
                 txtPrecio.Text = seleccionado.Precio.ToString();
                 txtportadaURL.Text = seleccionado.PortadaURL.ToString();
-                txtAutorNombre.Text = seleccionado.Autores.ToString();
-                txtGenero.Text = seleccionado.Generos.ToString();
+                //txtAutorNombre.Text = seleccionado.Autores.ToString();
+                //txtGenero.Text = seleccionado.Generos.ToString();
+
+                lbxAutores.DataSource = seleccionado.Autores;
+                lbxAutores.DataBind();
+                lbxGeneros.DataSource = seleccionado.Generos;
+                lbxGeneros.DataBind(); 
+
+                
 
                 txtportadaURL_TextChanged(sender, e);
 

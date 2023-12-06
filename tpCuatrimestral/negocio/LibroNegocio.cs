@@ -8,6 +8,7 @@ using dominio;
 using Clases;
 using negocio;
 using Conexiones;
+using System.Linq.Expressions;
 
 namespace negocio
 {
@@ -191,6 +192,48 @@ namespace negocio
             }
             catch (Exception ex)
             {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public Libro Buscar_X_Id(string id)
+        {
+            Libro buscado = new Libro();
+            AccesoSQL datos = null;
+            try
+            {
+                datos = new AccesoSQL();
+                //Seteo la consulta
+                datos.Consulta("Select * From Libro WHERE ID_Libro = @ID_Libro");
+                datos.SetParametros("ID_Libro", id);
+                datos.EjecutarLectura();
+                if (datos.Lector.Read())
+                {
+                     
+                    buscado.Id = (Int32)datos.Lector["ID_Libro"];
+                    buscado.Codigo = (String)datos.Lector["Codigo"];
+                    buscado.Titulo = (String)datos.Lector["Titulo"];
+                    buscado.Descripcion = (String)datos.Lector["Descripcion"];
+                    buscado.Precio = Decimal.Round((decimal)datos.Lector["Precio"], 2);
+                    buscado.Stock = (Int16)datos.Lector["Stock"];
+                    buscado.PortadaURL = (String)datos.Lector["PortadaURL"];
+                }
+                
+                GeneroNegocio generoNegocio = new GeneroNegocio();
+                buscado.Generos = generoNegocio.BuscarGenero(buscado.Codigo);//Busco todos los generos del libro encontrado
+
+                AutorNegocio autorNegocio = new AutorNegocio();
+                buscado.Autores = autorNegocio.BuscarAutor(buscado.Codigo);//Busco todos los autores del libro encontrado
+                
+                return buscado;
+            }
+            catch (Exception ex)
+            {
+                return buscado = null; //En caso de error devuelvo el libro como NULL para realizar validaciones
                 throw ex;
             }
             finally
@@ -414,7 +457,7 @@ namespace negocio
             }
             catch (Exception ex)
             {
-                datos.RevertirTransaccion();
+                datos.RevertirTransaccion(); //En caso de error se revierte el insert
                 throw ex;
             }
             finally
@@ -422,13 +465,14 @@ namespace negocio
                 datos.CerrarConexion();
             }
 
-            int idLibro = ObtenerUltimoIdInsertado(datos, nuevo.Codigo);
+            int idLibro = ObtenerUltimoIdInsertado(datos, nuevo.Codigo); //Se obtiene el ID del libro insertado
 
             try
             { 
                 AutorNegocio autorNegocio = new AutorNegocio();
                 foreach (Autor autor in nuevo.Autores)
                 {
+                    //Por cada Autor en el listado del libro agrego un registro a Libro_X_Autor con la funcion de Agregar_a_Libro
                     autorNegocio.Agregar_a_Libro(autor.Id, idLibro);
                 }
             }
@@ -442,6 +486,7 @@ namespace negocio
                 GeneroNegocio generoNegocio = new GeneroNegocio();
                 foreach (Genero genero in nuevo.Generos)
                 {
+                    //Por cada Genero en el listado del libro agrego un registro a Genero_X_Libro con la funcion de Agregar_a_Libro
                     generoNegocio.Agregar_a_Libro(genero.Id, idLibro);
                 }
             }
