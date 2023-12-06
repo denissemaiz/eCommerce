@@ -414,6 +414,7 @@ namespace negocio
             }
             catch (Exception ex)
             {
+                datos.RevertirTransaccion();
                 throw ex;
             }
             finally
@@ -424,20 +425,16 @@ namespace negocio
             int idLibro = ObtenerUltimoIdInsertado(datos, nuevo.Codigo);
 
             try
-            {
+            { 
                 AutorNegocio autorNegocio = new AutorNegocio();
                 foreach (Autor autor in nuevo.Autores)
                 {
-                    autorNegocio.Agregar(autor);
+                    autorNegocio.Agregar_a_Libro(autor.Id, idLibro);
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
-            }
-            finally
-            {
-                datos.CerrarConexion();
             }
 
             try
@@ -445,16 +442,12 @@ namespace negocio
                 GeneroNegocio generoNegocio = new GeneroNegocio();
                 foreach (Genero genero in nuevo.Generos)
                 {
-                    generoNegocio.Agregar(genero);
+                    generoNegocio.Agregar_a_Libro(genero.Id, idLibro);
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
-            }
-            finally
-            {
-                datos.CerrarConexion();
             }
         }
        

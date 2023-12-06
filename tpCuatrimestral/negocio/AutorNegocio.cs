@@ -61,6 +61,27 @@ namespace Conexiones
             }
         }
 
+        public void Agregar_a_Libro(int idAutor, int idLibro)
+        {
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("INSERT INTO Libro_X_Autor (ID_Autor, ID_Libro) VALUES(@ID_Autor, @ID_Libro)");
+                datos.SetParametros("ID_Autor", idAutor);
+                datos.SetParametros("ID_Libro", idLibro);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                datos.RevertirTransaccion();
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
         public void Eliminar(int Id)
         {
             AccesoSQL datos = new AccesoSQL();

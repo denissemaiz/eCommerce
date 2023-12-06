@@ -93,6 +93,27 @@ namespace negocio
             }
         }
 
+        public void Agregar_a_Libro(int idGenero, int idLibro)
+        {
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("INSERT INTO Genero_X_Libro (ID_Genero, ID_Libro) VALUES(@ID_Genero, @ID_Libro)");
+                datos.SetParametros("ID_Genero", idGenero);
+                datos.SetParametros("ID_Libro", idLibro);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                datos.RevertirTransaccion();
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
         public void Eliminar(int Id)
         {
             AccesoSQL datos = new AccesoSQL();
