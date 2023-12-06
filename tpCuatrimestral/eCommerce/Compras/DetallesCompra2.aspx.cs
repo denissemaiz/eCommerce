@@ -14,6 +14,7 @@ namespace eCommerce
     {
         public Compra pedido;
         public Usuario cliente;
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,6 +23,12 @@ namespace eCommerce
                 int idPedido = Convert.ToInt32(Request.QueryString["idCompra"]);//Consigo el id de pedido de la URL
 
                 CompraNegocio negocio = new CompraNegocio();
+                List<string> estados = new List<string>();
+                estados.Add("En proceso");
+                estados.Add("Enviado");
+                estados.Add("Completado");
+                estados.Add("Cancelado");
+
                 try
                 {
                     pedido = negocio.BuscarCompra(idPedido); //Busco la compra x ID
@@ -31,6 +38,10 @@ namespace eCommerce
                         lblCodigoCompra.Text = pedido.Id.ToString();
                         lblFechaCompra.Text = pedido.FechaCompra.ToString();
                         lblEstado.Text = pedido.Estado.ToString();
+                        txtEstadoCompra.DataSource = estados;
+                        txtEstadoCompra.DataBind();
+                        
+                        
                         
                         //Lista de cadenas para mostrar los libros vendidos y la cantidad vendida
                         List<String> productos = new List<String>();

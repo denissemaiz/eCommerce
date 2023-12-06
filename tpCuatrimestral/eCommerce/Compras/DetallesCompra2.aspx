@@ -47,7 +47,7 @@
                             { %>
                             <div class="col-50">
                                 <label for="estado">Cambiar estado</label>
-                                <asp:DropDownList ID="ListaEstados" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="txtEstadoCompra" runat="server"></asp:DropDownList>
                             </div>
                             <% } %>
                         </div>
