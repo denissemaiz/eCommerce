@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using Clases;
 using dominio;
@@ -100,6 +101,30 @@ namespace eCommerce
                     librosCarrito.Add(listaLibros.First());
                     Session.Add("librosAgregados", librosCarrito);
                     Response.Redirect("Productos.aspx");
+                }
+            }
+        }
+
+        protected void Repeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                // Encuentra el control mensajeStock
+                HtmlGenericControl mensajeStock = (HtmlGenericControl)e.Item.FindControl("mensajeStock");
+
+                if (mensajeStock != null)
+                {
+                    string codigoLibro = DataBinder.Eval(e.Item.DataItem, "Codigo").ToString();
+
+                    if (!EsStockDisponible(codigoLibro))
+                    {
+                        mensajeStock.InnerText = "No hay stock de este producto";
+                        mensajeStock.Style["display"] = "block";  // Muestra el mensaje
+                    }
+                    else
+                    {
+                        mensajeStock.Style["display"] = "none";  // Oculta el mensaje si se muestra
+                    }
                 }
             }
         }

@@ -11,7 +11,7 @@
         </div>
     <% } %>
   <div class="row row-cols-1 row-cols-md-3 g-4">              
-      <asp:Repeater ID="repLibros" runat="server">
+      <asp:Repeater ID="repLibros" OnItemDataBound="Repeater_ItemDataBound" runat="server">
         <ItemTemplate>
             <div class="col">
                 <div class="card h-80" style="width: 18rem;">
@@ -44,9 +44,10 @@
                                 <%} else {%>
                                     <div class="d-grid gap-2">
                                         <asp:Button ID="btnAgregarACarrito" CssClass="btn btn-dark" Text="Agregar al carrito" CommandArgument='<%#Eval("Codigo") %>' CommandName="IdLibro" Enabled='<%# EsStockDisponible(Eval("Codigo").ToString()) %>' OnClick="btnAgregarACarrito_Click" runat="server" />
-                                    </div>                                     
+                                    </div>                                 
                                 <%}%>
-                        </div>
+                        </div> 
+                        <p id="mensajeStock" runat="server" style="color: red; display: none;">No hay stock de este producto</p>
                     </div>
                     <div class="card-footer">
                         <small class="text-body-secondary">Código: <%#Eval("Codigo") %></small>
