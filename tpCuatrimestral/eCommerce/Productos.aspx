@@ -43,8 +43,8 @@
                                     </div>
                                 <%} else {%>
                                     <div class="d-grid gap-2">
-                                        <asp:Button ID="btnAgregarACarrito" CssClass="btn btn-dark" Text="Agregar al carrito" CommandArgument='<%#Eval("Codigo") %>' CommandName="IdLibro" OnClick="btnAgregarACarrito_Click" runat="server" />
-                                    </div>
+                                        <asp:Button ID="btnAgregarACarrito" CssClass="btn btn-dark" Text="Agregar al carrito" CommandArgument='<%#Eval("Codigo") %>' CommandName="IdLibro" Enabled='<%# EsStockDisponible(Eval("Codigo").ToString()) %>' OnClick="btnAgregarACarrito_Click" runat="server" />
+                                    </div>                                     
                                 <%}%>
                         </div>
                     </div>

@@ -104,6 +104,20 @@ namespace eCommerce
             }
         }
 
+        public bool EsStockDisponible(string codigoLibro)
+        {
+            LibroNegocio librosDB = new LibroNegocio();
+
+            listaLibros = librosDB.Buscar(codigoLibro, "Codigo");
+
+            if (listaLibros != null)
+            {
+                if (listaLibros.First().Stock > 0) { return true; }
+            }
+
+            return false;
+        }
+
         public bool ValidarAdmin()
         {
             Usuario user;
