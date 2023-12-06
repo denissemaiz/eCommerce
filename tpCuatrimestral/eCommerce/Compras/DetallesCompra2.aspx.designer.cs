@@ -141,12 +141,12 @@ namespace eCommerce
         protected global::System.Web.UI.WebControls.Button btnVolver;
 
         /// <summary>
-        /// Control Button1.
+        /// Control BtonGuardar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button BtonGuardar;
     }
 }

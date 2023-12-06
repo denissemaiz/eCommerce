@@ -15,6 +15,7 @@ namespace eCommerce
         public Compra pedido;
         public Usuario cliente;
         
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -150,6 +151,12 @@ namespace eCommerce
                 return user.EsAdmin;
             }
             return false;
+        }
+
+        protected void BtonGuardar_Click(object sender, EventArgs e)
+        {
+            pedido.Estado = txtEstadoCompra.SelectedItem.ToString();
+
         }
     }
 }
