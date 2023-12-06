@@ -70,6 +70,7 @@
                             <div class="col-md-3">
                                 <asp:ListBox ID="lbxGeneros" runat="server" CssClass="form-control">
                                 </asp:ListBox>
+                                <%--Validador para el listado de generos --%>
                                 <asp:RequiredFieldValidator ID="rfvGeneros" runat="server"
                                     ControlToValidate="lbxGeneros"
                                     InitialValue=""
@@ -81,30 +82,47 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-md-3">
+                            <asp:Label for="txtAutorNombre" runat="server" CssClass="form-label"><b>Nombre del autor:</b></asp:Label>
+                            <div class="input-group">
+                                <asp:DropDownList ID="txtAutorNombre" CssClass="form-select" runat="server"></asp:DropDownList>
+                                <asp:LinkButton ID="btnAgregarAutor" runat="server"
+                                    ValidationGroup="GrupoAutores"
+                                    OnClick="btnAgregarAutor_Click"
+                                    CssClass="btn btn-success"><i class="bi bi-plus-lg"></i></asp:LinkButton>
+
+                            </div>
+
+                            <%-- Validador del autor --%>
+                            <asp:RequiredFieldValidator ID="rfvAutor" runat="server"
+                                ControlToValidate="txtAutorNombre"
+                                ValidationGroup="GrupoAutores"
+                                InitialValue="NA"
+                                Display="Dynamic"
+                                ErrorMessage="Debe seleccionar un autor para el libro"
+                                CssClass="invalid-feedback"
+                                ForeColor="Red"></asp:RequiredFieldValidator>
+                        </div>
+
+                        <div class="row g-2">
+                            <div class="col-md-3">
+                                <asp:ListBox ID="lbxAutores" runat="server" CssClass="form-control">
+                                </asp:ListBox>
+                                <%--Validador para el listado de Autores --%>
+                                <asp:RequiredFieldValidator ID="rfvAutores" runat="server"
+                                    ControlToValidate="lbxAutores"
+                                    InitialValue=""
+                                    Display="Dynamic"
+                                    ErrorMessage="Debe agregar un género para el libro"
+                                    CssClass="invalid-feedback"
+                                    ForeColor="Red"></asp:RequiredFieldValidator>
+                            </div>
+                        </div>
+                    </div>
 
                 </ContentTemplate>
             </asp:UpdatePanel>
-
-            <div class="row">
-                <div class="col-md-3">
-                    <asp:Label for="txtAutorNombre" runat="server" CssClass="form-label"><b>Nombre del autor:</b></asp:Label>
-                    <div class="input-group">
-                        <asp:DropDownList ID="txtAutorNombre" CssClass="form-select" runat="server"></asp:DropDownList>
-                        <asp:LinkButton ID="btnAgregarAutor" runat="server"
-                            CssClass="btn btn-success"><i class="bi bi-plus-lg"></i></asp:LinkButton>
-
-                    </div>
-
-                    <%-- Validador del autor --%>
-                    <asp:RequiredFieldValidator ID="rfvAutor" runat="server"
-                        ControlToValidate="txtAutorNombre"
-                        InitialValue="NA"
-                        Display="Dynamic"
-                        ErrorMessage="Debe seleccionar un autor para el libro"
-                        CssClass="invalid-feedback"
-                        ForeColor="Red"></asp:RequiredFieldValidator>
-                </div>
-            </div>
 
             <div class="col-md-6">
                 <asp:Label for="txtDescripcion" runat="server" CssClass="form-label"><b>Descripcion:</b></asp:Label>

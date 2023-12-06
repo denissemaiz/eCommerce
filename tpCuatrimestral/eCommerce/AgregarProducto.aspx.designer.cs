@@ -150,6 +150,24 @@ namespace eCommerce
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvAutor;
 
         /// <summary>
+        /// Control lbxAutores.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox lbxAutores;
+
+        /// <summary>
+        /// Control rfvAutores.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvAutores;
+
+        /// <summary>
         /// Control txtDescripcion.
         /// </summary>
         /// <remarks>

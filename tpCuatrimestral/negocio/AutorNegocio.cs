@@ -128,6 +128,33 @@ namespace Conexiones
             }
         }
 
+        public Autor BuscarAutor_ID(int id)
+        {
+            Autor autor = null;
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("Select * From Autor WHERE ID_Autor = @id");
+                datos.SetParametros("id", id);
+                datos.EjecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    autor = new Autor();
+                    autor.Id = id;
+                    autor.Nombre = (string)datos.Lector["Nombre"];
+                    autor.Apellido = (string)datos.Lector["Apellido"];
+                }
+                return autor;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
 
         public List<Autor> RemoveDuplicadosAutor(List<Autor> inputList)  ///va a sacra a todos los que tengan el mismo apellido
         {

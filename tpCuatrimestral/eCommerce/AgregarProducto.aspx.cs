@@ -100,10 +100,10 @@ namespace eCommerce
                 libro.Precio = decimal.Parse(txtPrecio.Text);
                 libro.Stock = short.Parse(txtStock.Text);
                 libro.PortadaURL = txtportadaURL.Text;
-                autor.Id = int.Parse(txtAutorNombre.SelectedValue);
-                genero.Id = int.Parse(txtGenero.SelectedValue);
+                //autor.Id = int.Parse(txtAutorNombre.SelectedValue);
+                //genero.Id = int.Parse(txtGenero.SelectedValue);
                 //libro.Generos.Add(genero);
-                libro.Autores.Add(autor);  
+                //libro.Autores.Add(autor);  
 
                 
 
@@ -117,15 +117,15 @@ namespace eCommerce
                 else
                 {
                     negocio.Agregar(libro);
-                    Response.Redirect("Productos.aspx");
+                    Response.Redirect("Productos.aspx", false);
                 }
 
                 
             }
             catch (Exception ex)
             {
-                Session.Add("Fallo al agregar", ex);
-                throw;
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
 
 
@@ -138,18 +138,6 @@ namespace eCommerce
         {
             ImgPortada.ImageUrl = txtportadaURL.Text;
         }
-
-        public bool ValidarAdmin()
-        {
-            Usuario user;
-            if (Session["Usuario"] != null)
-            {
-                user = ((Usuario)Session["Usuario"]);
-                return user.EsAdmin;
-            }
-            return false;
-        }
-
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             string loginNecesario = HttpContext.Current.Request.Url.AbsolutePath;
@@ -163,15 +151,58 @@ namespace eCommerce
         protected void btnAgregarGenero_Click(object sender, EventArgs e)
         {
             Genero genero = new Genero();
+            //Obtengo los datos del genero seleccionado
             genero.Id = Int32.Parse(txtGenero.SelectedValue);
             genero.Nombre = txtGenero.SelectedItem.ToString();
 
+            //Agrego el genero al listado de mi libro
             libro.Generos.Add(genero);
+
+            //Remuevo el genero agregado del dropbox
+            txtGenero.Items.Remove(txtGenero.SelectedItem);
+            txtGenero.ClearSelection(); //Limpio las selecciones de la lista para que vuelva al valor "Vacio"
+            txtGenero.DataBind(); //Vuelvo a hacer el bind de los datos para asegurarme que tenga el listado actualizado
+
+            Session["Libro"] = libro; //Vuelvo a agregar el libro a session para no perder los datos
+
+            lbxGeneros.DataSource = libro.Generos;
+            lbxGeneros.DataBind(); //por ultimo actualizo los elementos del ListBox
+        }
+
+        protected void btnAgregarAutor_Click(object sender, EventArgs e)
+        {
+            Autor autor = new Autor();
+            //Obtengo el id del Autor
+            autor.Id = Int32.Parse(txtAutorNombre.SelectedValue);
+            
+            AutorNegocio autorNegocio = new AutorNegocio();
+            //Obtengo el autor de la base de datos
+            autor = autorNegocio.BuscarAutor_ID(autor.Id);
+
+            //Le agrego el libro al autor
+            libro.Autores.Add(autor);
+
+            //Remuevo el autor del dropbox
+            txtAutorNombre.Items.Remove(txtAutorNombre.SelectedItem);
+            txtAutorNombre.ClearSelection(); //Limpio los selected values
+            txtAutorNombre.DataBind();
 
             Session["Libro"] = libro;
 
-            lbxGeneros.DataSource = libro.Generos;
-            lbxGeneros.DataBind();
+            lbxAutores.DataSource = libro.Autores;
+            lbxAutores.DataBind(); //Actualizo elementos del listbox
         }
+
+        public bool ValidarAdmin()
+        {
+            Usuario user;
+            if (Session["Usuario"] != null)
+            {
+                user = ((Usuario)Session["Usuario"]);
+                return user.EsAdmin;
+            }
+            return false;
+        }
+
     }
 }

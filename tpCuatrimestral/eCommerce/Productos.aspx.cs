@@ -50,7 +50,7 @@ namespace eCommerce
 
                 if (!Request.QueryString.AllKeys.Contains("autoresLib") && !Request.QueryString.AllKeys.Contains("generosLib") && !Request.QueryString.AllKeys.Contains("tituloLib"))
                 {
-                    List<Libro> listaSinRepetidos = librosDB.RemoveDuplicadosLibro(librosDB.Listar());
+                    List<Libro> listaSinRepetidos = librosDB.RemoveDuplicadosLibro(librosDB.ListarL());
                     repLibros.DataSource = listaSinRepetidos;
                     repLibros.DataBind();
                 }

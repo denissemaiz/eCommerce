@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using dominio;
 using Clases;
 using negocio;
+using Conexiones;
 
 namespace negocio
 {
@@ -40,7 +41,7 @@ namespace negocio
                         aux.Titulo = (string)datos.Lector["Titulo"];
                         aux.Descripcion = (string)datos.Lector["Descripcion"];
                         aux.Precio = Decimal.Round((decimal)datos.Lector["Precio"], 2);
-                        aux.Stock = (Int16)datos.Lector["Stock"];
+                        aux.Stock = (Int32)datos.Lector["Stock"];
                         aux.PortadaURL = (string)datos.Lector["PortadaURL"];
                         aux.Autores = new List<Autor>();
                         aux.Generos = new List<Genero>();
@@ -424,11 +425,10 @@ namespace negocio
 
             try
             {
+                AutorNegocio autorNegocio = new AutorNegocio();
                 foreach (Autor autor in nuevo.Autores)
                 {
-                    datos.Consulta("INSERT INTO Libro_X_Autor (ID_Libro, ID_Autor) " +
-                                  "VALUES (" + idLibro + ", " + autor.Id + ")");
-                    datos.EjecutarAccion();
+                    autorNegocio.Agregar(autor);
                 }
             }
             catch (Exception ex)
@@ -442,11 +442,10 @@ namespace negocio
 
             try
             {
+                GeneroNegocio generoNegocio = new GeneroNegocio();
                 foreach (Genero genero in nuevo.Generos)
                 {
-                    datos.Consulta("INSERT INTO Genero_X_Libro (ID_Genero, ID_Libro) " +
-                                  "VALUES (" + genero.Id + ", " + idLibro + ")");
-                    datos.EjecutarAccion();
+                    generoNegocio.Agregar(genero);
                 }
             }
             catch (Exception ex)
