@@ -6,7 +6,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager2" runat="server"></asp:ScriptManager>
 
-    <% //if (ValidarAdmin()){ %>
+    <% if (ValidarAdmin())
+        { %>
         <div>
             <%--Fila para el ID (Habría que buscar formas de mostrar el ID autoasignado--%>
             <div class="row">
@@ -201,7 +202,9 @@
                 <a href="Default.aspx" class="btn btn-primary">Volver</a>
             </div>
         </div>
-    <% //}else { %>
+    <% }
+        else
+        { %>
         <div class="div row align-self-center">
 				<h1>Necesita ser un administrador para acceder a esta pagina</h1>
 			<div class="col">
@@ -213,7 +216,7 @@
 			</div>
 		</div>
         
-    <% //} %>
+    <% } %>
 
     <script>
         //Valida que haya al menos un Genero en el listbox de Generos
