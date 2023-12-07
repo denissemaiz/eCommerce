@@ -66,18 +66,18 @@ namespace eCommerce
             if (Id != "" && !IsPostBack)
             {
                 LibroNegocio neg = new LibroNegocio();
-                Libro seleccionado = neg.Buscar_X_Id(Id); //Busco el libro X ID
+                libro = neg.Buscar_X_Id(Id); //Busco el libro X ID
 
                 txtID.Text = Id;
-                txtCodigo.Text = seleccionado.Codigo;
-                txtTitulo.Text = seleccionado.Titulo;
-                txtDescripcion.Text = seleccionado.Descripcion;
-                txtStock.Text = seleccionado.Stock.ToString();
-                txtPrecio.Text = seleccionado.Precio.ToString();
-                txtportadaURL.Text = seleccionado.PortadaURL.ToString();
+                txtCodigo.Text = libro.Codigo;
+                txtTitulo.Text = libro.Titulo;
+                txtDescripcion.Text = libro.Descripcion;
+                txtStock.Text = libro.Stock.ToString();
+                txtPrecio.Text = libro.Precio.ToString();
+                txtportadaURL.Text = libro.PortadaURL.ToString();
 
                 //Remuevo del listbox Genero los generos que se traen de la BD
-                foreach (Genero genero in seleccionado.Generos)
+                foreach (Genero genero in libro.Generos)
                 {
                     ListItem itemToRemove = txtGenero.Items.FindByValue(genero.Id.ToString());
                     if (itemToRemove != null)
@@ -86,7 +86,7 @@ namespace eCommerce
                 }
 
                 //Remuevo del listbox Autor los Autores que se traen de la BD
-                foreach (Autor autor in seleccionado.Autores)
+                foreach (Autor autor in libro.Autores)
                 {
                     ListItem itemToRemove = txtAutorNombre.Items.FindByValue(autor.Id.ToString());
                     if (itemToRemove != null)
@@ -96,15 +96,16 @@ namespace eCommerce
 
                 //txtGenero.Text = seleccionado.Generos.ToString();
 
-                lbxAutores.DataSource = seleccionado.Autores;
+                lbxAutores.DataSource = libro.Autores;
                 lbxAutores.DataBind();
-                lbxGeneros.DataSource = seleccionado.Generos;
+                lbxGeneros.DataSource = libro.Generos;
                 lbxGeneros.DataBind(); 
 
                 
 
                 txtportadaURL_TextChanged(sender, e);
 
+                Session["Libro"] = libro;
 
             }
 
@@ -137,7 +138,7 @@ namespace eCommerce
                     libro.Id = int.Parse(txtID.Text);
                     negocio.Modificar(libro);
                     /*Response.Redirect("StoreProc.aspx", false);*/
-                    Response.Redirect("Productos.aspx");
+                    Response.Redirect("Productos.aspx", false);
                 }
                 else
                 {

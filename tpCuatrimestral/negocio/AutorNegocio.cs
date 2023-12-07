@@ -100,6 +100,26 @@ namespace Conexiones
             }
         }
 
+        public void LimpiarAutoresLibro(int ID_Libro)//Limpia todos los registros de un libro en Libro_X_Autor
+        {
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("DELETE FROM Libro_X_Autor WHERE ID_Libro = @ID_Libro");
+                datos.SetParametros("ID_Libro", ID_Libro);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
         public void Modificar(Autor autor)
         {
             AccesoSQL datos = new AccesoSQL();

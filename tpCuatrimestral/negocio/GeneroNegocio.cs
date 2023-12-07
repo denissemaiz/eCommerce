@@ -132,6 +132,26 @@ namespace negocio
             }
         }
 
+        public void LimpiarGenerosLibro(int IdLibro)//Limpia tdodos los registros de Generos_X_Libro de un Libro 
+        {
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("DELETE FROM Genero_X_Libro  WHERE ID_Libro = @ID_Libro");
+                datos.SetParametros("ID_Libro", IdLibro);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion() ;
+            }
+        }
+
         public void Modificar(Genero genero)
         {
             AccesoSQL datos = new AccesoSQL();
