@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using Clases;
 using dominio;
@@ -50,7 +51,7 @@ namespace eCommerce
 
                 if (!Request.QueryString.AllKeys.Contains("autoresLib") && !Request.QueryString.AllKeys.Contains("generosLib") && !Request.QueryString.AllKeys.Contains("tituloLib"))
                 {
-                    List<Libro> listaSinRepetidos = librosDB.RemoveDuplicadosLibro(librosDB.Listar());
+                    List<Libro> listaSinRepetidos = librosDB.RemoveDuplicadosLibro(librosDB.ListarL());
                     repLibros.DataSource = listaSinRepetidos;
                     repLibros.DataBind();
                 }
@@ -102,6 +103,44 @@ namespace eCommerce
                     Response.Redirect("Productos.aspx");
                 }
             }
+        }
+
+        protected void Repeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                // Encuentra el control mensajeStock
+                HtmlGenericControl mensajeStock = (HtmlGenericControl)e.Item.FindControl("mensajeStock");
+
+                if (mensajeStock != null)
+                {
+                    string codigoLibro = DataBinder.Eval(e.Item.DataItem, "Codigo").ToString();
+
+                    if (!EsStockDisponible(codigoLibro))
+                    {
+                        mensajeStock.InnerText = "No hay stock de este producto";
+                        mensajeStock.Style["display"] = "block";  // Muestra el mensaje
+                    }
+                    else
+                    {
+                        mensajeStock.Style["display"] = "none";  // Oculta el mensaje si se muestra
+                    }
+                }
+            }
+        }
+
+        public bool EsStockDisponible(string codigoLibro)
+        {
+            LibroNegocio librosDB = new LibroNegocio();
+
+            listaLibros = librosDB.Buscar(codigoLibro, "Codigo");
+
+            if (listaLibros != null)
+            {
+                if (listaLibros.First().Stock > 0) { return true; }
+            }
+
+            return false;
         }
 
         public bool ValidarAdmin()

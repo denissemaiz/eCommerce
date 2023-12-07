@@ -16,7 +16,7 @@
            
         <h2>Carrito de Compra</h2>
  
-        <asp:Repeater ID="repLibros" runat="server">
+        <asp:Repeater ID="repLibros" runat="server" OnLoad="repLibros_Load">
             <ItemTemplate>
 
                 <body>
@@ -25,7 +25,7 @@
                             <!-- Elementos para no perderme -->
                             <li class="item">
                                 <img src=" <%#Eval("PortadaURL")%> " alt="Producto">
-                                <span class="item-name"> <%#Eval("Titulo")%> </span>
+                                <span class="item-name"> <%#Eval("Titulo")%>(x<%#:carrito.contabilizarLibro((int)Eval("Id")) %>) </span>
                                 <span class="item-price"> <%#Eval("Precio")%> $ </span>
                                 <button class="remove-item">Eliminar</button>
                             </li>

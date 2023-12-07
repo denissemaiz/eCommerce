@@ -72,7 +72,7 @@ namespace negocio
             }
         }
 
-
+        
 
         public void Agregar(Genero nuevo)
         {
@@ -85,6 +85,27 @@ namespace negocio
             }
             catch (Exception ex)
             {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public void Agregar_a_Libro(int idGenero, int idLibro)
+        {
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("INSERT INTO Genero_X_Libro (ID_Genero, ID_Libro) VALUES(@ID_Genero, @ID_Libro)");
+                datos.SetParametros("ID_Genero", idGenero);
+                datos.SetParametros("ID_Libro", idLibro);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                datos.RevertirTransaccion();
                 throw ex;
             }
             finally
@@ -108,6 +129,26 @@ namespace negocio
             finally
             {
                 datos.CerrarConexion();
+            }
+        }
+
+        public void LimpiarGenerosLibro(int IdLibro)//Limpia tdodos los registros de Generos_X_Libro de un Libro 
+        {
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("DELETE FROM Genero_X_Libro  WHERE ID_Libro = @ID_Libro");
+                datos.SetParametros("ID_Libro", IdLibro);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion() ;
             }
         }
 

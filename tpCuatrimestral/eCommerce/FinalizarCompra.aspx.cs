@@ -28,9 +28,7 @@ namespace eCommerce
                     LibrosSinRepetidos = libroNegocio.RemoveDuplicadosLibro(carrito.Libros);
                 }else 
                     LibrosSinRepetidos = new List<Libro>();
-
-                repLibros.DataSource = LibrosSinRepetidos;
-                repLibros.DataBind();
+                
             }
             else
             {
@@ -38,8 +36,6 @@ namespace eCommerce
                 {
                     carrito.Libros = (List<Libro>)Session["librosAgregados"];
                     LibrosSinRepetidos = libroNegocio.RemoveDuplicadosLibro(carrito.Libros);
-                    repLibros.DataSource=LibrosSinRepetidos;
-                    repLibros.DataBind();
                 }
             }
         }
@@ -71,6 +67,15 @@ namespace eCommerce
                 Response.Redirect("error.aspx");
             }
             
+        }
+
+        protected void repLibros_Load(object sender, EventArgs e)
+        {
+            if (LibrosSinRepetidos != null)
+            {
+                repLibros.DataSource = LibrosSinRepetidos;
+                repLibros.DataBind();
+            }
         }
     }
 }

@@ -61,6 +61,27 @@ namespace Conexiones
             }
         }
 
+        public void Agregar_a_Libro(int idAutor, int idLibro)
+        {
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("INSERT INTO Libro_X_Autor (ID_Autor, ID_Libro) VALUES(@ID_Autor, @ID_Libro)");
+                datos.SetParametros("ID_Autor", idAutor);
+                datos.SetParametros("ID_Libro", idLibro);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                datos.RevertirTransaccion();
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
         public void Eliminar(int Id)
         {
             AccesoSQL datos = new AccesoSQL();
@@ -71,6 +92,26 @@ namespace Conexiones
             }
             catch (Exception ex)
             {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public void LimpiarAutoresLibro(int ID_Libro)//Limpia todos los registros de un libro en Libro_X_Autor
+        {
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("DELETE FROM Libro_X_Autor WHERE ID_Libro = @ID_Libro");
+                datos.SetParametros("ID_Libro", ID_Libro);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                
                 throw ex;
             }
             finally
@@ -128,6 +169,33 @@ namespace Conexiones
             }
         }
 
+        public Autor BuscarAutor_ID(int id)
+        {
+            Autor autor = null;
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("Select * From Autor WHERE ID_Autor = @id");
+                datos.SetParametros("id", id);
+                datos.EjecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    autor = new Autor();
+                    autor.Id = id;
+                    autor.Nombre = (string)datos.Lector["Nombre"];
+                    autor.Apellido = (string)datos.Lector["Apellido"];
+                }
+                return autor;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
 
         public List<Autor> RemoveDuplicadosAutor(List<Autor> inputList)  ///va a sacra a todos los que tengan el mismo apellido
         {

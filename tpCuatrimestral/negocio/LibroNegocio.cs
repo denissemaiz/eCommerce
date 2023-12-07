@@ -7,6 +7,8 @@ using System.Data.SqlClient;
 using dominio;
 using Clases;
 using negocio;
+using Conexiones;
+using System.Linq.Expressions;
 
 namespace negocio
 {
@@ -40,7 +42,7 @@ namespace negocio
                         aux.Titulo = (string)datos.Lector["Titulo"];
                         aux.Descripcion = (string)datos.Lector["Descripcion"];
                         aux.Precio = Decimal.Round((decimal)datos.Lector["Precio"], 2);
-                        aux.Stock = (Int16)datos.Lector["Stock"];
+                        aux.Stock = (Int32)datos.Lector["Stock"];
                         aux.PortadaURL = (string)datos.Lector["PortadaURL"];
                         aux.Autores = new List<Autor>();
                         aux.Generos = new List<Genero>();
@@ -190,6 +192,48 @@ namespace negocio
             }
             catch (Exception ex)
             {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public Libro Buscar_X_Id(string id)
+        {
+            Libro buscado = new Libro();
+            AccesoSQL datos = null;
+            try
+            {
+                datos = new AccesoSQL();
+                //Seteo la consulta
+                datos.Consulta("Select * From Libro WHERE ID_Libro = @ID_Libro");
+                datos.SetParametros("ID_Libro", id);
+                datos.EjecutarLectura();
+                if (datos.Lector.Read())
+                {
+                     
+                    buscado.Id = (Int32)datos.Lector["ID_Libro"];
+                    buscado.Codigo = (String)datos.Lector["Codigo"];
+                    buscado.Titulo = (String)datos.Lector["Titulo"];
+                    buscado.Descripcion = (String)datos.Lector["Descripcion"];
+                    buscado.Precio = Decimal.Round((decimal)datos.Lector["Precio"], 2);
+                    buscado.Stock = (Int16)datos.Lector["Stock"];
+                    buscado.PortadaURL = (String)datos.Lector["PortadaURL"];
+                }
+                
+                GeneroNegocio generoNegocio = new GeneroNegocio();
+                buscado.Generos = generoNegocio.BuscarGenero(buscado.Codigo);//Busco todos los generos del libro encontrado
+
+                AutorNegocio autorNegocio = new AutorNegocio();
+                buscado.Autores = autorNegocio.BuscarAutor(buscado.Codigo);//Busco todos los autores del libro encontrado
+                
+                return buscado;
+            }
+            catch (Exception ex)
+            {
+                return buscado = null; //En caso de error devuelvo el libro como NULL para realizar validaciones
                 throw ex;
             }
             finally
@@ -413,6 +457,7 @@ namespace negocio
             }
             catch (Exception ex)
             {
+                datos.RevertirTransaccion(); //En caso de error se revierte el insert
                 throw ex;
             }
             finally
@@ -420,42 +465,34 @@ namespace negocio
                 datos.CerrarConexion();
             }
 
-            int idLibro = ObtenerUltimoIdInsertado(datos, nuevo.Codigo);
+            int idLibro = ObtenerUltimoIdInsertado(datos, nuevo.Codigo); //Se obtiene el ID del libro insertado
 
             try
-            {
+            { 
+                AutorNegocio autorNegocio = new AutorNegocio();
                 foreach (Autor autor in nuevo.Autores)
                 {
-                    datos.Consulta("INSERT INTO Libro_X_Autor (ID_Libro, ID_Autor) " +
-                                  "VALUES (" + idLibro + ", " + autor.Id + ")");
-                    datos.EjecutarAccion();
+                    //Por cada Autor en el listado del libro agrego un registro a Libro_X_Autor con la funcion de Agregar_a_Libro
+                    autorNegocio.Agregar_a_Libro(autor.Id, idLibro);
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
-            }
-            finally
-            {
-                datos.CerrarConexion();
             }
 
             try
             {
+                GeneroNegocio generoNegocio = new GeneroNegocio();
                 foreach (Genero genero in nuevo.Generos)
                 {
-                    datos.Consulta("INSERT INTO Genero_X_Libro (ID_Genero, ID_Libro) " +
-                                  "VALUES (" + genero.Id + ", " + idLibro + ")");
-                    datos.EjecutarAccion();
+                    //Por cada Genero en el listado del libro agrego un registro a Genero_X_Libro con la funcion de Agregar_a_Libro
+                    generoNegocio.Agregar_a_Libro(genero.Id, idLibro);
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
-            }
-            finally
-            {
-                datos.CerrarConexion();
             }
         }
        
@@ -530,10 +567,12 @@ namespace negocio
                     "" + libro.Precio + ", Stock = " + libro.Stock + ", PortadaURL = '" + libro.PortadaURL + "' WHERE ID_Libro = " + libro.Id); */
                 datos.Consulta("UPDATE Libro SET Codigo =  '" + libro.Codigo + "', Titulo = '" + libro.Titulo + "', Descripcion = '" + libro.Descripcion + "', Precio = '" + libro.Precio + "', Stock = '" + libro.Stock + "', PortadaURL = '" + libro.PortadaURL + "' WHERE ID_Libro = " + libro.Id);
                 
-                datos.EjecutarAccion();
+                datos.IniciarTransaccion();
+                datos.CompletarTransaccion();
             }
             catch (Exception ex)
             {
+                datos.RevertirTransaccion();
                 throw ex;
             }
             finally
@@ -542,63 +581,29 @@ namespace negocio
             }
             try
             {
-                datos.Consulta("DELETE FROM Libro_X_Autor WHERE ID_Libro = " + libro.Id);
-                datos.EjecutarAccion();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                datos.CerrarConexion();
-            }
-            try
-            {
-                foreach (Autor autor in libro.Autores)
+                AutorNegocio autorNegocio = new AutorNegocio();
+                autorNegocio.LimpiarAutoresLibro(libro.Id); //Limpio todos los registros del libro en Libro_X_Autor
+                foreach (Autor autor in libro.Autores) //Luego regenero los registros por cada autor en el libro
                 {
-                    datos.Consulta("INSERT INTO Libro_X_Autor (ID_Libro, ID_Autor) " +
-                                  "VALUES (" + libro.Id + ", " + autor.Id + ")");
-                    datos.EjecutarAccion();
+                    autorNegocio.Agregar_a_Libro(autor.Id, libro.Id);
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            finally
-            {
-                datos.CerrarConexion();
-            }
             try
             {
-                datos.Consulta("DELETE FROM Genero_X_Libro WHERE ID_Libro = " + libro.Id);
-                datos.EjecutarAccion();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                datos.CerrarConexion();
-            }
-            try
-            {
-                foreach (Genero genero in libro.Generos)
+                GeneroNegocio generoNegocio = new GeneroNegocio();
+                generoNegocio.LimpiarGenerosLibro(libro.Id); //Limpio todos los registros del libro en Genero_X_Libro
+                foreach (Genero genero in libro.Generos) //Luego regenero los registros por cada Genero en el listado del libro actual
                 {
-                    datos.Consulta("INSERT INTO Genero_X_Libro (ID_Genero, ID_Libro) " +
-                                  "VALUES (" + genero.Id + ", " + libro.Id + ")");
-                    datos.EjecutarAccion();
+                    generoNegocio.Agregar_a_Libro(genero.Id, libro.Id);
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
-            }
-            finally
-            {
-                datos.CerrarConexion();
             }
         }
 
