@@ -114,13 +114,13 @@ namespace eCommerce
         protected global::System.Web.UI.WebControls.ListBox lbxGeneros;
 
         /// <summary>
-        /// Control rfvGeneros.
+        /// Control cvGeneros.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvGeneros;
+        protected global::System.Web.UI.WebControls.CustomValidator cvGeneros;
 
         /// <summary>
         /// Control txtAutorNombre.
@@ -159,13 +159,13 @@ namespace eCommerce
         protected global::System.Web.UI.WebControls.ListBox lbxAutores;
 
         /// <summary>
-        /// Control rfvAutores.
+        /// Control cvAutores.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvAutores;
+        protected global::System.Web.UI.WebControls.CustomValidator cvAutores;
 
         /// <summary>
         /// Control txtDescripcion.

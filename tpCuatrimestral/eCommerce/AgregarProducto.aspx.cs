@@ -219,6 +219,10 @@ namespace eCommerce
             lbxAutores.DataBind(); //Actualizo elementos del listbox
         }
 
+        protected void ServerValidate_cvGenero(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = lbxGeneros.Items.Count > 0;
+        }
         public bool ValidarAdmin()
         {
             Usuario user;

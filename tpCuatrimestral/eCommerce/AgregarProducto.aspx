@@ -71,13 +71,20 @@
                                 <asp:ListBox ID="lbxGeneros" runat="server" CssClass="form-control">
                                 </asp:ListBox>
                                 <%--Validador para el listado de generos --%>
-                                <asp:RequiredFieldValidator ID="rfvGeneros" runat="server"
+                                <%--<asp:RequiredFieldValidator ID="rfvGeneros" runat="server"
                                     ControlToValidate="lbxGeneros"
                                     InitialValue=""
                                     Display="Dynamic"
                                     ErrorMessage="Debe agregar un género para el libro"
                                     CssClass="invalid-feedback"
-                                    ForeColor="Red"></asp:RequiredFieldValidator>
+                                    ForeColor="Red"></asp:RequiredFieldValidator>--%>
+                                <asp:CustomValidator ID="cvGeneros" runat="server"
+                                    ClientValidationFunction="checkListBoxGenero"
+                                    Display="Dynamic"
+                                    ValidateEmptyText="true"
+                                    ErrorMessage="Debe agregarle al menos un genero al libro"
+                                    CssClass="invalid-feedback"
+                                    ForeColor="Red"></asp:CustomValidator>
                             </div>
                         </div>
                     </div>
@@ -109,14 +116,21 @@
                             <div class="col-md-3">
                                 <asp:ListBox ID="lbxAutores" runat="server" CssClass="form-control">
                                 </asp:ListBox>
-                                <%--Validador para el listado de Autores --%>
-                                <asp:RequiredFieldValidator ID="rfvAutores" runat="server"
+                                <%--<asp:RequiredFieldValidator ID="rfvAutores" runat="server"
                                     ControlToValidate="lbxAutores"
                                     InitialValue=""
                                     Display="Dynamic"
                                     ErrorMessage="Debe agregar un género para el libro"
                                     CssClass="invalid-feedback"
-                                    ForeColor="Red"></asp:RequiredFieldValidator>
+                                    ForeColor="Red"></asp:RequiredFieldValidator>--%>
+                                <%--Validador para el listado de Autores --%>
+                                <asp:CustomValidator ID="cvAutores" runat="server"
+                                    ClientValidationFunction="checkListBoxAutor"
+                                    Display="Dynamic"
+                                    ValidateEmptyText="true"
+                                    ErrorMessage="Debe agregarle al menos un autor al libro"
+                                    CssClass="invalid-feedback"
+                                    ForeColor="Red"></asp:CustomValidator>
                             </div>
                         </div>
                     </div>
@@ -201,5 +215,17 @@
         
     <% //} %>
 
+    <script>
+        //Valida que haya al menos un Genero en el listbox de Generos
+        function checkListBoxGenero(source, args) {
+            var listBox = document.getElementById('<%= lbxGeneros.ClientID %>');
+            args.IsValid = listBox.options.length > 0;
+        }
+        //Valida que haya al menos un Autor en el listbox de Autores
+        function checkListBoxAutor(source, args) {
+            var listBox = document.getElementById('<%= lbxAutores.ClientID %>');
+            args.IsValid = listBox.options.length > 0;
+        }
+    </script>
 </asp:Content>
 
