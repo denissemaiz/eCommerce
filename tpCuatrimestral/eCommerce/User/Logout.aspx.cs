@@ -21,6 +21,7 @@ namespace eCommerce.User
                     //Response.Cookies.Clear();
 
                     Session.Remove("Usuario"); //limpia solo el usuario de la Sesssion
+                    Session.Remove("librosAgregados");//Limpio carrito de la Session
                     Response.Redirect("../Default.aspx", false);
                 }
                 catch (Exception ex)
