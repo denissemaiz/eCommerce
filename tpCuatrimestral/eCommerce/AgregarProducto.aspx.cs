@@ -75,7 +75,25 @@ namespace eCommerce
                 txtStock.Text = seleccionado.Stock.ToString();
                 txtPrecio.Text = seleccionado.Precio.ToString();
                 txtportadaURL.Text = seleccionado.PortadaURL.ToString();
-                //txtAutorNombre.Text = seleccionado.Autores.ToString();
+
+                //Remuevo del listbox Genero los generos que se traen de la BD
+                foreach (Genero genero in seleccionado.Generos)
+                {
+                    ListItem itemToRemove = txtGenero.Items.FindByValue(genero.Id.ToString());
+                    if (itemToRemove != null)
+                        txtGenero.Items.Remove(itemToRemove);
+                    
+                }
+
+                //Remuevo del listbox Autor los Autores que se traen de la BD
+                foreach (Autor autor in seleccionado.Autores)
+                {
+                    ListItem itemToRemove = txtAutorNombre.Items.FindByValue(autor.Id.ToString());
+                    if (itemToRemove != null)
+                        txtAutorNombre.Items.Remove(itemToRemove);
+
+                }
+
                 //txtGenero.Text = seleccionado.Generos.ToString();
 
                 lbxAutores.DataSource = seleccionado.Autores;
