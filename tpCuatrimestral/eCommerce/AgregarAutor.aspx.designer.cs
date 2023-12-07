@@ -24,6 +24,15 @@ namespace eCommerce
         protected global::System.Web.UI.WebControls.TextBox txt_autornombre;
 
         /// <summary>
+        /// Control Autornombre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Autornombre;
+
+        /// <summary>
         /// Control txt_autorapellido.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace eCommerce
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_autorapellido;
+
+        /// <summary>
+        /// Control Autorapellido.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Autorapellido;
 
         /// <summary>
         /// Control Agregar.
@@ -42,21 +60,12 @@ namespace eCommerce
         protected global::System.Web.UI.WebControls.Button Agregar;
 
         /// <summary>
-        /// Control Autornombre.
+        /// Control lblagregado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Autornombre;
-
-        /// <summary>
-        /// Control Autorapellido.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Autorapellido;
+        protected global::System.Web.UI.WebControls.Label lblagregado;
     }
 }

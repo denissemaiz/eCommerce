@@ -27,9 +27,32 @@ namespace eCommerce
             autor.Apellido = txt_autorapellido.Text;
 
             autornegocio = new AutorNegocio();
-
+            try
+            {
             autornegocio.Agregar(autor);
+                lblagregado.Visible = true;
+                txt_autornombre.Text = "";
+                txt_autorapellido.Text = "";
 
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
+            }
+
+        }
+
+
+        public bool ValidarAdmin()
+        {
+            Usuario user;
+            if (Session["Usuario"] != null)
+            {
+                user = ((Usuario)Session["Usuario"]);
+                return user.EsAdmin;
+            }
+            return false;
         }
     }
 }
