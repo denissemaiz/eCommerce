@@ -38,15 +38,22 @@ Create table Direccion(
 )
 GO
 
-
 Create table Datos_Usuario(
 	ID_Usuario int,
 	Nombre varchar(50) not null,
 	Apellido varchar(50) not null,
-    ID_Direccion int null foreign key references Direccion(ID_Direccion),
 	Telefono varchar(30) null,
 	Primary key(ID_Usuario),
 	Foreign key(ID_Usuario) references Usuario(ID_Usuario)
+)
+GO
+
+CREATE TABLE Direccion_X_Usuario(
+	ID_Usuario int not null,
+	ID_Direccion int not null,
+	Primary Key(ID_Usuario, ID_Direccion),
+	Foreign key(ID_Usuario) references Usuario(ID_Usuario),
+	Foreign Key(ID_Direccion) references Direccion(ID_Direccion),
 )
 GO
 
@@ -90,6 +97,15 @@ create table Compra(
 	ID_Direccion int null foreign key references Direccion(ID_Direccion),
 	FechaCompra datetime DEFAULT GETDATE(),
 	PrecioTotal money
+)
+GO
+
+CREATE TABLE Direccion_X_Compra(
+	ID_Compra int not null,
+	ID_Direccion int not null,
+	Primary Key(ID_Compra, ID_Direccion),
+	Foreign key(ID_Compra) references Compra(ID_Compra),
+	Foreign Key(ID_Direccion) references Direccion(ID_Direccion),
 )
 GO
 
@@ -147,7 +163,10 @@ GO
 INSERT INTO Usuario (NombreUsuario, Mail, Contraseña, EsAdmin)
 VALUES 
     ('admin', 'admin@admin.com', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 1),
-	('user' , 'EditorialUTN@hotmail.com', '04F8996DA763B7A969B1028EE3007569EAF3A635486DDAB211D512C85B9DF8FB', 0);
+	('user' , 'EditorialUTN@hotmail.com', '04F8996DA763B7A969B1028EE3007569EAF3A635486DDAB211D512C85B9DF8FB', 0),
+	('aoriel' , 'alan.ibanez@alumnos.frgp.utn.edu.ar', 'f7f9fc50d23cf370e452e22daa80bea8363ae47ac4f962445b4444c4641df7a1', 0),
+	('dmaiz' , 'denisse.maiz@alumnos.frgp.utn.edu.ar', 'a7318ad8038b516db90bd0d588c23b4a3c0620d413cdd100245057f33fe2d129', 0),
+	('avaras' , 'Agustin.Varas@outlook.com.ar', 'ad25fc1532c8454fdda1d5e5258dd5771e919eaf4db2ca59842043804ccb6fb5', 0);
 GO
 INSERT INTO Direccion (Calle, Altura, Localidad, CP, Provincia)
 VALUES 
@@ -158,19 +177,18 @@ VALUES
     ('Av. Belgrano', 9876, 'Tucumán', 5000, 'Tucumán'),
     ('Calle Mitre', 5432, 'Mendoza', 6000, 'Mendoza');
 GO
-INSERT INTO Datos_Usuario (ID_Usuario, Nombre, Apellido, ID_Direccion, Telefono)
+INSERT INTO Datos_Usuario (ID_Usuario, Nombre, Apellido, Telefono)
 VALUES 
-    (1, 'Alan', 'Oriel', 1, 123456789),
-    (2, 'Denisse', 'Maiz', 2, 987654321),
-    (3, 'Agustin', 'Varas', NULL, 555555555),
-    (4, 'Rodrigo', 'García', 3, 111111111),
-    (5, 'Analia', 'Rojas', 4, 999999999),
-    (6, 'Martín', 'Suárez', NULL, 777777777),
-    (7, 'Valentina', 'Fernández', 5, 444444444),
-    (8, 'Emilio', 'Pérez', NULL, 222222222),
-    (9, 'Carolina', 'Molina', 6, 888888888),
-    (10, 'Julián', 'Rodríguez', NULL, 666666666);
+    (1, 'Alan', 'Oriel', 123456789),
+    (2, 'Denisse', 'Maiz', 987654321),
+    (3, 'Agustin', 'Varas', 555555555);
 GO
+
+INSERT INTO Direccion_X_Usuario (ID_Usuario, ID_Direccion)
+VALUES
+	(1, 3),
+	(2, 5);
+
 INSERT INTO Autor (Nombre, Apellido)
 VALUES
     ('Jorge Luis', 'Borges'),
