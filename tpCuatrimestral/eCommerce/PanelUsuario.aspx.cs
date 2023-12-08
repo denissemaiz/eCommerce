@@ -243,7 +243,7 @@ namespace eCommerce
 
                 try
                 {
-                    dire.Agregar(user.DireccionUsuario);
+                    dire.NuevaDireccion_Usuario(user.DireccionUsuario, user.Id);
                     Session["Usuario"] = user;
                 }
                 catch (Exception ex)
