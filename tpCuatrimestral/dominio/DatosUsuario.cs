@@ -19,8 +19,9 @@ namespace Clases
 
         }
 
-        public DatosUsuario(int id, string nombres, string apellidos, Direccion direccion, string telefono)
+        public DatosUsuario(int id, string nombres, string apellidos, string telefono)
         {
+            this.id = id;
             this.nombres = nombres;
             this.apellidos = apellidos;
             
@@ -38,7 +39,7 @@ namespace Clases
             get { return id; } 
             set { id = value; }
         }
-
+        
         public string Nombres
         {
             get { return nombres; }

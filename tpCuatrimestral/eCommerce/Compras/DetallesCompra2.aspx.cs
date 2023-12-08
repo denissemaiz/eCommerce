@@ -80,7 +80,7 @@ namespace eCommerce
                             //Consigo su dirección
                             cliente.DireccionUsuario = new Direccion();
                             DireccionNegocio datosDireccion = new DireccionNegocio();
-                            cliente.DireccionUsuario = datosDireccion.Buscar(cliente.Id);
+                            //cliente.DireccionUsuario = datosDireccion.Buscar(cliente.);
                             if (cliente.DireccionUsuario == null)
                                 cliente.DireccionUsuario = new Direccion();
 

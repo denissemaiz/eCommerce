@@ -14,7 +14,7 @@ namespace eCommerce
         protected void Page_Load(object sender, EventArgs e)
         {
             UsuarioNegocio User = new UsuarioNegocio();
-            DVGUsuarios.DataSource = User.ListarL();
+            DVGUsuarios.DataSource = User.Listar();
             DVGUsuarios.DataBind();
             
         }

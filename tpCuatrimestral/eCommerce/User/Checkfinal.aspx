@@ -21,23 +21,29 @@
                         <input type="text" id="email" name="email" placeholder="Usuario@gmail.com">
                         <label for="adr"><i class="fa fa-address-card-o"></i> Direccion</label>
                         <input type="text" id="adr" name="address" placeholder="Monteagudo 1234">
-                        <label for="city"><i class="fa fa-institution"></i> Ciudad</label>
-                        <input type="text" id="city" name="city" placeholder="Pacheco">
+                        <!-- Panel para datos de la direccion del usuario -->
+                        <asp:UpdatePanel ID="upDireccion" runat="server">
 
-                        <div class="row">
-                            <div class="col-50">
-                                <label for="state">Provincia</label>
-                                <input type="text" id="state" name="state" placeholder="Buenos Aires">
-                            </div>
-                            <div class="col-50">
-                                <label for="zip">CP</label>
-                                <input type="text" id="zip" name="zip" placeholder="1646">
-                            </div>
-                             <div class="col-50">
-                                <label for="state">Provincia</label>
-                                <input type="text" id="state" name="state" placeholder="Buenos Aires">
-                            </div>
-                        </div>
+                            <ContentTemplate>
+                                <label for="city"><i class="fa fa-institution"></i> Ciudad</label> <asp:LinkButton ID="lbtnUsarMiDireccion" runat="server" Text="Usar mi Dirección"></asp:LinkButton>
+                                <input type="text" id="city" name="city" placeholder="Pacheco">
+
+                                <div class="row">
+                                    <div class="col-50">
+                                        <label for="state">Provincia</label>
+                                        <input type="text" id="state" name="state" placeholder="Buenos Aires">
+                                    </div>
+                                    <div class="col-50">
+                                        <label for="zip">CP</label>
+                                        <input type="text" id="zip" name="zip" placeholder="1646">
+                                    </div>
+                                     <div class="col-50">
+                                        <label for="state">Provincia</label>
+                                        <input type="text" id="state" name="state" placeholder="Buenos Aires">
+                                    </div>
+                                </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
                     </div>
 
                     <div class="col-50">
