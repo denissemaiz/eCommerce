@@ -77,5 +77,22 @@ namespace eCommerce
                 repLibros.DataBind();
             }
         }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+
+            String codigo =  button.CommandArgument;
+
+            carrito.RemoverLibro(codigo);
+
+            Session["librosAgregados"] = carrito.Libros;
+            
+            LibroNegocio libroNegocio = new LibroNegocio();
+            LibrosSinRepetidos = libroNegocio.RemoveDuplicadosLibro(carrito.Libros);
+
+            repLibros_Load(sender, e);
+            PrecioFinal_Load(sender, e);
+        }
     }
 }

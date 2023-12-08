@@ -74,7 +74,7 @@ namespace eCommerce
         {
             string codigo = ((LinkButton)sender).CommandArgument;
             LibroNegocio datos = new LibroNegocio();
-            Libro busqueda = datos.Buscar(codigo, "Codigo").First();
+            Libro busqueda = datos.Buscar_x_Codigo(codigo);
             if (busqueda != null && carritoNegocio != null)
             {
                 if(busqueda.Stock >= carritoNegocio.contabilizarLibro(busqueda.Id) + 1) 
@@ -93,10 +93,10 @@ namespace eCommerce
         {
             string codigo = ((LinkButton)sender).CommandArgument;
             LibroNegocio datos = new LibroNegocio();
-            List<Libro> busqueda = datos.Buscar(codigo, "Codigo");
+            Libro busqueda = datos.Buscar_x_Codigo(codigo);
             if (busqueda != null && carritoNegocio != null)
             {
-                if(carritoNegocio.QuitarLibro(busqueda.First().Id))
+                if(carritoNegocio.QuitarLibro(busqueda.Id))
                     Session["librosAgregados"] = carritoNegocio.Libros;
                 LibrosSinRepetidos = datos.RemoveDuplicadosLibro(carritoNegocio.Libros);
 
