@@ -22,6 +22,7 @@
                         <label for="adr"><i class="fa fa-address-card-o"></i> Direccion</label>
                         <input type="text" id="adr" name="address" placeholder="Monteagudo 1234">
                         <!-- Panel para datos de la direccion del usuario -->
+                        <asp:ScriptManager ID="scrManagerDireccion" runat="server"></asp:ScriptManager>
                         <asp:UpdatePanel ID="upDireccion" runat="server">
 
                             <ContentTemplate>

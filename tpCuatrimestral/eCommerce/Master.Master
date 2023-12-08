@@ -165,7 +165,10 @@
                 </div>
             </div>
         </div>
-        <%--offcanvas del carrito de compras--%>                                  
+        <%--offcanvas del carrito de compras--%>      
+        
+
+            
         <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasCarrito" aria-labellebdy="offcanvasCarritoLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasCarritoLabel">Carrito</h5>
@@ -208,6 +211,7 @@
                                           </div>
                                       </div>
                                   </div>
+                                </div>
                               </div>
                           </ItemTemplate>
                      </asp:Repeater>
@@ -227,7 +231,7 @@
                       <%} %>
                     <a class="btn btn-primary col-4" role="button" href="FinalizarCompra.aspx">Ver Carrito</a>
                 </div>
-            </div>
+            </div>            
         </div>                
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">

@@ -48,25 +48,8 @@ namespace eCommerce
 
         protected void btnFinalizarCompra_Click(object sender, EventArgs e)
         {
-            Compra compra = new Compra();
-            compra.Carrito = carrito;
-            if (Session["Usuario"] != null)
-            {
-                Usuario user = (Usuario)Session["Usuario"];
-                compra.IdCliente = user.Id;
-            } 
- 
-            try
-            {
-                CompraNegocio compraConexion = new CompraNegocio();
-                compraConexion.Agregar(compra);
-            }
-            catch (Exception ex)
-            {
-                Session.Add("error", ex.ToString());
-                Response.Redirect("error.aspx");
-            }
-            
+            Session["Carrito"] = carrito;
+            Response.Redirect("User/CheckFinal.aspx", false);
         }
 
         protected void repLibros_Load(object sender, EventArgs e)
