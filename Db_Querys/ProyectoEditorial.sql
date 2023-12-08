@@ -179,15 +179,15 @@ VALUES
 GO
 INSERT INTO Datos_Usuario (ID_Usuario, Nombre, Apellido, Telefono)
 VALUES 
-    (1, 'Alan', 'Oriel', 123456789),
-    (2, 'Denisse', 'Maiz', 987654321),
-    (3, 'Agustin', 'Varas', 555555555);
+    (3, 'Alan', 'Oriel', 123456789),
+    (4, 'Denisse', 'Maiz', 987654321),
+    (5, 'Agustin', 'Varas', 555555555);
 GO
 
 INSERT INTO Direccion_X_Usuario (ID_Usuario, ID_Direccion)
 VALUES
-	(1, 3),
-	(2, 5);
+	(3, 3),
+	(4, 5);
 
 INSERT INTO Autor (Nombre, Apellido)
 VALUES
