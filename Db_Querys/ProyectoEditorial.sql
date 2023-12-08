@@ -8,7 +8,8 @@ IF EXISTS (
         WHERE [name] = N'ProyectoEditorial'
 )
 DROP DATABASE ProyectoEditorial
-GO*/
+GO
+*/
 
 USE master
 GO
@@ -28,14 +29,12 @@ Create table Usuario(
 GO
 
 Create table Direccion(
-	ID_Usuario int,
+	ID_Direccion int not null identity(1,1) primary key,
 	Calle varchar(50) not null,
 	Altura smallint not null,
 	Localidad varchar(80) not null,
 	CP smallint not null,
 	Provincia varchar(50) not null,
-	Primary Key(ID_Usuario),
-	Foreign Key(ID_Usuario) references Usuario(ID_Usuario)
 )
 GO
 
@@ -44,7 +43,7 @@ Create table Datos_Usuario(
 	ID_Usuario int,
 	Nombre varchar(50) not null,
 	Apellido varchar(50) not null,
-    --ID_Direccion int null foreign key references Direccion(ID_Direccion),
+    ID_Direccion int null foreign key references Direccion(ID_Direccion),
 	Telefono varchar(30) null,
 	Primary key(ID_Usuario),
 	Foreign key(ID_Usuario) references Usuario(ID_Usuario)
@@ -88,6 +87,7 @@ create table Compra(
 	ID_Compra int not null identity(1,1) primary key,
 	ID_Usuario int not null foreign key references Usuario(ID_Usuario),
 	ID_Estado int null foreign key references Estados(ID_Estado),
+	ID_Direccion int null foreign key references Direccion(ID_Direccion),
 	FechaCompra datetime DEFAULT GETDATE(),
 	PrecioTotal money
 )
@@ -149,28 +149,28 @@ VALUES
     ('admin', 'admin@admin.com', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 1),
 	('user' , 'EditorialUTN@hotmail.com', '04F8996DA763B7A969B1028EE3007569EAF3A635486DDAB211D512C85B9DF8FB', 0);
 GO
---INSERT INTO Direccion (Calle, Altura, Localidad, CP, Provincia)
---VALUES 
---    ('Av. Libertador', 1234, 'Buenos Aires', 1000, 'CABA'),
---    ('Av. Corrientes', 5678, 'Buenos Aires', 2000, 'CABA'),
---    ('Calle 9 de Julio', 4321, 'Córdoba', 3000, 'Córdoba'),
---    ('Calle San Martín', 8765, 'Rosario', 4000, 'Santa Fe'),
---    ('Av. Belgrano', 9876, 'Tucumán', 5000, 'Tucumán'),
---    ('Calle Mitre', 5432, 'Mendoza', 6000, 'Mendoza');
---GO
---INSERT INTO Datos_Usuario (ID_Usuario, Nombre, Apellido, ID_Direccion, Telefono)
---VALUES 
---    (1, 'Alan', 'Oriel', 1, 123456789),
---    (2, 'Denisse', 'Maiz', 2, 987654321),
---    (3, 'Agustin', 'Varas', NULL, 555555555),
---    (4, 'Rodrigo', 'García', 3, 111111111),
---    (5, 'Analia', 'Rojas', 4, 999999999),
---    (6, 'Martín', 'Suárez', NULL, 777777777),
---    (7, 'Valentina', 'Fernández', 5, 444444444),
---    (8, 'Emilio', 'Pérez', NULL, 222222222),
---    (9, 'Carolina', 'Molina', 6, 888888888),
---    (10, 'Julián', 'Rodríguez', NULL, 666666666);
---GO
+INSERT INTO Direccion (Calle, Altura, Localidad, CP, Provincia)
+VALUES 
+    ('Av. Libertador', 1234, 'Buenos Aires', 1000, 'CABA'),
+    ('Av. Corrientes', 5678, 'Buenos Aires', 2000, 'CABA'),
+    ('Calle 9 de Julio', 4321, 'Córdoba', 3000, 'Córdoba'),
+    ('Calle San Martín', 8765, 'Rosario', 4000, 'Santa Fe'),
+    ('Av. Belgrano', 9876, 'Tucumán', 5000, 'Tucumán'),
+    ('Calle Mitre', 5432, 'Mendoza', 6000, 'Mendoza');
+GO
+INSERT INTO Datos_Usuario (ID_Usuario, Nombre, Apellido, ID_Direccion, Telefono)
+VALUES 
+    (1, 'Alan', 'Oriel', 1, 123456789),
+    (2, 'Denisse', 'Maiz', 2, 987654321),
+    (3, 'Agustin', 'Varas', NULL, 555555555),
+    (4, 'Rodrigo', 'García', 3, 111111111),
+    (5, 'Analia', 'Rojas', 4, 999999999),
+    (6, 'Martín', 'Suárez', NULL, 777777777),
+    (7, 'Valentina', 'Fernández', 5, 444444444),
+    (8, 'Emilio', 'Pérez', NULL, 222222222),
+    (9, 'Carolina', 'Molina', 6, 888888888),
+    (10, 'Julián', 'Rodríguez', NULL, 666666666);
+GO
 INSERT INTO Autor (Nombre, Apellido)
 VALUES
     ('Jorge Luis', 'Borges'),
