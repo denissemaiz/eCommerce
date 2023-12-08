@@ -326,3 +326,17 @@ FROM (
     CROSS JOIN Libro L
 ) AS Subquery
 WHERE RowNum = 1;
+
+
+INSERT INTO Direccion_X_Compra (ID_Compra, ID_Direccion) 
+VALUES
+	(1, 4),
+	(2, 2),
+	(3, 5),
+	(4, 4),
+	(5, 5),
+	(6, 6),
+	(7, 2),
+	(8, 3),
+	(9, 3),
+	(10, 1);

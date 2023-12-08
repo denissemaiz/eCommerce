@@ -110,6 +110,39 @@ namespace Conexiones
             }
         }
 
+        public Direccion Buscar_X_Compra(int ID_Compra)
+        {
+            Direccion aux = null;
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.Consulta("SELECT D.ID_Direccion, D.Calle, D.Altura, D.Localidad, D.CP, D.Provincia FROM Direccion D " +
+                               "INNER JOIN Direccion_X_Compra dxc ON dxc.ID_Direccion = D.ID_Direccion " +
+                               "WHERE dxc.ID_Compra = @ID_Compra");
+                datos.SetParametros("ID_Compra", ID_Compra);
+                datos.EjecutarLectura();
+                while(datos.Lector.Read())
+                {
+                    aux = new Direccion();
+                    aux.Id = (int)datos.Lector["ID_Direccion"];
+                    aux.Calle = (string)datos.Lector["Calle"];
+                    aux.Altura = Convert.ToInt32((Int16)datos.Lector["Altura"]);
+                    aux.Localidad = (string)datos.Lector["Localidad"];
+                    aux.Cp = Convert.ToInt32((Int16)datos.Lector["CP"]);
+                    aux.Provincia = (string)datos.Lector["Provincia"];
+                }
+                return aux;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
         public void Agregar(Direccion nuevo)
         {
             AccesoSQL datos = new AccesoSQL();
