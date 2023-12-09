@@ -270,15 +270,15 @@ namespace Conexiones
             }
         }
 
-        public void Agregar(Compra nuevo)
+        public int Agregar(Compra nuevo)
         {
             AccesoSQL datos = new AccesoSQL();
-
+            int idCompra = -1;
             try
             {
                 datos.IniciarTransaccion();
 
-                int idCompra = InsertarCompra(nuevo);
+                idCompra = InsertarCompra(nuevo);
 
                 LibroNegocio libroNegocio = new LibroNegocio();
                 foreach (Libro libro in libroNegocio.RemoveDuplicadosLibro(nuevo.Carrito.Libros))
@@ -289,6 +289,7 @@ namespace Conexiones
                 }
 
                 datos.CompletarTransaccion();
+                return idCompra;
             }
             catch (Exception ex)
             {

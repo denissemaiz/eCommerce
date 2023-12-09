@@ -15,34 +15,45 @@
                 <div class="row">
                     <div class="col-50">
                         <h3>Datos de envio</h3>
-                        <label for="fname"><i class="fa fa-user"></i> Nombre completo</label>
-                        <input type="text" id="fname" name="firstname" placeholder="Nombre Apellido">
-                        <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                        <input type="text" id="email" name="email" placeholder="Usuario@gmail.com">
-                        <label for="adr"><i class="fa fa-address-card-o"></i> Direccion</label>
-                        <input type="text" id="adr" name="address" placeholder="Monteagudo 1234">
+                        <label for="txtNombreCompleto"><i class="fa fa-user"></i> Nombre completo</label>                       
+                        <asp:TextBox ID="txtNombreCompleto" runat="server" placeholder="Nombre Apellido"></asp:TextBox>
+
+                        <label for="txtMail"><i class="fa fa-envelope"></i> Email</label>
+                        <asp:TextBox ID="txtMail" runat="server" placeholder="Usuario@gmail.com"></asp:TextBox>                        
+
                         <!-- Panel para datos de la direccion del usuario -->
                         <asp:ScriptManager ID="scrManagerDireccion" runat="server"></asp:ScriptManager>
                         <asp:UpdatePanel ID="upDireccion" runat="server">
 
                             <ContentTemplate>
-                                <label for="city"><i class="fa fa-institution"></i> Ciudad</label> <asp:LinkButton ID="lbtnUsarMiDireccion" runat="server" Text="Usar mi Dirección"></asp:LinkButton>
-                                <input type="text" id="city" name="city" placeholder="Pacheco">
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="txtDireccion"><i class="fa fa-address-card-o"></i> Direccion</label>
+                                        <asp:TextBox ID="txtDireccion" runat="server" placeholder="Monteagudo"></asp:TextBox>
+                                    </div>
+
+                                    <div class="col">
+                                        <label for="txtAltura">Altura</label>
+                                        <asp:TextBox ID="txtAltura" runat="server" placeholder="1241"></asp:TextBox>
+                                    </div>
+                                </div>
+
+                                <label for="txtCiudad"><i class="fa-solid fa-city"></i> Ciudad</label> 
+                                <asp:TextBox ID="txtCiudad" runat="server" placeholder="Pacheco"></asp:TextBox>
 
                                 <div class="row">
                                     <div class="col-50">
-                                        <label for="state">Provincia</label>
-                                        <input type="text" id="state" name="state" placeholder="Buenos Aires">
+                                        <label for="txtProvincia"><i class="bi bi-map"></i>Provincia</label>
+                                        <asp:TextBox ID="txtProvincia" runat="server" placeholder="Buenos Aires"></asp:TextBox>
                                     </div>
                                     <div class="col-50">
-                                        <label for="zip">CP</label>
-                                        <input type="text" id="zip" name="zip" placeholder="1646">
-                                    </div>
-                                     <div class="col-50">
-                                        <label for="state">Provincia</label>
-                                        <input type="text" id="state" name="state" placeholder="Buenos Aires">
-                                    </div>
+                                        <label for="txtCp"><i class="bi bi-mailbox-flag"></i> CP</label>
+                                        <asp:TextBox ID="txtCp" runat="server" placeholder="1674"></asp:TextBox>
+                                    </div>                                     
                                 </div>
+                                <asp:LinkButton ID="lbtnUsarMiDireccion" runat="server" 
+                                    Text="Usar mi Dirección"
+                                    OnClick="lbtnUsarMiDireccion_Click"></asp:LinkButton>
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </div>
@@ -75,11 +86,16 @@
                     </div>
 
                 </div>
-                <label>
+                <%--<label>
                     <input type="checkbox" checked="checked" name="sameadr"> Mi direccion de envio es igual que el de facturacion
-                </label>
-                <input type="button" value="Finalizar compra" class="btn">
-                <input type="button" value="Cancelar compra" class="btn2">
+                </label>--%>                
+                <asp:Button ID="btnFinalizarCompra" runat="server" 
+                    OnClick="btnFinalizarCompra_Click"
+                    Text="FinalizarCompra"
+                    CssClass="btn" />                
+                <asp:Button ID="btnCancelar" runat="server"
+                    Text="Cancelar Compra"
+                    CssClass="btn2" />
             </form>
         </div>
     </div>

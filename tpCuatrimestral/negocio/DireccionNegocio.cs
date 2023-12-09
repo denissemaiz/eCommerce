@@ -292,9 +292,9 @@ namespace Conexiones
             AccesoSQL datos = new AccesoSQL();
             try
             {
-                datos.Consulta("INSERT INTO Direccion_X_Usuario (ID_Direccion, ID_Compra) VALUES(@ID_Direccion, @ID_Compra)");
+                datos.Consulta("INSERT INTO Direccion_X_Compra (ID_Direccion, ID_Compra) VALUES(@ID_Direccion, @ID_Compra)");
                 datos.SetParametros("ID_Direccion", ID_Direccion);
-                datos.SetParametros("ID_Usuario", ID_Compra);
+                datos.SetParametros("ID_Compra", ID_Compra);
                 datos.EjecutarAccion();
 
             }
