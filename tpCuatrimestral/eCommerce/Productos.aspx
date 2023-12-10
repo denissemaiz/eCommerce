@@ -50,7 +50,7 @@
                                     </div>                                 
                                 <%}%>
                         </div> 
-                        <p id="mensajeStock" runat="server" style="color: red; display: none;">No hay stock de este producto</p>
+                        <p id="mensajeStock" runat="server" style="color: red; display: none;"></p>
                     </div>
                     <div class="card-footer">
                         <small class="text-body-secondary">Código: <%#Eval("Codigo") %></small>

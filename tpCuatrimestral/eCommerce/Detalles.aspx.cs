@@ -56,7 +56,7 @@ namespace eCommerce
 
                 if (!habilitarBoton)
                 {
-                    mensajeStock.InnerText = "No hay suficiente stock";
+                    mensajeStock.InnerText = "No hay más stock de este producto";
                     mensajeStock.Style["display"] = "block";  // Muestra el mensaje
                 }
                 else

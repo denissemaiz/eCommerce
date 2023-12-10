@@ -146,7 +146,7 @@ namespace eCommerce
 
                     if (!EsStockDisponible(codigoLibro))
                     {
-                        mensajeStock.InnerText = "No hay suficiente stock";
+                        mensajeStock.InnerText = "No hay más stock";
                         mensajeStock.Style["display"] = "block";  // Muestra el mensaje
                     }
                     else
