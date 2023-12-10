@@ -33,8 +33,23 @@ namespace eCommerce.User
                 {
                     usuario = (Usuario)Session["Usuario"];
                     usuario.DireccionUsuario = null;
-                }                
+                }
 
+
+            }
+            else
+            {
+                if(carrito == null && Session["librosAgregados"] != null)
+                {
+                    carrito = new Carrito();
+                    carrito.Libros = (List<Libro>)Session["librosAgregados"];
+                }
+
+                if (usuario == null && Session["Usuario"] != null)
+                {
+                    usuario = (Usuario)Session["Usuario"];
+                    usuario.DireccionUsuario = null;
+                }
 
             }
             
@@ -42,6 +57,7 @@ namespace eCommerce.User
         protected void lbtnUsarMiDireccion_Click(object sender, EventArgs e)
         {
             DireccionNegocio direccionNegocio = new DireccionNegocio();
+            usuario.DireccionUsuario = new Direccion();
             usuario.DireccionUsuario = direccionNegocio.Buscar_X_Usuario(usuario.Id);
             if(usuario.DireccionUsuario != null)
             {
@@ -111,5 +127,14 @@ namespace eCommerce.User
             }
         }
 
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            string loginNecesario = HttpContext.Current.Request.Url.AbsolutePath;
+            Session.Add("loginNecesario", loginNecesario);
+            if (Session["Usuario"] != null)
+                Session.Remove("Usuario");
+
+            Response.Redirect("../User/Login.aspx");
+        }
     }
 }
