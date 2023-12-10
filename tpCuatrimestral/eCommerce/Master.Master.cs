@@ -102,6 +102,14 @@ namespace eCommerce
 
                 lblContador_Load(sender, e);
                 repProductos_Load(sender, e);
+
+                string currentPagePath = Request.AppRelativeCurrentExecutionFilePath;
+
+                if (currentPagePath.Equals("~/Productos.aspx", StringComparison.OrdinalIgnoreCase))
+                {
+                    // Si ejecutamos desde ~/Productos.aspx, recargar para actualizar el stock
+                    Response.Redirect(currentPagePath);
+                }
             }
         }
 
