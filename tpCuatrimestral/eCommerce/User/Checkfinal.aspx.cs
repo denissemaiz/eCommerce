@@ -120,6 +120,9 @@ namespace eCommerce.User
                         direNegocio.NuevaDireccion_Compra(direccion, idInsert);
 
                         Session.Remove("librosAgregados");
+
+                        Session.Add("mensaje", "Compra realizada");
+                        Response.Redirect("../Success.aspx", false);
                     }
                 }
                 else
