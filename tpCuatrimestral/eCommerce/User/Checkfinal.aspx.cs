@@ -118,6 +118,8 @@ namespace eCommerce.User
                         direccion.Cp = Int32.Parse(txtCp.Text);
 
                         direNegocio.NuevaDireccion_Compra(direccion, idInsert);
+
+                        Session.Remove("librosAgregados");
                     }
                 }
                 else
