@@ -57,3 +57,10 @@ ul.dropdown-cart {
         ul.dropdown-cart li .item-right button {
             margin-top: 14px;
         }
+
+.btn-secondary-custom:disabled {
+    /* Estilos específicos cuando el botón está deshabilitado */
+    opacity: 0.5; /* Reduzca la opacidad cuando esté deshabilitado */
+    cursor: not-allowed;
+    /* Agrega otros estilos de deshabilitado según tus necesidades */
+}

@@ -200,9 +200,10 @@
                                                       </asp:LinkButton>
                                                       <input type="text" class="form-control" placeholder="<%#:carritoNegocio.contabilizarLibro((int)Eval("Id")) %>" disabled="disabled" aria-label="inputContador" /> 
                                                       <asp:LinkButton ID="lbtnSumar" runat="server"
-                                                          CssClass="btn btn-secondary"
+                                                          CssClass='<%# ObtenerClaseEstilo(Eval("Codigo").ToString()) %>'
                                                           type="button"
                                                           CommandArgument='<%#Eval("Codigo") %>'
+                                                          Enabled='<%# EsStockDisponible(Eval("Codigo").ToString()) %>' 
                                                           OnClick="lbtnSumar_Click"><i class="bi bi-plus-lg"></i>
                                                       </asp:LinkButton>
                                         

@@ -122,5 +122,22 @@ namespace eCommerce
             return false;
         }
 
+        public bool EsStockDisponible(string codigoLibro)
+        {
+            LibroNegocio librosDB = new LibroNegocio();
+            Libro busqueda = librosDB.Buscar_x_Codigo(codigoLibro);
+            
+            if (busqueda != null)
+            {
+                if (busqueda.Stock >= carritoNegocio.contabilizarLibro(busqueda.Id) + 1) { return true; }
+            }
+            return false;
+        }
+
+        protected string ObtenerClaseEstilo(string codigoLibro)
+        {
+            return EsStockDisponible(codigoLibro) ? "btn btn-secondary" : "btn btn-secondary:disabled";
+        }
+
     }
 }
