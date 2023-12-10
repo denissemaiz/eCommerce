@@ -29,32 +29,77 @@
                                     <ContentTemplate>
                                         <div class="row">
                                             <div class="col">
-                                                <label for="txtDireccion"><i class="fa fa-address-card-o"></i> Direccion</label>
+                                                <label for="txtDireccion"><i class="fa fa-address-card-o"></i> Calle</label>
                                                 <asp:TextBox ID="txtDireccion" runat="server" placeholder="Monteagudo"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="rfvCalle" runat="server"
+                                                    ControlToValidate="txtDireccion"
+                                                    Display="Dynamic"
+                                                    CssClass="invalid-feedback"
+                                                    ForeColor="Red"
+                                                    Text="Debe ingresar un nombre de calle"></asp:RequiredFieldValidator>
                                             </div>
         
                                             <div class="col">
                                                 <label for="txtAltura">Altura</label>
                                                 <asp:TextBox ID="txtAltura" runat="server" placeholder="1241"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="rfvAltura" runat="server"
+                                                    ControlToValidate="txtAltura"
+                                                    Display="Dynamic"
+                                                    CssClass="invalid-feedback"
+                                                    ForeColor="Red"
+                                                    Text="Debe ingresar el numero de su dirección"></asp:RequiredFieldValidator>
+                                                <asp:RegularExpressionValidator ID="revAltura" runat="server"
+                                                    Display="Dynamic"
+                                                    ControlToValidate="txtAltura"
+                                                    ValidationExpression="(^([0-9]*|\d*\d{1}?\d*)$)"
+                                                    ForeColor="Red"
+                                                    CssClass="invalid-feedback"
+                                                    ErrorMessage="Solo se aceptan numeros"></asp:RegularExpressionValidator>
                                             </div>
                                         </div>
         
                                         <label for="txtCiudad"><i class="fa-solid fa-city"></i> Ciudad</label> 
                                         <asp:TextBox ID="txtCiudad" runat="server" placeholder="Pacheco"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rfvLocalidad" runat="server"
+                                            ControlToValidate="txtCiudad"
+                                            Display="Dynamic"
+                                            CssClass="invalid-feedback"
+                                            ForeColor="Red"
+                                            Text="Debe ingresar el nombre de su ciudad"></asp:RequiredFieldValidator>
         
                                         <div class="row">
                                             <div class="col-50">
                                                 <label for="txtProvincia"><i class="bi bi-map"></i>Provincia</label>
                                                 <asp:TextBox ID="txtProvincia" runat="server" placeholder="Buenos Aires"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="rfvProvincia" runat="server"
+                                                    ControlToValidate="txtProvincia"
+                                                    Display="Dynamic"
+                                                    CssClass="invalid-feedback"
+                                                    ForeColor="Red"
+                                                    Text="Debe ingresar el nombre de su provincia"></asp:RequiredFieldValidator>
                                             </div>
                                             <div class="col-50">
                                                 <label for="txtCp"><i class="bi bi-mailbox-flag"></i> CP</label>
                                                 <asp:TextBox ID="txtCp" runat="server" placeholder="1674"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="rfvCp" runat="server"
+                                                    ControlToValidate="txtCp"
+                                                    Display="Dynamic"
+                                                    CssClass="invalid-feedback"
+                                                    ForeColor="Red"
+                                                    Text="Debe ingresar su código postal"></asp:RequiredFieldValidator>
+                                                <asp:RegularExpressionValidator ID="revCp" runat="server"
+                                                    ControlToValidate="txtCp"
+                                                    Display="Dynamic"
+                                                    ValidationExpression="(^([0-9]*|\d*\d{1}?\d*)$)"
+                                                    CssClass="invalid-feedback"
+                                                    ForeColor="Red"
+                                                    ErrorMessage="Solo se aceptan numeros"></asp:RegularExpressionValidator>
                                             </div>                                     
                                         </div>
                                         <asp:LinkButton ID="lbtnUsarMiDireccion" runat="server" 
                                             Text="Usar mi Dirección"
-                                            OnClick="lbtnUsarMiDireccion_Click"></asp:LinkButton>
+                                            OnClick="lbtnUsarMiDireccion_Click"
+                                            CausesValidation="false"></asp:LinkButton>
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
                             </div>
