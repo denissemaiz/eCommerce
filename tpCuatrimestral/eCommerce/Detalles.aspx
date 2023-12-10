@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <div class="contenedor-agregarproducto">
-                    <asp:Button ID="btnAgregarACarritoDetalles" CssClass="btn-add-al-carrito" Text="Agregar al carrito" CommandArgument='<%#Eval(librito.Codigo)%>' CommandName="IdLibro" OnClick="btnAgregarACarritoDetalles_Click" runat="server" />
+                    <asp:Button ID="btnAgregarACarritoDetalles" CssClass="btn btn-add-al-carrito" Text="Agregar al carrito" CommandArgument='<%#Eval(librito.Codigo)%>' CommandName="IdLibro" OnClick="btnAgregarACarritoDetalles_Click" runat="server" />
                 </div>
             </div>
         </main>

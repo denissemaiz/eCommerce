@@ -19,6 +19,8 @@ namespace eCommerce
 
         public Libro librito = new Libro();
         public List<Libro> librosCarrito = new List<Libro>();
+        public Carrito carritoNegocio { get; set; }
+        public List<Libro> LibrosSinRepetidos { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -38,6 +40,21 @@ namespace eCommerce
                     librito.Generos = listarGenero;
                     librito.Autores = listarAutor;
                 }
+
+                carritoNegocio = new Carrito();
+                carritoNegocio.Libros = new List<Libro>();
+
+                if (Session["librosAgregados"] != null)
+                {
+                    carritoNegocio.Libros = (List<Libro>)Session["librosAgregados"];
+
+                    LibroNegocio manejoLibros = new LibroNegocio();
+                    LibrosSinRepetidos = manejoLibros.RemoveDuplicadosLibro(carritoNegocio.Libros);
+                }
+
+                bool habilitarBoton = EsStockDisponible(codigo);
+
+                btnAgregarACarritoDetalles.Enabled = habilitarBoton;
             }
             else
             {
@@ -68,6 +85,20 @@ namespace eCommerce
                     Response.Redirect("Detalles.aspx?cod=" + codigo);
                 }
             }
+        }
+
+        public bool EsStockDisponible(string codigoLibro)
+        {
+            LibroNegocio librosDB = new LibroNegocio();
+            Libro busqueda = librosDB.Buscar_x_Codigo(codigoLibro);
+
+            if (busqueda != null)
+            {
+                if (busqueda.Stock <= 0) { return false; }
+                if (Session["librosAgregados"] != null && !(busqueda.Stock >= carritoNegocio.contabilizarLibro(busqueda.Id) + 1)) { return false; }
+            }
+
+            return true;
         }
     }
 }

@@ -104,11 +104,11 @@ namespace eCommerce
                 repProductos_Load(sender, e);
 
                 string currentPagePath = Request.AppRelativeCurrentExecutionFilePath;
+                string redirect = Request.RawUrl;
 
-                if (currentPagePath.Equals("~/Productos.aspx", StringComparison.OrdinalIgnoreCase))
+                if (currentPagePath.Equals("~/Productos.aspx", StringComparison.OrdinalIgnoreCase) || currentPagePath.Equals("~/Detalles.aspx", StringComparison.OrdinalIgnoreCase))
                 {
-                    // Si ejecutamos desde ~/Productos.aspx, recargar para actualizar el stock
-                    Response.Redirect(currentPagePath);
+                    Response.Redirect(redirect);
                 }
             }
         }

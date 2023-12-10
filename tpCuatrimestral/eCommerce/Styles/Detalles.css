@@ -69,6 +69,11 @@ main {
         color: black;
     }
 
+    .btn-add-al-carrito:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
 .contenedor-descripcion {
     display: flex;
     flex-direction: column;
