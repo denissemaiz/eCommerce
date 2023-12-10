@@ -17,6 +17,8 @@ namespace eCommerce
         public List<Libro> listaLibros { get; set; }
         public List<Libro> librosCarrito = new List<Libro>();
         public Carrito carrito { get; set; }
+        public Carrito carritoNegocio { get; set; }
+        public List<Libro> LibrosSinRepetidos { get; set; }
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -25,6 +27,17 @@ namespace eCommerce
 
             if (!IsPostBack)
             {
+                carritoNegocio = new Carrito();
+                carritoNegocio.Libros = new List<Libro>();
+
+                if (Session["librosAgregados"] != null)
+                {
+                    carritoNegocio.Libros = (List<Libro>)Session["librosAgregados"];
+
+                    LibroNegocio manejoLibros = new LibroNegocio();
+                    List<Libro> LibrosSinRepetidos = manejoLibros.RemoveDuplicadosLibro(carritoNegocio.Libros);
+                }
+
                 if (Request.QueryString.AllKeys.Contains("generosLib"))
                 {
                     string genero = Request.QueryString["generosLib"].ToString();
@@ -56,7 +69,22 @@ namespace eCommerce
                     repLibros.DataBind();
                 }
             }
-            
+            else
+            {
+                if (carritoNegocio == null || carritoNegocio.Libros == null)
+                {
+                    carritoNegocio = new Carrito();
+                    carritoNegocio.Libros = new List<Libro>();
+                }
+                if (Session["librosAgregados"] != null)
+                {
+                    carritoNegocio.Libros = (List<Libro>)Session["librosAgregados"];
+
+                    LibroNegocio manejoLibros = new LibroNegocio();
+                    LibrosSinRepetidos = manejoLibros.RemoveDuplicadosLibro(carritoNegocio.Libros);
+                }
+            }
+
         }
 
         protected void btnEliminarLibro_Click(object sender, EventArgs e)
@@ -118,7 +146,7 @@ namespace eCommerce
 
                     if (!EsStockDisponible(codigoLibro))
                     {
-                        mensajeStock.InnerText = "No hay stock de este producto";
+                        mensajeStock.InnerText = "No hay suficiente stock";
                         mensajeStock.Style["display"] = "block";  // Muestra el mensaje
                     }
                     else
@@ -132,15 +160,15 @@ namespace eCommerce
         public bool EsStockDisponible(string codigoLibro)
         {
             LibroNegocio librosDB = new LibroNegocio();
+            Libro busqueda = librosDB.Buscar_x_Codigo(codigoLibro);
 
-            listaLibros = librosDB.Buscar(codigoLibro, "Codigo");
-
-            if (listaLibros != null)
+            if (busqueda != null)
             {
-                if (listaLibros.First().Stock > 0) { return true; }
+                if (busqueda.Stock <= 0) { return false; } 
+                if (Session["librosAgregados"] != null && !(busqueda.Stock >= carritoNegocio.contabilizarLibro(busqueda.Id) + 1)) { return false; }
             }
 
-            return false;
+            return true;
         }
 
         public bool ValidarAdmin()
