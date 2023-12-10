@@ -5,9 +5,7 @@ using negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace eCommerce
 {
@@ -54,7 +52,17 @@ namespace eCommerce
 
                 bool habilitarBoton = EsStockDisponible(codigo);
 
-                btnAgregarACarritoDetalles.Enabled = habilitarBoton;
+                btnAgregarACarritoDetalles.Enabled = habilitarBoton;      
+
+                if (!habilitarBoton)
+                {
+                    mensajeStock.InnerText = "No hay suficiente stock";
+                    mensajeStock.Style["display"] = "block";  // Muestra el mensaje
+                }
+                else
+                {
+                    mensajeStock.Style["display"] = "none";  // Oculta el mensaje si se muestra
+                }                
             }
             else
             {

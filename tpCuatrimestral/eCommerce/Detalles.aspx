@@ -28,9 +28,6 @@
                         <li>
                             <p><b>Autor/es: </b><%: librito.ListarAutores()%>  </p>
                         </li>
-                        <li>
-                            <p><b>Stock: </b><%: librito.Stock %> </p>
-                        </li>
                     </ul>
                 </div>
                 <div class="contenedor-descripcion">
@@ -46,6 +43,7 @@
                 <div class="contenedor-agregarproducto">
                     <asp:Button ID="btnAgregarACarritoDetalles" CssClass="btn btn-add-al-carrito" Text="Agregar al carrito" CommandArgument='<%#Eval(librito.Codigo)%>' CommandName="IdLibro" OnClick="btnAgregarACarritoDetalles_Click" runat="server" />
                 </div>
+                <p id="mensajeStock" runat="server" style="color: red; display: none;">No hay stock de este producto</p>
             </div>
         </main>
 </asp:Content>
