@@ -493,13 +493,14 @@ namespace negocio
                /* datos.Consulta("UPDATE Libro SET Codigo = '" + libro.Codigo + "', Titulo = '" + libro.Titulo + "', Descripcion = '" + libro.Descripcion + "', Precio = " +
                     "" + libro.Precio + ", Stock = " + libro.Stock + ", PortadaURL = '" + libro.PortadaURL + "' WHERE ID_Libro = " + libro.Id); */
                 datos.Consulta("UPDATE Libro SET Codigo =  '" + libro.Codigo + "', Titulo = '" + libro.Titulo + "', Descripcion = '" + libro.Descripcion + "', Precio = '" + libro.Precio + "', Stock = '" + libro.Stock + "', PortadaURL = '" + libro.PortadaURL + "' WHERE ID_Libro = " + libro.Id);
-                
-                datos.IniciarTransaccion();
-                datos.CompletarTransaccion();
+
+                //datos.IniciarTransaccion();
+                //datos.CompletarTransaccion();
+                datos.EjecutarAccion();
             }
             catch (Exception ex)
             {
-                datos.RevertirTransaccion();
+                //datos.RevertirTransaccion();
                 throw ex;
             }
             finally
