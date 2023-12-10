@@ -27,6 +27,12 @@ namespace eCommerce.User
                 //Consigo los datos de la compra
                 if (Session["librosAgregados"] != null)                
                     carrito.Libros = (List<Libro>)Session["librosAgregados"];
+                else
+                {
+                    Session.Add("error", "Carrito vacío, se deben agregar productos antes de ingresar al CheckFinal");
+                    Response.Redirect("../Error.aspx", false); 
+                    return;
+                }
                
                 //Consigo al usuario para recuperar sus datos de la BD
                 if (Session["Usuario"] != null)
