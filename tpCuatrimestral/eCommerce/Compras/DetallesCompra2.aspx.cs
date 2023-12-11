@@ -25,7 +25,9 @@ namespace eCommerce
             {
                 int idPedido = Convert.ToInt32(Request.QueryString["idCompra"]);//Consigo el id de pedido de la URL
 
-                CompraNegocio negocio = new CompraNegocio();
+                CompraNegocio negocioCompra = new CompraNegocio();
+                LibroNegocio negocioLibro = new LibroNegocio();
+                List<Libro> libros = new List<Libro>();
                 List<string> estados = new List<string>();
                 estados.Add("En proceso");
                 estados.Add("Enviado");
@@ -34,7 +36,7 @@ namespace eCommerce
 
                 try
                 {
-                    pedido = negocio.BuscarCompra(idPedido); //Busco la compra x ID
+                    pedido = negocioCompra.BuscarCompra(idPedido); //Busco la compra x ID
                     if(pedido != null) //Validación de que se encuentre la compra
                     {
                         //Asignación de datos de la compra
@@ -58,7 +60,9 @@ namespace eCommerce
 
                         //Lista de cadenas para mostrar los libros vendidos y la cantidad vendida
                         List<String> productos = new List<String>();
-                        foreach (Libro libro in pedido.Carrito.Libros)
+                        libros = negocioLibro.RemoveDuplicadosLibro(pedido.Carrito.Libros);
+                            
+                        foreach (Libro libro in libros)
                         {
                             //Por cada libro en el listado de libros genero una cadena con el código de libro, el título y
                             //la cantidad que se vendió de ese libro
