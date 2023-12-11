@@ -550,5 +550,48 @@ namespace negocio
             }
             return finalList;
         }
+
+        public void SumarStock(Compra compra)
+        {
+            AccesoSQL datos = new AccesoSQL();
+            Dictionary<int, int> libroCantidadMap = new Dictionary<int, int>();
+
+
+            foreach (Libro lib in compra.Carrito.Libros)
+            {
+                int cant = CalcularCantidadLibros(compra.Carrito.Libros, lib.Id);
+                libroCantidadMap[lib.Id] = cant;
+            }
+
+            foreach (var key in libroCantidadMap)
+            {
+
+                datos.Consulta("UPDATE Libro SET Stock = Stock + " + key.Value + " WHERE ID_Libro = " + key.Key);
+                datos.EjecutarAccion();
+            }
+        }
+
+        private int CalcularCantidadLibros(List<Libro> libros, int idLibro)
+        {
+            int cantidad = 0;
+
+            foreach (Libro libro in libros)
+            {
+                if (libro.Id == idLibro)
+                {
+                    cantidad++;
+                }
+            }
+
+            return cantidad;
+        }
+
+        private void DescuentoStock(int idLibro, int cantidadComprada)
+        {
+            AccesoSQL datos = new AccesoSQL();
+
+            datos.Consulta("UPDATE Libro SET Stock = Stock - " + cantidadComprada + " WHERE ID_Libro = " + idLibro);
+            datos.EjecutarAccion();
+        }
     }
 }

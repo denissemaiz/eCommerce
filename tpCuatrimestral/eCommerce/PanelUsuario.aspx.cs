@@ -293,12 +293,15 @@ namespace eCommerce
 
         protected void DGVPedidos_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             int id = (int)DGVPedidos.SelectedValue;
-            CompraNegocio negocio = new CompraNegocio();
-            if (negocio.BuscarCompra(id).Estado.Equals("En proceso"))
+            CompraNegocio negocioComp = new CompraNegocio();
+            LibroNegocio negocioLib = new LibroNegocio();
+
+            if (negocioComp.BuscarCompra(id).Estado.Equals("En proceso"))
             {
-                negocio.ModificarEstado(4, id);
+                negocioComp.ModificarEstado(4, id);
+                Compra compra = negocioComp.BuscarCompra(id);
+                negocioLib.SumarStock(compra);
                 Response.Redirect("PanelUsuario.aspx");
             }
             else
