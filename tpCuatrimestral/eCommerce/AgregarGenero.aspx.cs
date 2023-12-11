@@ -3,7 +3,9 @@ using dominio;
 using negocio;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -27,10 +29,23 @@ namespace eCommerce
 
             try
             {
-                generonegocio.Agregar(genero);
-                lblagregado.Visible = true;
-                txt_genero.Text = "";
-                txt_descripcion.Text = "";
+                List<Genero> generos = generonegocio.Listar();
+                bool cond = false;
+                foreach (Genero generoNegocio in generos)
+                    if(RemoverAcentos(genero.Nombre).ToLower() == RemoverAcentos(generoNegocio.Nombre).ToLower())
+                        cond = true;
+                if (!cond)
+                {
+                    generonegocio.Agregar(genero);
+                    lblagregado.Visible = true;
+                    txt_genero.Text = "";
+                    txt_descripcion.Text = "";
+                }
+                else
+                {
+                    //txt_genero.Text = "";
+                    //txt_descripcion.Text = "";
+                }
             }
             catch (Exception ex)
             {
@@ -49,6 +64,23 @@ namespace eCommerce
                 return user.EsAdmin;
             }
             return false;
+        }
+
+        static string RemoverAcentos(string text)
+        {
+            string formD = text.Normalize(NormalizationForm.FormD);
+            StringBuilder sb = new StringBuilder();
+
+            foreach (char ch in formD)
+            {
+                UnicodeCategory uc = CharUnicodeInfo.GetUnicodeCategory(ch);
+                if (uc != UnicodeCategory.NonSpacingMark)
+                {
+                    sb.Append(ch);
+                }
+            }
+
+            return sb.ToString().Normalize(NormalizationForm.FormC);
         }
 
     }
