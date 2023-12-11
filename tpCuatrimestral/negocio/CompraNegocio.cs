@@ -172,6 +172,9 @@ namespace Conexiones
 
                     lista.Add(auxCompra);
                 }
+
+                lista = groupComprasById(lista);
+
                 return lista;
             }
             catch (Exception ex)
@@ -409,6 +412,27 @@ namespace Conexiones
 
             datos.Consulta("UPDATE Libro SET Stock = Stock - " + cantidadComprada + " WHERE ID_Libro = " + idLibro);
             datos.EjecutarAccion();
+        }
+
+        private List<Compra> groupComprasById(List<Compra> compras)
+        {
+             var comprasAgrupadas = compras
+            .GroupBy(c => c.Id)
+            .Select(group => new Compra
+            {
+                Id = group.Key,
+                IdCliente = group.First().IdCliente,
+                Estado = group.First().Estado,
+                FechaCompra = group.First().FechaCompra,
+                Carrito = new Carrito
+                {
+                    Libros = group.SelectMany(c => c.Carrito.Libros).ToList(),
+                    Monto = group.First().Carrito.Monto
+                },
+            })
+            .ToList();
+
+            return comprasAgrupadas;
         }
 
         public List<Compra> RemoveDuplicadosCompra(List<Compra> inputList)
