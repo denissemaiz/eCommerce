@@ -74,7 +74,7 @@ namespace eCommerce
         {
             string codigo = ((LinkButton)sender).CommandArgument;
             LibroNegocio datos = new LibroNegocio();
-            Libro busqueda = datos.Buscar(codigo, "Codigo").First();
+            Libro busqueda = datos.Buscar_x_Codigo(codigo);
             if (busqueda != null && carritoNegocio != null)
             {
                 if(busqueda.Stock >= carritoNegocio.contabilizarLibro(busqueda.Id) + 1) 
@@ -93,15 +93,23 @@ namespace eCommerce
         {
             string codigo = ((LinkButton)sender).CommandArgument;
             LibroNegocio datos = new LibroNegocio();
-            List<Libro> busqueda = datos.Buscar(codigo, "Codigo");
+            Libro busqueda = datos.Buscar_x_Codigo(codigo);
             if (busqueda != null && carritoNegocio != null)
             {
-                if(carritoNegocio.QuitarLibro(busqueda.First().Id))
+                if(carritoNegocio.QuitarLibro(busqueda.Id))
                     Session["librosAgregados"] = carritoNegocio.Libros;
                 LibrosSinRepetidos = datos.RemoveDuplicadosLibro(carritoNegocio.Libros);
 
                 lblContador_Load(sender, e);
                 repProductos_Load(sender, e);
+
+                string currentPagePath = Request.AppRelativeCurrentExecutionFilePath;
+                string redirect = Request.RawUrl;
+
+                if (currentPagePath.Equals("~/Productos.aspx", StringComparison.OrdinalIgnoreCase) || currentPagePath.Equals("~/Detalles.aspx", StringComparison.OrdinalIgnoreCase))
+                {
+                    Response.Redirect(redirect);
+                }
             }
         }
 
@@ -120,6 +128,23 @@ namespace eCommerce
                 return user.EsAdmin;
             }
             return false;
+        }
+
+        public bool EsStockDisponible(string codigoLibro)
+        {
+            LibroNegocio librosDB = new LibroNegocio();
+            Libro busqueda = librosDB.Buscar_x_Codigo(codigoLibro);
+            
+            if (busqueda != null)
+            {
+                if (busqueda.Stock >= carritoNegocio.contabilizarLibro(busqueda.Id) + 1) { return true; }
+            }
+            return false;
+        }
+
+        protected string ObtenerClaseEstilo(string codigoLibro)
+        {
+            return EsStockDisponible(codigoLibro) ? "btn btn-secondary" : "btn btn-secondary:disabled";
         }
 
     }

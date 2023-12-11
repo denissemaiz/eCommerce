@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -119,10 +120,10 @@ namespace eCommerce
                 LibroNegocio negocio = new LibroNegocio();
                 Genero genero = new Genero();
                 Autor autor = new Autor();
-
+                
                 libro.Codigo = txtCodigo.Text;
                 libro.Titulo = txtTitulo.Text;
-                libro.Descripcion = txtDescripcion.Text;
+                libro.Descripcion = txtDescripcion.Text;              
                 libro.Precio = decimal.Parse(txtPrecio.Text);
                 libro.Stock = short.Parse(txtStock.Text);
                 libro.PortadaURL = txtportadaURL.Text;

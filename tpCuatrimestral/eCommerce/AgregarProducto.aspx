@@ -163,7 +163,7 @@
 
             <div class="col-md-3">
                 <asp:Label for="txtPrecio" runat="server" CssClass="form-label"><b>Precio:</b></asp:Label>
-                <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" onkeypress="return soloNumerosConComa(event);"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvPrecio" runat="server" 
                     ControlToValidate="txtPrecio"
                     Display="Dynamic"
@@ -230,5 +230,25 @@
             args.IsValid = listBox.options.length > 0;
         }
     </script>
+
+    <script type="text/javascript">
+        function soloNumerosConComa(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode;
+            var input = evt.target || evt.srcElement;
+
+            // Permite solo números, coma
+            if (charCode == 44 || (charCode >= 48 && charCode <= 57)) {
+                // Verifica que no haya más de una coma
+                if (charCode == 44 && input.value.indexOf(',') !== -1) {
+                    return false;
+                }
+                return true;
+            }
+
+            return false;
+        }
+    </script>
+
+
 </asp:Content>
 

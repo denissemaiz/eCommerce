@@ -57,12 +57,24 @@ namespace dominio
         }
         public bool QuitarLibro(int id)
         {
-            foreach (Libro art in libros)
+            foreach (Libro art in this.libros)
             {
-                if (art.Id == id) libros.Remove(art);
-                return true;
+                if (art.Id == id)
+                {
+                    this.libros.Remove(art);
+                    return true;
+                }
             }
             return false;
+        }
+
+        public void RemoverLibro(String Codigo)
+        {
+            this.libros.RemoveAll(delegate (Libro libro)
+            {
+                return libro.Codigo.Equals(Codigo);
+            });
+            
         }
 
         public int contabilizarLibro(int id)

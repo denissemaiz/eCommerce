@@ -85,6 +85,7 @@
     <Content Include="PanelUsuario.aspx" />
     <Content Include="Productos.aspx" />
     <Content Include="StoreProc.aspx" />
+    <Content Include="Success.aspx" />
     <Content Include="User\CambiarContraseña.aspx" />
     <Content Include="User\Checkfinal.aspx" />
     <Content Include="User\Login.aspx" />
@@ -193,6 +194,13 @@
     </Compile>
     <Compile Include="StoreProc.aspx.designer.cs">
       <DependentUpon>StoreProc.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Success.aspx.cs">
+      <DependentUpon>Success.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Success.aspx.designer.cs">
+      <DependentUpon>Success.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\CambiarContraseña.aspx.cs">
       <DependentUpon>CambiarContraseña.aspx</DependentUpon>

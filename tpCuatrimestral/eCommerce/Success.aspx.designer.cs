@@ -11,25 +11,16 @@ namespace eCommerce
 {
 
 
-    public partial class Detalles
+    public partial class Success
     {
 
         /// <summary>
-        /// Control btnAgregarACarritoDetalles.
+        /// Control lblMensaje.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregarACarritoDetalles;
-
-        /// <summary>
-        /// Control mensajeStock.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl mensajeStock;
+        protected global::System.Web.UI.WebControls.Label lblMensaje;
     }
 }

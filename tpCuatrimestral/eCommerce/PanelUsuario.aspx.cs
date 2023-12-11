@@ -32,7 +32,7 @@ namespace eCommerce
 
                 user.DireccionUsuario = new Direccion();
                 DireccionNegocio datosDireccion = new DireccionNegocio();
-                user.DireccionUsuario = datosDireccion.Buscar(user.Id);
+                user.DireccionUsuario = datosDireccion.Buscar_X_Usuario(user.Id);
 
                 txbNombres.Text = user.DatosUsuario.Nombres;
                 txbApellidos.Text = user.DatosUsuario.Apellidos;
@@ -60,7 +60,7 @@ namespace eCommerce
 
                     user.DireccionUsuario = new Direccion();
                     DireccionNegocio datosDireccion = new DireccionNegocio();
-                    user.DireccionUsuario = datosDireccion.Buscar(user.Id);
+                    user.DireccionUsuario = datosDireccion.Buscar_X_Usuario(user.Id);
                 }           
             }
         }
@@ -243,7 +243,7 @@ namespace eCommerce
 
                 try
                 {
-                    dire.Agregar(user.DireccionUsuario);
+                    dire.NuevaDireccion_Usuario(user.DireccionUsuario, user.Id);
                     Session["Usuario"] = user;
                 }
                 catch (Exception ex)
@@ -293,12 +293,15 @@ namespace eCommerce
 
         protected void DGVPedidos_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             int id = (int)DGVPedidos.SelectedValue;
-            CompraNegocio negocio = new CompraNegocio();
-            if (negocio.BuscarCompra(id).Estado.Equals("En proceso"))
+            CompraNegocio negocioComp = new CompraNegocio();
+            LibroNegocio negocioLib = new LibroNegocio();
+
+            if (negocioComp.BuscarCompra(id).Estado.Equals("En proceso"))
             {
-                negocio.ModificarEstado(4, id);
+                negocioComp.ModificarEstado(4, id);
+                Compra compra = negocioComp.BuscarCompra(id);
+                negocioLib.SumarStock(compra);
                 Response.Redirect("PanelUsuario.aspx");
             }
             else
@@ -340,7 +343,7 @@ namespace eCommerce
             }
         }
 
-            protected void btnLogin_Click(object sender, EventArgs e)
+        protected void btnLogin_Click(object sender, EventArgs e)
         {
             string loginNecesario = HttpContext.Current.Request.Url.AbsolutePath;
             Session.Add("loginNecesario", loginNecesario);

@@ -29,10 +29,26 @@ namespace eCommerce
             autornegocio = new AutorNegocio();
             try
             {
-            autornegocio.Agregar(autor);
-                lblagregado.Visible = true;
-                txt_autornombre.Text = "";
-                txt_autorapellido.Text = "";
+                List<Autor> autores = autornegocio.Listar();
+                bool cond = false;
+                foreach (Autor autorList in autores)
+                {
+                    if(autorList.NombreApellido == autor.NombreApellido)
+                        cond = true;
+                }
+                if (cond)
+                {
+                    autornegocio.Agregar(autor);
+                    lblagregado.Visible = true;
+                    txt_autornombre.Text = "";
+                    txt_autorapellido.Text = "";
+                }
+                else
+                {
+                    txt_autornombre.Text = "";
+                    txt_autorapellido.Text = "";
+
+                }
 
             }
             catch (Exception ex)

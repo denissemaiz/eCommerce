@@ -19,9 +19,7 @@ namespace Conexiones
 
             try
             {
-                Datos.Consulta("SELECT U.ID_Usuario, U.NombreUsuario, U.Mail, U.Contraseña, U.EsAdmin, " +
-                    "DU.Nombre, DU.Apellido, D.Calle, D.Altura, D.Localidad, D.CP, D.Provincia, DU.Telefono " +
-                    "FROM Usuario U INNER JOIN Datos_Usuario DU ON U.ID_Usuario = DU.ID_Usuario INNER JOIN Direccion D ON DU.ID_Direccion = D.ID_Direccion");
+                Datos.Consulta("SELECT * FROM Usuario");
                 Datos.EjecutarLectura();
 
                 while (Datos.Lector.Read())
@@ -35,19 +33,6 @@ namespace Conexiones
                     aux.Contraseña = (string)Datos.Lector["Contraseña"];
                     aux.EsAdmin = (bool)Datos.Lector["EsAdmin"];
 
-                    auxDat.Nombres = (string)Datos.Lector["Nombre"];
-                    auxDat.Apellidos = (string)Datos.Lector["Apellido"];
-                    auxDat.Telefono = (string)Datos.Lector["Telefono"];
-
-                    auxDir.Calle = (string)Datos.Lector["Calle"];
-                    auxDir.Altura = (int)Datos.Lector["Altura"];
-                    auxDir.Localidad = (string)Datos.Lector["Localidad"];
-                    auxDir.Cp = (int)Datos.Lector["CP"];
-                    auxDir.Provincia = (string)Datos.Lector["Provincia"];
-
-                    aux.DireccionUsuario = auxDir;
-                    aux.DatosUsuario = auxDat;
-
                     lista.Add(aux);
                 }
                 return lista;
@@ -61,41 +46,6 @@ namespace Conexiones
                 Datos.CerrarConexion();
             }
         }
-
-
-        public List<Usuario> ListarL()
-        {
-            List<Usuario> lista = new List<Usuario>();
-            AccesoSQL Datos = new AccesoSQL();
-
-            try
-            {
-                Datos.Consulta("Select U.ID_Usuario, U.NombreUsuario, U.Mail, U.Contraseña from Usuario U");
-                Datos.EjecutarLectura();
-
-                while (Datos.Lector.Read())
-                {
-                    Usuario aux = new Usuario();
-                    aux.Id = (int)Datos.Lector["ID_Usuario"];
-                    aux.Username = (string)Datos.Lector["NombreUsuario"];
-                    aux.Mail = (string)Datos.Lector["Mail"];
-                    aux.Contraseña = (string)Datos.Lector["Contraseña"];
-
-
-                    lista.Add(aux);
-                }
-                return lista;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                Datos.CerrarConexion();
-            }
-        }
-
 
         public bool VerificarCorreo(string correo)
         {
@@ -135,55 +85,6 @@ namespace Conexiones
             catch (Exception ex)
             {
 
-                throw ex;
-            }
-            finally
-            {
-                Datos.CerrarConexion();
-            }
-        }
-
-        public Usuario ListarLPrueba(int Id)
-        {
-            //List<Usuario> lista = new List<Usuario>();
-            Usuario aux = null;
-            AccesoSQL Datos = new AccesoSQL();
-
-            try
-            {
-                Datos.Consulta("Select U.Mail, U.ID_Usuario, DU.Nombre, DU.Apellido, DU.Telefono, D.Calle, D.Altura, D.CP, D.Localidad, D.Provincia from Usuario U inner join Datos_Usuario DU on DU.ID_Usuario = U.ID_Usuario inner join Direccion D on D.ID_Usuario = DU.ID_Usuario where U.ID_Usuario =" + Id);
-                Datos.EjecutarLectura();
-
-                while (Datos.Lector.Read())
-                {
-                    aux = new Usuario();
-                    DatosUsuario aux2 = new DatosUsuario();
-                    Direccion aux3 = new Direccion();
-
-                    aux.Id = (int)Datos.Lector["ID_Usuario"];
-                    aux.Mail = (string)Datos.Lector["Mail"];
- 
-                    aux2.Nombres = (string)Datos.Lector["Nombre"];
-                    aux2.Apellidos = (string)Datos.Lector["Apellido"];
-                    aux2.Telefono = (string)Datos.Lector["Telefono"];
-
-                    aux3.Calle = (string)Datos.Lector["Calle"];
-                    aux3.Altura = (Int16)Datos.Lector["Altura"];
-                    aux3.Cp = (Int16)Datos.Lector["CP"];
-                    aux3.Localidad = (string)Datos.Lector["Localidad"];
-                    aux3.Provincia = (string)Datos.Lector["Provincia"];
-
-
-                    aux.DatosUsuario = aux2;
-                    aux.DireccionUsuario = aux3;
-
-                    
-                   
-                }
-                return aux;
-            }
-            catch (Exception ex)
-            {
                 throw ex;
             }
             finally
@@ -283,11 +184,6 @@ namespace Conexiones
             }
         }
 
-
-
-
-
-
         public void NuevaContraseña (string Contraseña)
         {
             AccesoSQL datos = new AccesoSQL();
@@ -306,11 +202,6 @@ namespace Conexiones
                 datos.CerrarConexion();
             }
         }
-
-
-
-
-
 
         public List<Usuario> RemoveDuplicadosUsuario(List<Usuario> inputList)
         {

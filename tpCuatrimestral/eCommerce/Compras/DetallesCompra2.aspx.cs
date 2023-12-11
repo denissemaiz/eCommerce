@@ -13,8 +13,9 @@ namespace eCommerce
 {
     public partial class DetallesCompra2 : System.Web.UI.Page
     {
-        public Compra pedido;
-        public Usuario cliente;
+        public Compra pedido { get; set; }
+        public Direccion direccion {  get; set; }
+        public Usuario cliente { get; set; }
         
         
 
@@ -43,8 +44,18 @@ namespace eCommerce
                         txtEstadoCompra.DataSource = estados;
                         txtEstadoCompra.DataBind();
                         
-                        
-                        
+                        //Consigo la direccion del pedido
+                        DireccionNegocio direccionNegocio = new DireccionNegocio();
+                        direccion = direccionNegocio.Buscar_X_Compra(pedido.Id);
+                        if(direccion != null)
+                        {
+                            //Y si se encuentra la asigno a los respectivos labels
+                            lblDireccion.Text = direccion.Calle;
+                            lblCiudad.Text = direccion.Localidad;
+                            lblProvincia.Text = direccion.Provincia;
+                            lblCp.Text = direccion.Cp.ToString();
+                        }
+
                         //Lista de cadenas para mostrar los libros vendidos y la cantidad vendida
                         List<String> productos = new List<String>();
                         foreach (Libro libro in pedido.Carrito.Libros)
@@ -79,17 +90,13 @@ namespace eCommerce
                             lblTelefono.Text = cliente.DatosUsuario.Telefono;
 
                             //Consigo su dirección
-                            cliente.DireccionUsuario = new Direccion();
-                            DireccionNegocio datosDireccion = new DireccionNegocio();
-                            cliente.DireccionUsuario = datosDireccion.Buscar(cliente.Id);
-                            if (cliente.DireccionUsuario == null)
-                                cliente.DireccionUsuario = new Direccion();
+                            //cliente.DireccionUsuario = new Direccion();
+                            //DireccionNegocio datosDireccion = new DireccionNegocio();
+                            ////cliente.DireccionUsuario = datosDireccion.Buscar(cliente.);
+                            //if (cliente.DireccionUsuario == null)
+                            //    cliente.DireccionUsuario = new Direccion();
 
-                            //Y la asigno a los respectivos labels
-                            lblDireccion.Text = cliente.DireccionUsuario.Calle;
-                            lblCiudad.Text = cliente.DireccionUsuario.Localidad;
-                            lblProvincia.Text = cliente.DireccionUsuario.Provincia;
-                            lblCp.Text = cliente.DireccionUsuario.Cp.ToString();
+                            
                         }
                         else
                         {
@@ -110,16 +117,16 @@ namespace eCommerce
                                 lblEmail.Text = cliente.Mail;
                                 lblTelefono.Text = cliente.DatosUsuario.Telefono;
 
-                                cliente.DireccionUsuario = new Direccion();
-                                DireccionNegocio datosDireccion = new DireccionNegocio();
-                                cliente.DireccionUsuario = datosDireccion.Buscar(cliente.Id);
-                                if (cliente.DireccionUsuario == null)
-                                    cliente.DireccionUsuario = new Direccion();
+                                //cliente.DireccionUsuario = new Direccion();
+                                //DireccionNegocio datosDireccion = new DireccionNegocio();
+                                //cliente.DireccionUsuario = datosDireccion.Buscar(cliente.Id);
+                                //if (cliente.DireccionUsuario == null)
+                                //    cliente.DireccionUsuario = new Direccion();
 
-                                lblDireccion.Text = cliente.DireccionUsuario.Calle;
-                                lblCiudad.Text = cliente.DireccionUsuario.Localidad;
-                                lblProvincia.Text = cliente.DireccionUsuario.Provincia;
-                                lblCp.Text = cliente.DireccionUsuario.Cp.ToString();
+                                //lblDireccion.Text = cliente.DireccionUsuario.Calle;
+                                //lblCiudad.Text = cliente.DireccionUsuario.Localidad;
+                                //lblProvincia.Text = cliente.DireccionUsuario.Provincia;
+                                //lblCp.Text = cliente.DireccionUsuario.Cp.ToString();
                                 
                             }
                             else

@@ -80,14 +80,14 @@
                     CssClass="btn" 
                     OnClick="btnVolver_Click" />
                  <%if (ValidarAdmin()) { %>
-     <div class="btn-toolbar my-lg-0" role="toolbar" aria-label="A&B button group">
-         <asp:Button ID="BtonGuardar" runat="server" 
-    Text="Guardar"
-    CssClass="btn" 
-    onclick="BtonGuardar_Click"  />
+                         <div class="btn-toolbar my-lg-0" role="toolbar" aria-label="A&B button group">
+                             <asp:Button ID="BtonGuardar" runat="server" 
+                        Text="Guardar"
+                        CssClass="btn" 
+                        onclick="BtonGuardar_Click"  />
 
-     </div>
- <% } %>
+                         </div>
+                   <% } %>
                 <%--<input type="button" value="Volver" class="btn">--%>
                 <%--<input type="button" value="Cancelar compra" class="btn2">--%>
             </form>
