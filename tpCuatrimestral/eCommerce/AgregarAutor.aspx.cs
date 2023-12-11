@@ -8,6 +8,8 @@ using System.Web.UI.WebControls;
 using Clases;
 using Conexiones;
 using negocio;
+using System.Globalization;
+using System.Text;
 
 namespace eCommerce
 {
@@ -33,7 +35,8 @@ namespace eCommerce
                 bool cond = false;
                 foreach (Autor autorList in autores)
                 {
-                    if(autorList.NombreApellido == autor.NombreApellido)
+                    if(RemoverAcentos( autorList.NombreApellido ).ToLower() 
+                        == RemoverAcentos ( autor.NombreApellido ).ToLower() )
                         cond = true;
                 }
                 if (!cond)
@@ -70,6 +73,23 @@ namespace eCommerce
                 return user.EsAdmin;
             }
             return false;
+        }
+
+        static string RemoverAcentos(string text)
+        {
+            string formD = text.Normalize(NormalizationForm.FormD);
+            StringBuilder sb = new StringBuilder();
+
+            foreach (char ch in formD)
+            {
+                UnicodeCategory uc = CharUnicodeInfo.GetUnicodeCategory(ch);
+                if (uc != UnicodeCategory.NonSpacingMark)
+                {
+                    sb.Append(ch);
+                }
+            }
+
+            return sb.ToString().Normalize(NormalizationForm.FormC);
         }
     }
 }
