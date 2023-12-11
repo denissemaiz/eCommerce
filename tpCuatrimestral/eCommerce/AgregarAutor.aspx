@@ -12,6 +12,7 @@
 
         <div class="col-md-3">
             <h3>Ingrese el nuevo autor</h3>
+            <label for ="txt_autornombre" class="form-label">Nombre: </label>
             <asp:TextBox ID="txt_autornombre" runat="server" CssClass="form-control"></asp:TextBox>
             <asp:RequiredFieldValidator ID="Autornombre" runat="server"
                 ControlToValidate="txt_autornombre"
@@ -19,6 +20,8 @@
                 ErrorMessage="Por favor ingrese el nombre"
                 CssClass="invalid-feedback"
                 ForeColor="Red"></asp:RequiredFieldValidator>
+
+            <label for ="txt_autorapellido" class="form-label">Apellido: </label>
             <asp:TextBox ID="txt_autorapellido" runat="server" CssClass="form-control"></asp:TextBox>
             <asp:RequiredFieldValidator ID="Autorapellido" runat="server"
                 ControlToValidate="txt_autorapellido"
