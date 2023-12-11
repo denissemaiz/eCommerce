@@ -8,7 +8,7 @@
         <div class="btn-toolbar my-lg-0" role="toolbar" aria-label="A&B button group">
             <a href="AgregarProducto.aspx" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Agregar Libro</a>
             <a href="AgregarAutor.aspx" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Agregar Autor</a>
-            <a href="AgregarGenero.apsx" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Agregar Genero</a>
+            <a href="AgregarGenero.aspx" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Agregar Genero</a>
             <a href="StoreProc.aspx" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Modificar</a>
 
         </div>
