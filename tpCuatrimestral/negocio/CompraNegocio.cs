@@ -78,14 +78,6 @@ namespace Conexiones
                     auxLibro.Autores = new List<Autor>();
                     auxLibro.Autores.Add(auxAutor);
 
-                    /*Genero auxGenero = new Genero();
-                    auxGenero.Id = (int)Datos.Lector["ID_Genero"];
-                    auxGenero.Nombre = (string)Datos.Lector["GeneroNombre"];
-                    auxGenero.Descripcion = (string)Datos.Lector["GeneroDescripcion"];
-
-                    auxLibro.Generos = new List<Genero>();
-                    auxLibro.Generos.Add(auxGenero);*/
-
                     lista.Add(auxCompra);
                 }
                 return lista;
@@ -161,14 +153,6 @@ namespace Conexiones
 
                     auxLibro.Autores = new List<Autor>();
                     auxLibro.Autores.Add(auxAutor);
-
-                    /*Genero auxGenero = new Genero();
-                    auxGenero.Id = (int)Datos.Lector["ID_Genero"];
-                    auxGenero.Nombre = (string)Datos.Lector["GeneroNombre"];
-                    auxGenero.Descripcion = (string)Datos.Lector["GeneroDescripcion"];
-
-                    auxLibro.Generos = new List<Genero>();
-                    auxLibro.Generos.Add(auxGenero);*/
 
                     lista.Add(auxCompra);
                 }
@@ -252,14 +236,6 @@ namespace Conexiones
                             auxCompra.Carrito.Monto += auxLibro.Precio;
                         }
                     }
-                    
-                    /*Genero auxGenero = new Genero();
-                    auxGenero.Id = (int)Datos.Lector["ID_Genero"];
-                    auxGenero.Nombre = (string)Datos.Lector["GeneroNombre"];
-                    auxGenero.Descripcion = (string)Datos.Lector["GeneroDescripcion"];
-
-                    auxLibro.Generos = new List<Genero>();
-                    auxLibro.Generos.Add(auxGenero);*/
 
                     compra =  auxCompra;
                 }
@@ -290,7 +266,7 @@ namespace Conexiones
                 {
                     int cantidad = nuevo.Carrito.contabilizarLibro(libro.Id);
                     InsertarLibroEnCompra(idCompra, libro.Id, cantidad);
-                    DescuentoStock(libro.Id, cantidad);
+                    libroNegocio.DescuentoStock(libro.Id, cantidad);
                 }
 
                 datos.CompletarTransaccion();
@@ -310,6 +286,7 @@ namespace Conexiones
         public void Modificar(Compra compra)
         {
             AccesoSQL datos = new AccesoSQL();
+            LibroNegocio negocioLib = new LibroNegocio();
 
             try
             {
@@ -322,7 +299,7 @@ namespace Conexiones
                 {
                     int cantidad = CalcularCantidadLibros(compra.Carrito.Libros, libro.Id);
                     InsertarLibroEnCompra(compra.Id, libro.Id, cantidad);
-                    DescuentoStock(libro.Id, cantidad);
+                    negocioLib.DescuentoStock(libro.Id, cantidad);
                 }
 
                 datos.Consulta("UPDATE Compra SET PrecioTotal = " + compra.Carrito.Monto + " WHERE ID_Compra = " + compra.Id);
@@ -406,14 +383,6 @@ namespace Conexiones
 
                 throw ex;
             }  
-        }
-
-        private void DescuentoStock(int idLibro, int cantidadComprada)
-        {
-            AccesoSQL datos = new AccesoSQL();
-
-            datos.Consulta("UPDATE Libro SET Stock = Stock - " + cantidadComprada + " WHERE ID_Libro = " + idLibro);
-            datos.EjecutarAccion();
         }
 
         private List<Compra> groupComprasById(List<Compra> compras)

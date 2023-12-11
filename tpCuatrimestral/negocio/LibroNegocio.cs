@@ -55,7 +55,7 @@ namespace negocio
                     string autorNombre = (string)datos.Lector["AutorNombre"];
                     string autorApellido = (string)datos.Lector["AutorApellido"];
 
-                    if (idAutor != 0 && !string.IsNullOrEmpty(autorNombre))   //esta repitiendo autores
+                    if (idAutor != 0 && !string.IsNullOrEmpty(autorNombre))
                     {
                         Autor autor = new Autor();
                         autor.Id = idAutor;
@@ -167,7 +167,7 @@ namespace negocio
                     string autorNombre = (string)datos.Lector["AutorNombre"];
                     string autorApellido = (string)datos.Lector["AutorApellido"];
 
-                    if (idAutor != 0 && !string.IsNullOrEmpty(autorNombre))   //esta repitiendo autores
+                    if (idAutor != 0 && !string.IsNullOrEmpty(autorNombre))
                     {
                         Autor autor = new Autor();
                         autor.Id = idAutor;
@@ -491,17 +491,12 @@ namespace negocio
 
             try
             {
-               /* datos.Consulta("UPDATE Libro SET Codigo = '" + libro.Codigo + "', Titulo = '" + libro.Titulo + "', Descripcion = '" + libro.Descripcion + "', Precio = " +
-                    "" + libro.Precio + ", Stock = " + libro.Stock + ", PortadaURL = '" + libro.PortadaURL + "' WHERE ID_Libro = " + libro.Id); */
                 datos.Consulta("UPDATE Libro SET Codigo =  '" + libro.Codigo + "', Titulo = '" + libro.Titulo + "', Descripcion = '" + libro.Descripcion + "', Precio = '" + libro.Precio.ToString("F", CultureInfo.InvariantCulture) + "', Stock = '" + libro.Stock + "', PortadaURL = '" + libro.PortadaURL + "' WHERE ID_Libro = " + libro.Id);
 
-                //datos.IniciarTransaccion();
-                //datos.CompletarTransaccion();
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
             {
-                //datos.RevertirTransaccion();
                 throw ex;
             }
             finally
@@ -551,6 +546,14 @@ namespace negocio
             return finalList;
         }
 
+        public void DescuentoStock(int idLibro, int cantidadComprada)
+        {
+            AccesoSQL datos = new AccesoSQL();
+
+            datos.Consulta("UPDATE Libro SET Stock = Stock - " + cantidadComprada + " WHERE ID_Libro = " + idLibro);
+            datos.EjecutarAccion();
+        }
+
         public void SumarStock(Compra compra)
         {
             AccesoSQL datos = new AccesoSQL();
@@ -584,14 +587,6 @@ namespace negocio
             }
 
             return cantidad;
-        }
-
-        private void DescuentoStock(int idLibro, int cantidadComprada)
-        {
-            AccesoSQL datos = new AccesoSQL();
-
-            datos.Consulta("UPDATE Libro SET Stock = Stock - " + cantidadComprada + " WHERE ID_Libro = " + idLibro);
-            datos.EjecutarAccion();
         }
     }
 }
