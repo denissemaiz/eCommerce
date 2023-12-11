@@ -29,6 +29,7 @@
             <asp:Button ID="Agregar" runat="server" Text="Aceptar" CssClass="btn btn-primary" OnClick="Agregar_Click" />
             <div>
                 <asp:Label ID="lblagregado" Visible="false" runat="server" Text="Autor agregado con exito!"></asp:Label>
+                <asp:Label ID="Lblfallo" Visible="false" runat="server" Text="El autor ya existe"></asp:Label>
             </div>
         </div>
     </div>

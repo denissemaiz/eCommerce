@@ -36,7 +36,7 @@ namespace eCommerce
                     if(autorList.NombreApellido == autor.NombreApellido)
                         cond = true;
                 }
-                if (cond)
+                if (!cond)
                 {
                     autornegocio.Agregar(autor);
                     lblagregado.Visible = true;
@@ -47,6 +47,7 @@ namespace eCommerce
                 {
                     txt_autornombre.Text = "";
                     txt_autorapellido.Text = "";
+                    Lblfallo.Visible = true;
 
                 }
 
