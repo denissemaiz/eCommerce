@@ -166,10 +166,11 @@ namespace eCommerce
             CompraNegocio negocio = new CompraNegocio();
             int idPedido = Convert.ToInt32(Request.QueryString["idCompra"]);
 
-            int idEstado = Int32.Parse(txtEstadoCompra.SelectedValue.ToString());
+            int idEstado = txtEstadoCompra.SelectedIndex + 1;
             try
             {
                 negocio.ModificarEstado(idEstado, idPedido);
+                lblEstado.Text = txtEstadoCompra.SelectedItem.ToString();
             }
             catch (Exception ex)
             {
