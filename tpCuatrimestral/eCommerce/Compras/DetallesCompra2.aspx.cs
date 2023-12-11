@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Clases;
 using Conexiones;
 using dominio;
+using negocio;
 
 namespace eCommerce
 {
@@ -155,7 +156,19 @@ namespace eCommerce
 
         protected void BtonGuardar_Click(object sender, EventArgs e)
         {
-            pedido.Estado = txtEstadoCompra.SelectedItem.ToString();
+            CompraNegocio negocio = new CompraNegocio();
+            int idPedido = Convert.ToInt32(Request.QueryString["idCompra"]);
+
+            int idEstado = Int32.Parse(txtEstadoCompra.SelectedValue.ToString());
+            try
+            {
+                negocio.ModificarEstado(idEstado, idPedido);
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex.ToString());
+                Response.Redirect("../Error.aspx", false);
+            }
 
         }
     }
