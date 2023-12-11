@@ -194,7 +194,7 @@ namespace Conexiones
 
             try
             {
-                Datos.Consulta("SELECT C.ID_Usuario, C.FechaCompra, E.TipoEstados, L.ID_Libro, L.Codigo, L.Titulo, L.Descripcion, L.Precio, A.ID_Autor, A.Nombre AS AutorNombre, A.Apellido AS AutorApellido " +
+                Datos.Consulta("SELECT C.ID_Usuario, C.FechaCompra, CL.Cantidad, E.TipoEstados, L.ID_Libro, L.Codigo, L.Titulo, L.Descripcion, L.Precio, A.ID_Autor, A.Nombre AS AutorNombre, A.Apellido AS AutorApellido " +
                     "FROM Compra C INNER JOIN Compra_X_Libro CL ON C.ID_Compra = CL.ID_Compra " +
                     "INNER JOIN Libro L ON CL.ID_Libro = L.ID_Libro " +
                     "INNER JOIN Estados E ON E.ID_Estado = C.ID_Estado " +
@@ -209,6 +209,7 @@ namespace Conexiones
                 {
                     int idCompra = ID_Compra;
                     int idLibro = (int)Datos.Lector["ID_Libro"];
+                    int cantCompra = (int)Datos.Lector["Cantidad"];
 
                     Compra auxCompra;
                     if (!compras.ContainsKey(idCompra))
@@ -229,27 +230,28 @@ namespace Conexiones
                         auxCompra = compras[idCompra];
                     }
 
-                    Libro auxLibro = new Libro();
-                    auxLibro.Id = idLibro;
-                    auxLibro.Codigo = (string)Datos.Lector["Codigo"];
-                    auxLibro.Titulo = (string)Datos.Lector["Titulo"];
-                    auxLibro.Descripcion = (string)Datos.Lector["Descripcion"];
-                    auxLibro.Precio = (decimal)Datos.Lector["Precio"];
+                    for (int i = 0; i < cantCompra; i++) {
+                        Libro auxLibro = new Libro();
+                        auxLibro.Id = idLibro;
+                        auxLibro.Codigo = (string)Datos.Lector["Codigo"];
+                        auxLibro.Titulo = (string)Datos.Lector["Titulo"];
+                        auxLibro.Descripcion = (string)Datos.Lector["Descripcion"];
+                        auxLibro.Precio = (decimal)Datos.Lector["Precio"];
 
-                    Autor auxAutor = new Autor();
-                    auxAutor.Id = (int)Datos.Lector["ID_Autor"];
-                    auxAutor.Nombre = (string)Datos.Lector["AutorNombre"];
-                    auxAutor.Apellido = (string)Datos.Lector["AutorApellido"];
+                        Autor auxAutor = new Autor();
+                        auxAutor.Id = (int)Datos.Lector["ID_Autor"];
+                        auxAutor.Nombre = (string)Datos.Lector["AutorNombre"];
+                        auxAutor.Apellido = (string)Datos.Lector["AutorApellido"];
 
-                    auxLibro.Autores = new List<Autor>();
-                    auxLibro.Autores.Add(auxAutor);
+                        auxLibro.Autores = new List<Autor>();
+                        auxLibro.Autores.Add(auxAutor);
 
-                    if (auxCompra.Carrito != null && auxCompra.Carrito.Libros != null)
-                    {
-                        auxCompra.Carrito.Libros.Add(auxLibro);
-                        auxCompra.Carrito.Monto += auxLibro.Precio;
+                        if (auxCompra.Carrito != null && auxCompra.Carrito.Libros != null)
+                        {
+                            auxCompra.Carrito.Libros.Add(auxLibro);
+                            auxCompra.Carrito.Monto += auxLibro.Precio;
+                        }
                     }
-
                     
                     /*Genero auxGenero = new Genero();
                     auxGenero.Id = (int)Datos.Lector["ID_Genero"];
