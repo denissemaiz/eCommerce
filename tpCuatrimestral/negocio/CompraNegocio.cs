@@ -80,6 +80,9 @@ namespace Conexiones
 
                     lista.Add(auxCompra);
                 }
+
+                lista = groupComprasById(lista);
+
                 return lista;
             }
             catch (Exception ex)
