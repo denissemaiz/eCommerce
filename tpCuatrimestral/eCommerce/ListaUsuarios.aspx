@@ -2,12 +2,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <link rel="stylesheet" type="text/css" href="Styles/Paginador.css" />
     <%if (ValidarAdmin() == true)
        { %>
-        <asp:GridView ID="DVGUsuarios" 
+        <asp:GridView ID="DVGUsuarios"
+            AllowPaging="true"
             CssClass="table" 
             AutoGenerateColumns="false"  
-            runat="server">
+            runat="server"
+            OnPageIndexChanging="DVGUsuarios_PageIndexChanging">
+            
     
           <Columns>
             <asp:BoundField Headertext="ID del Usuario" Datafield="Id"  />
@@ -15,7 +19,10 @@
             <asp:BoundField Headertext="Direccion Email" Datafield="Mail"  />
 
          </Columns>
-    
+         
+         <PagerSettings 
+            Mode="Numeric"/>
+        
     
     
         </asp:GridView>
