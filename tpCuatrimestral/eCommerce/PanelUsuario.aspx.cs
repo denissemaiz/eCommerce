@@ -382,6 +382,11 @@ namespace eCommerce
                 }
             }
         }
-        
+
+        protected void DGVPedidos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            DGVPedidos.PageIndex = e.NewPageIndex;
+            DGVPedidos.DataBind();
+        }
     }
 }

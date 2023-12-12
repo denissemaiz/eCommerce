@@ -5,6 +5,7 @@
 
 
     <link rel="stylesheet" type="text/css" href="Styles\EstiloPanelUser.css">
+    <link rel="stylesheet" type="text/css" href="Styles\Paginador.css">
   <script src="https://kit.fontawesome.com/acc2095c9d.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
        
@@ -219,11 +220,13 @@
                     <h2><b>Pedidos</b></h2>
                     <asp:GridView ID="DGVPedidos" runat="server"
                         DataKeyNames="Id"
+                        AllowPaging="true"
                         CssClass="table"
                         AutoGenerateColumns="false"
                         OnLoad="DGVPedidos_Load"
                         OnSelectedIndexChanged="DGVPedidos_SelectedIndexChanged"
                         OnSelectedIndexChanging="DGVPedidos_SelectedIndexChanging"
+                        OnPageIndexChanging="DGVPedidos_PageIndexChanging"
                         OnRowDataBound="DGVPedidos_RowDataBound">
                         <Columns> 
                             <asp:TemplateField HeaderText="Detalle" >
@@ -238,6 +241,9 @@
                             <asp:BoundField HeaderText="Estado" DataField="Estado" />
                             <asp:CommandField HeaderText="Cancelar" ShowSelectButton="true" SelectText="Cancelar" />
                         </Columns>
+
+                        <PagerSettings 
+                            Mode="Numeric"/>
                     </asp:GridView>
                 </div>
             
