@@ -69,10 +69,10 @@
     <Content Include="AgregarGenero.aspx" />
     <Content Include="AgregarProducto.aspx" />
     <Content Include="Carro.aspx" />
-    <Content Include="ComprarGuia.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Detalles.aspx" />
     <Content Include="Compras\DetallesCompra2.aspx" />
+    <Content Include="ListaPedidos.aspx" />
     <Content Include="Styles\Carrito.css" />
     <Content Include="Styles\Checkout.css" />
     <Content Include="Styles\CompraFinal.css" />
@@ -125,13 +125,6 @@
     <Compile Include="Carro.aspx.designer.cs">
       <DependentUpon>Carro.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ComprarGuia.aspx.cs">
-      <DependentUpon>ComprarGuia.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ComprarGuia.aspx.designer.cs">
-      <DependentUpon>ComprarGuia.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -166,6 +159,13 @@
     </Compile>
     <Compile Include="FinalizarCompra.aspx.designer.cs">
       <DependentUpon>FinalizarCompra.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListaPedidos.aspx.cs">
+      <DependentUpon>ListaPedidos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListaPedidos.aspx.designer.cs">
+      <DependentUpon>ListaPedidos.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListaUsuarios.aspx.cs">
       <DependentUpon>ListaUsuarios.aspx</DependentUpon>

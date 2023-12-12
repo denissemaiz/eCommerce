@@ -34,12 +34,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="Productos.aspx">Catalogo</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Nosotros</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Guia de compra</a>
-                        </li>
                         <%--Controles de Admin--%>
                         <%if (ValidarAdmin())
                             { %>
@@ -49,7 +43,8 @@
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <li><a class="dropdown-item" href="StoreProc.aspx">Lista de productos</a></li>
                                     <li><a class="dropdown-item" href="ListaUsuarios.aspx">Lista de usuarios</a></li>
-                                    <li><a class="dropdown-item" href="#">Estado pedidos</a></li>
+                                    <li><a class="dropdown-item" href="ListaPedidos.aspx">Estado pedidos</a></li>
+                                    <li><a class="dropdown-item" href="AgregarProducto.aspx">Agregar un libro</a></li>
                                     <li><a class="dropdown-item" href="AgregarAutor.aspx">Agregar autor</a></li>
                                     <li><a class="dropdown-item" href="AgregarGenero.aspx">Agregar genero</a></li>
                                 </ul>
