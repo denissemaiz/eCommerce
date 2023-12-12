@@ -50,6 +50,8 @@
                                     <li><a class="dropdown-item" href="StoreProc.aspx">Lista de productos</a></li>
                                     <li><a class="dropdown-item" href="ListaUsuarios.aspx">Lista de usuarios</a></li>
                                     <li><a class="dropdown-item" href="#">Estado pedidos</a></li>
+                                    <li><a class="dropdown-item" href="AgregarAutor.aspx">Agregar autor</a></li>
+                                    <li><a class="dropdown-item" href="AgregarGenero.aspx">Agregar genero</a></li>
                                 </ul>
                             </li>
                         <%} %>
