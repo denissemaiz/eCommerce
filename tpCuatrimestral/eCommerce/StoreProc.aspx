@@ -2,13 +2,18 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <link rel="stylesheet" type="text/css" href="Styles/Paginador.css" />
+
     <% if( ValidarAdmin()) { %>
             <asp:GridView ID="DVGLibros"  runat="server" 
                 DataKeyNames="Id" 
+                AllowPaging="true"
                 CssClass="table" 
                 AutoGenerateColumns="false" 
                 OnSelectedIndexChanged="DVGLibros_SelectedIndexChanged" 
-                OnSelectedIndexChanging="DVGLibros_SelectedIndexChanging">
+                OnSelectedIndexChanging="DVGLibros_SelectedIndexChanging"
+                OnPageIndexChanging="DVGLibros_PageIndexChanging">
+
 
                 <Columns>
 
@@ -19,6 +24,8 @@
                     <asp:CommandField HeaderText="Accion" ShowSelectButton="true" SelectText="Modificar" />
 
                 </Columns>
+                <PagerSettings 
+                    Mode="Numeric"/>
             </asp:GridView>
     <% }else{ %>
             <div class="div row align-self-center">

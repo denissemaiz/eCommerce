@@ -52,5 +52,11 @@ namespace eCommerce
 
             Response.Redirect("User/Login.aspx");
         }
+
+        protected void DVGLibros_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            DVGLibros.PageIndex = e.NewPageIndex;
+            DVGLibros.DataBind();
+        }
     }
 }
