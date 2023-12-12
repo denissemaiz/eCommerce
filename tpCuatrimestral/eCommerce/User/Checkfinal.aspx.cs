@@ -25,8 +25,8 @@ namespace eCommerce.User
             {
                 carrito = new Carrito();
                 //Consigo los datos de la compra
-                if (Session["librosAgregados"] != null)                
-                    carrito.Libros = (List<Libro>)Session["librosAgregados"];
+                if (Session["Carrito"] != null)                
+                    carrito = (Carrito)Session["Carrito"];
                 else
                 {
                     Session.Add("error", "Carrito vacío, se deben agregar productos antes de ingresar al CheckFinal");
