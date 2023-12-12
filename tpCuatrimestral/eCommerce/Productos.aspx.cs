@@ -105,7 +105,11 @@ namespace eCommerce
 
         protected void btnModificarLibro_Click(object sender, EventArgs e)
         {
-            Response.Redirect("StoreProc.aspx");
+            string id = ((Button)sender).CommandArgument;
+
+            Response.Redirect("AgregarProducto.aspx?id=" + id);
+
+
         }
 
         protected void btnAgregarACarrito_Click(object sender, EventArgs e)
