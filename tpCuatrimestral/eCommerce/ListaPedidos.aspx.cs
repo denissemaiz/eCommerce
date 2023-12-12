@@ -22,31 +22,7 @@ namespace eCommerce
 
         }
 
-        protected void DGVPedidos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int id = (int)DGVPedidos.SelectedValue;
-            CompraNegocio negocioComp = new CompraNegocio();
-            LibroNegocio negocioLib = new LibroNegocio();
 
-            if (negocioComp.BuscarCompra(id).Estado.Equals("En proceso"))
-            {
-                negocioComp.ModificarEstado(4, id);
-                Compra compra = negocioComp.BuscarCompra(id);
-                negocioLib.SumarStock(compra);
-                Response.Redirect("PanelUsuario.aspx");
-            }
-            else
-            {
-                //Agregar mensaje de error
-                Response.Redirect("PanelUsuario.aspx");
-            }
-        }
-
-        protected void DGVPedidos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
-        {
-            DGVPedidos.PageIndex = e.NewSelectedIndex;
-            DGVPedidos.DataBind();
-        }
 
         protected void DGVPedidos_Load(object sender, EventArgs e)
         {
@@ -73,17 +49,34 @@ namespace eCommerce
                 }
             }
         }
-
-
-        public bool ValidarAdmin()
+        protected void DGVPedidos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Usuario user;
-            if (Session["Usuario"] != null)
+            int id = (int)DGVPedidos.SelectedValue;
+            CompraNegocio negocioComp = new CompraNegocio();
+            LibroNegocio negocioLib = new LibroNegocio();
+
+            if (negocioComp.BuscarCompra(id).Estado.Equals("En proceso"))
             {
-                user = ((Usuario)Session["Usuario"]);
-                return user.EsAdmin;
+                negocioComp.ModificarEstado(4, id);
+                Compra compra = negocioComp.BuscarCompra(id);
+                negocioLib.SumarStock(compra);
+                Response.Redirect("PanelUsuario.aspx");
             }
-            return false;
+            else
+            {
+                //Agregar mensaje de error
+                Response.Redirect("PanelUsuario.aspx");
+            }
+        }
+        protected void DGVPedidos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            DGVPedidos.PageIndex = e.NewSelectedIndex;
+            DGVPedidos.DataBind();
+        }
+        protected void DGVPedidos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            DGVPedidos.PageIndex = e.NewPageIndex;
+            DGVPedidos.DataBind();
         }
 
         protected void DGVPedidos_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -105,6 +98,16 @@ namespace eCommerce
             }
         }
 
+        public bool ValidarAdmin()
+        {
+            Usuario user;
+            if (Session["Usuario"] != null)
+            {
+                user = ((Usuario)Session["Usuario"]);
+                return user.EsAdmin;
+            }
+            return false;
+        }
 
     }
 

@@ -85,6 +85,7 @@
     <Content Include="PanelUsuario.aspx" />
     <Content Include="Productos.aspx" />
     <Content Include="StoreProc.aspx" />
+    <Content Include="Styles\Paginador.css" />
     <Content Include="Success.aspx" />
     <Content Include="User\CambiarContraseña.aspx" />
     <Content Include="User\Checkfinal.aspx" />
