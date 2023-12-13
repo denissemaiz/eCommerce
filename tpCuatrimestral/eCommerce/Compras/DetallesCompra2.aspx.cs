@@ -178,6 +178,12 @@ namespace eCommerce
             {
                 negocioComp.ModificarEstado(idEstado, idPedido);
                 lblEstado.Text = txtEstadoCompra.SelectedItem.ToString();
+
+                if (compra.Estado.Equals("Cancelado") && idEstado != 4) 
+                {
+                    negocioLib.DescontarStock(compra);
+                }
+
                 if (!compra.Estado.Equals("Cancelado") && idEstado == 4)
                 {
                     negocioLib.SumarStock(compra);
