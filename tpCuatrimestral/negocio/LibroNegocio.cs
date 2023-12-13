@@ -571,6 +571,7 @@ namespace negocio
 
                 datos.Consulta("UPDATE Libro SET Stock = Stock + " + key.Value + " WHERE ID_Libro = " + key.Key);
                 datos.EjecutarAccion();
+                datos.CerrarConexion();
             }
         }
 
@@ -591,6 +592,7 @@ namespace negocio
 
                 datos.Consulta("UPDATE Libro SET Stock = Stock - " + key.Value + " WHERE ID_Libro = " + key.Key);
                 datos.EjecutarAccion();
+                datos.CerrarConexion();
             }
         }
 
