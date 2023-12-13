@@ -574,6 +574,26 @@ namespace negocio
             }
         }
 
+        public void DescontarStock(Compra compra)
+        {
+            AccesoSQL datos = new AccesoSQL();
+            Dictionary<int, int> libroCantidadMap = new Dictionary<int, int>();
+
+
+            foreach (Libro lib in compra.Carrito.Libros)
+            {
+                int cant = CalcularCantidadLibros(compra.Carrito.Libros, lib.Id);
+                libroCantidadMap[lib.Id] = cant;
+            }
+
+            foreach (var key in libroCantidadMap)
+            {
+
+                datos.Consulta("UPDATE Libro SET Stock = Stock - " + key.Value + " WHERE ID_Libro = " + key.Key);
+                datos.EjecutarAccion();
+            }
+        }
+
         private int CalcularCantidadLibros(List<Libro> libros, int idLibro)
         {
             int cantidad = 0;
