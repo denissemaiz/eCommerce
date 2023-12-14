@@ -4,6 +4,7 @@ using negocio;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
@@ -422,6 +423,33 @@ namespace Conexiones
                 }
             }
             return finalList;
+        }
+    
+        public DataTable ReporteVentas_x_MesAnio()
+        {
+            DataTable dt = new DataTable();
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.setearProcedimiento("sp_VentasTotalesPorMes_Anio");
+                datos.SetParametros("Anio", 2023);
+                datos.SetParametros("ColumnaOrderBy", "MontoTotalMes");
+                datos.SetParametros("OrdenarPor", "DESC");                
+
+                SqlDataAdapter adaptador = new SqlDataAdapter(datos.Comando);
+
+                adaptador.Fill(dt);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
         }
     }
 
