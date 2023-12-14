@@ -3,10 +3,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <asp:GridView ID="dgVentas" runat="server">
+    <asp:GridView ID="dgVentas" runat="server" 
+        AutoGenerateColumns="false"
+        CssClass="table">
         <Columns>
-            <asp:BoundField HeaderText="ID" DataField="Id"  Css/>
-            
+            <asp:BoundField DataField="Mes" HeaderText="Mes" />
+            <asp:BoundField DataField="MontoTotalMes" HeaderText="Monto Total" DataFormatString="${0:N2}" />
+            <asp:BoundField DataField="NumeroDeVentas" HeaderText="Ventas" />
         </Columns>
     </asp:GridView>
 </asp:Content>

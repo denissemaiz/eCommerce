@@ -28,6 +28,7 @@ namespace negocio
         {
             conexion = new SqlConnection("server =.\\SQLEXPRESS; database = ProyectoEditorial; integrated security=true");
             comando = new SqlCommand();
+            comando.Connection = conexion;
         }
 
         public void Consulta(string consulta)
