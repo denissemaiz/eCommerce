@@ -5,7 +5,8 @@
 
     <asp:GridView ID="dgVentas" runat="server">
         <Columns>
-            <asp:BoundField HeaderText="ID" DataField="Id" />
+            <asp:BoundField HeaderText="ID" DataField="Id"  Css/>
+            
         </Columns>
     </asp:GridView>
 </asp:Content>

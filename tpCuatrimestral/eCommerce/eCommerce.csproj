@@ -73,7 +73,7 @@
     <Content Include="Detalles.aspx" />
     <Content Include="Compras\DetallesCompra2.aspx" />
     <Content Include="ListaPedidos.aspx" />
-    <Content Include="ReporteVentasMes.aspx" />
+    <Content Include="ReporteVentas.aspx" />
     <Content Include="Styles\Carrito.css" />
     <Content Include="Styles\Checkout.css" />
     <Content Include="Styles\CompraFinal.css" />
@@ -190,12 +190,12 @@
     <Compile Include="Productos.aspx.designer.cs">
       <DependentUpon>Productos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ReporteVentasMes.aspx.cs">
-      <DependentUpon>ReporteVentasMes.aspx</DependentUpon>
+    <Compile Include="ReporteVentas.aspx.cs">
+      <DependentUpon>ReporteVentas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ReporteVentasMes.aspx.designer.cs">
-      <DependentUpon>ReporteVentasMes.aspx</DependentUpon>
+    <Compile Include="ReporteVentas.aspx.designer.cs">
+      <DependentUpon>ReporteVentas.aspx</DependentUpon>
     </Compile>
     <Compile Include="StoreProc.aspx.cs">
       <DependentUpon>StoreProc.aspx</DependentUpon>
