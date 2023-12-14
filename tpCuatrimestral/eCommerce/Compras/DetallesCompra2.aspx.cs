@@ -167,14 +167,27 @@ namespace eCommerce
 
         protected void BtonGuardar_Click(object sender, EventArgs e)
         {
-            CompraNegocio negocio = new CompraNegocio();
-            int idPedido = Convert.ToInt32(Request.QueryString["idCompra"]);
+            CompraNegocio negocioComp = new CompraNegocio();
+            LibroNegocio negocioLib = new LibroNegocio();
 
+            int idPedido = Convert.ToInt32(Request.QueryString["idCompra"]);
             int idEstado = txtEstadoCompra.SelectedIndex + 1;
+            Compra compra = negocioComp.BuscarCompra(idPedido);
+
             try
             {
-                negocio.ModificarEstado(idEstado, idPedido);
+                negocioComp.ModificarEstado(idEstado, idPedido);
                 lblEstado.Text = txtEstadoCompra.SelectedItem.ToString();
+
+                if (compra.Estado.Equals("Cancelado") && idEstado != 4) 
+                {
+                    negocioLib.DescontarStock(compra);
+                }
+
+                if (!compra.Estado.Equals("Cancelado") && idEstado == 4)
+                {
+                    negocioLib.SumarStock(compra);
+                }
             }
             catch (Exception ex)
             {
