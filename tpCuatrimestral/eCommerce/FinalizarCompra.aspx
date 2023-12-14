@@ -1,5 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="FinalizarCompra.aspx.cs" Inherits="eCommerce.FinalizarCompra" EnableEventValidation="false"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+            <script type="text/javascript">
+            function confirmarEliminacion() {
+                return confirm('¿Estás seguro de que deseas eliminar este libro?');
+            }
+            </script>   
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link rel="stylesheet" type="text/css" href="Styles/CompraFinal.css">
@@ -33,6 +38,7 @@
                                                    <asp:button ID="btnEliminar" runat="server" 
                                                        CommandArgument='<%#:Eval("Codigo") %>'
                                                        OnClick="btnEliminar_Click"
+                                                       OnClientClick="return confirmarEliminacion();"
                                                        CssClass="remove-item" 
                                                        Text="Eliminar"></asp:button>
                                                </li>

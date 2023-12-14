@@ -380,6 +380,12 @@ namespace eCommerce
                 {
                     selectButton.Text = "";
                 }
+
+                if (selectButton != null)
+                {
+                    string confirmScript = "return confirm('¿Estás seguro? Esta acción cancelará la compra.');";
+                    selectButton.Attributes.Add("onclick", confirmScript);
+                }
             }
         }
 
