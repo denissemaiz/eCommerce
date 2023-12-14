@@ -1,4 +1,4 @@
-CREATE PROCEDURE sp_VentasTotalesPorMes_Anio
+CREATE PROCEDURE SP_VentasTotalesPorMes_Anio
     @Anio INT,
     @ColumnaOrderBy NVARCHAR(50) = 'Mes',
     @OrdenarPor NVARCHAR(4) = 'ASC'
@@ -6,7 +6,7 @@ AS
 BEGIN
     DECLARE @OrderBy NVARCHAR(100);
 
-    --Valido input para evitar inyección SQL
+    -- Validar input para evitar inyección SQL
     SET @ColumnaOrderBy = CASE 
         WHEN @ColumnaOrderBy IN ('Mes', 'MontoTotalMes', 'NumeroDeVentas') THEN @ColumnaOrderBy
         ELSE 'Mes'
@@ -24,12 +24,12 @@ BEGIN
 
     SET @SQLQuery = N'
         SELECT
-            MONTH(FechaCompra) AS Mes,
+            FORMAT(FechaCompra, ''MMMM'') AS Mes,
             SUM(PrecioTotal) AS MontoTotalMes,
             COUNT(*) AS NumeroDeVentas
         FROM Compra
-        WHERE YEAR(FechaCompra) = @ParamAnio
-        GROUP BY MONTH(FechaCompra)
+        WHERE YEAR(FechaCompra) = @ParamAnio AND ID_Estado <> 4
+        GROUP BY FORMAT(FechaCompra, ''MMMM'')
         ORDER BY ' + @OrderBy + ';';
 
     EXEC sp_executesql @SQLQuery, N'@ParamAnio INT', @Anio;
