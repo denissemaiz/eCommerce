@@ -303,11 +303,12 @@ insert into Estados (ID_Estado, TipoEstados) values
 (4, 'Cancelado');
 GO
 
-INSERT INTO Compra (ID_Usuario, PrecioTotal, ID_Estado)
+INSERT INTO Compra (ID_Usuario, PrecioTotal, ID_Estado, FechaCompra)
 SELECT TOP 10
     U.ID_Usuario,
     L.Precio,
-    E.ID_Estado
+    E.ID_Estado,
+	DATEADD(DAY, ABS(CHECKSUM(NEWID())) % (365 * 3), '2021-01-01') AS Fecha
 FROM Usuario U
 CROSS JOIN Libro L
 CROSS JOIN Estados E
