@@ -12,4 +12,6 @@
             <asp:BoundField DataField="NumeroDeVentas" HeaderText="Ventas" />
         </Columns>
     </asp:GridView>
+
+    <h4>Monto Total: $<asp:Label ID="lblMontoTotal" runat="server" ></asp:Label></h4>
 </asp:Content>
