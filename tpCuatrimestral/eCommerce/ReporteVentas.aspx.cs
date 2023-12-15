@@ -43,5 +43,46 @@ namespace eCommerce
                 }
             }
         }
+
+        protected void dgVentas_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            // Obtener el DataTable ordenado
+            int anio = 2023; // Asigna el valor adecuado para el año
+            string columnaOrderBy = e.SortExpression;
+            string orderBy = GetSortDirection(e.SortExpression);
+
+            CompraNegocio compraNegocio = new CompraNegocio();
+            DataTable dtVentas = compraNegocio.ReporteVentas_x_MesAnio(anio, columnaOrderBy, orderBy);
+
+            // Volver a vincular el GridView con el DataTable ordenado
+            dgVentas.DataSource = dtVentas;
+            dgVentas.DataBind();
+        }
+
+        private string GetSortDirection(string column)
+        {
+            // Obtener la dirección actual de la ordenación
+            string sortDirection = "ASC";
+            string sortExpression = ViewState["SortExpression"] as string;
+
+            if (sortExpression != null)
+            {
+                // Si la columna actual es la misma que la columna anterior, invertir la dirección
+                if (sortExpression == column)
+                {
+                    string lastDirection = ViewState["SortDirection"] as string;
+                    if ((lastDirection != null) && (lastDirection == "ASC"))
+                    {
+                        sortDirection = "DESC";
+                    }
+                }
+            }
+
+            // Guardar la columna y dirección actual en ViewState
+            ViewState["SortExpression"] = column;
+            ViewState["SortDirection"] = sortDirection;
+
+            return sortDirection;
+        }
     }
 }

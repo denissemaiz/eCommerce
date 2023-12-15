@@ -433,9 +433,36 @@ namespace Conexiones
             {
                 datos.setearProcedimiento("sp_VentasTotalesPorMes_Anio");
                 datos.SetParametros("Anio", 2023);
-                datos.SetParametros("ColumnaOrderBy", "MontoTotalMes");
+                datos.SetParametros("ColumnaOrderBy", "Mes");
                 datos.SetParametros("OrdenarPor", "DESC");                
                 
+                SqlDataAdapter adaptador = new SqlDataAdapter(datos.Comando);
+
+                adaptador.Fill(dt);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public DataTable ReporteVentas_x_MesAnio(int anio, String columnaOrderBy, String orderBy)
+        {
+            DataTable dt = new DataTable();
+            AccesoSQL datos = new AccesoSQL();
+            try
+            {
+                datos.setearProcedimiento("sp_VentasTotalesPorMes_Anio");
+                datos.SetParametros("Anio", anio);
+                datos.SetParametros("ColumnaOrderBy", columnaOrderBy);
+                datos.SetParametros("OrdenarPor", orderBy);
+
                 SqlDataAdapter adaptador = new SqlDataAdapter(datos.Comando);
 
                 adaptador.Fill(dt);

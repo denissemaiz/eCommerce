@@ -40,4 +40,4 @@ EXEC sp_VentasTotalesPorMes_Anio
     @ColumnaOrderBy = 'MontoTotalMes',
     @OrdenarPor = 'DESC';
 
-DROP PROCEDURE IF EXISTS sp_VentasTotalesPorMes_Anio
+--DROP PROCEDURE IF EXISTS sp_VentasTotalesPorMes_Anio
