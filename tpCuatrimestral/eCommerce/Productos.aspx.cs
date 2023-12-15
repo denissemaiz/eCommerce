@@ -42,32 +42,68 @@ namespace eCommerce
                 {
                     string genero = Request.QueryString["generosLib"].ToString();
                     List<Libro> listaSinRepetidos = librosDB.RemoveDuplicadosLibro(librosDB.Buscar(genero, "ID_Genero"));
-                    repLibros.DataSource = listaSinRepetidos;
-                    repLibros.DataBind();
+
+                    if (listaSinRepetidos.Count != 0)
+                    {
+                        repLibros.DataSource = listaSinRepetidos;
+                        repLibros.DataBind();
+                    }
+                    else
+                    {
+                        Session.Add("error", "No se encontró ninguna coincidencia.");
+                        Response.Redirect("Error.aspx", false);
+                    }
                 }
 
                 if (Request.QueryString.AllKeys.Contains("autoresLib"))
                 {
                     string autor = Request.QueryString["autoresLib"].ToString();
                     List<Libro> listaSinRepetidos = librosDB.RemoveDuplicadosLibro(librosDB.Buscar(autor, "ID_Autor"));
-                    repLibros.DataSource = listaSinRepetidos;
-                    repLibros.DataBind();
+
+                    if (listaSinRepetidos.Count != 0)
+                    {
+                        repLibros.DataSource = listaSinRepetidos;
+                        repLibros.DataBind();
+                    }
+                    else
+                    {
+                        Session.Add("error", "No se encontró ninguna coincidencia.");
+                        Response.Redirect("Error.aspx", false);
+                    }
                 }
 
                 if (Request.QueryString.AllKeys.Contains("tituloLib"))
                 {
                     string titulo = Request.QueryString["tituloLib"].ToString();
                     List<Libro> listaSinRepetidos = librosDB.RemoveDuplicadosLibro(librosDB.Buscar(titulo, "Titulo"));
-                    repLibros.DataSource = listaSinRepetidos;
-                    repLibros.DataBind();
+                    
+                    if (listaSinRepetidos.Count != 0)
+                    {
+                        repLibros.DataSource = listaSinRepetidos;
+                        repLibros.DataBind();
+                    }
+                    else
+                    {
+                        Session.Add("error", "No se encontró ninguna coincidencia.");
+                        Response.Redirect("Error.aspx", false);
+                    }
                 }
 
                 if (Request.QueryString.AllKeys.Contains("busquedaGeneral"))
                 {
                     string palabra = Request.QueryString["busquedaGeneral"].ToString();
                     List<Libro> listaSinRepetidos = librosDB.RemoveDuplicadosLibro(librosDB.BusquedaGeneral(palabra));
-                    repLibros.DataSource = listaSinRepetidos;
-                    repLibros.DataBind();
+
+                    if (listaSinRepetidos.Count != 0)
+                    {
+                        repLibros.DataSource = listaSinRepetidos;
+                        repLibros.DataBind();
+                    }
+                    else
+                    {
+                        Session.Add("error", "No se encontró ninguna coincidencia.");
+                        Response.Redirect("Error.aspx", false);
+                    }
                 }
                 //busquedaGeneral
 
