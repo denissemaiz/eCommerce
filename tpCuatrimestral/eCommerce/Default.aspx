@@ -51,7 +51,7 @@ img {margin-bottom: -7px}
     <img src="https://colecciones.lanacion.com.ar/wp-content/uploads/2023/02/TIENDA_Coleccion_Isabel-Allende_2023_VENTA_640x550.jpg" style="width:100%">
     <img src="https://libroschorcha.files.wordpress.com/2018/01/la-ciudad-y-los-perros-mario-vargas-llosa.jpg" style="width:100%">
     <img src="https://www.anagrama-ed.es/uploads/media/portadas/0001/19/61a262954208d59d9d103c74c64be29d87c32582.jpeg" style="width:100%">
-    <img src="https://caminitoespiritual.files.wordpress.com/2015/12/ernesto-sabato.jpg?w=950" style="width:100%">
+    <img src="https://i.ibb.co/CpLBLCy/z.jpg" style="width:100%">
   </div>
 
   <div class="w3-third">
@@ -59,7 +59,7 @@ img {margin-bottom: -7px}
     <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/Silvina-tomado-por-Bioy-Casares-en-Posadas-1959.jpg" style="width:100%">
     <img src="https://assets1.bmstatic.com/assets/books-covers/e2/38/cMjpdbPA-ipad.jpeg" style="width:100%">
     <img src="https://cdn.sanity.io/images/p34gzxcg/production/5d7515af3b9d7928ebbfac51e492d32fe00c1c53-600x805.jpg?auto=format&w=1000&fit=scale" style="width:100%">
-    <img src="https://acdn.mitiendanube.com/stores/001/029/689/products/tapa-las-venas501-d7ee2ded35a763f6ae16167613615269-640-0.webp" style="width:100%" >
+    <img src="https://i.ibb.co/qBjgCfP/zz.jpg" style="width:100%" >
   </div>
 </div>
 
@@ -70,33 +70,5 @@ img {margin-bottom: -7px}
 </body>
 </html>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <%if (Session["Usuario"] != null)
-            {   %>
-        <h3>Usted está Logueado</h3>
-      <% } if (Session["mensaje"] != null)
-          { %>
-            <h3><%:Session["Mensaje"].ToString() %> </h3>
-        <%} %>
 
 </asp:Content>
