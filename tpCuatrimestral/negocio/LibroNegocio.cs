@@ -96,7 +96,7 @@ namespace negocio
 
             try
             {
-                datos.Consulta("SELECT L.ID_Libro, L.Codigo, L.Titulo, L.Descripcion, L.Precio, L.Stock, L.PortadaURL FROM Libro L");
+                datos.Consulta("SELECT L.ID_Libro, L.Codigo, L.Titulo, L.Descripcion, L.Precio, L.Stock, L.PortadaURL, L.Activo FROM Libro L");
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())
@@ -109,6 +109,7 @@ namespace negocio
                     aux.Precio = Decimal.Round((decimal)datos.Lector["Precio"], 2);
                     aux.Stock = (Int16)datos.Lector["Stock"];
                     aux.PortadaURL = (string)datos.Lector["PortadaURL"];
+                    aux.Activo = (bool)datos.Lector["Activo"];
                     lista.Add(aux);
                 }
                 return lista;

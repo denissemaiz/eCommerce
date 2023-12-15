@@ -204,24 +204,33 @@ namespace eCommerce
             {
                 HtmlGenericControl mensajeSinStock = (HtmlGenericControl)e.Item.FindControl("mensajeSinStock");
                 HtmlGenericControl mensajeUltStock = (HtmlGenericControl)e.Item.FindControl("mensajeUltStock");
+                HtmlGenericControl mensajeEliminado = (HtmlGenericControl)e.Item.FindControl("mensajeEliminado");                
 
                 if (mensajeSinStock != null || mensajeUltStock != null)
                 {
                     string codigoLibro = DataBinder.Eval(e.Item.DataItem, "Codigo").ToString();
 
-                    if (!EsStockDisponible(codigoLibro))
+                    if (EsLibroActivo(codigoLibro))
                     {
-                        mensajeSinStock.InnerText = "No hay más stock";
-                        mensajeSinStock.Style["display"] = "block"; 
+                        if (!EsStockDisponible(codigoLibro))
+                        {
+                            mensajeSinStock.InnerText = "No hay más stock";
+                            mensajeSinStock.Style["display"] = "block";
+                        }
+                        else
+                        {
+                            if (stockDisponible(codigoLibro) == 1)
+                            {
+                                mensajeUltStock.InnerText = "¡Último disponible!";
+                                mensajeUltStock.Style["display"] = "block";
+                            }
+                            mensajeSinStock.Style["display"] = "none";
+                        }
                     }
                     else
                     {
-                        if(stockDisponible(codigoLibro) == 1)
-                        {
-                            mensajeUltStock.InnerText = "¡Último disponible!";
-                            mensajeUltStock.Style["display"] = "block"; 
-                        }
-                        mensajeSinStock.Style["display"] = "none";
+                        mensajeEliminado.InnerText = "Producto eliminado.";
+                        mensajeEliminado.Style["display"] = "block";
                     }
                 }
             }
@@ -239,6 +248,14 @@ namespace eCommerce
             }
 
             return true;
+        }
+
+        public bool EsLibroActivo(string codigo)
+        {
+            LibroNegocio librosDB = new LibroNegocio();
+            Libro busqueda = librosDB.Buscar_x_Codigo(codigo);
+
+            return busqueda.Activo;
         }
 
         public int stockDisponible(string codigoLibro)

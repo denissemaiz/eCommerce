@@ -38,6 +38,7 @@
                                             CssClass="btn btn-danger btn-sm my-2" 
                                             Text="Eliminar" CommandArgument='<%#Eval("Id") %>' 
                                             CommandName="EliminarLibro" 
+                                            Enabled='<%# EsLibroActivo(Eval("Codigo").ToString()) %>' 
                                             OnClick="btnEliminarLibro_Click"
                                             OnClientClick="return confirmarEliminacion();"/>
                                     </div>
@@ -49,6 +50,7 @@
                         </div> 
                         <p id="mensajeSinStock" runat="server" style="color:red;display:block;margin-top: 0.5em;margin-left: 0.5em;"></p>
                         <p id="mensajeUltStock" runat="server" style="color:green;display:block;margin-top: 0.5em;margin-left: 0.5em;"></p>
+                        <p id="mensajeEliminado" runat="server" style="color:darkred;display:block;margin-top: 0.5em;margin-left: 0.5em;"></p>
                     </div>
                     <div class="card-footer">
                         <small class="text-body-secondary">Código: <%#Eval("Codigo") %></small>
