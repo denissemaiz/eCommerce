@@ -97,6 +97,7 @@ namespace dominio
         public bool Activo
         {
             get { return activo; }
+            set {  activo = value; }
         }
 
         public string CadenaAutores
