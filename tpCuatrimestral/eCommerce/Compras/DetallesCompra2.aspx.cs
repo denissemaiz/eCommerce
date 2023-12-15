@@ -72,7 +72,7 @@ namespace eCommerce
                         lbxProductos.DataSource = productos;
                         lbxProductos.DataBind();
 
-                        lblMonto.Text = pedido.Carrito.CalcularMonto().ToString();
+                        lblMonto.Text = pedido.MontoCompra.ToString();
                        
 
                         //Valido que haya un usuario logueado y que su ID de usuario no sea igual al ID del cliente del pedido

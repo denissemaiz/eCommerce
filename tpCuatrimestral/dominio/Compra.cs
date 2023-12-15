@@ -14,6 +14,7 @@ namespace Clases
         private string estado;
         private DateTime fechaCompra;
         private Carrito carrito;
+        private decimal montoCompra;
 
         public Compra()
         {
@@ -53,6 +54,12 @@ namespace Clases
         {
             get { return fechaCompra; }
             set { fechaCompra = value; }
+        }
+
+        public decimal MontoCompra
+        {
+            get { return montoCompra; }
+            set { montoCompra = value; }
         }
     }
 }
