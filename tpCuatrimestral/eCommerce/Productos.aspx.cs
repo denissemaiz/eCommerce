@@ -147,14 +147,15 @@ namespace eCommerce
         {
             string idLibro = ((Button)sender).CommandArgument;
             LibroNegocio articulos = new LibroNegocio();
-            listaLibros = articulos.PruebaBuscar(idLibro);
-            libro = listaLibros.First();
+            //listaLibros = articulos.PruebaBuscar(idLibro);
+            libro = articulos.Buscar_X_Id(idLibro);
+            //libro = listaLibros.First();
             string codigo = libro.Codigo;
 
-            if (listaLibros != null)
+            if (libro != null)
             {
                 LibroNegocio negocio = new LibroNegocio();
-                libro = listaLibros.First();
+                //libro = listaLibros.First();
                 libro.Activo = false;
 
                 negocio.Modificar(libro);
