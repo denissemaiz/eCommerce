@@ -392,11 +392,8 @@ insert into Estados (ID_Estado, TipoEstados) values
 (4, 'Cancelado');
 GO
 
-<<<<<<< HEAD
+
 INSERT INTO Compra (ID_Usuario, PrecioTotal, ID_Estado, FechaCompra)
-=======
-    INSERT INTO Compra (ID_Usuario, PrecioTotal, ID_Estado, FechaCompra)
->>>>>>> develop
 SELECT TOP 10
     U.ID_Usuario,
     L.Precio,
