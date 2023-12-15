@@ -119,7 +119,7 @@
                             <div class="card bg-dark">
                                 <div class="card-header" id="headingGenero">
                                     <h5 class="mb-0">
-                                        <a class="btn btn-link text-white" data-toggle="collapse" href="#collapseGenero" role="button" aria-expanded="false" aria-controls="collapseGenero">Géneros
+                                        <a class="btn btn-link text-white" data-toggle="collapse" href="#" role="button" aria-expanded="false" aria-controls="collapseGenero">Géneros
                                         </a>
                                     </h5>
                                 </div>
@@ -140,7 +140,7 @@
                             <div class="card bg-dark">
                                 <div class="card-header" id="headingAutores">
                                     <h5 class="mb-0">
-                                        <a class="btn btn-link text-white" data-toggle="collapse" href="#collapseAutor" role="button" aria-expanded="true" aria-controls="collapseAutor">Autores
+                                        <a class="btn btn-link text-white" data-toggle="collapse" href="#" role="button" aria-expanded="true" aria-controls="collapseAutor">Autores
                                         </a>
                                     </h5>
                                 </div>
