@@ -20,10 +20,10 @@ img {margin-bottom: -7px}
 </head>
 <body>
 
-<!-- !PAGE CONTENT! -->
+
 <div class="w3-content" style="max-width:100%">
 
-<!-- Header -->
+
 <div">
 <div class="w3-clear"></div>
 <header class="w3-center w3-margin-bottom">
@@ -35,7 +35,7 @@ img {margin-bottom: -7px}
 </header>
 </div>
 
-<!-- Photo Grid -->
+
 <div class="w3-row-padding" id="myGrid" style="margin-bottom:128px">
   <div class="w3-third">
     <img src="http://www.lesvraisvoyageurs.com/wp-content/uploads/2020/04/Julio-Cort%C3%A1zar.-Madrid-1980-706x1024.jpg" alt="Julio Cortázar" style="width:100%">
