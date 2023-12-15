@@ -24,7 +24,7 @@ namespace Conexiones
 
             try
             {
-                Datos.Consulta("SELECT C.ID_Compra, C.FechaCompra, E.TipoEstados, L.ID_Libro, L.Codigo, L.Titulo, L.Descripcion, L.Precio, A.ID_Autor, A.Nombre AS AutorNombre, A.Apellido AS AutorApellido " +
+                Datos.Consulta("SELECT C.ID_Compra, C.FechaCompra, C.PrecioTotal, E.TipoEstados, L.ID_Libro, L.Codigo, L.Titulo, L.Descripcion, L.Precio, A.ID_Autor, A.Nombre AS AutorNombre, A.Apellido AS AutorApellido " +
                     "FROM Compra C INNER JOIN Compra_X_Libro CL ON C.ID_Compra = CL.ID_Compra " +
                     "INNER JOIN Libro L ON CL.ID_Libro = L.ID_Libro " +
                     "INNER JOIN Estados E ON E.ID_Estado = C.ID_Estado " +
@@ -47,6 +47,7 @@ namespace Conexiones
                         auxCompra.Id = idCompra;
                         auxCompra.FechaCompra = (DateTime)Datos.Lector["FechaCompra"];
                         auxCompra.Estado = (string)Datos.Lector["TipoEstados"];
+                        auxCompra.MontoCompra = Decimal.Round(Convert.ToDecimal(Datos.Lector["PrecioTotal"]), 2);
                         auxCompra.Carrito = new Carrito();
                         auxCompra.Carrito.Libros = new List<Libro>();
                         auxCompra.Carrito.Monto = 0;
@@ -103,7 +104,7 @@ namespace Conexiones
 
             try
             {
-                Datos.Consulta("SELECT C.ID_Compra, C.FechaCompra, E.TipoEstados, L.ID_Libro, L.Codigo, L.Titulo, L.Descripcion, L.Precio, A.ID_Autor, A.Nombre AS AutorNombre, A.Apellido AS AutorApellido " +
+                Datos.Consulta("SELECT C.ID_Compra, C.FechaCompra, C.PrecioTotal, E.TipoEstados, L.ID_Libro, L.Codigo, L.Titulo, L.Descripcion, L.Precio, A.ID_Autor, A.Nombre AS AutorNombre, A.Apellido AS AutorApellido " +
                     "FROM Compra C INNER JOIN Compra_X_Libro CL ON C.ID_Compra = CL.ID_Compra " +
                     "INNER JOIN Libro L ON CL.ID_Libro = L.ID_Libro " +
                     "INNER JOIN Estados E ON E.ID_Estado = C.ID_Estado " +
@@ -126,6 +127,7 @@ namespace Conexiones
                         auxCompra.Id = idCompra;
                         auxCompra.FechaCompra = (DateTime)Datos.Lector["FechaCompra"];
                         auxCompra.Estado = (string)Datos.Lector["TipoEstados"];
+                        auxCompra.MontoCompra = Decimal.Round(Convert.ToDecimal(Datos.Lector["PrecioTotal"]), 2);
                         auxCompra.Carrito = new Carrito();
                         auxCompra.Carrito.Libros = new List<Libro>();
                         auxCompra.Carrito.Monto = 0;
