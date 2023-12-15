@@ -10,7 +10,10 @@
                 <div class="input-group form-inline">
                     <label for="txtAnio" class="col-sm-2 col-form-label">Año: </label>
                     <asp:TextBox ID="txtAnio" runat="server" CssClass="form-control" placeholder="2023"></asp:TextBox>
-                    <asp:Button ID="btnBuscarAnio" runat="server" CssClass="btn btn-outline-primary" Text="Buscar" />
+                    <asp:Button ID="btnBuscarAnio" runat="server" 
+                        OnClick="btnBuscarAnio_Click"
+                        CssClass="btn btn-outline-primary" 
+                        Text="Buscar" />
                 </div>
             </div>
 

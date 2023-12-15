@@ -46,43 +46,56 @@ namespace eCommerce
 
         protected void dgVentas_Sorting(object sender, GridViewSortEventArgs e)
         {
-            // Obtener el DataTable ordenado
-            int anio = 2023; // Asigna el valor adecuado para el año
-            string columnaOrderBy = e.SortExpression;
-            string orderBy = GetSortDirection(e.SortExpression);
+            
+            int anio = 2023; 
+            string columnaOrderBy = e.SortExpression; //Obtengo la expresión para el ordenamiento
+            string orderBy = DireccionDeOrdenamiento(e.SortExpression);
 
             CompraNegocio compraNegocio = new CompraNegocio();
             DataTable dtVentas = compraNegocio.ReporteVentas_x_MesAnio(anio, columnaOrderBy, orderBy);
 
-            // Volver a vincular el GridView con el DataTable ordenado
+            // Actualizo el DataSource del GridView
+            dgVentas.DataSource = dtVentas;
+            dgVentas.DataBind();
+        }
+        protected void btnBuscarAnio_Click(object sender, EventArgs e)
+        {
+            int anio = Int32.Parse(txtAnio.Text);
+            string columnaOrderBy = dgVentas.SortExpression;
+            string orderBy = DireccionDeOrdenamiento(dgVentas.SortExpression);
+
+            CompraNegocio compraNegocio = new CompraNegocio();
+            DataTable dtVentas = compraNegocio.ReporteVentas_x_MesAnio(anio, columnaOrderBy, orderBy);
+
             dgVentas.DataSource = dtVentas;
             dgVentas.DataBind();
         }
 
-        private string GetSortDirection(string column)
+        private string DireccionDeOrdenamiento(string column)
         {
-            // Obtener la dirección actual de la ordenación
-            string sortDirection = "ASC";
-            string sortExpression = ViewState["SortExpression"] as string;
+            // Obtengo la direccion de ordenamiento
+            string direccionOrdenamiento = "ASC";
+            string expresionOrdenamiento = ViewState["SortExpression"] as string;
 
-            if (sortExpression != null)
+            if (expresionOrdenamiento != null)
             {
-                // Si la columna actual es la misma que la columna anterior, invertir la dirección
-                if (sortExpression == column)
+                // Si la columna actual quedaría igual que la anterior invierto la dirección
+                if (expresionOrdenamiento == column)
                 {
                     string lastDirection = ViewState["SortDirection"] as string;
                     if ((lastDirection != null) && (lastDirection == "ASC"))
                     {
-                        sortDirection = "DESC";
+                        direccionOrdenamiento = "DESC";
                     }
                 }
             }
 
-            // Guardar la columna y dirección actual en ViewState
+            // Guardo la columna y dirección actual en el ViewState
             ViewState["SortExpression"] = column;
-            ViewState["SortDirection"] = sortDirection;
+            ViewState["SortDirection"] = direccionOrdenamiento;
 
-            return sortDirection;
+            return direccionOrdenamiento;
         }
+
     }
 }
