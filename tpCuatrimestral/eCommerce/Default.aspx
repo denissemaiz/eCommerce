@@ -49,17 +49,17 @@ img {margin-bottom: -7px}
   <div class="w3-third">
     <img src="https://http2.mlstatic.com/D_NQ_NP_884290-MLC46642291217_072021-O.webp" style="width:100%">
     <img src="https://colecciones.lanacion.com.ar/wp-content/uploads/2023/02/TIENDA_Coleccion_Isabel-Allende_2023_VENTA_640x550.jpg" style="width:100%">
-    <img src="https://i.imgur.com/EB9Vyrw.jpg" style="width:100%">
+    <img src="https://libroschorcha.files.wordpress.com/2018/01/la-ciudad-y-los-perros-mario-vargas-llosa.jpg" style="width:100%">
     <img src="https://www.anagrama-ed.es/uploads/media/portadas/0001/19/61a262954208d59d9d103c74c64be29d87c32582.jpeg" style="width:100%">
-    <img src="https://www.bellasartes.co.cu/sites/default/files/public/galerias/jorge-arche-jose-marti-1943.jpg" style="width:100%">
+    <img src="https://caminitoespiritual.files.wordpress.com/2015/12/ernesto-sabato.jpg?w=950" style="width:100%">
   </div>
 
   <div class="w3-third">
     <img src="https://media.admagazine.com/photos/618a6aabac089e092dcc0283/master/w_1600%2Cc_limit/62420.jpg" style="width:100%">
-    <img src="https://www.planetalector.com.ar/usuaris/thumbnails/autores/fotos/57/360/000056159_1_Horacio_QUIROGA_201811082145.jpg" style="width:100%">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/Silvina-tomado-por-Bioy-Casares-en-Posadas-1959.jpg" style="width:100%">
     <img src="https://assets1.bmstatic.com/assets/books-covers/e2/38/cMjpdbPA-ipad.jpeg" style="width:100%">
     <img src="https://cdn.sanity.io/images/p34gzxcg/production/5d7515af3b9d7928ebbfac51e492d32fe00c1c53-600x805.jpg?auto=format&w=1000&fit=scale" style="width:100%">
-    <img src="https://i.ibb.co/xqSm0kR/sssss.png" style="width:100%" >
+    <img src="https://acdn.mitiendanube.com/stores/001/029/689/products/tapa-las-venas501-d7ee2ded35a763f6ae16167613615269-640-0.webp" style="width:100%" >
   </div>
 </div>
 

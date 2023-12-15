@@ -42,27 +42,72 @@ namespace eCommerce
                 {
                     string genero = Request.QueryString["generosLib"].ToString();
                     List<Libro> listaSinRepetidos = librosDB.RemoveDuplicadosLibro(librosDB.Buscar(genero, "ID_Genero"));
-                    repLibros.DataSource = listaSinRepetidos;
-                    repLibros.DataBind();
+
+                    if (listaSinRepetidos.Count != 0)
+                    {
+                        repLibros.DataSource = listaSinRepetidos;
+                        repLibros.DataBind();
+                    }
+                    else
+                    {
+                        Session.Add("error", "No se encontró ninguna coincidencia.");
+                        Response.Redirect("Error.aspx", false);
+                    }
                 }
 
                 if (Request.QueryString.AllKeys.Contains("autoresLib"))
                 {
                     string autor = Request.QueryString["autoresLib"].ToString();
                     List<Libro> listaSinRepetidos = librosDB.RemoveDuplicadosLibro(librosDB.Buscar(autor, "ID_Autor"));
-                    repLibros.DataSource = listaSinRepetidos;
-                    repLibros.DataBind();
+
+                    if (listaSinRepetidos.Count != 0)
+                    {
+                        repLibros.DataSource = listaSinRepetidos;
+                        repLibros.DataBind();
+                    }
+                    else
+                    {
+                        Session.Add("error", "No se encontró ninguna coincidencia.");
+                        Response.Redirect("Error.aspx", false);
+                    }
                 }
 
                 if (Request.QueryString.AllKeys.Contains("tituloLib"))
                 {
                     string titulo = Request.QueryString["tituloLib"].ToString();
                     List<Libro> listaSinRepetidos = librosDB.RemoveDuplicadosLibro(librosDB.Buscar(titulo, "Titulo"));
-                    repLibros.DataSource = listaSinRepetidos;
-                    repLibros.DataBind();
+                    
+                    if (listaSinRepetidos.Count != 0)
+                    {
+                        repLibros.DataSource = listaSinRepetidos;
+                        repLibros.DataBind();
+                    }
+                    else
+                    {
+                        Session.Add("error", "No se encontró ninguna coincidencia.");
+                        Response.Redirect("Error.aspx", false);
+                    }
                 }
 
-                if (!Request.QueryString.AllKeys.Contains("autoresLib") && !Request.QueryString.AllKeys.Contains("generosLib") && !Request.QueryString.AllKeys.Contains("tituloLib"))
+                if (Request.QueryString.AllKeys.Contains("busquedaGeneral"))
+                {
+                    string palabra = Request.QueryString["busquedaGeneral"].ToString();
+                    List<Libro> listaSinRepetidos = librosDB.RemoveDuplicadosLibro(librosDB.BusquedaGeneral(palabra));
+
+                    if (listaSinRepetidos.Count != 0)
+                    {
+                        repLibros.DataSource = listaSinRepetidos;
+                        repLibros.DataBind();
+                    }
+                    else
+                    {
+                        Session.Add("error", "No se encontró ninguna coincidencia.");
+                        Response.Redirect("Error.aspx", false);
+                    }
+                }
+                //busquedaGeneral
+
+                if (!Request.QueryString.AllKeys.Contains("autoresLib") && !Request.QueryString.AllKeys.Contains("generosLib") && !Request.QueryString.AllKeys.Contains("tituloLib") && !Request.QueryString.AllKeys.Contains("busquedaGeneral"))
                 {
                     List<Libro> listaSinRepetidos = librosDB.RemoveDuplicadosLibro(librosDB.ListarL());
                     repLibros.DataSource = listaSinRepetidos;
@@ -141,21 +186,26 @@ namespace eCommerce
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                // Encuentra el control mensajeStock
-                HtmlGenericControl mensajeStock = (HtmlGenericControl)e.Item.FindControl("mensajeStock");
+                HtmlGenericControl mensajeSinStock = (HtmlGenericControl)e.Item.FindControl("mensajeSinStock");
+                HtmlGenericControl mensajeUltStock = (HtmlGenericControl)e.Item.FindControl("mensajeUltStock");
 
-                if (mensajeStock != null)
+                if (mensajeSinStock != null || mensajeUltStock != null)
                 {
                     string codigoLibro = DataBinder.Eval(e.Item.DataItem, "Codigo").ToString();
 
                     if (!EsStockDisponible(codigoLibro))
                     {
-                        mensajeStock.InnerText = "No hay más stock";
-                        mensajeStock.Style["display"] = "block";  // Muestra el mensaje
+                        mensajeSinStock.InnerText = "No hay más stock";
+                        mensajeSinStock.Style["display"] = "block"; 
                     }
                     else
                     {
-                        mensajeStock.Style["display"] = "none";  // Oculta el mensaje si se muestra
+                        if(stockDisponible(codigoLibro) == 1)
+                        {
+                            mensajeUltStock.InnerText = "¡Último disponible!";
+                            mensajeUltStock.Style["display"] = "block"; 
+                        }
+                        mensajeSinStock.Style["display"] = "none";
                     }
                 }
             }
@@ -173,6 +223,19 @@ namespace eCommerce
             }
 
             return true;
+        }
+
+        public int stockDisponible(string codigoLibro)
+        {
+            LibroNegocio librosDB = new LibroNegocio();
+            Libro busqueda = librosDB.Buscar_x_Codigo(codigoLibro);
+
+            if (busqueda != null)
+            {
+                return busqueda.Stock;
+            }
+
+            return 0;
         }
 
         public bool ValidarAdmin()

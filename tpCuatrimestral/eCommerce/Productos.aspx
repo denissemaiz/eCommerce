@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Productos.aspx.cs" Inherits="eCommerce.Productos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript">
+        function confirmarEliminacion() {
+            return confirm('¿Estás seguro de que deseas eliminar este libro?');
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <p>Catálogo de Libros</p>
@@ -33,7 +38,8 @@
                                             CssClass="btn btn-danger btn-sm my-2" 
                                             Text="Eliminar" CommandArgument='<%#Eval("Id") %>' 
                                             CommandName="EliminarLibro" 
-                                            OnClick="btnEliminarLibro_Click"/>
+                                            OnClick="btnEliminarLibro_Click"
+                                            OnClientClick="return confirmarEliminacion();"/>
                                     </div>
                                 <%} else {%>
                                     <div class="d-grid gap-2">
@@ -41,7 +47,8 @@
                                     </div>                                 
                                 <%}%>
                         </div> 
-                        <p id="mensajeStock" runat="server" style="color: red; display: none;"></p>
+                        <p id="mensajeSinStock" runat="server" style="color:red;display:block;margin-top: 0.5em;margin-left: 0.5em;"></p>
+                        <p id="mensajeUltStock" runat="server" style="color:green;display:block;margin-top: 0.5em;margin-left: 0.5em;"></p>
                     </div>
                     <div class="card-footer">
                         <small class="text-body-secondary">Código: <%#Eval("Codigo") %></small>
