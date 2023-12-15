@@ -22,7 +22,7 @@
                 <asp:TemplateField HeaderText="Detalle">
                     <itemtemplate>
                         <asp:HyperLink ID="hlVer" Text="Ver" runat="server"
-                            NavigateUrl='<%#Eval("Id", "Compras/DetallesCompra2.aspx?idCompra={0}") %>'>
+                            NavigateUrl='<%#Eval("Id", "Compras/DetallesCompra2.aspx?idCompra={0}&redirect=1") %>'>
                         </asp:HyperLink>
                     </itemtemplate>
                 </asp:TemplateField>

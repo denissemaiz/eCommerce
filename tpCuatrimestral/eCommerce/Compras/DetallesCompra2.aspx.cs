@@ -151,7 +151,14 @@ namespace eCommerce
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            Response.Redirect("../Panelusuario.aspx", false);
+            int pagina = Convert.ToInt32(Request.QueryString["redirect"]);
+            String url = "../Default.aspx";
+            if (pagina == 0)
+                url = "../Panelusuario.aspx";
+            if (pagina == 1)
+                url = "../ListaPedidos.aspx";
+
+            Response.Redirect(url, false);
         }
 
         public bool ValidarAdmin()

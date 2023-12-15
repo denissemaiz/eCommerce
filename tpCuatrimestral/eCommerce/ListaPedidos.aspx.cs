@@ -60,12 +60,12 @@ namespace eCommerce
                 negocioComp.ModificarEstado(4, id);
                 Compra compra = negocioComp.BuscarCompra(id);
                 negocioLib.SumarStock(compra);
-                Response.Redirect("PanelUsuario.aspx");
+                Response.Redirect("ListaPedidos.aspx");
             }
             else
             {
                 //Agregar mensaje de error
-                Response.Redirect("PanelUsuario.aspx");
+                Response.Redirect("ListaPedidos.aspx");
             }
         }
         protected void DGVPedidos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
