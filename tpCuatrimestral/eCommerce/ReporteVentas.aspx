@@ -22,11 +22,17 @@
                 <asp:GridView ID="dgVentas" runat="server" 
                     AutoGenerateColumns="false"
                     AllowSorting="true"
-                    OnSorting="dgVentas_Sorting"
+                    OnSorting="dgVentas_Sorting"                    
                     CssClass="table">                    
                     <Columns>
-                        <asp:BoundField DataField="Mes" HeaderText="Mes" 
-                            SortExpression="Mes"/>
+                        <%--<asp:BoundField DataField="Mes" HeaderText="Mes" 
+                            SortExpression="Mes"
+                            />--%>
+                        <asp:TemplateField HeaderText="Mes" SortExpression="Mes">
+                            <ItemTemplate>
+                                <%#NombreMes((Int32)Eval("Mes")) %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:BoundField DataField="MontoTotalMes" HeaderText="Monto Total" 
                             DataFormatString="${0:N2}"
                             SortExpression="MontoTotalMes"/>

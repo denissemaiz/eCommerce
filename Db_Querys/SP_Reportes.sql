@@ -35,9 +35,9 @@ BEGIN
     EXEC sp_executesql @SQLQuery, N'@ParamAnio INT', @Anio;
 END;
 
-EXEC sp_VentasTotalesPorMes_Anio
+EXEC SP_VentasTotalesPorMes_Anio
     @Anio = 2023,
-    @ColumnaOrderBy = 'MontoTotalMes',
+    @ColumnaOrderBy = 'Mes',
     @OrdenarPor = 'DESC';
 
---DROP PROCEDURE IF EXISTS sp_VentasTotalesPorMes_Anio
+--DROP PROCEDURE IF EXISTS SP_VentasTotalesPorMes_Anio

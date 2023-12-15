@@ -51,12 +51,23 @@ namespace eCommerce
             string columnaOrderBy = e.SortExpression; //Obtengo la expresión para el ordenamiento
             string orderBy = DireccionDeOrdenamiento(e.SortExpression);
 
+            if(txtAnio.Text.Length > 0)            
+                anio = Int32.Parse(txtAnio.Text);            
+
             CompraNegocio compraNegocio = new CompraNegocio();
             DataTable dtVentas = compraNegocio.ReporteVentas_x_MesAnio(anio, columnaOrderBy, orderBy);
+
+            Decimal montoTotal = 0;
+            foreach (DataRow row in dtVentas.Rows)
+            {
+                montoTotal += Decimal.Round(Convert.ToDecimal(row["MontoTotalMes"]), 2);
+            }
+            lblMontoTotal.Text = montoTotal.ToString();
 
             // Actualizo el DataSource del GridView
             dgVentas.DataSource = dtVentas;
             dgVentas.DataBind();
+            
         }
         protected void btnBuscarAnio_Click(object sender, EventArgs e)
         {
@@ -66,6 +77,13 @@ namespace eCommerce
 
             CompraNegocio compraNegocio = new CompraNegocio();
             DataTable dtVentas = compraNegocio.ReporteVentas_x_MesAnio(anio, columnaOrderBy, orderBy);
+
+            Decimal montoTotal = 0;
+            foreach (DataRow row in dtVentas.Rows)
+            {
+                montoTotal += Decimal.Round(Convert.ToDecimal(row["MontoTotalMes"]), 2);
+            }
+            lblMontoTotal.Text = montoTotal.ToString();
 
             dgVentas.DataSource = dtVentas;
             dgVentas.DataBind();
@@ -97,5 +115,11 @@ namespace eCommerce
             return direccionOrdenamiento;
         }
 
+        
+
+        protected string NombreMes(int mesNumerico)
+        {
+            return new DateTime(1, mesNumerico, 1).ToString("MMMM");
+        }
     }
 }
