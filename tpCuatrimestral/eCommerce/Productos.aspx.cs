@@ -141,27 +141,26 @@ namespace eCommerce
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                // Encuentra el control mensajeStock
-                HtmlGenericControl mensajeStock = (HtmlGenericControl)e.Item.FindControl("mensajeStock");
-                HtmlGenericControl mensajeStock2 = (HtmlGenericControl)e.Item.FindControl("mensajeStock2");
+                HtmlGenericControl mensajeSinStock = (HtmlGenericControl)e.Item.FindControl("mensajeSinStock");
+                HtmlGenericControl mensajeUltStock = (HtmlGenericControl)e.Item.FindControl("mensajeUltStock");
 
-                if (mensajeStock != null)
+                if (mensajeSinStock != null || mensajeUltStock != null)
                 {
                     string codigoLibro = DataBinder.Eval(e.Item.DataItem, "Codigo").ToString();
 
                     if (!EsStockDisponible(codigoLibro))
                     {
-                        mensajeStock.InnerText = "No hay más stock";
-                        mensajeStock.Style["display"] = "block";  // Muestra el mensaje
+                        mensajeSinStock.InnerText = "No hay más stock";
+                        mensajeSinStock.Style["display"] = "block"; 
                     }
                     else
                     {
                         if(stockDisponible(codigoLibro) == 1)
                         {
-                            mensajeStock2.InnerText = "Último disponible!";
-                            mensajeStock2.Style["display"] = "block";  // Muestra el mensaje
+                            mensajeUltStock.InnerText = "¡Último disponible!";
+                            mensajeUltStock.Style["display"] = "block"; 
                         }
-                        mensajeStock.Style["display"] = "none";  // Oculta el mensaje si se muestra
+                        mensajeSinStock.Style["display"] = "none";
                     }
                 }
             }

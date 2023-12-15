@@ -47,7 +47,8 @@
                                     </div>                                 
                                 <%}%>
                         </div> 
-                        <p id="mensajeStock" runat="server" style="color: red; display: none;"></p>
+                        <p id="mensajeSinStock" runat="server" style="color:red;display:block;margin-top: 0.5em;margin-left: 0.5em;"></p>
+                        <p id="mensajeUltStock" runat="server" style="color:green;display:block;margin-top: 0.5em;margin-left: 0.5em;"></p>
                     </div>
                     <div class="card-footer">
                         <small class="text-body-secondary">Código: <%#Eval("Codigo") %></small>
