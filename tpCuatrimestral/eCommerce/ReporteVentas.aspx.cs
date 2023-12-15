@@ -1,4 +1,5 @@
-﻿using Conexiones;
+﻿using Clases;
+using Conexiones;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -89,6 +90,16 @@ namespace eCommerce
             dgVentas.DataBind();
         }
 
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            string loginNecesario = HttpContext.Current.Request.Url.AbsolutePath;
+            Session.Add("loginNecesario", loginNecesario);
+            if (Session["Usuario"] != null)
+                Session.Remove("Usuario");
+
+            Response.Redirect("User/Login.aspx");
+        }
+
         private string DireccionDeOrdenamiento(string column)
         {
             // Obtengo la direccion de ordenamiento
@@ -120,6 +131,17 @@ namespace eCommerce
         protected string NombreMes(int mesNumerico)
         {
             return new DateTime(1, mesNumerico, 1).ToString("MMMM");
+        }
+
+        public bool ValidarAdmin()
+        {
+            Usuario user;
+            if (Session["Usuario"] != null)
+            {
+                user = ((Usuario)Session["Usuario"]);
+                return user.EsAdmin;
+            }
+            return false;
         }
     }
 }
