@@ -143,6 +143,7 @@ namespace eCommerce
             {
                 // Encuentra el control mensajeStock
                 HtmlGenericControl mensajeStock = (HtmlGenericControl)e.Item.FindControl("mensajeStock");
+                HtmlGenericControl mensajeStock2 = (HtmlGenericControl)e.Item.FindControl("mensajeStock2");
 
                 if (mensajeStock != null)
                 {
@@ -155,6 +156,11 @@ namespace eCommerce
                     }
                     else
                     {
+                        if(stockDisponible(codigoLibro) == 1)
+                        {
+                            mensajeStock2.InnerText = "Último disponible!";
+                            mensajeStock2.Style["display"] = "block";  // Muestra el mensaje
+                        }
                         mensajeStock.Style["display"] = "none";  // Oculta el mensaje si se muestra
                     }
                 }
@@ -173,6 +179,19 @@ namespace eCommerce
             }
 
             return true;
+        }
+
+        public int stockDisponible(string codigoLibro)
+        {
+            LibroNegocio librosDB = new LibroNegocio();
+            Libro busqueda = librosDB.Buscar_x_Codigo(codigoLibro);
+
+            if (busqueda != null)
+            {
+                return busqueda.Stock;
+            }
+
+            return 0;
         }
 
         public bool ValidarAdmin()
