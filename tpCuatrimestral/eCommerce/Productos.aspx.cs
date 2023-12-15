@@ -110,9 +110,19 @@ namespace eCommerce
 
                 if (!Request.QueryString.AllKeys.Contains("autoresLib") && !Request.QueryString.AllKeys.Contains("generosLib") && !Request.QueryString.AllKeys.Contains("tituloLib") && !Request.QueryString.AllKeys.Contains("busquedaGeneral"))
                 {
-                    List<Libro> listaSinRepetidos = librosDB.RemoveDuplicadosLibro(librosDB.ListarL());
-                    repLibros.DataSource = listaSinRepetidos;
-                    repLibros.DataBind();
+                    if (ValidarAdmin()) 
+                    {
+                        List<Libro> listaSinRepetidos = librosDB.RemoveDuplicadosLibro(librosDB.ListarL());
+                        repLibros.DataSource = listaSinRepetidos;
+                        repLibros.DataBind();
+                    }
+                    else
+                    {
+                        List<Libro> listaFinal = librosDB.RemoveDuplicadosLibro(librosDB.ListarL());
+                        listaFinal = RemoveNoDisponbles(listaFinal);
+                        repLibros.DataSource = listaFinal;
+                        repLibros.DataBind();
+                    }
                 }
             }
             else
@@ -269,6 +279,21 @@ namespace eCommerce
             }
 
             return 0;
+        }
+
+        public List<Libro> RemoveNoDisponbles(List<Libro> inputList)
+        {
+            Dictionary<string, string> uniqueStore = new Dictionary<string, string>();
+            List<Libro> finalList = new List<Libro>();
+            foreach (Libro lib in inputList)
+            {
+                if (!uniqueStore.ContainsKey(lib.Codigo.ToString()) && lib.Activo)
+                {
+                    uniqueStore.Add(lib.Codigo.ToString(), "0");
+                    finalList.Add(lib);
+                }
+            }
+            return finalList;
         }
 
         public bool ValidarAdmin()

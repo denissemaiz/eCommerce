@@ -340,6 +340,7 @@ namespace negocio
                     buscado.Precio = Decimal.Round((decimal)datos.Lector["Precio"], 2);
                     buscado.Stock = (Int16)datos.Lector["Stock"];
                     buscado.PortadaURL = (String)datos.Lector["PortadaURL"];
+                    buscado.Activo = (bool)datos.Lector["Activo"];
                 }
 
                 GeneroNegocio generoNegocio = new GeneroNegocio();
