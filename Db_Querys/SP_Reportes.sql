@@ -1,3 +1,6 @@
+use ProyectoEditorial
+GO
+
 CREATE PROCEDURE SP_VentasTotalesPorMes_Anio
     @Anio INT,
     @ColumnaOrderBy NVARCHAR(50) = 'Mes',
@@ -41,4 +44,4 @@ EXEC SP_VentasTotalesPorMes_Anio
     @ColumnaOrderBy = 'Mes',
     @OrdenarPor = 'DESC';
 
-DROP PROCEDURE IF EXISTS SP_VentasTotalesPorMes_Anio
+--DROP PROCEDURE IF EXISTS SP_VentasTotalesPorMes_Anio
