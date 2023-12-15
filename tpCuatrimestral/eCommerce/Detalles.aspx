@@ -40,9 +40,11 @@
                         <p><%: librito.Descripcion %></p>
                     </div>
                 </div>
-                <div class="contenedor-agregarproducto">
-                    <asp:Button ID="btnAgregarACarritoDetalles" CssClass="btn btn-add-al-carrito" Text="Agregar al carrito" CommandArgument='<%#Eval(librito.Codigo)%>' CommandName="IdLibro" OnClick="btnAgregarACarritoDetalles_Click" runat="server" />
-                </div>
+                 <%if (!ValidarAdmin()) { %>
+                    <div class="contenedor-agregarproducto">
+                        <asp:Button ID="btnAgregarACarritoDetalles" CssClass="btn btn-add-al-carrito" Text="Agregar al carrito" CommandArgument='<%#Eval(librito.Codigo)%>' CommandName="IdLibro" OnClick="btnAgregarACarritoDetalles_Click" runat="server" />
+                    </div>
+                <%}%>
                 <p id="mensajeSinStock" runat="server" style="color:red;display:block;margin-top: 0.5em;margin-left: 0.5em;"></p>
                 <p id="mensajeUltStock" runat="server" style="color:green;display:block;margin-top: 0.5em;margin-left: 0.5em;"></p>
             </div>
