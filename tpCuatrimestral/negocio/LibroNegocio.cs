@@ -163,18 +163,8 @@ namespace negocio
                         lista.Add(aux);
                     }
 
-                    int idAutor = (int)datos.Lector["ID_Autor"];
-                    string autorNombre = (string)datos.Lector["AutorNombre"];
-                    string autorApellido = (string)datos.Lector["AutorApellido"];
-
-                    if (idAutor != 0 && !string.IsNullOrEmpty(autorNombre))
-                    {
-                        Autor autor = new Autor();
-                        autor.Id = idAutor;
-                        autor.Nombre = autorNombre;
-                        autor.Apellido = autorApellido;
-                        aux.Autores.Add(autor);
-                    }
+                    AutorNegocio autorNegocio = new AutorNegocio();
+                    aux.Autores = autorNegocio.BuscarAutor(aux.Codigo);
 
                     int idGenero = (int)datos.Lector["ID_Genero"];
                     string generoNombre = (string)datos.Lector["GeneroNombre"];
