@@ -69,7 +69,8 @@ Create table Libro(
 	Descripcion varchar(200) not null,
 	Precio money not null,
 	Stock smallint not null,
-    PortadaURL varchar(500) not null
+    PortadaURL varchar(500) not null,
+    Activo BIT DEFAULT 1
 )
 GO
 

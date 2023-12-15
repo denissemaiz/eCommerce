@@ -566,7 +566,7 @@ namespace negocio
 
             try
             {
-                datos.Consulta("UPDATE Libro SET Codigo =  '" + libro.Codigo + "', Titulo = '" + libro.Titulo + "', Descripcion = '" + libro.Descripcion + "', Precio = '" + libro.Precio.ToString("F", CultureInfo.InvariantCulture) + "', Stock = '" + libro.Stock + "', PortadaURL = '" + libro.PortadaURL + "' WHERE ID_Libro = " + libro.Id);
+                datos.Consulta("UPDATE Libro SET Codigo =  '" + libro.Codigo + "', Titulo = '" + libro.Titulo + "', Descripcion = '" + libro.Descripcion + "', Precio = '" + libro.Precio.ToString("F", CultureInfo.InvariantCulture) + "', Stock = '" + libro.Stock + "', PortadaURL = '" + libro.PortadaURL + "', Activo = '" + libro.Activo + "' WHERE ID_Libro = " + libro.Id);
 
                 datos.EjecutarAccion();
             }

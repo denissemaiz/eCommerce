@@ -20,6 +20,8 @@ namespace eCommerce
         public Carrito carritoNegocio { get; set; }
         public List<Libro> LibrosSinRepetidos { get; set; }
 
+        public Libro libro {  get; set; }
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -105,7 +107,6 @@ namespace eCommerce
                         Response.Redirect("Error.aspx", false);
                     }
                 }
-                //busquedaGeneral
 
                 if (!Request.QueryString.AllKeys.Contains("autoresLib") && !Request.QueryString.AllKeys.Contains("generosLib") && !Request.QueryString.AllKeys.Contains("tituloLib") && !Request.QueryString.AllKeys.Contains("busquedaGeneral"))
                 {
@@ -135,17 +136,32 @@ namespace eCommerce
         protected void btnEliminarLibro_Click(object sender, EventArgs e)
         {
             string idLibro = ((Button)sender).CommandArgument;
-
             LibroNegocio articulos = new LibroNegocio();
             listaLibros = articulos.PruebaBuscar(idLibro);
+            libro = listaLibros.First();
+            string codigo = libro.Codigo;
 
             if (listaLibros != null)
             {
                 LibroNegocio negocio = new LibroNegocio();
-                int id = Convert.ToInt32(idLibro);
-                negocio.Eliminar(id);
+                libro = listaLibros.First();
+                libro.Activo = false;
+
+                negocio.Modificar(libro);
                 Response.Redirect("Productos.aspx");
             }
+
+            /*
+            if (EsStockDisponible(codigo))
+            {
+                LibroNegocio negocio = new LibroNegocio();
+                libro = listaLibros.First();
+                libro.Stock = short.Parse("0");
+
+                negocio.Modificar(libro);
+                Response.Redirect("Productos.aspx");
+            }*/
+
         }
 
         protected void btnModificarLibro_Click(object sender, EventArgs e)
