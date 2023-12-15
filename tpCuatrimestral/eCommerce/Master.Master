@@ -47,6 +47,7 @@
                                     <li><a class="dropdown-item" href="AgregarProducto.aspx">Agregar un libro</a></li>
                                     <li><a class="dropdown-item" href="AgregarAutor.aspx">Agregar autor</a></li>
                                     <li><a class="dropdown-item" href="AgregarGenero.aspx">Agregar genero</a></li>
+                                    <li><a class="dropdown-item" href="ReporteVentas.aspx">Reporte de Ventas</a></li>
                                 </ul>
                             </li>
                         <%} %>
