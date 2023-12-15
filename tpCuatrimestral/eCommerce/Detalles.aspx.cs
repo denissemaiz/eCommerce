@@ -56,12 +56,17 @@ namespace eCommerce
 
                 if (!habilitarBoton)
                 {
-                    mensajeStock.InnerText = "No hay más stock de este producto";
-                    mensajeStock.Style["display"] = "block";  // Muestra el mensaje
+                    mensajeSinStock.InnerText = "No hay más stock de este producto";
+                    mensajeSinStock.Style["display"] = "block"; 
                 }
                 else
                 {
-                    mensajeStock.Style["display"] = "none";  // Oculta el mensaje si se muestra
+                    if (stockDisponible(codigo) == 1)
+                    {
+                        mensajeUltStock.InnerText = "¡Último disponible!";
+                        mensajeUltStock.Style["display"] = "block";
+                    }
+                    mensajeSinStock.Style["display"] = "none"; 
                 }                
             }
             else
@@ -107,6 +112,19 @@ namespace eCommerce
             }
 
             return true;
+        }
+
+        public int stockDisponible(string codigoLibro)
+        {
+            LibroNegocio librosDB = new LibroNegocio();
+            Libro busqueda = librosDB.Buscar_x_Codigo(codigoLibro);
+
+            if (busqueda != null)
+            {
+                return busqueda.Stock;
+            }
+
+            return 0;
         }
     }
 }
